@@ -1,0 +1,555 @@
+openapi: 3.0.1
+info:
+  title: Lytx..Management.Api Consent ECM (DriveCam) API
+  description: 'API for retrieving and updating user consent status, requiring authentication.
+
+    '
+  version: 1.0.0
+servers:
+- url: https://api.lytx.com/consent-management
+security:
+- bearerAuth: []
+tags:
+- name: ECM (DriveCam)
+paths:
+  /v1/ecm:
+    get:
+      tags:
+      - ECM (DriveCam)
+      description: Retrieves engine computer module (ECM) data from vehicles. ECM data availability varies by vehicle, device, and cable configuration. Also, the organization must have a Fleet Tracking subscription to receive data from this endpoint.
+      summary: Retrieve ECM Data
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: deviceIdentifier
+        in: query
+        required: false
+        schema:
+          type: string
+          nullable: true
+        description: Can use either device serial number or deviceId. If no device, vehicle, or group is specified, returns data for all devices.
+      - name: vehicleIdentifier
+        in: query
+        required: false
+        schema:
+          type: string
+          nullable: true
+        description: Can use either VIN, vehicleId, or vehicle name. If no device, vehicle, or group is specified, returns data for all vehicles.
+      - name: groupIdentifier
+        in: query
+        required: false
+        schema:
+          type: string
+          nullable: true
+        description: Can use groupId, rootGroupId, or group name. If no device, vehicle, or group is specifid, returns data for all devices.
+      - name: includeSubGroups
+        in: query
+        required: false
+        schema:
+          type: boolean
+          example: 'false'
+          nullable: false
+        description: If true, all descendant groups under the specified group are included.
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+          nullable: true
+          example: '1500'
+        description: Record to start with.
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          nullable: true
+          example: '100'
+        description: Number of records to return.
+      - name: startDate
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: The startDate must be within the last 6 months. The startDate and endDate must be 24 hours of each other. ECM data is available for up to 7 days; DTC data is available for up to 6 months.
+      - name: endDate
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: The startDate and endDate must be within 24 hours of each other.
+      - name: sort
+        in: query
+        required: false
+        schema:
+          type: string
+          nullable: true
+          example: VehicleName
+        description: Name of the property to sort on.
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+          nullable: true
+          example: asc
+        description: Sort direction.
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    type: array
+                    items:
+                      properties:
+                        deviceId:
+                          type: string
+                          nullable: false
+                          example: 1994FGGD-99A9-CB83-0C23-A8A3E3070000
+                          description: ID of the device.
+                        serialNumber:
+                          type: string
+                          nullable: false
+                          example: NT00210007
+                          description: Serial number of the device.
+                        groupId:
+                          type: string
+                          nullable: false
+                          example: 1996FGGD-88A8-CB83-0C23-A8A3E3070000
+                          description: ID of the device’s group.
+                        imei:
+                          type: string
+                          nullable: false
+                          example: ''
+                          description: International Mobile Equipment Identity number.
+                        licensePlate:
+                          type: string
+                          nullable: false
+                          example: 74980RP
+                          description: The vehicle’s license plate number.
+                        vehicleId:
+                          type: string
+                          example: 9100FGGD-48A9-CB83-0C23-A8A3E3070000
+                          description: ID of the vehicle to which the device is assigned.
+                        vehicleName:
+                          type: string
+                          nullable: false
+                          example: Example Car
+                          description: Name of the vehicle to which the device is assigned.
+                        vin:
+                          type: string
+                          nullable: false
+                          example: 9ATRPE9R2RO473355
+                          description: Vehicle Identification Number.
+                        samples:
+                          type: array
+                          description: ECM data availability varies by vehicle, device, and cable configuration. The most common data points are shown below.
+                          items:
+                            properties:
+                              sampleType:
+                                type: string
+                                example: ENGINE_HOURS
+                                description: Type of ECM data.
+                              sampleDateTime:
+                                type: string
+                                example: '2024-05-29T22:24:27.804Z'
+                                description: Date and time for the data point.
+                              sampleValue:
+                                type: string
+                                example: '1600'
+                                description: Value for the data point.
+                  metadata:
+                    type: array
+                    items:
+                      properties:
+                        count:
+                          type: integer
+                          example: '30'
+                        limit:
+                          type: integer
+                          example: '1'
+                        offset:
+                          type: integer
+                          example: '0'
+                        startDate:
+                          type: string
+                          nullable: false
+                          format: date-time
+                        endDate:
+                          type: string
+                          nullable: false
+                          format: date-time
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request
+                  message:
+                    type: string
+                    example: Invalid request data
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized
+                  message:
+                    type: string
+                    example: Access denied
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Forbidden
+                  message:
+                    type: string
+                    example: Non-permited user
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Not Found
+                  message:
+                    type: string
+                    example: No information found
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: An unexpected server error occurred
+  /vehicles/{vehicleId}/location:
+    get:
+      tags:
+      - ECM (DriveCam)
+      summary: Retrieve Location of Specified Vehicle
+      operationId: Gps_GetLocationById
+      parameters:
+      - name: vehicleId
+        in: path
+        required: true
+        description: The identifier of the vehicle.
+        schema:
+          type: integer
+          format: int64
+        x-position: 1
+      - name: time
+        in: query
+        description: Optional. If supplied, the response will contain the position of the vehicle closest to the given time.
+        schema:
+          type: string
+          format: date-time
+          nullable: true
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+        '401':
+          description: Can occur due to inputting an invalid key, or invalid pod
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Access is denied for this API. The given APIKey's context does not have the proper permissions.
+          content:
+            application/json:
+              schema:
+                type: string
+        '404':
+          description: The requested resource does not exist or is not available within the given APIKey's context.
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+  /vehicles/{vehicleId}/odometer:
+    get:
+      tags:
+      - ECM (DriveCam)
+      summary: Get ECM Data for Specified Vehicle
+      operationId: Vehicle_GetVehicleById
+      parameters:
+      - name: vehicleId
+        in: path
+        required: true
+        description: The identifier of the vehicle.
+        schema:
+          type: integer
+          format: int64
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleLocation'
+        '204':
+          description: The requested resource contained no data. The vehicle does not have any data associated to it.
+        '400':
+          description: The parameters given in the request are invalid.
+          content:
+            application/json:
+              schema:
+                type: string
+        '401':
+          description: Can occur due to inputting an invalid key, or invalid pod
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Access is denied for this API. The given APIKey's context does not have the proper permissions.
+          content:
+            application/json:
+              schema:
+                type: string
+        '404':
+          description: The requested resource does not exist or is not available within the given APIKey's context.
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+  /vehicles:
+    get:
+      tags:
+      - ECM (DriveCam)
+      summary: Retrieve List of Vehicles Associated to Callers Company
+      operationId: VehicleInfoAggregate_GetAllVehicleInfoByCompanyId
+      parameters:
+      - name: page
+        in: query
+        description: The page number of the list of vehicles. Default is 1. Cannot be less than 1.
+        schema:
+          type: integer
+          format: int32
+          default: 1
+        x-position: 1
+      - name: pageSize
+        in: query
+        description: The page size of each page. Value should be between 1-1000.
+        schema:
+          type: integer
+          format: int32
+          default: 1
+        x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleLocationPage'
+        '400':
+          description: The parameters given in the request are invalid.
+          content:
+            application/json:
+              schema:
+                type: string
+        '401':
+          description: Can occur due to inputting an invalid key, or invalid pod
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Access is denied for this API. The given APIKey's context does not have the proper permissions.
+          content:
+            application/json:
+              schema:
+                type: string
+        '404':
+          description: The requested resource does not exist or is not available within the given APIKey's context.
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+  /vehicles/{vehicleId}:
+    get:
+      tags:
+      - ECM (DriveCam)
+      summary: Retrieve ECM Data of Specified Vehicle
+      operationId: VehicleInfoAggregate_GetVehicleInfoById
+      parameters:
+      - name: vehicleId
+        in: path
+        required: true
+        description: The primary idenfitier of the vehicle.
+        schema:
+          type: integer
+          format: int64
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleLocation'
+        '400':
+          description: The parameters given in the request are invalid.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '401':
+          description: Can occur due to inputting an invalid key, or invalid pod
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '403':
+          description: Access is denied for this API. The given APIKey's context does not have the proper permissions.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: The requested resource does not exist or is not available within the given APIKey's context.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+components:
+  schemas:
+    Location:
+      type: object
+      additionalProperties: false
+      properties:
+        latitude:
+          type: number
+          description: Latitude position of the given trackpoint.
+          format: double
+        longitude:
+          type: number
+          description: Longitude position of the given trackpoint.
+          format: double
+        gpsDateTime:
+          type: string
+          description: The date and time of the given trackpoint
+          format: date-time
+        direction:
+          type: number
+          description: The heading of the vehicle.
+          format: double
+          nullable: true
+        speed:
+          type: number
+          description: The speed of the vehicle.
+          format: double
+          nullable: true
+    VehicleLocation:
+      type: object
+      additionalProperties: false
+      properties:
+        vehicleId:
+          type: integer
+          description: The primary identifier of the vehicle.
+          format: int64
+        vin:
+          type: string
+          description: The VIN number of the vehicle (manually captured).
+          nullable: true
+        deviceVin:
+          type: string
+          description: The VIN number of the vehicle (device captures).
+          nullable: true
+        odometer:
+          type: integer
+          description: The Odometer value of the vehicle, in Km.
+          format: int32
+          nullable: true
+        location:
+          description: The location information for the vehicle.
+          type: object
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/Location'
+    VehicleLocationPage:
+      allOf:
+      - $ref: '#/components/schemas/PageOfVehicleLocation'
+      - type: object
+        additionalProperties: false
+    PageOfVehicleLocation:
+      type: object
+      x-abstract: true
+      additionalProperties: false
+      properties:
+        currentPage:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalRecords:
+          type: integer
+          format: int32
+        vehicles:
+          type: array
+          description: The List of vehicles.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/VehicleLocation'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

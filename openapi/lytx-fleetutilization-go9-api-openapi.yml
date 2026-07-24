@@ -1,0 +1,238 @@
+openapi: 3.0.1
+info:
+  title: Lytx..Management.Api Consent FleetUtilization (GO9) API
+  description: 'API for retrieving and updating user consent status, requiring authentication.
+
+    '
+  version: 1.0.0
+servers:
+- url: https://api.lytx.com/consent-management
+security:
+- bearerAuth: []
+tags:
+- name: FleetUtilization (GO9)
+paths:
+  /plus/v1/fleetutilization:
+    get:
+      summary: Get Telematics Fleet Utilization Data
+      description: Retrieve a list of Fleet Utilization details
+      tags:
+      - FleetUtilization (GO9)
+      parameters:
+      - name: deviceId
+        in: query
+        required: false
+        schema:
+          type: string
+          nullable: true
+          example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
+        description: Can use either device serial number or device ID.
+      - name: minUtilizationPercentage
+        in: query
+        required: false
+        schema:
+          type: number
+          format: double
+          nullable: true
+          example: '30.7'
+        description: Specifies the minimum fleet utilization percentage.
+      - name: maxUtilizationPercentage
+        in: query
+        required: false
+        schema:
+          type: number
+          format: double
+          nullable: true
+          example: '48.5'
+        description: Specifies the maximum fleet utilization percentage.
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          nullable: true
+          example: '5000'
+        description: Number of records to return.
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+          nullable: true
+          example: '1500'
+        description: Record to start with.
+      - name: startDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+          example: '2023-06-01'
+        description: The start date must be within the last 60 days.
+      - name: endDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+          example: '2023-06-02'
+        description: End date to filter by.
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+          nullable: true
+          example: asc
+        description: Sort direction.
+      - name: sortProperty
+        in: query
+        required: false
+        schema:
+          type: string
+          nullable: true
+          example: name
+        description: Name of property to sort on.
+      - name: version
+        in: query
+        required: true
+        schema:
+          type: string
+          nullable: true
+          example: 1
+        description: API version number.
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FleetUtilizationResponseViewModel'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request
+                  message:
+                    type: string
+                    example: Invalid request data
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized
+                  message:
+                    type: string
+                    example: Access denied
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Forbidden
+                  message:
+                    type: string
+                    example: Non-permited user
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Not Found
+                  message:
+                    type: string
+                    example: No information found
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: An unexpected server error occurred
+components:
+  schemas:
+    UtilizationMetricsResponseViewModel:
+      type: object
+      properties:
+        timeInUse:
+          type: string
+          nullable: true
+          example: '00:06:57.515'
+          description: Total duration the vehicle was in use.
+        distanceTraveled:
+          type: number
+          format: double
+          nullable: true
+          example: 245.75
+          description: Total distance traveled by the vehicle in kilometers.
+        idleTime:
+          type: string
+          nullable: true
+          example: 00:12:42
+          description: Total time the vehicle remained idle.
+        utilizationPercentage:
+          type: number
+          format: double
+          nullable: true
+          example: 78.5
+          description: Percentage indicating overall vehicle utilization.
+    FleetUtilizationResponseViewModel:
+      type: object
+      properties:
+        deviceId:
+          type: string
+          nullable: true
+          example: b18A
+          description: Unique identifier of the device installed in the vehicle.
+        vin:
+          type: string
+          nullable: true
+          example: 1HGCM82633A004352
+          description: Vehicle Identification Number (VIN).
+        vehicleType:
+          type: string
+          nullable: true
+          example: OldGeotab
+          description: Type of the vehicle.
+        tripsId:
+          type: array
+          nullable: true
+          description: List of trip identifiers associated with the vehicle.
+          items:
+            type: string
+            example: b25
+        creationDateTime:
+          type: string
+          nullable: true
+          format: date-time
+          example: '2025-01-15T10:30:00Z'
+          description: Date and time when the utilization data was created.
+        utilizationMetrics:
+          $ref: '#/components/schemas/UtilizationMetricsResponseViewModel'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

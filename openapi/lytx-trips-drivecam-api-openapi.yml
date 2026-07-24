@@ -1,0 +1,338 @@
+openapi: 3.0.1
+info:
+  title: Lytx..Management.Api Consent Trips (DriveCam) API
+  description: 'API for retrieving and updating user consent status, requiring authentication.
+
+    '
+  version: 1.0.0
+servers:
+- url: https://api.lytx.com/consent-management
+security:
+- bearerAuth: []
+tags:
+- name: Trips (DriveCam)
+paths:
+  /v1/trips:
+    get:
+      tags:
+      - Trips (DriveCam)
+      summary: Retrieve Trips
+      description: Retrieve a list of all the trips in an organization or subset of an organization.
+      parameters:
+      - name: deviceIdentifier
+        in: query
+        required: false
+        description: Filter by device identifier or serial number.
+        schema:
+          type: string
+          example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
+      - name: vehicleIdentifier
+        in: query
+        required: false
+        description: Filter by vehicle identifier or VIN.
+        schema:
+          type: string
+          example: 5100DDDD-60B6-D7CD-3FA2-22CA712B0000
+      - name: userIdentifier
+        in: query
+        required: false
+        description: Filter by user identifier.
+        schema:
+          type: string
+          example: 5100CCCC-60B6-D7CD-3FA2-22CA712B0000
+      - name: groupIdentifier
+        in: query
+        required: false
+        description: Filter by group identifier.
+        schema:
+          type: string
+          example: 5100BBBB-60B6-D7CD-3FA2-22CA712B0000
+      - name: startDate
+        in: query
+        required: false
+        description: Filter by start date.
+        schema:
+          type: string
+          format: date-time
+          example: '2023-09-10T00:00:00Z'
+      - name: endDate
+        in: query
+        required: false
+        description: Filter by end date.
+        schema:
+          type: string
+          format: date-time
+          example: '2023-09-30T23:59:59Z'
+      - name: offset
+        in: query
+        required: false
+        description: Record to start with.
+        schema:
+          type: integer
+          example: 1
+      - name: limit
+        in: query
+        required: false
+        description: Number of records to return.
+        schema:
+          type: integer
+          example: 100
+      - name: order
+        in: query
+        required: false
+        description: Sort direction.
+        schema:
+          type: string
+          example: asc
+      - name: sort
+        in: query
+        required: false
+        description: Name of property to sort on.
+        schema:
+          type: string
+          example: EndDate
+      - name: includeSubgroups
+        in: query
+        required: false
+        description: Include subgroups.
+        schema:
+          type: boolean
+          example: false
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TripResponseMessage'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: Bad Request
+                message: The parameters given in the request are invalid.
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: Forbidden
+                message: The requested resource is forbidden.
+        '404':
+          description: Resource Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: Resource Not Found
+                message: The requested resource doesn't exist.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: Internal Server Error
+                message: The requested operation cannot be performed.
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+    TripResponseMessage:
+      properties:
+        metadata:
+          type: object
+          properties:
+            limit:
+              type: integer
+              example: 1
+            count:
+              type: number
+              example: 10
+            offset:
+              type: integer
+              example: 1
+            startDate:
+              type: string
+              format: date-time
+              example: '2023-09-10T00:00:00Z'
+            endDate:
+              type: string
+              format: date-time
+              example: '2023-09-30T23:59:59Z'
+        data:
+          type: array
+          nullable: true
+          items:
+            properties:
+              tripId:
+                type: string
+                format: uuid
+              startDate:
+                type: string
+                format: date-time
+                example: '2023-09-10T08:00:00Z'
+              endDate:
+                type: string
+                format: date-time
+                example: '2023-09-10T08:45:00Z'
+              creationDateTime:
+                type: string
+                format: date-time
+                example: '2023-09-10T09:00:00Z'
+              startPosition:
+                type: object
+                nullable: true
+                properties:
+                  latitude:
+                    type: number
+                    format: double
+                    nullable: false
+                    example: 32.887558
+                    description: Latitude coordinate for the trip start position.
+                  longitude:
+                    type: number
+                    format: double
+                    nullable: false
+                    example: -117.212288
+                    description: Longitude coordinate for the trip start position.
+                  address:
+                    type: string
+                    nullable: false
+                    example: 9785 Scranton Rd, San Diego, CA 92121
+                    description: Start address for the trip.
+                  occurrenceDateTime:
+                    type: string
+                    format: date-time
+                    example: '2023-09-10T08:00:00Z'
+                    description: Date time for the trip start position.
+                  timezoneOffset:
+                    type: number
+                    example: -480
+                    description: Timezone offset for the trip start position.
+              endPosition:
+                type: object
+                nullable: true
+                properties:
+                  latitude:
+                    type: number
+                    format: double
+                    nullable: false
+                    example: 32.887558
+                    description: Latitude coordinate for the trip end point.
+                  longitude:
+                    type: number
+                    format: double
+                    nullable: false
+                    example: -117.212288
+                    description: Longitude coordinate for the trip end point.
+                  address:
+                    type: string
+                    nullable: false
+                    example: 1600 Pacific Hwy, San Diego, CA 92101
+                    description: End address for the trip.
+                  occurrenceDateTime:
+                    type: string
+                    format: date-time
+                    example: '2023-09-10T08:45:00Z'
+                    description: Date time for the trip end position.
+                  timezoneOffset:
+                    type: number
+                    example: -480
+                    description: Timezone offset for the trip end position.
+              maxSpeedKph:
+                type: number
+                format: double
+                example: 55
+                description: Max speed for the trip in kph
+              distanceKm:
+                type: number
+                format: double
+                example: 11
+                description: Total kilometer distance traveled for the trip
+              deviceDistanceKm:
+                type: number
+                format: double
+                nullable: true
+                example: 11.4
+                description: 'Trip distance in kilometers. Before July 10, 2026,  this value came directly from the device and could  differ slightly from distanceKm. Starting July 10, 2026,  this field returns the same value as distanceKm.
+
+                  '
+              driver:
+                type: object
+                nullable: true
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  firstName:
+                    type: string
+                  lastName:
+                    type: string
+                  employeeNumber:
+                    type: string
+              vehicle:
+                type: object
+                nullable: true
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    example: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+                  imei:
+                    type: string
+                    example: 6TJJS89
+                  serialNumber:
+                    type: string
+                    example: '7365990'
+                  vehicleName:
+                    type: string
+                    example: Toyota Tundra
+                  deviceId:
+                    type: string
+                    format: uuid
+                    example: b2c3d4e5-f6a7-8901-bcde-f12345678901
+                  licensePlate:
+                    type: string
+                    example: 7TMR879
+                  vin:
+                    type: string
+                    example: 1HGCM82633A000001
+                  groupId:
+                    type: string
+                    format: uuid
+                    example: c3d4e5f6-a7b8-9012-cdef-123456789012
+                  groupAppId:
+                    type: number
+                    example: 12345
+                  groupName:
+                    type: string
+                    example: North Division
+              eventRecorderTimezone:
+                type: string
+                example: PST
+                description: Event recording device timezone when device is first configured.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

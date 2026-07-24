@@ -1,0 +1,338 @@
+openapi: 3.0.1
+info:
+  title: Lytx..Management.Api Consent Users (GO9) API
+  description: 'API for retrieving and updating user consent status, requiring authentication.
+
+    '
+  version: 1.0.0
+servers:
+- url: https://api.lytx.com/consent-management
+security:
+- bearerAuth: []
+tags:
+- name: Users (GO9)
+paths:
+  /plus/v1/users:
+    get:
+      summary: Get Telematics Users Data
+      description: Retrieve a list of all users in a company or subset of a company
+      tags:
+      - Users (GO9)
+      parameters:
+      - name: groupId
+        in: query
+        required: false
+        schema:
+          type: string
+          nullable: true
+          example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
+        description: Can use group ID or root group ID.
+      - name: includeSubGroups
+        in: query
+        required: false
+        schema:
+          type: boolean
+          example: 'false'
+          nullable: false
+          default: true
+        description: If true, all descendant groups under the specified group are included.
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          nullable: true
+          example: '5000'
+        description: Number of records to return.
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+          nullable: true
+          example: '1500'
+        description: Record to start with.
+      - name: startDate
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+          example: '2023-06-01'
+        description: The start date must be within the last 60 days.
+      - name: endDate
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+          example: '2023-06-02'
+        description: End date to filter by.
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+          nullable: true
+          example: asc
+        description: Sort direction.
+      - name: sortProperty
+        in: query
+        required: false
+        schema:
+          type: string
+          nullable: true
+          example: name
+        description: Name of property to sort on.
+      - name: version
+        in: query
+        required: true
+        schema:
+          type: string
+          nullable: true
+          example: 1
+        description: API version number.
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/UserResponseViewModel'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request
+                  message:
+                    type: string
+                    example: Invalid request data
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized
+                  message:
+                    type: string
+                    example: Access denied
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Forbidden
+                  message:
+                    type: string
+                    example: Non-permited user
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Not Found
+                  message:
+                    type: string
+                    example: No information found
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: An unexpected server error occurred
+components:
+  schemas:
+    UserResponseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: false
+          example: 1b33bcbe-15d3-445e-a06f-dda61208ad18
+          description: Unique identifier for the user.
+        firstName:
+          type: string
+          nullable: false
+          example: John
+          description: First name of the user.
+        lastName:
+          type: string
+          nullable: false
+          example: Doe
+          description: Last name of the user.
+        name:
+          type: string
+          nullable: true
+          example: John Doe
+          description: Full name of the user.
+        licenseNumber:
+          type: string
+          nullable: true
+          example: DL-123456
+          description: License number of the user.
+        licenseProvince:
+          type: string
+          nullable: true
+          example: CA
+          description: Province/state of the license.
+        acceptedEULA:
+          type: integer
+          nullable: false
+          example: 1
+          description: Version of the EULA accepted.
+        driveGuideVersion:
+          type: integer
+          example: 2
+          description: Drive Guide version used by the user.
+        wifiEULA:
+          type: integer
+          example: 1
+          description: WiFi EULA acceptance version.
+        activeFrom:
+          type: string
+          format: date-time
+          example: '2023-10-06T00:22:30.000Z'
+          description: Start date from which the user is active (UTC).
+        activeTo:
+          type: string
+          format: date-time
+          example: '2025-10-06T00:22:30.000Z'
+          description: End date until which the user is active (UTC).
+        lastAccessDate:
+          type: string
+          format: date-time
+          example: '2025-09-15T12:22:30.000Z'
+          description: Last time the user accessed the system.
+        companyName:
+          type: string
+          example: Acme Corp
+          description: Name of the company the user belongs to.
+        companyAddress:
+          type: string
+          example: 123 Main Street, Toronto, ON
+          description: Address of the company.
+        carrierNumber:
+          type: string
+          example: CARR123
+          description: Carrier number.
+        isDriver:
+          type: boolean
+          example: true
+          description: Indicates whether the user is a driver.
+        isEmailReportEnabled:
+          type: boolean
+          example: false
+          description: Whether email reports are enabled for the user.
+        language:
+          type: string
+          example: en-US
+          description: Preferred language of the user.
+        timeZoneId:
+          type: string
+          example: America/Toronto
+          description: Time zone of the user.
+        userAuthenticationType:
+          type: integer
+          example: 1
+          description: Authentication type of the user.
+        zoneDisplayMode:
+          type: integer
+          example: 2
+          description: Zone display mode preference.
+        driverGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupResponseViewModel'
+          description: List of driver groups associated with the user.
+        companyGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupResponseViewModel'
+          description: List of company groups associated with the user.
+        keys:
+          type: array
+          items:
+            type: object
+          description: List of keys assigned to the user.
+        bookmarks:
+          type: array
+          items:
+            type: object
+          description: List of bookmarks for the user.
+        viewDriversOwnDataOnly:
+          type: boolean
+          example: false
+          description: Whether user can only view their own driver data.
+        designation:
+          type: string
+          example: Manager
+          description: Job designation of the user.
+        employeeNo:
+          type: string
+          example: EMP12345
+          description: Employee number of the user.
+        phoneNumber:
+          type: string
+          example: +1-123-456-7890
+          description: Phone number of the user.
+        phoneNumberExtension:
+          type: string
+          example: '101'
+          description: Extension for the phone number.
+    GroupResponseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: false
+          example: grp-123
+          description: Unique identifier of the group.
+        name:
+          type: string
+          nullable: false
+          example: Drivers Group
+          description: Name of the group.
+        comment:
+          type: string
+          example: Main driver group
+          description: Additional comments about the group.
+        reference:
+          type: string
+          example: REF123
+          description: Reference information for the group.
+        parent:
+          $ref: '#/components/schemas/GroupResponseViewModel'
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupResponseViewModel'
+          description: List of child groups.
+        color:
+          $ref: '#/components/schemas/GroupResponseViewModel'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

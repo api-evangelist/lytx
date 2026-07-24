@@ -1,0 +1,744 @@
+openapi: 3.0.1
+info:
+  title: Lytx..Management.Api Consent FaultData (GO9) API
+  description: 'API for retrieving and updating user consent status, requiring authentication.
+
+    '
+  version: 1.0.0
+servers:
+- url: https://api.lytx.com/consent-management
+security:
+- bearerAuth: []
+tags:
+- name: FaultData (GO9)
+paths:
+  /plus/v1/faultdata:
+    get:
+      summary: Get Telematics Fault Data
+      description: Retrieve a list of all the fault data in an organization or subset of an organization
+      tags:
+      - FaultData (GO9)
+      parameters:
+      - name: deviceId
+        in: query
+        required: false
+        schema:
+          type: string
+          nullable: true
+          example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
+        description: Can use either device serial number or device ID.
+      - name: Severity
+        in: query
+        required: false
+        schema:
+          type: string
+          nullable: true
+          example: Low
+        description: A value indicating the severity codes to search for.
+      - name: Status
+        in: query
+        required: false
+        schema:
+          type: string
+          nullable: true
+          example: Active
+        description: The to state of the fault. The Fault data logs are searched for events which are under the this state.
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          nullable: true
+          example: '5000'
+        description: Number of records to return.
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+          nullable: true
+          example: '1500'
+        description: Record to start with.
+      - name: startDate
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+          example: '2023-06-01'
+        description: The start date must be within the last 60 days.
+      - name: endDate
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+          example: '2023-06-02'
+        description: End date to filter by.
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+          nullable: true
+          example: asc
+        description: Sort direction.
+      - name: sortProperty
+        in: query
+        required: false
+        schema:
+          type: string
+          nullable: true
+          example: name
+        description: Name of property to sort on.
+      - name: version
+        in: query
+        required: true
+        schema:
+          type: string
+          nullable: true
+          example: 1
+        description: API version number.
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FaultDataResponseViewModel'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request
+                  message:
+                    type: string
+                    example: Invalid request data
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized
+                  message:
+                    type: string
+                    example: Access denied
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Forbidden
+                  message:
+                    type: string
+                    example: Non-permited user
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Not Found
+                  message:
+                    type: string
+                    example: No information found
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: An unexpected server error occurred
+components:
+  schemas:
+    FaultDataResponseViewModel:
+      type: object
+      properties:
+        amberWarningLamp:
+          type: boolean
+          nullable: true
+          example: true
+          description: Indicates whether the amber warning lamp is active.
+        classCode:
+          type: string
+          nullable: true
+          example: A
+          description: Classification code of the fault.
+        controller:
+          $ref: '#/components/schemas/ControllerResponseViewModel'
+        count:
+          type: integer
+          nullable: true
+          example: 3
+          description: Number of times the fault has occurred.
+        dateTime:
+          type: string
+          nullable: true
+          example: '2025-01-20T10:30:00.000Z'
+          description: Date and time when the fault was recorded.
+        device:
+          $ref: '#/components/schemas/DeviceResponseViewModel'
+        diagnostic:
+          $ref: '#/components/schemas/DiagnosticResponseViewModel'
+        dismissDateTime:
+          type: string
+          nullable: true
+          example: '2025-01-21T09:00:00.000Z'
+          description: Date and time when the fault was dismissed.
+        dismissUser:
+          $ref: '#/components/schemas/UserResponseViewModel'
+        effectOnComponent:
+          type: string
+          nullable: true
+          example: Reduced performance
+          description: Effect of the fault on the component.
+        failureMode:
+          $ref: '#/components/schemas/FailureModeResponseViewModel'
+        faultDescription:
+          type: string
+          nullable: true
+          example: Engine overheating detected
+          description: Description of the fault.
+        faultLampState:
+          type: string
+          nullable: true
+          example: 'ON'
+          description: Current state of the fault lamp.
+        faultState:
+          type: string
+          nullable: true
+          example: Active
+          description: Current state of the fault.
+        effectiveStatus:
+          $ref: '#/components/schemas/FaultStatusResponseViewModel'
+        flashCode:
+          $ref: '#/components/schemas/FlashCodeResponseViewModel'
+        id:
+          type: string
+          nullable: true
+          example: fault-12345
+          description: Unique identifier of the fault record.
+        malfunctionLamp:
+          type: boolean
+          nullable: true
+          example: false
+          description: Indicates whether the malfunction lamp is active.
+        protectWarningLamp:
+          type: boolean
+          nullable: true
+          example: false
+          description: Indicates whether the protect warning lamp is active.
+        recommendation:
+          type: string
+          nullable: true
+          example: Stop vehicle and inspect engine cooling system
+          description: Recommended action for this fault.
+        redStopLamp:
+          type: boolean
+          nullable: true
+          example: false
+          description: Indicates whether the red stop lamp is active.
+        riskOfBreakdown:
+          type: integer
+          nullable: true
+          example: 2
+          description: Risk level of vehicle breakdown.
+        severity:
+          type: string
+          nullable: true
+          example: High
+          description: Severity level of the fault.
+        sourceAddress:
+          type: integer
+          nullable: true
+          example: 33
+          description: Source address reporting the fault.
+    SourceResponseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+          example: SRC-001
+          description: Unique identifier of the source.
+        name:
+          type: string
+          nullable: true
+          example: Telematics Provider
+          description: Name of the data source.
+    UserResponseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: false
+          example: 1b33bcbe-15d3-445e-a06f-dda61208ad18
+          description: Unique identifier for the user.
+        firstName:
+          type: string
+          nullable: false
+          example: John
+          description: First name of the user.
+        lastName:
+          type: string
+          nullable: false
+          example: Doe
+          description: Last name of the user.
+        name:
+          type: string
+          nullable: true
+          example: John Doe
+          description: Full name of the user.
+        licenseNumber:
+          type: string
+          nullable: true
+          example: DL-123456
+          description: License number of the user.
+        licenseProvince:
+          type: string
+          nullable: true
+          example: CA
+          description: Province/state of the license.
+        acceptedEULA:
+          type: integer
+          nullable: false
+          example: 1
+          description: Version of the EULA accepted.
+        driveGuideVersion:
+          type: integer
+          example: 2
+          description: Drive Guide version used by the user.
+        wifiEULA:
+          type: integer
+          example: 1
+          description: WiFi EULA acceptance version.
+        activeFrom:
+          type: string
+          format: date-time
+          example: '2023-10-06T00:22:30.000Z'
+          description: Start date from which the user is active (UTC).
+        activeTo:
+          type: string
+          format: date-time
+          example: '2025-10-06T00:22:30.000Z'
+          description: End date until which the user is active (UTC).
+        lastAccessDate:
+          type: string
+          format: date-time
+          example: '2025-09-15T12:22:30.000Z'
+          description: Last time the user accessed the system.
+        companyName:
+          type: string
+          example: Acme Corp
+          description: Name of the company the user belongs to.
+        companyAddress:
+          type: string
+          example: 123 Main Street, Toronto, ON
+          description: Address of the company.
+        carrierNumber:
+          type: string
+          example: CARR123
+          description: Carrier number.
+        isDriver:
+          type: boolean
+          example: true
+          description: Indicates whether the user is a driver.
+        isEmailReportEnabled:
+          type: boolean
+          example: false
+          description: Whether email reports are enabled for the user.
+        language:
+          type: string
+          example: en-US
+          description: Preferred language of the user.
+        timeZoneId:
+          type: string
+          example: America/Toronto
+          description: Time zone of the user.
+        userAuthenticationType:
+          type: integer
+          example: 1
+          description: Authentication type of the user.
+        zoneDisplayMode:
+          type: integer
+          example: 2
+          description: Zone display mode preference.
+        driverGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupResponseViewModel'
+          description: List of driver groups associated with the user.
+        companyGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupResponseViewModel'
+          description: List of company groups associated with the user.
+        keys:
+          type: array
+          items:
+            type: object
+          description: List of keys assigned to the user.
+        bookmarks:
+          type: array
+          items:
+            type: object
+          description: List of bookmarks for the user.
+        viewDriversOwnDataOnly:
+          type: boolean
+          example: false
+          description: Whether user can only view their own driver data.
+        designation:
+          type: string
+          example: Manager
+          description: Job designation of the user.
+        employeeNo:
+          type: string
+          example: EMP12345
+          description: Employee number of the user.
+        phoneNumber:
+          type: string
+          example: +1-123-456-7890
+          description: Phone number of the user.
+        phoneNumberExtension:
+          type: string
+          example: '101'
+          description: Extension for the phone number.
+    DiagnosticResponseViewModel:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 101
+          description: Numeric code identifying the diagnostic.
+        controller:
+          type: object
+          nullable: true
+          description: Controller associated with the diagnostic (if any).
+        diagnosticType:
+          type: string
+          example: Engine
+          description: Type/category of the diagnostic.
+        faultResetMode:
+          type: string
+          example: Automatic
+          description: Mode of fault reset.
+        id:
+          type: string
+          example: d1f6e56d-1234-4567-89ab-cdef12345678
+          description: Unique identifier for the diagnostic.
+        isReadOnly:
+          type: boolean
+          example: false
+          description: Indicates if the diagnostic is read-only.
+        name:
+          type: string
+          example: Engine Overheat
+          description: Name of the diagnostic.
+        source:
+          type: object
+          nullable: true
+          description: Source object of the diagnostic.
+        tamperingDiagnostics:
+          type: integer
+          example: 0
+          description: Number of tampering-related diagnostics.
+        unitOfMeasure:
+          type: object
+          nullable: true
+          description: Unit of measure for the diagnostic value.
+        version:
+          type: string
+          example: v1.0
+          description: Version of the diagnostic data.
+    FaultStatusResponseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+          example: STAT-ACT
+          description: Unique identifier of the fault status.
+        name:
+          type: string
+          nullable: true
+          example: Active
+          description: Name of the fault status.
+    DeviceResponseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: false
+          example: 1b33bcbe-15d3-445e-a06f-dda61208ad18
+          description: Unique ID for the device.
+        activeFrom:
+          type: string
+          format: date-time
+          nullable: true
+          example: '2023-10-06T00:22:30.000Z'
+          description: Start date when the device became active.
+        activeTo:
+          type: string
+          format: date-time
+          nullable: true
+          example: '2025-10-06T00:22:30.000Z'
+          description: End date until which the device remains active.
+        comment:
+          type: string
+          nullable: true
+          example: Installed in vehicle A123
+          description: Additional comments about the device.
+        groups:
+          type: array
+          items:
+            type: string
+          nullable: true
+          example:
+          - Group1
+          - Group2
+          description: List of groups associated with the device.
+        timeZoneId:
+          type: string
+          nullable: true
+          example: America/Toronto
+          description: Time zone assigned to the device.
+        deviceFlags:
+          type: string
+          nullable: true
+          example: FLAG_001
+          description: Flags indicating device-specific properties.
+        deviceType:
+          type: string
+          nullable: true
+          example: GO9
+          description: Type/model of the device.
+        hardwareId:
+          type: string
+          nullable: true
+          example: HW-ABC-12345
+          description: Hardware identifier of the device.
+        ignoreDownloadsUntil:
+          type: string
+          format: date-time
+          nullable: true
+          example: '2025-05-15T12:00:00.000Z'
+          description: The device should ignore downloads until this time.
+        maxSecondsBetweenLogs:
+          type: integer
+          nullable: true
+          example: 300
+          description: Maximum number of seconds allowed between logs.
+        name:
+          type: string
+          nullable: true
+          example: Device A123
+          description: Name assigned to the device.
+        productId:
+          type: string
+          nullable: true
+          example: PROD-456
+          description: Product identifier of the device.
+        serialNumber:
+          type: string
+          nullable: true
+          example: SN123456789
+          description: Serial number of the device.
+        timeToDownload:
+          type: string
+          format: date-time
+          nullable: true
+          example: '2025-09-20T10:00:00.000Z'
+          description: Scheduled time for the device to download updates.
+        workTime:
+          type: string
+          nullable: true
+          example: 08:00-17:00
+          description: Work time configuration of the device.
+        registerDeviceResultLite:
+          type: object
+          nullable: true
+          description: Registration result details for the device.
+        devicePlanBillingInfo:
+          type: object
+          nullable: true
+          description: Billing information for the device plan.
+        deviceReplacementInfo:
+          type: object
+          nullable: true
+          description: Replacement information for the device.
+        customProperties:
+          type: object
+          nullable: true
+          description: Custom properties associated with the device.
+        mediaFiles:
+          type: array
+          items:
+            type: string
+          nullable: true
+          example:
+          - file1.jpg
+          - file2.mp4
+          description: Media files linked to the device.
+        tmpTrailerId:
+          type: string
+          nullable: true
+          example: TRAILER-123
+          description: Temporary trailer ID linked to the device.
+        version:
+          type: string
+          nullable: true
+          example: v1.2.3
+          description: Version information of the device.
+    FlashCodeResponseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+          example: FC-778
+          description: Unique identifier of the flash code.
+        name:
+          type: string
+          nullable: true
+          example: Flash Code 778
+          description: Name of the flash code.
+        circuitIndex:
+          type: string
+          nullable: true
+          example: CIR-02
+          description: Circuit index related to the flash code.
+        flashCodeIndex:
+          type: string
+          nullable: true
+          example: FCI-778
+          description: Flash code index reference.
+        pageReference:
+          type: string
+          nullable: true
+          example: Page 120
+          description: Documentation page reference for the flash code.
+        helpUrl:
+          type: string
+          nullable: true
+          example: https://help.example.com/faults/778
+          description: URL to detailed help documentation.
+        priorityLevel:
+          type: integer
+          nullable: true
+          example: 1
+          description: Priority level of the flash code.
+        diagnostic:
+          $ref: '#/components/schemas/DiagnosticResponseViewModel'
+        failureMode:
+          $ref: '#/components/schemas/FailureModeResponseViewModel'
+    GroupResponseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: false
+          example: grp-123
+          description: Unique identifier of the group.
+        name:
+          type: string
+          nullable: false
+          example: Drivers Group
+          description: Name of the group.
+        comment:
+          type: string
+          example: Main driver group
+          description: Additional comments about the group.
+        reference:
+          type: string
+          example: REF123
+          description: Reference information for the group.
+        parent:
+          $ref: '#/components/schemas/GroupResponseViewModel'
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupResponseViewModel'
+          description: List of child groups.
+        color:
+          $ref: '#/components/schemas/GroupResponseViewModel'
+    FailureModeResponseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+          example: FM-09
+          description: Unique identifier of the failure mode.
+        code:
+          type: integer
+          nullable: true
+          example: 9
+          description: Numeric code representing the failure mode.
+        name:
+          type: string
+          nullable: true
+          example: Overheating
+          description: Human-readable name of the failure mode.
+        version:
+          type: string
+          nullable: true
+          example: '1.0'
+          description: Version of the failure mode definition.
+        source:
+          $ref: '#/components/schemas/SourceResponseViewModel'
+    ControllerResponseViewModel:
+      type: object
+      properties:
+        code:
+          type: integer
+          nullable: true
+          example: 100
+          description: Controller code.
+        codeId:
+          type: integer
+          format: int16
+          nullable: true
+          example: 10
+          description: Short identifier for the controller.
+        id:
+          type: string
+          nullable: true
+          example: ctrl-001
+          description: Unique identifier of the controller.
+        name:
+          type: string
+          nullable: true
+          example: Engine Controller
+          description: Name of the controller.
+        source:
+          $ref: '#/components/schemas/SourceResponseViewModel'
+        version:
+          type: string
+          nullable: true
+          example: v1.0
+          description: Controller version.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

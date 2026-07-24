@@ -1,0 +1,269 @@
+openapi: 3.0.1
+info:
+  title: Lytx..Management.Api Consent Driver ID (DriveCam) API
+  description: 'API for retrieving and updating user consent status, requiring authentication.
+
+    '
+  version: 1.0.0
+servers:
+- url: https://api.lytx.com/consent-management
+security:
+- bearerAuth: []
+tags:
+- name: Driver ID (DriveCam)
+  description: Legacy API to retrieve vehicle trips, including drivers and vehicles assigned to each trip. Uses obsolete X-APIKey authentication.
+paths:
+  /trips:
+    post:
+      tags:
+      - Driver ID (DriveCam)
+      summary: Return All Trips Specified by Query Terms
+      operationId: Trip_SearchTrips
+      requestBody:
+        x-name: request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetTripsRequest'
+        required: true
+        x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTripsApiResponse'
+        '400':
+          description: The parameters given in the request are invalid.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '401':
+          description: The request could not be authenticated. It can occur due to inputting an invalid key or invalid pod.
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: Access is denied to query trips for the specified group id. The given API key's context does not have the proper permissions.
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+components:
+  schemas:
+    Vehicle:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+          nullable: true
+    GetTripsApiResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        totalCount:
+          type: integer
+          description: The total number of trips that matches the query, ignoring pagination.
+          format: int32
+        results:
+          type: array
+          description: List of paginated trips that matches the query.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/Trip'
+    Device:
+      type: object
+      additionalProperties: false
+      properties:
+        serialNumber:
+          type: string
+          nullable: true
+    Location:
+      type: object
+      additionalProperties: false
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+    Interval:
+      type: object
+      additionalProperties: false
+      properties:
+        startTime:
+          type: string
+          description: The trip start time.
+          format: date-time
+        endTime:
+          type: string
+          description: The trip end time. If the trip has not completed, no end time will be provided.
+          format: date-time
+          nullable: true
+    Group:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+          nullable: true
+    Driver:
+      type: object
+      additionalProperties: false
+      properties:
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        fullName:
+          type: string
+          nullable: true
+        employeeId:
+          type: string
+          nullable: true
+    Trip:
+      type: object
+      additionalProperties: false
+      properties:
+        identificationType:
+          type: integer
+          description: 'The product used to identify the driver associated to the trip.
+
+            Possible values:
+
+            0 (None),
+
+            1 (Lytx Badge Scan),
+
+            2 (Vehicle Assignment), or
+
+            3 (Dispatch API).'
+          format: int32
+        interval:
+          description: The trip time interval.
+          type: object
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/Interval'
+        driver:
+          description: The driver associated to the trip.
+          type: object
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/Driver'
+        vehicle:
+          description: The vehicle associated to the trip.
+          type: object
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/Vehicle'
+        device:
+          description: The device associated to the trip.
+          type: object
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/Device'
+        group:
+          description: The group associated to the trip.
+          type: object
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/Group'
+        startLocation:
+          description: The trip's start location. It is associated with the vehicle's GPS data at the time of ignition on (if provided).
+          type: object
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/Location'
+        endLocation:
+          description: The trip's end location. It is associated with the vehicle's GPS data at the time of ignition off (if provided).
+          type: object
+          nullable: true
+          oneOf:
+          - $ref: '#/components/schemas/Location'
+    GetTripsRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        startTime:
+          type: string
+          description: Trips that began after this date (inclusive).
+          format: date-time
+        endTime:
+          type: string
+          description: Trips that began before this date (inclusive).
+          format: date-time
+        groupId:
+          type: string
+          description: Group Id (and its subgroups) associated to a trip's vehicle.
+          format: guid
+          deprecated: true
+          x-deprecatedMessage: 'US35029: Transitioning from groupID to groupIds'
+          nullable: true
+        groupIds:
+          type: array
+          description: Group Ids (not including subgroups) associated to a trip's vehicle.
+          nullable: true
+          items:
+            type: string
+            format: guid
+        driverId:
+          type: string
+          description: Driver Id associated to trip.
+          format: guid
+          nullable: true
+        vehicleId:
+          type: string
+          description: Vehicle Id associated to trip.
+          format: guid
+          nullable: true
+        sortColumn:
+          type: string
+          description: 'Column used to sort trips.
+
+            Possible values:
+
+            ScheduleEnd (default),
+
+            ScheduleStart,
+
+            VehicleName,
+
+            DriverName,
+
+            EmployeeId, or
+
+            DriverIdentificationType'
+          nullable: true
+        sortDirection:
+          type: string
+          description: 'Sort direction of the sort column. Possible values: asc (default) or desc.'
+          nullable: true
+        pageNumber:
+          type: integer
+          description: The page number of the list of trips. Default value is 1.
+          format: int32
+          maximum: 2147483647
+          minimum: 1
+          example: 1
+        pageSize:
+          type: integer
+          description: The number of trips to return per page. Default value is 1000.
+          format: int32
+          maximum: 2147483647
+          minimum: 1
+          example: 1000
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

@@ -1,0 +1,950 @@
+openapi: 3.0.1
+info:
+  title: Lytx..Management.Api Consent DVIR (DriveCam) API
+  description: 'API for retrieving and updating user consent status, requiring authentication.
+
+    '
+  version: 1.0.0
+servers:
+- url: https://api.lytx.com/consent-management
+security:
+- bearerAuth: []
+tags:
+- name: DVIR (DriveCam)
+paths:
+  /v1/dvir:
+    get:
+      tags:
+      - DVIR (DriveCam)
+      description: Retrieves a list of driver-vehicle inspection reports (DVIRs) including details on defects found and defects resolved.
+      summary: Retrieve All DVIRs
+      security:
+      - bearerAuth: []
+      operationId: getDvirs
+      parameters:
+      - name: reportIdentifiers
+        in: query
+        description: ID(s) of the inspection report(s).
+        required: false
+        schema:
+          type: string
+          example: 9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2,9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd3
+      - name: groupIdentifier
+        in: query
+        description: ID of the group.
+        required: false
+        schema:
+          type: string
+          example: 9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2
+      - name: includeSubGroups
+        in: query
+        required: false
+        schema:
+          type: boolean
+          example: 'false'
+          nullable: false
+        description: If true, all subgroups under the specified group are included.
+      - name: vehicleIdentifier
+        in: query
+        description: ID of the vehicle.
+        required: false
+        schema:
+          type: string
+          example: 9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2
+      - name: trailerIdentifier
+        in: query
+        description: ID of the trailer.
+        required: false
+        schema:
+          type: number
+          example: 123
+      - name: startDate
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: Filter for a specific date-time period.
+      - name: endDate
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: Filter for a specific date-time period.
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+          nullable: true
+          example: '1500'
+        description: Record to start with.
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          nullable: true
+          example: '100'
+        description: Maximum number of records to return.
+      - name: sort
+        in: query
+        required: false
+        schema:
+          type: string
+          nullable: true
+          example: VehicleName
+        description: Name of the property to sort on.
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+          nullable: true
+          example: asc
+        description: Sort direction.
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dvirs'
+  /v1/dvir/{reportIdentifier}:
+    get:
+      tags:
+      - DVIR (DriveCam)
+      description: Retrieve a specific driver-vehicle inspection report (DVIR) by report ID.
+      summary: Retrieve Specified DVIR
+      security:
+      - bearerAuth: []
+      operationId: getDvirById
+      parameters:
+      - name: reportIdentifier
+        in: path
+        description: ID of the inspection report.
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dvir'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: DVIR not found
+  /v1/dvir/inspectionlists:
+    get:
+      tags:
+      - DVIR (DriveCam)
+      description: Retrieves a list of inspection lists, including their inspection points and schedules.
+      summary: Retrieve List of Inspection Lists
+      security:
+      - bearerAuth: []
+      operationId: getInspectionLists
+      parameters:
+      - name: assetType
+        in: query
+        description: Can be either vehicle or trailer.
+        required: false
+        schema:
+          type: string
+          enum:
+          - vehicle
+          - trailer
+      - name: vehicleIdentifier
+        in: query
+        description: ID of the vehicle.
+        required: false
+        schema:
+          type: string
+          example: 9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2
+      - name: trailerIdentifier
+        in: query
+        description: ID of the trailer.
+        required: false
+        schema:
+          type: number
+          example: 123
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+          nullable: true
+          example: '1500'
+        description: Record to start with.
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          nullable: true
+          example: '100'
+        description: Maximum number of records to return.
+      - name: sort
+        in: query
+        required: false
+        schema:
+          type: string
+          nullable: true
+          example: Name
+        description: Name of the property to sort on.
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+          nullable: true
+          example: asc
+        description: Sort direction.
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InspectionLists'
+  /v1/dvir/schedules:
+    get:
+      tags:
+      - DVIR (DriveCam)
+      description: Retrieves a list of inspection schedules for assets with details on the most recent inspections for each asset.
+      summary: Retrieve List of Inspection Schedules
+      security:
+      - bearerAuth: []
+      operationId: getSchedules
+      parameters:
+      - name: assetType
+        in: query
+        description: Can be either vehicle or trailer.
+        required: false
+        schema:
+          type: string
+          enum:
+          - vehicle
+          - trailer
+      - name: groupIdentifier
+        in: query
+        description: ID of the group.
+        required: false
+        schema:
+          type: string
+          example: 9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2
+      - name: includeSubGroups
+        in: query
+        required: false
+        schema:
+          type: boolean
+          example: 'false'
+          nullable: false
+        description: If true, all subgroups under the specified group are included.
+      - name: vehicleIdentifier
+        in: query
+        description: ID of the vehicle.
+        required: false
+        schema:
+          type: string
+          example: 9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2
+      - name: trailerIdentifier
+        in: query
+        description: ID of the trailer.
+        required: false
+        schema:
+          type: number
+          example: 123
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+          nullable: true
+          example: '1500'
+        description: Record to start with.
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          nullable: true
+          example: '100'
+        description: Maximum number of records to return.
+      - name: sort
+        in: query
+        required: false
+        schema:
+          type: string
+          nullable: true
+          example: VehicleName
+        description: Name of the property to sort on.
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+          nullable: true
+          example: asc
+        description: Sort direction.
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedules'
+components:
+  schemas:
+    Dvirs:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            properties:
+              id:
+                type: integer
+                format: int64
+                example: 10
+                description: ID of the inspection report.
+              creationDate:
+                type: string
+                example: '2024-01-19T00:00:00.000Z'
+                description: Date and time when the inspection report was created.
+              certificationDate:
+                type: string
+                example: '2024-01-19T00:00:00.000Z'
+                description: Date and time when the inspection report was certified by the reviewer.
+              location:
+                type: string
+                example: Washington DC
+                description: Address where the inspection report was completed.
+              inspectionType:
+                type: string
+                enum:
+                - pre-trip
+                - post-trip
+                description: Indicates a pre-trip or post-trip inspection.
+              vehicleId:
+                type: string
+                example: 9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2
+                description: ID of the vehicle.
+              vehicleGroupId:
+                type: string
+                example: 9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2
+                description: ID of the vehicle's group.
+              vehicleName:
+                type: string
+                example: Vehicle example name
+                description: Name of the vehicle.
+              trailerId:
+                type: number
+                example: 123
+                description: ID of the trailer.
+              trailerGroupId:
+                type: string
+                example: 9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2
+                description: ID of the trailer's group.
+              trailerName:
+                type: string
+                example: Trailer example name
+                description: Name of the trailer.
+              driverName:
+                type: string
+                example: John
+                description: Name of the driver who completed the inspection report.
+              generalNote:
+                type: string
+                example: Note comments
+                description: General notes about the inspection.
+              duration:
+                type: string
+                example: 0:03:09
+                description: Duration of the inspection.
+              odometer:
+                type: number
+                example: 29.5
+                description: Vehicle odometer reading in miles at time of inspection.
+              dvirStatus:
+                type: string
+                enum:
+                - Safe
+                - Defect
+                description: Can be Safe or Defect. Defect = At least one issue found during inspection remains unresolved.
+              inspectionListId:
+                type: integer
+                example: 1
+                description: ID of the inspection list.
+              inspectionListName:
+                type: string
+                example: Some inspection list
+                description: Name of the inspection list.
+              defects:
+                type: array
+                description: A list of defects found in the inspection.
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                      example: 10
+                      description: ID of the defect.
+                    name:
+                      type: string
+                      example: inspection point name
+                      description: Name of the inspection point at issue.
+                    severityLevel:
+                      type: string
+                      enum:
+                      - Major
+                      - Minor
+                      description: Indicates major or minor severity of the defect.
+                    status:
+                      type: string
+                      enum:
+                      - Resolved
+                      - Safe
+                      - Defect
+                      description: Can be Safe, Defect, or Resolved. Defect = An issue was identified during the inspection. Resolved = A previously-identified defect has been resolved.
+                    notes:
+                      type: object
+                      description: Notes about the defect.
+                      properties:
+                        mobileNoteDescription:
+                          type: string
+                          example: This is a mobile note
+                          description: Notes about the defect from the Lytx Driver App.
+                        webNote:
+                          type: object
+                          description: Notes about the defect from the web application.
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                              description: ID of the defect note.
+                            description:
+                              type: string
+                              example: This is a web note
+                              description: Contents of the web note.
+                            creationDate:
+                              type: string
+                              example: '2024-01-19T00:00:00.000Z'
+                              description: Date and time when the note was added to the defect.
+                            creatorName:
+                              type: string
+                              example: The author of the note
+                              description: The author of the note.
+                    isSignedByMechanic:
+                      type: boolean
+                      example: true
+                      description: If true, a mechanic has signature has been obtained, indicating the defect has been resolved.
+              mechanicSignature:
+                type: object
+                description: Signature of the mechanic who performed maintenance on the vehicle.
+                properties:
+                  vehicle:
+                    type: object
+                    description: Mechanic's signature for the vehicle.
+                    properties:
+                      userId:
+                        type: integer
+                        example: 1
+                        description: ID of the mechanic.
+                      firstName:
+                        type: string
+                        example: John
+                        description: First name of the mechanic.
+                      lastName:
+                        type: string
+                        example: Lennon
+                        description: Last name of the mechanic.
+                      userRole:
+                        type: string
+                        example: role
+                        description: User role of the mechanic.
+                  trailer:
+                    type: object
+                    description: Mechanic's signature for the trailer.
+                    properties:
+                      userId:
+                        type: integer
+                        example: 1
+                        description: ID of the mechanic.
+                      firstName:
+                        type: string
+                        example: John
+                        description: First name of the mechanic.
+                      lastName:
+                        type: string
+                        example: Lennon
+                        description: Last name of the mechanic.
+                      userRole:
+                        type: string
+                        example: role
+                        description: User role of the mechanic.
+              reviewerSignature:
+                type: object
+                description: Signature of the reviewer certifying the inspection report.
+                properties:
+                  vehicle:
+                    type: object
+                    description: Reviewer's signature for the vehicle.
+                    properties:
+                      userId:
+                        type: integer
+                        example: 1
+                        description: ID of the reviewer's user account.
+                      firstName:
+                        type: string
+                        example: John
+                        description: First name of the reviewer.
+                      lastName:
+                        type: string
+                        example: Lennon
+                        description: Last name of the reviewer.
+                      userRole:
+                        type: string
+                        example: role
+                        description: Role of the reviewer's user account.
+                  trailer:
+                    type: object
+                    description: Reviewer's signature for the trailer.
+                    properties:
+                      userId:
+                        type: integer
+                        example: 1
+                        description: ID of the reviewer's user account.
+                      firstName:
+                        type: string
+                        example: John
+                        description: First name of the reviewer.
+                      lastName:
+                        type: string
+                        example: Lennon
+                        description: Last name of the reviewer.
+                      userRole:
+                        type: string
+                        example: role
+                        description: Role of the reviewer's user account.
+        metadata:
+          type: object
+          properties:
+            count:
+              type: integer
+              example: '30'
+              description: Number of records returned.
+            limit:
+              type: integer
+              example: '1'
+              description: Maximum number of records to return.
+            offset:
+              type: integer
+              example: '0'
+              description: Record to start with.
+            startDate:
+              type: string
+              nullable: false
+              format: date-time
+              description: The start date and time of the request.
+            endDate:
+              type: string
+              nullable: false
+              format: date-time
+              description: The end date and time of the request.
+    Schedules:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            properties:
+              id:
+                type: integer
+                example: 1
+                description: ID of the asset (vehicle ID or trailer ID).
+              assetType:
+                type: string
+                example: Vehicle
+                description: Can be either vehicle or trailer.
+              assetName:
+                type: string
+                example: vehicle name example
+                description: Name of the asset.
+              assetGroup:
+                type: string
+                example: 9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2
+                description: Group of the asset.
+              status:
+                type: string
+                description: The completion status of the scheduled inspection.
+                enum:
+                - Completed
+                - Overdue
+                - Upcoming
+              statusDayDiff:
+                type: integer
+                example: 1
+                description: Number of days left until the inspection is due. If the inspection is overdue, this is the number of days since the due date.
+              dueDate:
+                type: string
+                example: '2024-01-19T00:00:00.000Z'
+                description: Date and time when the next inspection is due. If the inspection is overdue, this is the date and time when it became overdue.
+              expiredDueDate:
+                type: string
+                example: '2024-01-19T00:00:00.000Z'
+                description: If the inspection is overdue, this is the date and time when it became overdue.
+              lastInspectedDate:
+                type: string
+                example: '2024-01-19T00:00:00.000Z'
+                description: Date and time when the asset was last inspected.
+              lastInspectedDriver:
+                type: string
+                example: John
+                description: Driver who completed the last inspection on the asset.
+              inspectionListId:
+                type: integer
+                example: 1
+                description: ID of the inspection list tied to the schedule.
+              inspectionListName:
+                type: string
+                example: Some inspection list
+                description: Name of the inspection list tied to the schedule.
+              inspectionFrequency:
+                type: string
+                example: Daily
+                description: Frequency type of the inspection list schedule (i.e. Daily, Weekly, Monthly, Yearly).
+        metadata:
+          type: object
+          properties:
+            count:
+              type: integer
+              example: '30'
+              description: Number of records returned.
+            limit:
+              type: integer
+              example: '1'
+              description: Maximum number of records to return.
+            offset:
+              type: integer
+              example: '0'
+              description: Record to start with.
+    Dvir:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+          description: ID of the inspection report.
+        creationDate:
+          type: string
+          example: '2024-01-19T00:00:00.000Z'
+          description: Date and time when the inspection report was certified by the reviewer.
+        certificationDate:
+          type: string
+          example: '2024-01-19T00:00:00.000Z'
+          description: Date and time when the inspection report was certified by the reviewer.
+        location:
+          type: string
+          example: Washington DC
+          description: Address where the inspection report was completed.
+        inspectionType:
+          type: string
+          enum:
+          - pre-trip
+          - post-trip
+          description: Indicates a pre-trip or post-trip inspection.
+        vehicleId:
+          type: string
+          example: 9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2
+          description: ID of the vehicle.
+        vehicleGroupId:
+          type: string
+          example: 9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2
+          description: ID of the vehicle's group.
+        vehicleName:
+          type: string
+          example: Vehicle example name
+          description: Name of the vehicle.
+        trailerId:
+          type: number
+          example: 123
+          description: ID of the trailer.
+        trailerGroupId:
+          type: string
+          example: 9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2
+          description: ID of the trailer's group.
+        trailerName:
+          type: string
+          example: Trailer example name
+          description: Name of the trailer.
+        driverName:
+          type: string
+          example: John
+          description: Name of the driver who completed the inspection report.
+        generalNote:
+          type: string
+          example: Note comments
+          description: General notes about the inspection.
+        duration:
+          type: string
+          example: 0:03:09
+          description: Duration of the inspection.
+        odometer:
+          type: number
+          example: 29.5
+          description: Vehicle odometer reading in miles at time of inspection.
+        dvirStatus:
+          type: string
+          enum:
+          - Safe
+          - Defect
+          description: Can be Safe or Defect. Defect = At least one issue found during inspection remains unresolved.
+        inspectionListId:
+          type: integer
+          example: 1
+          description: ID of the inspection list.
+        inspectionListName:
+          type: string
+          example: Some inspection list
+          description: Name of the inspection list.
+        defects:
+          type: array
+          description: A list of defects found in the inspection.
+          items:
+            properties:
+              id:
+                type: integer
+                format: int64
+                example: 10
+                description: ID of the defect.
+              name:
+                type: string
+                example: inspection point name
+                description: Name of the inspection point at issue.
+              severityLevel:
+                type: string
+                enum:
+                - Major
+                - Minor
+                description: Indicates major or minor severity of the defect.
+              status:
+                type: string
+                enum:
+                - Resolved
+                - Safe
+                - Defect
+                description: Can be Safe, Defect, or Resolved. Defect = An issue was identified during the inspection. Resolved = A previously-identified defect has been resolved.
+              notes:
+                type: object
+                description: Notes about the defect.
+                properties:
+                  mobileNoteDescription:
+                    type: string
+                    example: This is a mobile note
+                    description: Notes about the defect from the Lytx Driver App.
+                  webNote:
+                    type: object
+                    description: Notes about the defect from the web application.
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                        description: ID of the defect note.
+                      description:
+                        type: string
+                        example: This is a web note
+                        description: Contents of the web note.
+                      creationDate:
+                        type: string
+                        example: '2024-01-19T00:00:00.000Z'
+                        description: Date and time when the note was added to the defect.
+                      creatorName:
+                        type: string
+                        example: The author of the note
+                        description: The author of the note.
+              isSignedByMechanic:
+                type: boolean
+                example: true
+                description: If true, a mechanic has signature has been obtained, indicating the defect has been resolved.
+        mechanicSignature:
+          type: object
+          description: Signature of the mechanic who performed maintenance on the vehicle.
+          properties:
+            vehicle:
+              type: object
+              description: Mechanic's signature for the vehicle.
+              properties:
+                userId:
+                  type: integer
+                  example: 1
+                  description: ID of the mechanic.
+                firstName:
+                  type: string
+                  example: John
+                  description: First name of the mechanic.
+                lastName:
+                  type: string
+                  example: Lennon
+                  description: Last name of the mechanic.
+                userRole:
+                  type: string
+                  example: role
+                  description: User role of the mechanic.
+            trailer:
+              type: object
+              description: Mechanic's signature for the trailer.
+              properties:
+                userId:
+                  type: integer
+                  example: 1
+                  description: ID of the mechanic.
+                firstName:
+                  type: string
+                  example: John
+                  description: First name of the mechanic.
+                lastName:
+                  type: string
+                  example: Lennon
+                  description: Last name of the mechanic.
+                userRole:
+                  type: string
+                  example: role
+                  description: User role of the mechanic.
+        reviewerSignature:
+          type: object
+          description: Signature of the reviewer certifying the inspection report.
+          properties:
+            vehicle:
+              type: object
+              description: Reviewer's signature for the vehicle.
+              properties:
+                userId:
+                  type: integer
+                  example: 1
+                  description: ID of the reviewer's user account.
+                firstName:
+                  type: string
+                  example: John
+                  description: First name of the reviewer.
+                lastName:
+                  type: string
+                  example: Lennon
+                  description: Last name of the reviewer.
+                userRole:
+                  type: string
+                  example: role
+                  description: Role of the reviewer's user account.
+            trailer:
+              type: object
+              description: Reviewer's signature for the trailer.
+              properties:
+                userId:
+                  type: integer
+                  example: 1
+                  description: ID of the reviewer's user account.
+                firstName:
+                  type: string
+                  example: John
+                  description: First name of the reviewer.
+                lastName:
+                  type: string
+                  example: Lennon
+                  description: Last name of the reviewer.
+                userRole:
+                  type: string
+                  example: role
+                  description: Role of the reviewer's user account.
+    InspectionLists:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            properties:
+              inspectionListId:
+                type: integer
+                example: 1
+                description: ID of the inspection list.
+              inspectionName:
+                type: string
+                example: inspection list name example
+                description: Name of the inspection list.
+              scheduleFrequency:
+                type: string
+                description: Frequency type of the inspection list schedule (i.e. Daily, Weekly, Monthly, Yearly).
+                enum:
+                - daily
+                - weekly
+                - monthly
+                - yearly
+              repeatEvery:
+                type: integer
+                example: 1
+                description: Repeat quantity for the schedule frequency. For example, if schedule frequency is Weekly and 'repeat every' = 2, the inspection list must be repeated every 2 weeks.
+              repeatsOnDays:
+                type: string
+                example: '1'
+                description: Applies only if schedule frequency is Daily. Indicates the day(s) of the week on which the inspection must be completed. Each day is represented by a corresponding integer (Monday = 1).
+              repeatsDayOfWeek:
+                type: integer
+                example: 1
+                description: Applies only if schedule frequency is Weekly. Indicates the day of the week on which the inspection must be completed. Each day is represented by a corresponding integer (Monday = 1).
+              repeatsDayOfMonth:
+                type: string
+                example: First
+                description: Applies only if schedule frequency is Monthly. Indicates the day of the month on which the inspection must be completed. Can be 'First', '15th', or 'Last'.
+              repeatsYearlyOnDay:
+                type: integer
+                example: 1
+                description: Applies only if schedule frequency is Yearly. Day of the month when the inspection list should be repeated.
+              repeatsYearlyOnMonth:
+                type: integer
+                example: 1
+                description: Applies only if schedule frequency is Yearly. Month when the inspection list should be repeated.
+              sections:
+                type: array
+                description: A section of the inspection list with a group of inspection points.
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                      description: ID of the section of the inspection list.
+                    name:
+                      type: string
+                      example: section name example
+                      description: Name of the section of the inspection list.
+                    inspectionPoints:
+                      type: array
+                      description: Points of inspection in the section.
+                      items:
+                        properties:
+                          inspectionItem:
+                            type: string
+                            example: review tires
+                            description: Item in the inspection list section.
+        metadata:
+          type: object
+          properties:
+            count:
+              type: integer
+              example: '30'
+              description: Number of records returned.
+            limit:
+              type: integer
+              example: '1'
+              description: Maximum number of records to return.
+            offset:
+              type: integer
+              example: '0'
+              description: Record to start with.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
