@@ -1,0 +1,339 @@
+openapi: 3.0.0
+info:
+  title: Lytx.ECM.API
+  version: 2.0.0
+  x-generator: NSwag v13.9.4.0 (NJsonSchema v10.3.1.0 (Newtonsoft.Json v12.0.0.0))
+servers:
+  - url: https://data.lytx.com
+paths:
+  /v2/ecm:
+    get:
+      tags:
+        - ECM
+      summary: Retrieve ECM data (V2 - Enhanced with Sample Type filtering)
+      description: >-
+        Retrieves engine computer module (ECM) data from vehicles with enhanced
+        filtering by sample type. ECM data availability varies by vehicle,
+        device, and cable configuration. Also, the organization must have a
+        Fleet Tracking subscription to receive data from this endpoint.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: deviceIdentifier
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+          description: >-
+            Can use either device serial number or deviceId. If no device,
+            vehicle, or group is specified, returns data for all devices.
+        - name: vehicleIdentifier
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+          description: >-
+            Can use either VIN, vehicleId, or vehicle name. If no device,
+            vehicle, or group is specified, returns data for all vehicles.
+        - name: groupIdentifier
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+            nullable: true
+          description: >-
+            Can use groupId, rootGroupId, or group name. If no device, vehicle,
+            or group is specified, returns data for all devices.
+        - name: includeSubGroups
+          in: query
+          required: false
+          schema:
+            type: boolean
+            example: false
+            default: false
+            nullable: false
+          description: >-
+            If true, all descendant groups under the specified group are
+            included.
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            nullable: true
+            example: 1500
+            default: 0
+          description: Record to start with.
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            nullable: true
+            example: 100
+          description: Number of records to return.
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+            nullable: true
+          description: >-
+            The startDate must be within the last 6 months. The startDate and
+            endDate must be 24 hours of each other. ECM data is available for up
+            to 7 days; DTC data is available for up to 6 months. Defaults to
+            current UTC date.
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+            nullable: true
+          description: The startDate and endDate must be within 24 hours of each other.
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: VehicleName
+          description: Name of the property to sort on.
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: asc
+          description: Sort direction (asc or desc).
+        - name: sampleType
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - ODOMETER
+              - SPEED_KPH
+              - ENGINE_SPEED
+              - DTC
+              - VIN_FULL
+              - ENGINE_HOURS
+              - MIL
+            example: ODOMETER
+          description: >-
+            Type of ECM sample data to retrieve. This parameter is required for
+            V2 endpoint to filter specific data types.
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EcmResponse'
+        '204':
+          description: No Content - No data found matching the criteria
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedResponse'
+        '403':
+          description: Forbidden - Non-permitted user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalSystemErrorResponse'
+components:
+  schemas:
+    EcmResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EcmDevice'
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+      required:
+        - data
+        - metadata
+    EcmDevice:
+      type: object
+      properties:
+        deviceId:
+          type: string
+          format: uuid
+          example: 1994FGGD-99A9-CB83-0C23-A8A3E3070000
+          description: ID of the device.
+        serialNumber:
+          type: string
+          nullable: false
+          example: NT00210007
+          description: Serial number of the device.
+        groupId:
+          type: string
+          format: uuid
+          example: 1996FGGD-88A8-CB83-0C23-A8A3E3070000
+          description: ID of the device's group.
+        licensePlate:
+          type: string
+          nullable: false
+          example: 74980RP
+          description: The vehicle's license plate number.
+        vehicleId:
+          type: string
+          format: uuid
+          example: 9100FGGD-48A9-CB83-0C23-A8A3E3070000
+          description: ID of the vehicle to which the device is assigned.
+        vehicleName:
+          type: string
+          nullable: false
+          example: Example Car
+          description: Name of the vehicle to which the device is assigned.
+        vin:
+          type: string
+          nullable: false
+          example: 9ATRPE9R2RO473355
+          description: Vehicle Identification Number.
+        groupName:
+          type: string
+          nullable: false
+          example: Fleet Group 1
+          description: Name of the group to which the device belongs.
+        samples:
+          type: array
+          description: >-
+            ECM data samples filtered by the specified sampleType. Availability
+            varies by vehicle, device, and cable configuration.
+          items:
+            $ref: '#/components/schemas/EcmSample'
+      required:
+        - deviceId
+        - serialNumber
+        - groupId
+        - licensePlate
+        - vehicleId
+        - vehicleName
+        - vin
+        - groupName
+        - samples
+    EcmSample:
+      type: object
+      properties:
+        sampleType:
+          type: string
+          enum:
+            - ODOMETER
+            - SPEED_KPH
+            - ENGINE_SPEED
+            - DTC
+            - VIN_FULL
+            - ENGINE_HOURS
+            - MIL
+          example: ENGINE_HOURS
+          description: Type of ECM data.
+        sampleDateTime:
+          type: string
+          format: date-time
+          example: '2024-05-29T22:24:27.804Z'
+          description: Date and time for the data point.
+        sampleValue:
+          type: string
+          example: '1600'
+          description: Value for the data point.
+      required:
+        - sampleType
+        - sampleDateTime
+        - sampleValue
+    Metadata:
+      type: object
+      properties:
+        count:
+          type: string
+          example: '30'
+          description: Total number of records matching the criteria.
+        limit:
+          type: integer
+          example: 100
+          description: Number of records requested.
+        offset:
+          type: integer
+          example: 0
+          description: Starting record offset.
+        startDate:
+          type: string
+          format: date-time
+          description: Start date for the query.
+        endDate:
+          type: string
+          format: date-time
+          description: End date for the query.
+      required:
+        - count
+        - limit
+        - offset
+        - startDate
+        - endDate
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Forbidden
+        message:
+          type: string
+          example: Non-permitted user
+    BadRequestResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Invalid request data
+      required:
+        - message
+    UnauthorizedResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Unauthorized
+        message:
+          type: string
+          example: Access denied
+    InternalSystemErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Internal Server Error
+        message:
+          type: string
+          example: An unexpected server error occurred
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

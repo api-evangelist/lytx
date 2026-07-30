@@ -1,0 +1,325 @@
+openapi: 3.0.0
+info:
+  title: Lytx.Group.Api
+  description: These routes are externally accessible and require authentication.
+  version: 2.0.0
+servers:
+  - url: https://api.lytx.com/v2
+paths:
+  /groups/auditlogs:
+    post:
+      tags:
+        - Groups
+      summary: Retrieve a list of group audit logs in the organization.
+      description: Retrieve a list of group audit logs
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuditLogRequest'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditLog'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request
+                  message:
+                    type: string
+                    example: Audit data prior to 2024-09-04T00:00:00Z is not available.
+              examples:
+                Minimum StartDate:
+                  value:
+                    error: Bad Request
+                    message: Audit data prior to 2024-09-04T00:00:00Z is not available.
+                Invalid Username:
+                  value:
+                    error: Bad Request
+                    message: Username is invalid.
+                Invalid GroupId:
+                  value:
+                    error: Bad Request
+                    message: The GroupId must be a valid UUID.
+                Invalid UserId:
+                  value:
+                    error: Bad Request
+                    message: The UserId must be a valid UUID.
+                Invalid StartDate:
+                  value:
+                    error: Bad Request
+                    message: The StartDate must be a valid DateTime.
+                Future StartDate:
+                  value:
+                    error: Bad Request
+                    message: The StartDate cannot be in the future.
+                StartDate and EndDate Required:
+                  value:
+                    error: Bad Request
+                    message: >-
+                      The StartDate is required with the EndDate. The StartDate
+                      must be within 30 days before the EndDate.
+                Invalid EndDate:
+                  value:
+                    error: Bad Request
+                    message: The EndDate must be a valid DateTime.
+                StartDate and EndDate Range:
+                  value:
+                    error: Bad Request
+                    message: The EndDate must be within 30 days after the StartDate.
+                EndDate Before StartDate:
+                  value:
+                    error: Bad Request
+                    message: The EndDate must be after the StartDate.
+                Invalid Limit:
+                  value:
+                    error: Bad Request
+                    message: >-
+                      The Limit must be greater than 0 and less than or equal to
+                      10000.
+                Invalid Offset:
+                  value:
+                    error: Bad Request
+                    message: The Offset must be greater or equal to 0.
+                Invalid Sort:
+                  value:
+                    error: Bad Request
+                    message: The Sort field is not valid.
+                Invalid Order:
+                  value:
+                    error: Bad Request
+                    message: The Order must be either 'asc' or 'desc' value.
+                Invalid Action:
+                  value:
+                    error: Bad Request
+                    message: The Action field is not valid.
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              examples:
+                Unauthorized:
+                  value: ''
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              examples:
+                Forbidden:
+                  value: ''
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: Requested operation cannot be performed.
+              examples:
+                Internal Server Error:
+                  value:
+                    error: Internal Server Error
+                    message: The requested operation cannot be performed.
+  /groups/exportAuditLogs:
+    post:
+      tags:
+        - Groups
+      summary: Export group audit logs in the organization.
+      description: Export group audit logs
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuditLogRequest'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportAuditLogResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request
+                  message:
+                    type: string
+                    example: Audit data prior to 2024-09-04T00:00:00Z is not available.
+components:
+  schemas:
+    AuditLog:
+      title: AuditLog
+      type: object
+      required:
+        - id
+        - action
+        - createdDate
+        - fullPath
+        - fullPathId
+        - isDeleted
+        - name
+        - parentId
+        - revision
+        - rootGroupId
+        - updatedDate
+      properties:
+        id:
+          type: string
+          example: 0c3c9820-3ee4-e98d-0987-c7333e722f72
+        action:
+          type: string
+          example: UPDATE
+        createdDate:
+          type: string
+          example: '2023-01-01T00:00:00Z'
+        deletedDate:
+          type: boolean
+          example: '9999-01-01T00:00:00'
+        description:
+          type: string
+          example: this is a description
+        email:
+          type: string
+          example: serena@gmail.com
+        employeeId:
+          type: string
+          example: '12345678'
+        firstName:
+          type: string
+          example: Serena
+        fullPath:
+          type: string
+          example: '***Root\\Food%20Transportation%20INC'
+        fullPathId:
+          type: string
+          example: >-
+            750c5226-0f0a-402d-dcec-f83ccbb5373e\\0c3c9820-3ee4-e98d-0987-c7333e722f72
+        isDeleted:
+          type: boolean
+          example: false
+        lastName:
+          type: string
+          example: Smith
+        name:
+          type: string
+          example: Food Transportation INC
+        parentId:
+          type: string
+          example: 750c5226-0f0a-402d-dcec-f83ccbb5373e
+        revision:
+          type: number
+          example: 3
+        rootGroupId:
+          type: string
+          example: 750c5226-0f0a-402d-dcec-f83ccbb5373e
+        userId:
+          type: string
+          example: 110e60d8-fbed-217c-1720-6511d9f16361
+        username:
+          type: string
+          example: serenasmith
+        updatedDate:
+          type: string
+          example: '2023-02-01T00:00:00Z'
+        actionDescription:
+          type: string
+          example: Group was updated
+    AuditLogRequest:
+      title: AuditLogRequest
+      type: object
+      required:
+        - companyId
+      properties:
+        companyId:
+          type: string
+          example: '1129'
+          description: ID of the company to filter the results.
+        groupIdentifier:
+          type: string
+          example: 880e60d8-fbed-217a-1720-6511d9f16361
+          description: ID of the group to retrieve audit logs for.
+        includeSubgroups:
+          type: boolean
+          example: true
+          description: If true, all subgroups under the specified group are included.
+        action:
+          type: string
+          example: CREATE
+          description: >-
+            The description of the action type (CREATE, UPDATE, DELETE, IMPORT,
+            MOVE).
+        userIdentifier:
+          type: string
+          example: 880e60d8-fbed-217a-1720-6511d9f16361
+          description: ID or username of the user for which to return audit data.
+        sort:
+          type: string
+          example: UpdatedDate
+          description: Name of the property to sort on.
+        order:
+          type: string
+          example: desc
+          description: Sort direction.
+        startDate:
+          type: string
+          example: '2024-09-07T00:00:00Z'
+          description: >-
+            The start date and end date must be within 30 days of each other. If
+            no date specified, returns data from the last 30 days.
+        endDate:
+          type: string
+          example: '2024-09-10T00:00:00Z'
+          description: >-
+            The start date and end date must be within 30 days of each other. If
+            no date specified, returns data from the last 30 days.
+        limit:
+          type: number
+          example: 10000
+          description: Number of records to return.
+        offset:
+          type: number
+          example: 0
+          description: Record to start with.
+        searchtext:
+          type: string
+          example: testGroupName
+          description: Search text to filter the results.
+    ExportAuditLogResponse:
+      title: ExportAuditLogResponse
+      type: string
+      properties:
+        csvData:
+          type: string
+          example: >-
+            VXNlciwgR3JvdXAocyksIEFjdGlvbiwgQWN0aW9uIERldGFpbHMsIEFjdGlvbiBEYXRlDQosIHp6eiwgREVMRVRFLCB6enogZGVsZXRlZCwgMy8zLzIwMjUgNDoyNDo0MyBQTQ0KLCB6eiwgREVMRVRFLCB6eiBkZWxldGVkLCAzLzMvMjAyNSA0OjI1OjI2IFBNDQosIGpua2FiYmFiaGphYiwgREVMRVRFLCBqbmthYmJhYmhqYWIgZGVsZXRlZCwgMy80LzIwMjUgNzozMDoyNCBBTQ0KLCB6enosIERFTEVURSwgenp6IGRlbGV0ZWQsIDMvNC8yMDI1IDc6NTE6MDYgQU0NCiwgenosIERFTEVURSwgenogZGVsZXRlZCwgMy80LzIwMjUgMTA6MjY6MjQgQU0NCiwgTmV3IGdyb3VwIDEsIERFTEVURSwgTmV3IGdyb3VwIDEgZGVsZXRlZCwgMy80LzIwMjUgNzozNDoyMCBQTQ0KLCBOZXcgZ3JvdXAgUmVmcmVzaCB0ZXN0LCBERUxFVEUsIE5ldyBncm91cCBSZWZyZXNoIHRlc3QgZGVsZXRlZCwgMy80LzIwMjUgNzozNDoyOCBQTQ0KLCBOZXcgR3JvdXAgMTAwMiwgREVMRVRFLCBOZXcgR3JvdXAgMTAwMiBkZWxldGVkLCAzLzQvMjAyNSA3OjM0OjM3IFBNDQosIEFBVGVzdCBHcm91cCBBZGQgQVBJLCBERUxFVEUsIEFBVGVzdCBHcm91cCBBZGQgQVBJIGRlbGV0ZWQsIDMvNC8yMDI1IDc6MzQ6NTYgUE0NCiwgZHNkZmRzZmRmLCBERUxFVEUsIGRzZGZkc2ZkZiBkZWxldGVkLCAzLzQvMjAyNSA3OjM1OjAyIFBNDQosIGRzZHNkc2RzZHNkc2QsIERFTEVURSwgZHNkc2RzZHNkc2RzZCBkZWxldGVkLCAzLzQvMjAyNSA3OjM1OjA4IFBNDQosIGV3cmZlZmZmZGdnZmYsIERFTEVURSwgZXdyZmVmZmZkZ2dmZiBkZWxldGVkLCAzLzQvMjAyNSA3OjM1OjEzIFBNDQosIE5ldyBncm91cCAxLCBERUxFVEUsIE5ldyBncm91cCAxIGRlbGV0ZWQsIDMvNC8yMDI1IDc6MzU6MTkgUE0NCiwgQSBuZXcgZ3JvdXAgYWEsIERFTEVURSwgQSBuZXcgZ3JvdXAgYWEgZGVsZXRlZCwgMy80LzIwMjUgNzozNToyOSBQTQ0KLCBOZXcgZ3JvdXAgMSwgREVMRVRFLCBOZXcgZ3JvdXAgMSBkZWxldGVkLCAzLzQvMjAyNSA3OjM1OjM0IFBNDQosIEFkZCBHcm91cDEsIERFTEVURSwgQWRkIEdyb3VwMSBkZWxldGVkLCAzLzQvMjAyNSA3OjM1OjQzIFBNDQosIFRlc3QgR3JvdXAgQWRkIEFQSSwgREVMRVRFLCBUZXN0IEdyb3VwIEFkZCBBUEkgZGVsZXRlZCwgMy80LzIwMjUgNzozNTo0OSBQTQ0KLCBhYU5ld0dyb3VwQWRkaW5nNDQsIERFTEVURSwgYWFOZXdHcm91cEFkZGluZzQ0IGRlbGV0ZWQsIDMvNC8yMDI1IDc6MzY6MDEgUE0NCiwgTmV3IGdyb3VwIDExLCBERUxFVEUsIE5ldyBncm91cCAxMSBkZWxldGVkLCAzLzQvMjAyNSA3OjM2OjA3IFBNDQosIE5ldyBncm91cCAxMiwgREVMRVRFLCBOZXcgZ3JvdXAgMTIgZGVsZXRlZCwgMy80LzIwMjUgNzozNjoxMyBQTQ0KLCBaWiBOZXdHcm91cEFkZGluZzMzLCBERUxFVEUsIFpaIE5ld0dyb3VwQWRkaW5nMzMgZGVsZXRlZCwgMy80LzIwMjUgNzozNjoxOSBQTQ0KLCBBQSBOZXcgZ3JvdXAsIERFTEVURSwgQUEgTmV3IGdyb3VwIGRlbGV0ZWQsIDMvNC8yMDI1IDc6MzY6MzIgUE0NCiwgZHNhZHNhZHNhMTIzNCwgREVMRVRFLCBkc2Fkc2Fkc2ExMjM0IGRlbGV0ZWQsIDMvNC8yMDI1IDc6MzY6NDAgUE0NCiwgVEVTVDEyMzQ0NDUsIERFTEVURSwgVEVTVDEyMzQ0NDUgZGVsZXRlZCwgMy80LzIwMjUgNzozNjo0NiBQTQ0KLCBOZXdHcm91cEFkZGluZ1JlZnJlc2gsIERFTEVURSwgTmV3R3JvdXBBZGRpbmdSZWZyZXNoIGRlbGV0ZWQsIDMvNC8yMDI1IDc6Mzc6MjAgUE0NCiwgVGVzdCBOZXcgMTIzIEdyb3VwLCBERUxFVEUsIFRlc3QgTmV3IDEyMyBHcm91cCBkZWxldGVkLCAzLzQvMjAyNSA3OjM3OjI2IFBNDQosIGJramJrYmZkLCBERUxFVEUsIGJramJrYmZkIGRlbGV0ZWQsIDMvNC8yMDI1IDc6Mzc6MzUgUE0NCiwgenosIERFTEVURSwgenogZGVsZXRlZCwgMy
+          description: Base64 encoded string of the file contents.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

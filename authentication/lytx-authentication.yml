@@ -1,0 +1,69 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/lytx-consent-openapi.yml, openapi/lytx-device-openapi.yml, openapi/lytx-deviceplus-openapi.yml,
+  openapi/lytx-devicestatusinfoplus-openapi.yml, openapi/lytx-diagnosticsplus-openapi.yml, openapi/lytx-distance-openapi.yml,
+  openapi/lytx-driver.assignment-openapi.yml, openapi/lytx-driversplus-openapi.yml, openapi/lytx-dvir-openapi.yml,
+  openapi/lytx-dvirplus-openapi.yml, openapi/lytx-ecm-openapi.yml, openapi/lytx-ecm.v2-openapi.yml ...
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  sources:
+  - openapi/lytx-consent-openapi.yml
+  - openapi/lytx-device-openapi.yml
+  - openapi/lytx-deviceplus-openapi.yml
+  - openapi/lytx-devicestatusinfoplus-openapi.yml
+  - openapi/lytx-diagnosticsplus-openapi.yml
+  - openapi/lytx-distance-openapi.yml
+  - openapi/lytx-driver.assignment-openapi.yml
+  - openapi/lytx-driversplus-openapi.yml
+  - openapi/lytx-dvir-openapi.yml
+  - openapi/lytx-dvirplus-openapi.yml
+  - openapi/lytx-ecm-openapi.yml
+  - openapi/lytx-ecm.v2-openapi.yml
+  - openapi/lytx-exceptioneventplus-openapi.yml
+  - openapi/lytx-faultdataplus-openapi.yml
+  - openapi/lytx-fleetutilizationplus-openapi.yml
+  - openapi/lytx-geofences-openapi.yml
+  - openapi/lytx-gps-openapi.yml
+  - openapi/lytx-gpsplus-openapi.yml
+  - openapi/lytx-group-openapi.yml
+  - openapi/lytx-group.v2-openapi.yml
+  - openapi/lytx-groupplus-openapi.yml
+  - openapi/lytx-hos-openapi.yml
+  - openapi/lytx-hosplus-openapi.yml
+  - openapi/lytx-iftareportplus-openapi.yml
+  - openapi/lytx-maintenancerecordsplus-openapi.yml
+  - openapi/lytx-ruleplus-openapi.yml
+  - openapi/lytx-safety-openapi.yml
+  - openapi/lytx-statusdataplus-openapi.yml
+  - openapi/lytx-trips-openapi.yml
+  - openapi/lytx-tripsplus-openapi.yml
+  - openapi/lytx-user-openapi.yml
+  - openapi/lytx-userplus-openapi.yml
+  - openapi/lytx-vehicles-openapi.yml
+  - openapi/lytx-video-openapi.yml
+  - openapi/lytx-zonesplus-openapi.yml
+  - openapi/lytx-zonesputandpostplus-openapi.yml
+- name: APIKey
+  type: apiKey
+  in: header
+  parameter: X-APIKey
+  description: Enter your API key
+  sources:
+  - openapi/lytx-legacy.driversession.services-openapi.yml
+  - openapi/lytx-legacy.groups-openapi.yml
+  - openapi/lytx-legacy.hos-openapi.yml
+  - openapi/lytx-legacy.vehicleinfo.aggregator-openapi.yml
+  - openapi/lytx-legacy.vehicles-openapi.yml
+  - openapi/lytx-legacy.videoplatform-openapi.yml
+docs: https://developer.lytx.com/docs/authentication
+token_endpoint: https://login.lytx.com/api/auth/user
+notes: Bearer token (1h TTL) from POST https://login.lytx.com/api/auth/user; Advanced Authentication via
+  OIDC/SSO/MFA. Legacy DriveCam APIs use an X-APIKey header.

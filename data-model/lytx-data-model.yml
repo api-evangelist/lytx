@@ -1,0 +1,85 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/ (42 specs) + https://developer.lytx.com/docs/terminology
+entities:
+- name: Vehicle
+- name: Device
+- name: Driver
+- name: Group
+- name: User
+- name: Event
+- name: SafetyEvent
+- name: Trip
+- name: Geofence
+- name: Zone
+- name: Dvir
+- name: HosLog
+- name: GpsPosition
+- name: Consent
+relationships:
+- from: Device
+  to: Vehicle
+  type: belongs_to
+  via: vehicleId
+  evidence: device vehicle assignments
+- from: Vehicle
+  to: Group
+  type: belongs_to
+  via: groupId
+- from: Device
+  to: Group
+  type: belongs_to
+  via: groupId
+- from: User
+  to: Group
+  type: belongs_to
+  via: groupId
+- from: Event
+  to: Vehicle
+  type: belongs_to
+  via: vehicleId
+  evidence: safety/video events reference a vehicle
+- from: Event
+  to: Driver
+  type: belongs_to
+  via: driverId
+- from: Trip
+  to: Vehicle
+  type: belongs_to
+  via: vehicleId
+- from: Trip
+  to: Driver
+  type: belongs_to
+  via: driverId
+- from: HosLog
+  to: Driver
+  type: belongs_to
+  via: driverId
+- from: Dvir
+  to: Vehicle
+  type: belongs_to
+  via: vehicleId
+- from: Geofence
+  to: Group
+  type: belongs_to
+  via: groupId
+- from: GpsPosition
+  to: Vehicle
+  type: belongs_to
+  via: vehicleId
+- from: Group
+  to: Group
+  type: has_many
+  via: descendants
+  evidence: group hierarchy (descendants)
+id_conventions:
+  format: GUID/uuid
+  examples:
+  - vehicleId
+  - deviceId
+  - driverId
+  - groupId
+  - userId
+  - eventId
+notes: Group is the top of the org hierarchy; all devices, vehicles, and users are assigned to a group.
+  Derived from OpenAPI id-reference fields and the Lytx terminology reference.

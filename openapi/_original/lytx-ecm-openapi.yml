@@ -1,0 +1,344 @@
+x-generator: NSwag v13.9.4.0 (NJsonSchema v10.3.1.0 (Newtonsoft.Json v12.0.0.0))
+openapi: 3.0.0
+info:
+  title: Lytx.ECM.API
+  version: 1.0.0
+servers:
+  - url: https://data.lytx.com
+paths:
+  /v1/ecm:
+    get:
+      tags:
+        - ECM (DriveCam)
+      description: >-
+        Retrieves engine computer module (ECM) data from vehicles. ECM data
+        availability varies by vehicle, device, and cable configuration. Also,
+        the organization must have a Fleet Tracking subscription to receive data
+        from this endpoint.
+      summary: Retrieve ECM Data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: deviceIdentifier
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+          description: >-
+            Can use either device serial number or deviceId. If no device,
+            vehicle, or group is specified, returns data for all devices.
+        - name: vehicleIdentifier
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+          description: >-
+            Can use either VIN, vehicleId, or vehicle name. If no device,
+            vehicle, or group is specified, returns data for all vehicles.
+        - name: groupIdentifier
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+          description: >-
+            Can use groupId, rootGroupId, or group name. If no device, vehicle,
+            or group is specifid, returns data for all devices.
+        - name: includeSubGroups
+          in: query
+          required: false
+          schema:
+            type: boolean
+            example: 'false'
+            nullable: false
+          description: >-
+            If true, all descendant groups under the specified group are
+            included.
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            nullable: true
+            example: '1500'
+          description: Record to start with.
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            nullable: true
+            example: '100'
+          description: Number of records to return.
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+          description: >-
+            The startDate must be within the last 6 months. The startDate and
+            endDate must be 24 hours of each other. ECM data is available for up
+            to 7 days; DTC data is available for up to 6 months.
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+          description: The startDate and endDate must be within 24 hours of each other.
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: VehicleName
+          description: Name of the property to sort on.
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: asc
+          description: Sort direction.
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    type: array
+                    items:
+                      properties:
+                        deviceId:
+                          type: string
+                          nullable: false
+                          example: 1994FGGD-99A9-CB83-0C23-A8A3E3070000
+                          description: ID of the device.
+                        serialNumber:
+                          type: string
+                          nullable: false
+                          example: NT00210007
+                          description: Serial number of the device.
+                        groupId:
+                          type: string
+                          nullable: false
+                          example: 1996FGGD-88A8-CB83-0C23-A8A3E3070000
+                          description: ID of the device’s group.
+                        imei:
+                          type: string
+                          nullable: false
+                          example: ''
+                          description: International Mobile Equipment Identity number.
+                        licensePlate:
+                          type: string
+                          nullable: false
+                          example: 74980RP
+                          description: The vehicle’s license plate number.
+                        vehicleId:
+                          type: string
+                          example: 9100FGGD-48A9-CB83-0C23-A8A3E3070000
+                          description: ID of the vehicle to which the device is assigned.
+                        vehicleName:
+                          type: string
+                          nullable: false
+                          example: Example Car
+                          description: Name of the vehicle to which the device is assigned.
+                        vin:
+                          type: string
+                          nullable: false
+                          example: 9ATRPE9R2RO473355
+                          description: Vehicle Identification Number.
+                        samples:
+                          type: array
+                          description: >-
+                            ECM data availability varies by vehicle, device, and
+                            cable configuration. The most common data points are
+                            shown below.
+                          items:
+                            properties:
+                              sampleType:
+                                type: string
+                                example: ENGINE_HOURS
+                                description: Type of ECM data.
+                              sampleDateTime:
+                                type: string
+                                example: '2024-05-29T22:24:27.804Z'
+                                description: Date and time for the data point.
+                              sampleValue:
+                                type: string
+                                example: '1600'
+                                description: Value for the data point.
+                  metadata:
+                    type: array
+                    items:
+                      properties:
+                        count:
+                          type: integer
+                          example: '30'
+                        limit:
+                          type: integer
+                          example: '1'
+                        offset:
+                          type: integer
+                          example: '0'
+                        startDate:
+                          type: string
+                          nullable: false
+                          format: date-time
+                        endDate:
+                          type: string
+                          nullable: false
+                          format: date-time
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request
+                  message:
+                    type: string
+                    example: Invalid request data
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized
+                  message:
+                    type: string
+                    example: Access denied
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Forbidden
+                  message:
+                    type: string
+                    example: Non-permited user
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Not Found
+                  message:
+                    type: string
+                    example: No information found
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: An unexpected server error occurred
+components:
+  schemas:
+    ErrorResponse:
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+    ECMResponse:
+      properties:
+        data:
+          type: array
+          items:
+            properties:
+              deviceId:
+                type: string
+                nullable: false
+                example: 1994FGGD-99A9-CB83-0C23-A8A3E3070000
+              serialNumber:
+                type: string
+                nullable: false
+                example: NT00210007
+              groupId:
+                type: string
+                nullable: false
+                example: 1996FGGD-88A8-CB83-0C23-A8A3E3070000
+              imei:
+                type: string
+                nullable: false
+                example: ''
+              licensePlate:
+                type: string
+                nullable: false
+                example: 74980RP
+              vehicleId:
+                type: string
+                example: 9100FGGD-48A9-CB83-0C23-A8A3E3070000
+              vehicleName:
+                type: string
+                nullable: false
+                example: Example Car
+              vin:
+                type: string
+                nullable: false
+                example: 9ATRPE9R2RO473355
+              samples:
+                type: array
+                items:
+                  properties:
+                    sampleType:
+                      type: string
+                      nullable: false
+                      example: ENGINE_SPEED
+                    sampleDateTime:
+                      type: string
+                      nullable: false
+                      format: date-time
+                    sampleValue:
+                      type: string
+                      nullable: false
+                      example: '12'
+        metadata:
+          type: array
+          items:
+            properties:
+              count:
+                type: integer
+                example: '30'
+              limit:
+                type: integer
+                example: '1'
+              offset:
+                type: integer
+                example: '0'
+              startDate:
+                type: string
+                nullable: false
+                format: date-time
+              endDate:
+                type: string
+                nullable: false
+                format: date-time
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

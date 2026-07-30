@@ -1,0 +1,854 @@
+openapi: 3.0.3
+info:
+  title: Lytx.Device.Api
+  description: These routes are externally accessible and require authentication.
+  version: 1.0.0
+servers:
+  - url: https://api.lytx.com/v1
+security:
+  - bearerAuth: []
+paths:
+  /devices:
+    get:
+      tags:
+        - Devices (DriveCam)
+      description: Retrieve a list of devices.
+      summary: Retrieve List of Devices
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            example: '27468291'
+          description: Number of records to return.
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            example: '100'
+          description: Record to start with.
+        - name: status
+          in: query
+          schema:
+            type: string
+            example: Pending Removal from Fleet
+          description: The device's service status.
+        - name: sort
+          in: query
+          schema:
+            type: string
+            example: SerialNumber
+          description: Name of the property to sort on.
+        - name: order
+          in: query
+          schema:
+            type: string
+            example: asc
+          description: Sort direction.
+        - name: groupId
+          in: query
+          schema:
+            type: string
+            example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
+          description: ID of the group for which to return data.
+        - name: includeSubgroups
+          in: query
+          schema:
+            type: boolean
+            example: 'false'
+          description: If true, all subgroups under the specified group are included.
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        deviceId:
+                          type: string
+                          example: 880e60d8-fbed-217a-1720-6511d9f16361
+                          description: ID of the device.
+                        serialNumber:
+                          type: string
+                          example: ER946234
+                          description: Serial number of the device.
+                        deviceModel:
+                          type: string
+                          example: ER-SF300
+                          description: Model of the device.
+                        firmwareVersion:
+                          type: string
+                          example: '5.37'
+                          description: Version number of device’s firmware.
+                        build:
+                          type: number
+                          example: 330
+                          description: Firmware version build number.
+                        groupId:
+                          type: string
+                          example: 0c3c9820-3ee4-e98d-0987-c7333e722f72
+                          description: ID of the device’s group.
+                        groupName:
+                          type: string
+                          example: Smith Transportation
+                          description: Name of the device’s group.
+                        groupPath:
+                          type: string
+                          example: '***Root/Smith%20Transportation'
+                          description: >-
+                            Path from the root group to the device’s group using
+                            group names.
+                        initialConnection:
+                          type: string
+                          example: '2023-01-01T00:00:00Z'
+                          description: >-
+                            Date and time when the device first connected to
+                            Lytx servers.
+                        lastConnected:
+                          type: string
+                          example: '2023-05-16T19:01:31Z'
+                          description: >-
+                            Date and time when the device last connected to Lytx
+                            servers.
+                        status:
+                          type: string
+                          example: Spare
+                          description: The device’s service status.
+                        vehicleId:
+                          type: string
+                          example: ae17072e-ef19-9aa3-bfd0-c551f3d947ca
+                          description: ID of the vehicle to which the device is assigned.
+                        vehicleName:
+                          type: string
+                          example: 2015 FRD Fleet Express
+                          description: Name of the vehicle to which the device is assigned.
+                        vin:
+                          type: string
+                          example: 2NKHLJ0X1LM377326
+                          description: Unique identification code for vehicles.
+                  metadata:
+                    type: object
+                    properties:
+                      count:
+                        type: number
+                        example: 102
+                      limit:
+                        type: number
+                        example: 100
+                      offset:
+                        type: number
+                        example: 2
+              examples:
+                Device Data:
+                  value:
+                    data:
+                      - deviceId: 880e60d8-fbed-217a-1720-6511d9f16361
+                        serialNumber: ER946234
+                        deviceModel: ER-SF300
+                        firmwareVersion: '5.37'
+                        build: 330
+                        groupId: 0c3c9820-3ee4-e98d-0987-c7333e722f72
+                        groupName: Smith Transportation
+                        groupPath: '***Root/Smith%20Transportation'
+                        initialConnection: '2023-01-01T00:00:00Z'
+                        status: Spare
+                        vehicleId: ae17072e-ef19-9aa3-bfd0-c551f3d947ca
+                        vehicleName: 2015 FRD Fleet Express
+                        vin: 3ALACWFD0KDKY0669
+                      - deviceId: 750c5226-0f0a-402d-dcec-f83ccbb5373e
+                        serialNumber: ER94874E
+                        deviceModel: ER-SF64
+                        firmwareVersion: '6.37'
+                        build: 136
+                        groupId: 0c3c9820-3ee4-e98d-0987-c7333e722f72
+                        groupName: Food Transportation INC
+                        groupPath: '***Root/Food%20Transportation%20INC'
+                        initialConnection: '2023-02-01T00:00:00Z'
+                        status: Spare
+                        vehicleId: 59c75865-d776-04e9-7ae4-a489570efc68
+                        vehicleName: 2010 XYC Terrain
+                        vin: 2NKHLJ0X1LM377326
+                    metadata:
+                      count: 102
+                      limit: 100
+                      offset: 2
+                Empty:
+                  value:
+                    data: []
+                    metadata:
+                      count: 0
+                      limit: 100
+                      offset: 0
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request Error
+                  message:
+                    type: string
+                    example: The parameters given in the request are invalid.
+              examples:
+                Not Found:
+                  value:
+                    error: Bad Request Error
+                    message: The parameters given in the request are invalid.
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              examples:
+                Unauthorized:
+                  value: ''
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              examples:
+                Forbidden:
+                  value: ''
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not Found Error
+                  message:
+                    type: string
+                    example: The requested resource doesn't exist.
+              examples:
+                Not Found:
+                  value:
+                    error: Not Found Error
+                    message: The requested resource doesn't exist.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: Requested operation cannot be performed.
+              examples:
+                Internal Server Error:
+                  value:
+                    error: Internal Server Error
+                    message: Requested operation cannot be performed.
+  /devices/{deviceIdentifier}:
+    get:
+      tags:
+        - Devices (DriveCam)
+      description: Retrieve a specific device.
+      summary: Retrieve Specific Device
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      deviceId:
+                        type: string
+                        example: 750c5226-0f0a-402d-dcec-f83ccbb5373e
+                        description: ID of the device.
+                      serialNumber:
+                        type: string
+                        example: ER946234
+                        description: Serial number of the device.
+                      createdDate:
+                        type: string
+                        example: '2023-02-01T00:00:00Z'
+                        description: Date and time when the device was created.
+                      deviceModel:
+                        type: string
+                        example: ER-SF300
+                        description: Model of the device.
+                      firmwareVersion:
+                        type: string
+                        example: '5.37'
+                        description: Version number of device’s firmware.
+                      build:
+                        type: number
+                        example: 330
+                        description: Firmware version build number.
+                      groupId:
+                        type: string
+                        example: 0c3c9820-3ee4-e98d-0987-c7333e722f72
+                        description: ID of the device’s group.
+                      groupName:
+                        type: string
+                        example: Food Transportation INC
+                        description: Name of the device’s group.
+                      groupPath:
+                        type: string
+                        example: '***Root/Food%20Transportation%20INC'
+                        description: >-
+                          Path from the root group to the device’s group using
+                          group names.
+                      initialConnection:
+                        type: string
+                        example: '2023-02-01T00:00:00Z'
+                        description: >-
+                          Date and time when the device first connected to Lytx
+                          servers.
+                      status:
+                        type: string
+                        example: Spare
+                        description: The device’s service status.
+                      updatedDate:
+                        type: string
+                        example: '2023-04-07T00:00:00Z'
+                        description: Date and time when the device was last updated.
+                      vehicleId:
+                        type: string
+                        example: 59c75865-d776-04e9-7ae4-a489570efc68
+                        description: ID of the vehicle to which the device is assigned.
+                      vehicleName:
+                        type: string
+                        example: 2010 XYC Terrain
+                        description: Name of the vehicle to which the device is assigned.
+                      vin:
+                        type: string
+                        example: 2NKHLJ0X1LM377326
+                        description: Unique identification code for vehicles.
+              examples:
+                Device Data:
+                  value:
+                    data:
+                      deviceId: 750c5226-0f0a-402d-dcec-f83ccbb5373e
+                      serialNumber: ER946234
+                      createdDate: '2023-02-01T00:00:00Z'
+                      deviceModel: ER-SF300
+                      firmwareVersion: '5.37'
+                      build: 330
+                      groupId: 0c3c9820-3ee4-e98d-0987-c7333e722f72
+                      groupName: Food Transportation INC
+                      groupPath: '***Root/Food%20Transportation%20INC'
+                      initialConnection: '2023-02-01T00:00:00Z'
+                      status: Spare
+                      updatedDate: '2023-04-07T00:00:00Z'
+                      vehicleId: 59c75865-d776-04e9-7ae4-a489570efc68
+                      vehicleName: 2010 XYC Terrain
+                      vin: 2NKHLJ0X1LM377326
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request Error
+                  message:
+                    type: string
+                    example: The parameters given in the request are invalid.
+              examples:
+                Not Found:
+                  value:
+                    error: Bad Request Error
+                    message: The parameters given in the request are invalid.
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              examples:
+                Unauthorized:
+                  value: ''
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              examples:
+                Forbidden:
+                  value: ''
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not Found Error
+                  message:
+                    type: string
+                    example: The requested resource doesn't exist.
+              examples:
+                Not Found:
+                  value:
+                    error: Not Found Error
+                    message: The requested resource doesn't exist.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: Requested operation cannot be performed.
+              examples:
+                Internal Server Error:
+                  value:
+                    error: Internal Server Error
+                    message: Requested operation cannot be performed.
+    parameters:
+      - name: deviceIdentifier
+        in: path
+        required: true
+        description: Can use serial number, IMEI, or device ID.
+        schema:
+          type: string
+          example: SF80008823
+  /devices/vehicleAssignments:
+    get:
+      tags:
+        - Devices (DriveCam)
+      description: >-
+        Retrieve vehicle assignment changes. This includes:
+
+        - Moving devices between vehicles;
+
+        - Adding devices to vehicles (in this case, a sample vehicle ID is used
+        for previous vehicle data);
+
+        - Removing devices from vehicles (in this case, a sample vehicle ID is
+        used for target vehicle data).
+      summary: Retrieve Vehicle Assignment Changes
+      parameters:
+        - name: startDate
+          in: query
+          schema:
+            type: string
+            example: '1961-11-05T00:19:40.694Z'
+          description: >-
+            The start date and end date must be within 7 days of each other. If
+            no date specified, returns data from the last 24 hours.
+        - name: endDate
+          in: query
+          schema:
+            type: string
+            example: '1961-11-05T00:19:40.694Z'
+          description: >-
+            The start date and end date must be within 7 days of each other. If
+            no date specified, returns data from the last 24 hours.
+        - name: limit
+          in: query
+          schema:
+            type: string
+            example: '27468291'
+          description: Number of records to return.
+        - name: offset
+          in: query
+          schema:
+            type: string
+            example: '100'
+          description: Record to start with.
+        - name: sort
+          in: query
+          schema:
+            type: string
+            example: serialNumber
+          description: Name of the property to sort on.
+        - name: order
+          in: query
+          schema:
+            type: string
+            example: asc
+          description: Sort direction.
+        - name: groupId
+          in: query
+          schema:
+            type: string
+            example: urn:uuid:d74f88ac-c8ab-494e-67a6-7c17f0b6f970
+          description: ID of the group for which to return data.
+        - name: includeSubgroups
+          in: query
+          schema:
+            type: string
+            example: 'false'
+          description: If true, all subgroups under the specified group are included.
+      responses:
+        '200':
+          description: Ok
+          headers:
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      deviceId:
+                        type: string
+                        example: 880e60d8-fbed-217a-1720-6511d9f16361
+                        description: ID of the device.
+                      serialNumber:
+                        type: string
+                        example: ER946234
+                        description: Serial number of the device.
+                      deviceModel:
+                        type: string
+                        example: ER-SF300
+                        description: Model of the device.
+                      previousGroupId:
+                        type: string
+                        example: 0c3c9820-3ee4-e98d-0987-c7333e722f72
+                        description: ID of the device’s previous group.
+                      previousGroupName:
+                        type: string
+                        example: International Travel INC
+                        description: Name of the device’s previous group.
+                      previousGroupPath:
+                        type: string
+                        example: '***Root/International%20Travel%20INC'
+                        description: >-
+                          Path from the root group to the previous group using
+                          group names.
+                      previousVehicleId:
+                        type: string
+                        example: 750c5226-0f0a-402d-dcec-f83ccbb5373e
+                        description: ID of the device’s previous vehicle.
+                      previousVehicleName:
+                        type: string
+                        example: Food Transportation INC
+                        description: Name of the device’s previous vehicle.
+                      groupId:
+                        type: string
+                        example: 0c3c9820-3ee4-e98d-0987-c7333e722f72
+                        description: ID of the device’s current group.
+                      groupName:
+                        type: string
+                        example: Food Transportation INC
+                        description: Name of the device’s current group.
+                      groupPath:
+                        type: string
+                        example: '***Root/Food%20Transportation%20INC'
+                        description: >-
+                          Path from the root group to the current group using
+                          group names.
+                      vehicleId:
+                        type: string
+                        example: 59c75865-d776-04e9-7ae4-a489570efc68
+                        description: ID of the device’s current vehicle.
+                      vehicleName:
+                        type: string
+                        example: 2010 XYC Terrain
+                        description: Name of the device’s current vehicle.
+                      updatedDate:
+                        type: string
+                        example: '2023-04-07T00:00:00Z'
+                        description: Date and time of the change made.
+                  Metadata:
+                    type: object
+                    properties:
+                      count:
+                        type: number
+                        example: 2
+                      limit:
+                        type: number
+                        example: 100
+                      offset:
+                        type: number
+                        example: 1
+              examples:
+                example-0:
+                  summary: Device Data
+                  value:
+                    data:
+                      - deviceId: 880e60d8-fbed-217a-1720-6511d9f16361
+                        serialNumber: ER946234
+                        deviceModel: ER-SF300
+                        groupId: 0c3c9820-3ee4-e98d-0987-c7333e722f72
+                        groupName: Food Transportation INC
+                        groupPath: '***Root/Food%20Transportation%20INC'
+                        previousGroupId: 0c3c9820-3ee4-e98d-0987-c7333e722f72
+                        previousGroupName: International Travel INC
+                        previousGroupPath: '***Root/International%20Travel%20INC'
+                        previousVehicleId: 750c5226-0f0a-402d-dcec-f83ccbb5373e
+                        previousVehicleName: Food Transportation INC
+                        updatedDate: '2023-04-07T00:00:00Z'
+                        vehicleId: 59c75865-d776-04e9-7ae4-a489570efc68
+                        vehicleName: 2010 XYC Terrain
+                      - deviceId: 880e60d8-fbed-217a-18A4-6511d9f16361
+                        serialNumber: ER946235
+                        deviceModel: ER-SF64
+                        groupId: 0c3c9820-3ee4-e98d-AABC-c7333e722f72
+                        groupName: Food Transportation INC
+                        groupPath: '***Root/Food%20Transportation%20INC'
+                        previousGroupId: 0c3c9820-3ee4-e98d-0987-c7333e722f72
+                        previousGroupName: International Travel INC
+                        previousGroupPath: '***Root/International%20Travel%20INC'
+                        previousVehicleId: 750c5226-0f0a-13A1-dcec-f83ccbb5373e
+                        previousVehicleName: ThePreviousVehicle
+                        updatedDate: '2023-04-07T00:00:00Z'
+                        vehicleId: 59c75865-d776-04e9-7ae4-a489570efc68
+                        vehicleName: TheCurrentVehicle
+                    metadata:
+                      count: 2
+                      limit: 100
+                      offset: 1
+                example-1:
+                  summary: Device Data Empty
+                  value:
+                    data: []
+                    metadata:
+                      count: 0
+                      limit: 100
+                      offset: 0
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request Error
+                  message:
+                    type: string
+                    example: The parameters given in the request are invalid.
+              examples:
+                example-0:
+                  summary: Bad Request Missing endDate
+                  value:
+                    error: Bad Request Error
+                    message: >-
+                      The endDate is required with the startDate. The endDate
+                      must be within 7 days after the startDate.
+                example-1:
+                  summary: Bad Request Missing startDate
+                  value:
+                    error: Bad Request Error
+                    message: >-
+                      The startDate is required with the endDate. The startDate
+                      must be within 7 days before the endDate.
+                example-2:
+                  summary: Bad Request endDate Out of Range
+                  value:
+                    error: Bad Request Error
+                    message: The endDate must be within 7 days after the startDate.
+                example-3:
+                  summary: Bad Request endDate before startDate
+                  value:
+                    error: Bad Request Error
+                    message: The endDate must be after the startDate.
+                example-4:
+                  summary: Bad Request startDate Out of Range
+                  value:
+                    error: Bad Request Error
+                    message: The startDate cannot be in the future.
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              examples:
+                Unauthorized:
+                  value: ''
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              examples:
+                Forbidden:
+                  value: ''
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not Found Error
+                  message:
+                    type: string
+                    example: The requested resource doesn't exist.
+              examples:
+                Not Found:
+                  value:
+                    error: Not Found Error
+                    message: The requested resource doesn't exist.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: Requested operation cannot be performed.
+              examples:
+                Internal Server Error:
+                  value:
+                    error: Internal Server Error
+                    message: Requested operation cannot be performed.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    Device:
+      properties:
+        build:
+          type: number
+          example: 5
+        createdDate:
+          type: string
+          example: '2023-02-01T00:00:00Z'
+        deviceModel:
+          type: string
+          example: '4'
+        firmwareVersion:
+          type: string
+          example: '4.11'
+        groupId:
+          type: string
+          example: 0c3c9820-3ee4-e98d-0987-c7333e722f72
+        groupName:
+          type: string
+          example: Food Transportation INC
+        groupPath:
+          type: string
+          example: '***Root/Food%20Transportation%20INC'
+        deviceId:
+          type: string
+          example: 750c5226-0f0a-402d-dcec-f83ccbb5373e
+        initialConnection:
+          type: string
+          example: '2023-02-01T00:00:00Z'
+        serialNumber:
+          type: string
+          example: ER946234
+        status:
+          type: string
+          example: Spare
+        updatedDate:
+          type: string
+          example: '2023-04-07T00:00:00Z'
+        vehicleId:
+          type: string
+          example: 59c75865-d776-04e9-7ae4-a489570efc68
+        vehicleName:
+          type: string
+          example: 2010 XYC Terrain
+        vin:
+          type: string
+          example: 2NKHLJ0X1LM377326
+    VehicleAssignment:
+      title: VehicleAssignment
+      type: object
+      properties:
+        deviceId:
+          type: string
+          example: 880e60d8-fbed-217a-1720-6511d9f16361
+        serialNumber:
+          type: string
+          example: ER946234
+        deviceModel:
+          type: string
+          example: '4'
+        groupId:
+          type: string
+          example: 0c3c9820-3ee4-e98d-0987-c7333e722f72
+        groupName:
+          type: string
+          example: Food Transportation INC
+        groupPath:
+          type: string
+          example: '***Root/Food%20Transportation%20INC'
+        previousVehicleId:
+          type: string
+          example: 750c5226-0f0a-402d-dcec-f83ccbb5373e
+        previousVehicleName:
+          type: string
+          example: Food Transportation INC
+        previousGroupId:
+          type: string
+          example: 0c3c9820-3ee4-e98d-0987-c7333e722f72
+        previousGroupName:
+          type: string
+          example: International Travel INC
+        previousGroupPath:
+          type: string
+          example: '***Root/International%20Travel%20INC'
+        updatedDate:
+          type: string
+          example: '2023-04-07T00:00:00Z'
+        vehicleId:
+          type: string
+          example: 59c75865-d776-04e9-7ae4-a489570efc68
+        vehicleName:
+          type: string
+          example: 2010 XYC Terrain
+    Metadata:
+      title: Metadata
+      type: object
+      required:
+        - count
+        - limit
+        - offset
+      properties:
+        count:
+          type: number
+          example: 102
+        limit:
+          type: number
+          example: 100
+        offset:
+          type: number
+          example: 2
+    Error:
+      title: Error
+      type: object
+      required:
+        - error
+        - message
+      properties:
+        error:
+          type: string
+          example: Not Found Error
+        message:
+          type: string
+          example: The page you are looking for does not exist.

@@ -1,0 +1,289 @@
+openapi: 3.0.0
+info:
+  title: Lytx.Distance.API
+  version: 1.0.0
+servers:
+  - url: https://data.lytx.com
+security:
+  - bearerAuth: []
+paths:
+  /v1/distances:
+    get:
+      tags:
+        - Distances (DriveCam)
+      summary: Retrieve Distances
+      description: >-
+        Retrieve a list of distances in a organization or subset of an
+        organization.
+      parameters:
+        - name: deviceIdentifier
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
+          description: Filter by Device Identifier.
+        - name: groupIdentifier
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
+          description: Filter by Group Identifier.
+        - name: vehicleIdentifier
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
+          description: Filter by Vehicle Identifier.
+        - name: includeSubGroups
+          in: query
+          required: false
+          schema:
+            type: boolean
+            example: 'false'
+            nullable: false
+          description: Include Sub Groups.
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            nullable: true
+            example: '100'
+          description: Number of records to return.
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            nullable: true
+            example: '1500'
+          description: Record to start with.
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+            example: '2023-06-01'
+          description: Filter by start date.
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+            example: '2023-07-01'
+          description: Filter by end date.
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: VehicleName
+          description: Name of the property to sort on.
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: asc
+          description: Sort direction.
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    type: array
+                    items:
+                      properties:
+                        deviceId:
+                          type: string
+                          nullable: false
+                          example: 1994FGGD-99A9-CB83-0C23-A8A3E3070000
+                        distanceKm:
+                          type: number
+                          format: double
+                          nullable: false
+                          example: '1649.25'
+                        groupId:
+                          type: string
+                          nullable: false
+                          example: 1996FGGD-88A8-CB83-0C23-A8A3E3070000
+                        imei:
+                          type: string
+                          nullable: false
+                          example: ''
+                        licensePlate:
+                          type: string
+                          nullable: false
+                          example: 74980RP
+                        serialNumber:
+                          type: string
+                          nullable: false
+                          example: NT00210007
+                        vehicleId:
+                          type: string
+                          example: 9100FGGD-48A9-CB83-0C23-A8A3E3070000
+                        vehicleName:
+                          type: string
+                          nullable: false
+                          example: Example Car
+                        vin:
+                          type: string
+                          nullable: false
+                          example: 9ATRPE9R2RO473355
+                  metadata:
+                    type: array
+                    items:
+                      properties:
+                        count:
+                          type: integer
+                          example: '30'
+                        limit:
+                          type: integer
+                          example: '1'
+                        offset:
+                          type: integer
+                          example: '0'
+                        startDate:
+                          type: string
+                          nullable: false
+                          format: date-time
+                        endDate:
+                          type: string
+                          nullable: false
+                          format: date-time
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request
+                  message:
+                    type: string
+                    example: Invalid request data
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized
+                  message:
+                    type: string
+                    example: Access denied
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Forbidden
+                  message:
+                    type: string
+                    example: Non-permited user
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Not Found
+                  message:
+                    type: string
+                    example: No information found
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: An unexpected server error occurred
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    ErrorResponse:
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+    DistanceResponse:
+      properties:
+        data:
+          properties:
+            deviceId:
+              type: string
+              nullable: false
+            distanceKm:
+              type: number
+              format: double
+              nullable: false
+            groupId:
+              type: string
+              nullable: false
+            imei:
+              type: string
+              nullable: false
+            licensePlate:
+              type: string
+              nullable: false
+            serialNumber:
+              type: string
+              nullable: false
+            vehicleId:
+              type: string
+              nullable: false
+            vehicleName:
+              type: string
+              nullable: false
+            vin:
+              type: string
+              nullable: false
+        metadata:
+          properties:
+            startDate:
+              type: string
+              nullable: false
+              format: date-time
+            endDate:
+              type: string
+              nullable: false
+              format: date-time
+            count:
+              type: integer
+              nullable: false
+            limit:
+              type: integer
+              nullable: false
+            offset:
+              type: integer
+              nullable: false

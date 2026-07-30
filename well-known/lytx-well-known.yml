@@ -1,0 +1,20 @@
+generated: '2026-07-20'
+method: searched
+host: https://developer.lytx.com
+documents:
+- path: /.well-known/oauth-authorization-server
+  status: 200
+  file: lytx-oauth-authorization-server.json
+  note: OAuth 2.0 authorization server metadata for the portal MCP server (issuer auth.cloud.redocly.com).
+- path: /.well-known/security.txt
+  status: 404
+- path: /.well-known/openid-configuration
+  status: 404
+- path: /.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404
+other_hosts_probed:
+  api.lytx.com: all 404
+  login.lytx.com: all 404
+  www.lytx.com: all 404

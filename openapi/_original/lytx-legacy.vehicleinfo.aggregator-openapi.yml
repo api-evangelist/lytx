@@ -1,0 +1,352 @@
+x-generator: NSwag v13.9.4.0 (NJsonSchema v10.3.1.0 (Newtonsoft.Json v12.0.0.0))
+openapi: 3.0.0
+info:
+  title: ECM API
+  version: 1.0.0
+servers:
+  - url: https://lytx-api.prod2.ph.lytx.com/ecm
+  - url: https://lytx-api.prod5.ph.lytx.com/ecm
+  - url: https://lytx-api.prod6.lv.lytx.com/ecm
+  - url: https://lytx-api.prod7.lv.lytx.com/ecm
+  - url: https://lytx-api.prod8.lv.lytx.com/ecm
+paths:
+  /vehicles/{vehicleId}/location:
+    get:
+      tags:
+        - ECM (DriveCam)
+      summary: Retrieve Location of Specified Vehicle
+      operationId: Gps_GetLocationById
+      parameters:
+        - name: vehicleId
+          in: path
+          required: true
+          description: The identifier of the vehicle.
+          schema:
+            type: integer
+            format: int64
+          x-position: 1
+        - name: time
+          in: query
+          description: >-
+            Optional. If supplied, the response will contain the position of the
+            vehicle closest to the given time.
+          schema:
+            type: string
+            format: date-time
+            nullable: true
+          x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+        '401':
+          description: Can occur due to inputting an invalid key, or invalid pod
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: >-
+            Access is denied for this API. The given APIKey's context does not
+            have the proper permissions.
+          content:
+            application/json:
+              schema:
+                type: string
+        '404':
+          description: >-
+            The requested resource does not exist or is not available within the
+            given APIKey's context.
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+  /vehicles/{vehicleId}/odometer:
+    get:
+      tags:
+        - ECM (DriveCam)
+      summary: Get ECM Data for Specified Vehicle
+      operationId: Vehicle_GetVehicleById
+      parameters:
+        - name: vehicleId
+          in: path
+          required: true
+          description: The identifier of the vehicle.
+          schema:
+            type: integer
+            format: int64
+          x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleLocation'
+        '204':
+          description: >-
+            The requested resource contained no data. The vehicle does not have
+            any data associated to it.
+        '400':
+          description: The parameters given in the request are invalid.
+          content:
+            application/json:
+              schema:
+                type: string
+        '401':
+          description: Can occur due to inputting an invalid key, or invalid pod
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: >-
+            Access is denied for this API. The given APIKey's context does not
+            have the proper permissions.
+          content:
+            application/json:
+              schema:
+                type: string
+        '404':
+          description: >-
+            The requested resource does not exist or is not available within the
+            given APIKey's context.
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+  /vehicles:
+    get:
+      tags:
+        - ECM (DriveCam)
+      summary: Retrieve List of Vehicles Associated to Callers Company
+      operationId: VehicleInfoAggregate_GetAllVehicleInfoByCompanyId
+      parameters:
+        - name: page
+          in: query
+          description: >-
+            The page number of the list of vehicles. Default is 1. Cannot be
+            less than 1.
+          schema:
+            type: integer
+            format: int32
+            default: 1
+          x-position: 1
+        - name: pageSize
+          in: query
+          description: The page size of each page. Value should be between 1-1000.
+          schema:
+            type: integer
+            format: int32
+            default: 1
+          x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleLocationPage'
+        '400':
+          description: The parameters given in the request are invalid.
+          content:
+            application/json:
+              schema:
+                type: string
+        '401':
+          description: Can occur due to inputting an invalid key, or invalid pod
+          content:
+            application/json:
+              schema:
+                type: string
+        '403':
+          description: >-
+            Access is denied for this API. The given APIKey's context does not
+            have the proper permissions.
+          content:
+            application/json:
+              schema:
+                type: string
+        '404':
+          description: >-
+            The requested resource does not exist or is not available within the
+            given APIKey's context.
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+  /vehicles/{vehicleId}:
+    get:
+      tags:
+        - ECM (DriveCam)
+      summary: Retrieve ECM Data of Specified Vehicle
+      operationId: VehicleInfoAggregate_GetVehicleInfoById
+      parameters:
+        - name: vehicleId
+          in: path
+          required: true
+          description: The primary idenfitier of the vehicle.
+          schema:
+            type: integer
+            format: int64
+          x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleLocation'
+        '400':
+          description: The parameters given in the request are invalid.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '401':
+          description: Can occur due to inputting an invalid key, or invalid pod
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '403':
+          description: >-
+            Access is denied for this API. The given APIKey's context does not
+            have the proper permissions.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: >-
+            The requested resource does not exist or is not available within the
+            given APIKey's context.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '500':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+components:
+  schemas:
+    Location:
+      type: object
+      additionalProperties: false
+      properties:
+        latitude:
+          type: number
+          description: Latitude position of the given trackpoint.
+          format: double
+        longitude:
+          type: number
+          description: Longitude position of the given trackpoint.
+          format: double
+        gpsDateTime:
+          type: string
+          description: The date and time of the given trackpoint
+          format: date-time
+        direction:
+          type: number
+          description: The heading of the vehicle.
+          format: double
+          nullable: true
+        speed:
+          type: number
+          description: The speed of the vehicle.
+          format: double
+          nullable: true
+    VehicleLocation:
+      type: object
+      additionalProperties: false
+      properties:
+        vehicleId:
+          type: integer
+          description: The primary identifier of the vehicle.
+          format: int64
+        vin:
+          type: string
+          description: The VIN number of the vehicle (manually captured).
+          nullable: true
+        deviceVin:
+          type: string
+          description: The VIN number of the vehicle (device captures).
+          nullable: true
+        odometer:
+          type: integer
+          description: The Odometer value of the vehicle, in Km.
+          format: int32
+          nullable: true
+        location:
+          description: The location information for the vehicle.
+          type: object
+          nullable: true
+          oneOf:
+            - $ref: '#/components/schemas/Location'
+    VehicleLocationPage:
+      allOf:
+        - $ref: '#/components/schemas/PageOfVehicleLocation'
+        - type: object
+          additionalProperties: false
+    PageOfVehicleLocation:
+      type: object
+      x-abstract: true
+      additionalProperties: false
+      properties:
+        currentPage:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalRecords:
+          type: integer
+          format: int32
+        vehicles:
+          type: array
+          description: The List of vehicles.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/VehicleLocation'
+  securitySchemes:
+    APIKey:
+      type: apiKey
+      description: Enter your API key
+      name: X-APIKey
+      in: header
+security:
+  - APIKey: []
+tags:
+  - name: ECM (DriveCam)
+    description: >-
+      Legacy API to retrieve location information or ECM vehicle data for a
+      given vehicle. Uses obsolete X-APIKey authentication.

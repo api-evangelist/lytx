@@ -1,0 +1,40 @@
+generated: '2026-07-20'
+method: generated
+skills:
+- file: lytx-list-safety-events.md
+  name: List and analyze fleet safety events
+  api: openapi/lytx-safety-openapi.yml
+  operations:
+  - Events_GetEvents
+  - Events_GetEventsWithMetadata
+  - Events_GetEventStatuses
+  - Events_GetEventBehaviors
+  - Events_GetEventTriggers
+- file: lytx-retrieve-event-video.md
+  name: Search events and retrieve video media
+  api: openapi/lytx-video-openapi.yml
+  operations:
+  - Vehicle_GetVehicles
+  - Event_SearchEvents
+  - Event_GetEventViewMedia
+  - Vehicle_GetVehicleTimeline
+  - Event_CreateEvent
+- file: lytx-manage-vehicles.md
+  name: Manage fleet vehicles
+  api: openapi/lytx-vehicles-openapi.yml
+  operations:
+  - Vehicle_GetVehicles
+  - Vehicle_GetVehicle
+  - Vehicle_AddVehicle
+  - Vehicle_UpdateVehicle
+  - Vehicle_DeleteVehicle
+  - Vehicle_GetVehicleStatuses
+- file: lytx-pull-hos-dvir-compliance.md
+  name: Pull HOS logs and DVIR inspections
+  api: openapi/lytx-hos-openapi.yml
+  operations:
+  - Hos_GetHosLogs
+  - Hos_GetHosLogs_ByUser
+  - getDvirs
+  - getDvirById
+  - getInspectionLists

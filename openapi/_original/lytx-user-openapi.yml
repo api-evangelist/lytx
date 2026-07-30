@@ -1,0 +1,947 @@
+openapi: 3.0.1
+info:
+  title: Lytx.Users.Api
+  description: Routes that are externally accessible and require authentication
+  version: 1.0.0
+servers:
+  - url: https://api.lytx.com/v1
+paths:
+  /users:
+    post:
+      tags:
+        - Users (DriveCam)
+      summary: Create User
+      description: 'Description: Create a new user. Only one user created per call.'
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+            example:
+              allowVideoSearchDownload: false
+              cellPhoneCountry: US
+              cellPhoneNumber: '+1234567890'
+              email: email@email.com
+              employeeId: j.smith
+              firstName: John
+              groupRoles:
+                - groupId: 28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0
+                  roleId: 4
+              lastName: Smith
+              loginEnabled: true
+              password: 123Abcd!
+              primaryGroupId: 28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0
+              username: j.smith
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+      responses:
+        '201':
+          description: Created
+          headers:
+            Location:
+              description: The location of the created resource
+              schema:
+                type: string
+              example: /users/4af860ae-2e53-4d8b-a48e-606b862effed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FullUserResponse'
+              example:
+                userId: 4af860ae-2e53-4d8b-a48e-606b862effed
+                allowSafetyEventDownload: false
+                allowVideoSearchDownload: false
+                cellPhoneCountry: US
+                cellPhoneNumber: '+1234567890'
+                createdDate: '2025-06-20T11:25:07.848413-07:00'
+                email: email@email.com
+                employeeId: j.smith
+                firstName: John
+                groupRoles:
+                  - groupId: 28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0
+                    roleId: 4
+                lastLoginDate: '2025-06-24T11:25:07.848507-07:00'
+                lastName: Smith
+                loginEnabled: true
+                primaryGroupId: 28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0
+                status: Active
+                updatedDate: '2025-06-27T11:25:07.848603-07:00'
+                username: j.smith
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseObject'
+              example:
+                error: Bad Request
+                message:
+                  - Error Reason
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              examples:
+                Unauthorized:
+                  value: ''
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              examples:
+                Forbidden:
+                  value: ''
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseObject'
+              example:
+                error: Conflict
+                message:
+                  - Error Reason
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseObject'
+              example:
+                error: Internal Server Error
+                message: Error Reason
+      security:
+        - bearerAuth: []
+    get:
+      tags:
+        - Users (DriveCam)
+      summary: Retrieve List of Users
+      description: >-
+        Description: Retrieve a list of all users in a company or subset of a
+        company.
+      parameters:
+        - name: groupId
+          in: query
+          description: User role groups to search against.
+          schema:
+            type: array
+            items:
+              type: string
+              format: uuid
+        - name: roleId
+          in: query
+          description: User roles to search against.
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: status
+          in: query
+          description: User Lytx statuses to search against.
+          schema:
+            type: array
+            items:
+              type: string
+        - name: loginEnabled
+          in: query
+          description: The setting that allows for login.
+          schema:
+            type: boolean
+        - name: limit
+          in: query
+          description: Number of records to return.
+          schema:
+            type: integer
+            format: int32
+            default: 10000
+        - name: offset
+          in: query
+          description: Record to start with.
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: order
+          in: query
+          description: Sort direction.
+          schema:
+            type: string
+        - name: includeSubGroups
+          in: query
+          description: If true, all subgroups under the specified group(s) are included.
+          schema:
+            type: boolean
+        - name: searchText
+          in: query
+          description: Search parameter for first+last name, username, and employeeId.
+          schema:
+            maxLength: 100
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkUserResponse'
+              example:
+                data:
+                  - userId: 4af860ae-2e53-4d8b-a48e-606b862effed
+                    allowSafetyEventDownload: false
+                    allowVideoSearchDownload: false
+                    cellPhoneCountry: US
+                    cellPhoneNumber: '+1234567890'
+                    createdDate: '2025-06-20T11:25:07.860471-07:00'
+                    email: email@email.com
+                    employeeId: j.smith
+                    firstName: John
+                    groupRoles:
+                      - groupId: 28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0
+                        roleId: 4
+                    lastLoginDate: '2025-06-24T11:25:07.860473-07:00'
+                    lastName: Smith
+                    loginEnabled: true
+                    primaryGroupId: 28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0
+                    status: Active
+                    updatedDate: '2025-06-27T11:25:07.860474-07:00'
+                    username: j.smith
+                  - userId: 923db788-a460-40f6-976f-05550abe59c5
+                    allowVideoSearchDownload: true
+                    createdDate: '0001-01-01T00:00:00'
+                    email: email@email.com
+                    employeeId: j.doe
+                    firstName: Jane
+                    groupRoles:
+                      - groupId: 28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0
+                        groupName: West Coast Group
+                        roleId: 4
+                    lastName: Doe
+                    loginEnabled: true
+                    primaryGroupId: 28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0
+                    status: Active
+                    updatedDate: '0001-01-01T00:00:00'
+                    username: j.doe
+                metadata:
+                  count: 2
+                  limit: 10
+                  offset: 0
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseObject'
+              example:
+                error: Bad Request
+                message: Error Reason
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              examples:
+                Unauthorized:
+                  value: ''
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              examples:
+                Forbidden:
+                  value: ''
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseObject'
+              example:
+                error: Internal Server Error
+                message: Error Reason
+      security:
+        - bearerAuth: []
+  /users/{userIdentifier}:
+    get:
+      tags:
+        - Users (DriveCam)
+      summary: Retrieve User with Specified Identifier
+      description: >-
+        Description: Retrieve a user with a specific identifier. Only retrieves
+        one user at a time. For results for multiple users, use GET: Retrieve a
+        list of users.
+      parameters:
+        - name: userIdentifier
+          in: path
+          description: Unique user identifier.
+          required: true
+          schema:
+            maxLength: 50
+            minLength: 1
+            type: string
+          example: 4af860ae-2e53-4d8b-a48e-606b862effed
+        - name: searchBy
+          in: query
+          description: >-
+            User field to search for unique identifier [UserId, Username,
+            EmployeeId].
+          schema:
+            type: string
+            default: UserId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FullUserResponse'
+              example:
+                userId: 4af860ae-2e53-4d8b-a48e-606b862effed
+                allowSafetyEventDownload: false
+                allowVideoSearchDownload: false
+                cellPhoneCountry: US
+                cellPhoneNumber: '+1234567890'
+                createdDate: '2025-06-20T11:25:07.871814-07:00'
+                email: email@email.com
+                employeeId: j.smith
+                firstName: John
+                groupRoles:
+                  - groupId: 28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0
+                    roleId: 4
+                lastLoginDate: '2025-06-24T11:25:07.871818-07:00'
+                lastName: Smith
+                loginEnabled: true
+                primaryGroupId: 28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0
+                status: Active
+                updatedDate: '2025-06-27T11:25:07.871818-07:00'
+                username: j.smith
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseObject'
+              example:
+                error: Bad Request
+                message: Error Reason
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              examples:
+                Unauthorized:
+                  value: ''
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              examples:
+                Forbidden:
+                  value: ''
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseObject'
+              example:
+                error: Not Found
+                message: Error Reason
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseObject'
+              example:
+                error: Internal Server Error
+                message: Error Reason
+      security:
+        - bearerAuth: []
+  /users/{userId}:
+    put:
+      tags:
+        - Users (DriveCam)
+      summary: Update User
+      description: 'Description: Update a user. Only updates one user at a time.'
+      parameters:
+        - name: userId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example: 4af860ae-2e53-4d8b-a48e-606b862effed
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditUserRequest'
+            example:
+              allowVideoSearchDownload: false
+              cellPhoneCountry: US
+              cellPhoneNumber: '+1234567890'
+              email: email@email.com
+              employeeId: j.smith
+              firstName: John
+              groupRoles:
+                - groupId: 28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0
+                  roleId: 4
+              lastName: Smith
+              loginEnabled: true
+              primaryGroupId: 28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0
+              status: Active
+              username: j.smith
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EditUserRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/EditUserRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FullUserResponse'
+              example:
+                userId: 4af860ae-2e53-4d8b-a48e-606b862effed
+                allowSafetyEventDownload: false
+                allowVideoSearchDownload: false
+                cellPhoneCountry: US
+                cellPhoneNumber: '+1234567890'
+                createdDate: '2025-06-20T11:25:07.874569-07:00'
+                email: email@email.com
+                employeeId: j.smith
+                firstName: John
+                groupRoles:
+                  - groupId: 28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0
+                    roleId: 4
+                lastLoginDate: '2025-06-24T11:25:07.874571-07:00'
+                lastName: Smith
+                loginEnabled: true
+                primaryGroupId: 28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0
+                status: Active
+                updatedDate: '2025-06-27T11:25:07.874572-07:00'
+                username: j.smith
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseObject'
+              example:
+                error: Bad Request
+                message:
+                  - Error Reason
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              examples:
+                Unauthorized:
+                  value: ''
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              examples:
+                Forbidden:
+                  value: ''
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseObject'
+              example:
+                error: Conflict
+                message:
+                  - Error Reason
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseObject'
+              example:
+                error: Internal Server Error
+                message: Error Reason
+      security:
+        - bearerAuth: []
+  /users/roles:
+    get:
+      tags:
+        - Users (DriveCam)
+      summary: Retrieve List of Possible Roles for User
+      description: >-
+        Description: Retrieve a list of all possible user roles, mapping role id
+        to role name.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RoleDefinition'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              examples:
+                Unauthorized:
+                  value: ''
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              examples:
+                Forbidden:
+                  value: ''
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseObject'
+              example:
+                error: Internal Server Error
+                message: Error Reason
+      security:
+        - bearerAuth: []
+  /users/{userId}/groupRoles:
+    patch:
+      tags:
+        - Users (DriveCam)
+      summary: Patch Update User's Roles
+      description: >-
+        Description: Patch updates a user’s group roles. This is a partial
+        update, so only the roles specified in the request body will be updated.
+        Currently only supports adding or removing roles.
+      parameters:
+        - name: userId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+            format: uuid
+          example: 4af860ae-2e53-4d8b-a48e-606b862effed
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+            example:
+              - op: add
+                path: /roles
+                value:
+                  groupId: 28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0
+                  roleId: 4
+              - op: remove
+                path: /groups/30b69c7e-2186-47b1-8833-965842d2af3c/roles/4
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Operation'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatchResponse'
+              example:
+                userId: 4af860ae-2e53-4d8b-a48e-606b862effed
+                groupRoles:
+                  - groupId: 28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0
+                    roleId: 4
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseObject'
+              example:
+                error: Bad Request
+                message: Error Reason
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              examples:
+                Unauthorized:
+                  value: ''
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              examples:
+                Forbidden:
+                  value: ''
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseObject'
+              example:
+                error: Internal Server Error
+                message: Error Reason
+      security:
+        - bearerAuth: []
+components:
+  schemas:
+    BulkUserMetadata:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Total number of records found.
+          format: int32
+        limit:
+          type: integer
+          description: >-
+            Set the maximum number of pagination results to receive in a single
+            page.
+          format: int32
+        offset:
+          type: integer
+          description: >-
+            Set the number of results to skip over before receiving pagination
+            results.
+          format: int32
+      additionalProperties: false
+    BulkUserResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FullUserResponse'
+          nullable: true
+        metadata:
+          $ref: '#/components/schemas/BulkUserMetadata'
+      additionalProperties: false
+    CreateUserRequest:
+      required:
+        - firstName
+        - groupRoles
+        - lastName
+      type: object
+      properties:
+        allowVideoSearchDownload:
+          type: boolean
+          description: "The setting that allows users to download video files from the \"saved videos\" within video search.\r\n            \r\nOnly applies to users with Video Reviewer and Video Reviewer Plus roles. All other user roles will return an error."
+          nullable: true
+        cellPhoneCountry:
+          type: string
+          description: >-
+            A user's cell phone country code (US/CA support only). Must be used
+            with cellPhoneNumber.
+          nullable: true
+        cellPhoneNumber:
+          type: string
+          description: A user's cell phone number. Must be used with cellPhoneCountry.
+          nullable: true
+        email:
+          type: string
+          description: A user's email address.
+          nullable: true
+        employeeId:
+          type: string
+          description: A user's employee id.
+          nullable: true
+        firstName:
+          type: string
+          description: A user's first name.
+        groupRoles:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupRole'
+          description: "A list of user's group roles.\r\n            \r\nIf maintaining or adding roles to a user, Group Roles must be provided.\r\n            \r\nIf removing roles from a user, Group Roles must be removed."
+        lastName:
+          type: string
+          description: A user's last name.
+        loginEnabled:
+          type: boolean
+          description: The setting that allows for login.
+          default: false
+          nullable: true
+        password:
+          type: string
+          description: A user's password. Optional unless loginEnabled is true.
+          nullable: true
+        primaryGroupId:
+          type: string
+          description: "A driver's home group for event follow driver.\r\n            \r\nIf no group ID is provided, records are sorted by the highest group level the user belongs to. Competing group levels are tiebroken in alphabetical order.\r\n            \r\n*Only applicable for companies with event follow driver enabled."
+          format: uuid
+          nullable: true
+        username:
+          type: string
+          description: "A user's username. Username is unique across all Lytx accounts.\r\n            \r\nIf no username is provided, then a username is automatically generated.\r\n            \r\nUsernames are generated in the following order:\r\n1. If employee ID exists, username generates as FirstnameLastnameEmployeeID.\r\n2. If no employee ID exists, username generates as FirstnameLastname.\r\n3. If a username already exists with FirstnameLastname, username generates as FirstNameLastName + 8digithash, depending on employeeID."
+          nullable: true
+      additionalProperties: false
+    EditUserRequest:
+      required:
+        - allowVideoSearchDownload
+        - cellPhoneCountry
+        - cellPhoneNumber
+        - email
+        - employeeId
+        - firstName
+        - groupRoles
+        - lastName
+        - loginEnabled
+        - primaryGroupId
+        - status
+        - username
+      type: object
+      properties:
+        allowVideoSearchDownload:
+          type: boolean
+          description: "The setting that allows users to download video files from the \"saved videos\" within video search.\r\n            \r\nOnly applies to users with Video Reviewer and Video Reviewer Plus roles. All other user roles will return an error."
+        cellPhoneCountry:
+          type: string
+          description: >-
+            A user's cell phone country code (US/CA support only). Must be used
+            with cellPhoneNumber.
+        cellPhoneNumber:
+          type: string
+          description: A user's cell phone number. Must be used with cellPhoneCountry.
+        email:
+          type: string
+          description: A user's email address.
+        employeeId:
+          type: string
+          description: A user's employee id.
+        firstName:
+          type: string
+          description: A user's first name.
+        groupRoles:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupRole'
+          description: "A list of user's group roles.\r\n            \r\nIf maintaining or adding roles to a user, Group Roles must be provided.\r\n            \r\nIf removing roles from a user, Group Roles must be removed."
+        lastName:
+          type: string
+          description: A user's last name.
+        loginEnabled:
+          type: boolean
+          description: The setting that allows for login.
+          default: false
+        password:
+          type: string
+          description: >-
+            A user's password. Only include if attempting to change the user's
+            password.
+          nullable: true
+        primaryGroupId:
+          type: string
+          description: "A driver's home group for event follow driver.\r\n            \r\nIf no group ID is provided, records are sorted by the highest group level the user belongs to. Competing group levels are tiebroken in alphabetical order.\r\n            \r\n*Only applicable for companies with event follow driver enabled."
+          format: uuid
+        status:
+          type: string
+          description: A user's Lytx status.
+        username:
+          type: string
+          description: "A user's username. Username is unique across all Lytx accounts.\r\n            \r\nIf no username is provided, then a username is automatically generated.\r\n            \r\nUsernames are generated in the following order:\r\n1. If employee ID exists, username generates as FirstnameLastnameEmployeeID.\r\n2. If no employee ID exists, username generates as FirstnameLastname.\r\n3. If a username already exists with FirstnameLastname, username generates as FirstNameLastName + 8digithash, depending on employeeID."
+      additionalProperties: false
+    ErrorResponseObject:
+      type: object
+      properties:
+        error:
+          type: string
+          nullable: true
+        message:
+          type: object
+          nullable: true
+      additionalProperties: false
+    FullUserResponse:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: The unique ID Lytx assigns to a user in UUID format.
+          format: uuid
+        allowSafetyEventDownload:
+          type: boolean
+          description: >-
+            The setting that allows users to download video files for DriveCam
+            exception events.
+          nullable: true
+        allowVideoSearchDownload:
+          type: boolean
+          description: "The setting that allows users to download video files from the \"saved videos\" within video search.\r\n            \r\nOnly applies to users with Video Reviewer and Video Reviewer Plus roles. All other user roles will return an error."
+        cellPhoneCountry:
+          type: string
+          description: >-
+            A user's cell phone country code (US/CA support only). Must be used
+            with cellPhoneNumber.
+          nullable: true
+        cellPhoneNumber:
+          type: string
+          description: A user's cell phone number. Must be used with cellPhoneCountry.
+          nullable: true
+        createdDate:
+          type: string
+          description: Date and time when the user was created.
+          format: date-time
+        email:
+          type: string
+          description: A user's email address.
+          nullable: true
+        employeeId:
+          type: string
+          description: A user's employee id.
+          nullable: true
+        firstName:
+          type: string
+          description: A user's first name.
+          nullable: true
+        groupRoles:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupRoleResponse'
+          description: A list of user's group roles.
+          nullable: true
+        lastLoginDate:
+          type: string
+          description: The date of a user's last login in ISO 8601 format.
+          format: date-time
+          nullable: true
+        lastName:
+          type: string
+          description: A user's last name.
+          nullable: true
+        loginEnabled:
+          type: boolean
+          description: The setting that allows for login.
+        primaryGroupId:
+          type: string
+          description: "A driver's home group for event follow driver.\r\n            \r\nIf no group ID is provided, records are sorted by the highest group level the user belongs to. Competing group levels are tiebroken in alphabetical order.\r\n            \r\n*Only applicable for companies with event follow driver enabled."
+          format: uuid
+        status:
+          type: string
+          description: A user's Lytx status.
+          nullable: true
+        updatedDate:
+          type: string
+          description: Date and time when the user was updated.
+          format: date-time
+        username:
+          type: string
+          description: "A user's username. Username is unique across all Lytx accounts.\r\n            \r\nIf no username is provided, then a username is automatically generated.\r\n            \r\nUsernames are generated in the following order:\r\n1. If employee ID exists, username generates as FirstnameLastnameEmployeeID.\r\n2. If no employee ID exists, username generates as FirstnameLastname.\r\n3. If a username already exists with FirstnameLastname, username generates as FirstNameLastName + 8digithash, depending on employeeID."
+          nullable: true
+      additionalProperties: false
+    GroupRole:
+      required:
+        - groupId
+        - roleId
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: Group id that the role is assigned to.
+          format: uuid
+        roleId:
+          type: integer
+          description: Lytx role that a user is assigned in a group.
+          format: int32
+      additionalProperties: false
+    GroupRoleResponse:
+      required:
+        - groupId
+        - roleId
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: Group id that the role is assigned to.
+          format: uuid
+        groupName:
+          type: string
+          description: Group name that the role is assigned to.
+          nullable: true
+        roleId:
+          type: integer
+          description: Lytx role that a user is assigned in a group.
+          format: int32
+      additionalProperties: false
+    Operation:
+      type: object
+      properties:
+        op:
+          type: string
+          description: Remove or Add operation.
+          nullable: true
+        path:
+          type: string
+          description: >-
+            The path to the property to be modified. If add, then '/roles'. If
+            remove, then '/groups/{groupId}/roles/{roleId}'.
+          nullable: true
+        value:
+          type: object
+          description: >-
+            The value to be added (not for remove operations) as a groupRole
+            object.
+          nullable: true
+      additionalProperties: false
+    OperationType:
+      enum:
+        - Add
+        - Remove
+      type: string
+    PatchResponse:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: The unique ID Lytx assigns to a user in UUID format.
+          format: uuid
+        groupRoles:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupRole'
+          nullable: true
+      additionalProperties: false
+    RoleDefinition:
+      type: object
+      properties:
+        description:
+          type: string
+          description: Description of the Lytx role.
+          nullable: true
+        id:
+          type: integer
+          description: Role Id that corresponds to a Lytx role.
+          format: int32
+        name:
+          type: string
+          description: Name of the Lytx role.
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

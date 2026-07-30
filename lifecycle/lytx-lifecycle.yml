@@ -1,0 +1,21 @@
+generated: '2026-07-20'
+method: searched
+versioning:
+  scheme: uri-path
+  current: v2 (Groups/ECM); most products v1; GO9 'plus' v1
+  docs: https://developer.lytx.com/docs/callstructure
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: Legacy DriveCam APIs remain published as legacy documentation superseded by current v1/v2 endpoints.
+  legacy_specs:
+  - openapi/lytx-legacy.driversession.services--openapi.yml
+  - openapi/lytx-legacy.groups--openapi.yml
+  - openapi/lytx-legacy.hos--openapi.yml
+  - openapi/lytx-legacy.vehicleinfo.aggregator--openapi.yml
+  - openapi/lytx-legacy.vehicles--openapi.yml
+  - openapi/lytx-legacy.videoplatform--openapi.yml
+status_page: https://status.lytx.com
+status_page_platform: Atlassian Statuspage (lytx.statuspage.io)
+sla:
+  url: null

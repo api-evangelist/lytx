@@ -1,0 +1,331 @@
+openapi: 3.0.1
+info:
+  title: Lytx.Telematics.Fleet.Api - DeviceStatusInfo
+  description: API for accessing Device Status Info data, requiring authentication.
+  version: 1.0.0
+servers:
+  - url: https://api.lytx.com
+security:
+  - bearerAuth: []
+paths:
+  /plus/v1/devicestatusinfo:
+    get:
+      summary: Get Telematics Device Status Info Data
+      description: >-
+        Retrieve a list of all the device status info in an organization or
+        subset of an organization
+      tags:
+        - DeviceStatusInfo (GO9)
+      parameters:
+        - name: deviceId
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
+          description: Can use either device serial number or device ID.
+        - name: groupId
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
+          description: Can use group ID or root group ID.
+        - name: isDriving
+          in: query
+          required: false
+          schema:
+            type: boolean
+            example: 'false'
+            nullable: false
+          description: If true, only devices that are currently driving are returned.
+        - name: isDeviceCommunicating
+          in: query
+          required: false
+          schema:
+            type: boolean
+            example: 'false'
+            nullable: false
+          description: If true, only devices that are currently communicating are returned.
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            nullable: true
+            example: '5000'
+          description: Number of records to return.
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            nullable: true
+            example: '1500'
+          description: Record to start with.
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+            example: '2023-06-01'
+          description: The start date must be within the last 60 days.
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: asc
+          description: Sort direction.
+        - name: sortProperty
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: name
+          description: Name of property to sort on.
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            nullable: true
+            example: 1
+          description: API version number.
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DeviceStatusInfoResponseViewModel'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request
+                  message:
+                    type: string
+                    example: Invalid request data
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized
+                  message:
+                    type: string
+                    example: Access denied
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Forbidden
+                  message:
+                    type: string
+                    example: Non-permited user
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Not Found
+                  message:
+                    type: string
+                    example: No information found
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: An unexpected server error occurred
+components:
+  schemas:
+    DeviceStatusInfoResponseViewModel:
+      type: object
+      properties:
+        deviceId:
+          type: string
+          nullable: true
+          example: dev-123
+          description: Unique identifier of the device.
+        vehicleIdentificationNumber:
+          type: string
+          nullable: true
+          example: 1HGCM82633A004352
+          description: Vehicle Identification Number (VIN).
+        serialNumber:
+          type: object
+          nullable: true
+          example: SN-987654
+          description: Serial number of the device.
+        id:
+          type: string
+          nullable: true
+          example: status-001
+          description: Unique identifier of the device status record.
+        latitude:
+          type: number
+          format: double
+          nullable: true
+          example: 43.6532
+          description: Latitude of the device location.
+        longitude:
+          type: number
+          format: double
+          nullable: true
+          example: -79.3832
+          description: Longitude of the device location.
+        bearing:
+          type: integer
+          nullable: true
+          example: 180
+          description: Direction of movement in degrees.
+        speed:
+          type: number
+          format: float
+          nullable: true
+          example: 65.5
+          description: Current speed of the vehicle.
+        isDriving:
+          type: boolean
+          nullable: true
+          example: true
+          description: Indicates whether the vehicle is currently driving.
+        isDeviceCommunicating:
+          type: boolean
+          nullable: true
+          example: true
+          description: Indicates whether the device is actively communicating.
+        driverId:
+          type: string
+          nullable: true
+          example: driver-789
+          description: Identifier of the assigned driver.
+        groups:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/GroupResponseViewModel'
+          description: Groups associated with the device.
+        dateTime:
+          type: string
+          format: date-time
+          example: '2025-01-20T12:30:00.000Z'
+          description: Timestamp of the device status.
+        exceptionEvents:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExceptionEventResponseViewModel'
+          description: List of active exception events.
+        lastTrip:
+          $ref: '#/components/schemas/LastTripResponseViewModel'
+    GroupResponseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: false
+          example: grp-123
+          description: Unique identifier of the group.
+        name:
+          type: string
+          nullable: false
+          example: Drivers Group
+          description: Name of the group.
+        comment:
+          type: string
+          example: Main driver group
+          description: Additional comments about the group.
+        reference:
+          type: string
+          example: REF123
+          description: Reference information for the group.
+        parent:
+          $ref: '#/components/schemas/GroupResponseViewModel'
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupResponseViewModel'
+          description: List of child groups.
+        color:
+          $ref: '#/components/schemas/GroupResponseViewModel'
+    ExceptionEventResponseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+          example: ex-123
+          description: Unique identifier of the exception event.
+        activeFrom:
+          type: string
+          format: date-time
+          nullable: true
+          example: '2025-01-20T08:00:00.000Z'
+          description: Start time of the exception event.
+        activeTo:
+          type: string
+          format: date-time
+          nullable: true
+          example: '2025-01-20T10:00:00.000Z'
+          description: End time of the exception event.
+        ruleId:
+          type: string
+          nullable: true
+          example: rule-456
+          description: Rule identifier that triggered the exception.
+    LastTripResponseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+          example: trip-999
+          description: Unique identifier of the last trip.
+        start:
+          type: string
+          format: date-time
+          nullable: true
+          example: '2025-01-20T06:30:00.000Z'
+          description: Start time of the last trip.
+        stop:
+          type: string
+          format: date-time
+          nullable: true
+          example: '2025-01-20T07:15:00.000Z'
+          description: End time of the last trip.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

@@ -1,0 +1,212 @@
+openapi: 3.0.1
+info:
+  title: Lytx.Telematics.Fleet.Api - GPS
+  description: API for accessing GPS data, requiring authentication.
+  version: 1.0.0
+servers:
+  - url: https://api.lytx.com
+security:
+  - bearerAuth: []
+paths:
+  /plus/v1/gps:
+    get:
+      summary: Get Telematics GPS Data
+      description: Retrieve a list of GPS points for a device, vehicle, or group
+      tags:
+        - GPS (GO9)
+      parameters:
+        - name: deviceId
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
+          description: Can use either device serial number or device ID.
+        - name: groupId
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
+          description: >-
+            Can use group ID or root group ID. All descendant groups under the
+            specified group are included in the response.
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            nullable: true
+            example: '5000'
+          description: Number of records to return.
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            nullable: true
+            example: '1500'
+          description: Record to start with.
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+            example: '2023-06-01'
+          description: The start date must be within the last 60 days.
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+            example: '2023-06-02'
+          description: End date to filter by.
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: asc
+          description: Sort direction.
+        - name: sortProperty
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: name
+          description: Name of property to sort on.
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            nullable: true
+            example: 1
+          description: API version number.
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    type: array
+                    items:
+                      properties:
+                        latitude:
+                          type: number
+                          format: double
+                          nullable: false
+                          example: 32.887558
+                          description: >-
+                            Latitude coordinate for the vehicle's last known
+                            location.
+                        longitude:
+                          type: number
+                          format: double
+                          nullable: false
+                          example: 32.887558
+                          description: >-
+                            Longitude coordinate for the vehicle's last known
+                            location.
+                        speed:
+                          type: number
+                          format: double
+                          nullable: true
+                          example: 0
+                          description: >-
+                            Speed in meters per second at the time the GPS Point
+                            was sampled.
+                        dateTime:
+                          type: string
+                          format: date-time
+                          example: '2023-10-06T00:22:30.000Z'
+                          description: Date and time in UTC.
+                        device:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: b26
+                            groups:
+                              type: array
+                              items:
+                                type: string
+                              example: []
+                        Id:
+                          type: string
+                          nullable: false
+                          example: 1b33bcbe-15d3-445e-a06f-dda61208ad18
+                          description: Unique ID for the device.
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request
+                  message:
+                    type: string
+                    example: Invalid request data
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized
+                  message:
+                    type: string
+                    example: Access denied
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Forbidden
+                  message:
+                    type: string
+                    example: Non-permited user
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Not Found
+                  message:
+                    type: string
+                    example: No information found
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: An unexpected server error occurred
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

@@ -1,0 +1,665 @@
+openapi: 3.0.1
+info:
+  title: Lytx.Telematics.Fleet.Api - Dvir
+  description: API for accessing Dvir data, requiring authentication.
+  version: 1.0.0
+servers:
+  - url: https://api.lytx.com
+security:
+  - bearerAuth: []
+paths:
+  /plus/v1/dvir:
+    get:
+      summary: Get Telematics DVIR Data
+      description: Retrieve a list of driver-vehicle inspection reports (DVIRs)
+      tags:
+        - DVIR (GO9)
+      parameters:
+        - name: groupId
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
+          description: >-
+            Can use group ID or root group ID. All descendant groups under the
+            specified group are included in the response.
+        - name: deviceId
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
+        - name: userId
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
+          description: Can use user ID.
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            nullable: true
+            example: '5000'
+          description: Number of records to return.
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            nullable: true
+            example: '1500'
+          description: Record to start with.
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+            example: '2023-06-01'
+          description: The start date must be within the last 60 days.
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+            example: '2023-06-02'
+          description: End date to filter by.
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: asc
+          description: Sort direction.
+        - name: sortProperty
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: name
+          description: Name of property to sort on.
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            nullable: true
+            example: 1
+          description: API version number.
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DvirResponseViewModel'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request
+                  message:
+                    type: string
+                    example: Invalid request data
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized
+                  message:
+                    type: string
+                    example: Access denied
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Forbidden
+                  message:
+                    type: string
+                    example: Non-permited user
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Not Found
+                  message:
+                    type: string
+                    example: No information found
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: An unexpected server error occurred
+components:
+  schemas:
+    DvirResponseViewModel:
+      type: object
+      properties:
+        authorityAddress:
+          type: string
+          example: 123 Main St, Springfield
+          description: Address of the authority.
+        authorityName:
+          type: string
+          example: Department of Transportation
+          description: Name of the authority.
+        certifiedBy:
+          $ref: '#/components/schemas/UserResponseViewModel'
+        certifyDate:
+          type: string
+          format: date-time
+          example: '2025-05-29T19:18:26.063Z'
+          description: Date when the DVIR was certified.
+        certifyRemark:
+          type: string
+          example: All systems OK
+          description: Remark provided by the certifying user.
+        dateTime:
+          type: string
+          format: date-time
+          example: '2025-05-29T19:18:26.063Z'
+          description: Date and time of the DVIR.
+        defectList:
+          $ref: '#/components/schemas/GroupResponseViewModel'
+        defects:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupResponseViewModel'
+        device:
+          $ref: '#/components/schemas/DeviceResponseViewModel'
+        driver:
+          $ref: '#/components/schemas/UserResponseViewModel'
+        driverRemark:
+          type: string
+          example: No issues observed
+          description: Remark provided by the driver.
+        duration:
+          type: string
+          example: '02:15:00'
+          description: Duration of the trip.
+        dvirDefects:
+          type: array
+          items:
+            $ref: '#/components/schemas/DVIRDefectResponseViewModel'
+        engineHours:
+          type: number
+          format: float
+          example: 5.5
+          description: Engine hours recorded.
+        id:
+          type: string
+          example: d1f6e56d-1234-4567-89ab-cdef12345678
+          description: Unique ID of the DVIR report.
+        isSafeToOperate:
+          type: boolean
+          example: true
+          description: Indicates whether the vehicle is safe to operate.
+        loadHeight:
+          type: number
+          format: float
+          example: 3.5
+          description: Height of the load.
+        loadWidth:
+          type: number
+          format: float
+          example: 2.5
+          description: Width of the load.
+        location:
+          type: object
+          nullable: true
+          description: Location object of the vehicle.
+        logType:
+          type: string
+          example: Pre-Trip
+          description: Type of log.
+        odometer:
+          type: number
+          format: double
+          example: 12550
+          description: Odometer reading.
+        repairDate:
+          type: string
+          format: date-time
+          nullable: true
+          example: '2025-05-30T08:22:30.000Z'
+          description: Date of repair, if applicable.
+        repairedBy:
+          $ref: '#/components/schemas/UserResponseViewModel'
+        repairRemark:
+          type: string
+          example: Replaced brake pads
+          description: Remark for the repair.
+        version:
+          type: string
+          example: v1.0
+          description: Version of the DVIR report.
+    DVIRDefectResponseViewModel:
+      type: object
+      properties:
+        defect:
+          $ref: '#/components/schemas/DefectResponseViewModel'
+        defectRemarks:
+          type: array
+          items:
+            $ref: '#/components/schemas/DefectRemarkResponseViewModel'
+        id:
+          type: string
+          example: dd1f6e56d-1234-4567-89ab-cdef12345678
+          description: Unique ID of the DVIR defect.
+        repairDateTime:
+          type: string
+          format: date-time
+          example: '2025-05-30T10:00:00.000Z'
+          description: Date and time of repair.
+        repairStatus:
+          type: string
+          example: Repaired
+          description: Status of the repair.
+        repairUser:
+          $ref: '#/components/schemas/UserResponseViewModel'
+    DefectRemarkResponseViewModel:
+      type: object
+      properties:
+        dateTime:
+          type: string
+          format: date-time
+          example: '2025-05-29T19:18:26.063Z'
+          description: Date/time of the remark.
+        id:
+          type: string
+          example: r1f6e56d-1234-4567-89ab-cdef12345678
+          description: Unique ID of the remark.
+        remark:
+          type: string
+          example: Checked brakes
+          description: Remark text.
+        user:
+          $ref: '#/components/schemas/UserResponseViewModel'
+    DefectResponseViewModel:
+      type: object
+      properties:
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupResponseViewModel'
+        color:
+          $ref: '#/components/schemas/ColorResponseViewModel'
+        comments:
+          type: string
+          example: Requires immediate attention
+          description: Comments on the defect.
+        id:
+          type: string
+          example: def1f6e56d-1234-4567-89ab-cdef12345678
+          description: Unique ID of the defect.
+        isHidden:
+          type: boolean
+          example: false
+          description: Whether the defect is hidden.
+        isRequired:
+          type: boolean
+          example: true
+          description: Whether the defect is required.
+        name:
+          type: string
+          example: Brake Pads
+          description: Name of the defect.
+        parent:
+          $ref: '#/components/schemas/GroupResponseViewModel'
+        reference:
+          type: string
+          example: REF-001
+          description: Reference for the defect.
+        severity:
+          type: string
+          example: High
+          description: Severity level of the defect.
+    ColorResponseViewModel:
+      type: object
+      properties:
+        a:
+          type: integer
+          example: 255
+        r:
+          type: integer
+          example: 255
+        g:
+          type: integer
+          example: 0
+        b:
+          type: integer
+          example: 0
+    DeviceResponseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: false
+          example: 1b33bcbe-15d3-445e-a06f-dda61208ad18
+          description: Unique ID for the device.
+        activeFrom:
+          type: string
+          format: date-time
+          nullable: true
+          example: '2023-10-06T00:22:30.000Z'
+          description: Start date when the device became active.
+        activeTo:
+          type: string
+          format: date-time
+          nullable: true
+          example: '2025-10-06T00:22:30.000Z'
+          description: End date until which the device remains active.
+        comment:
+          type: string
+          nullable: true
+          example: Installed in vehicle A123
+          description: Additional comments about the device.
+        groups:
+          type: array
+          items:
+            type: string
+          nullable: true
+          example:
+            - Group1
+            - Group2
+          description: List of groups associated with the device.
+        timeZoneId:
+          type: string
+          nullable: true
+          example: America/Toronto
+          description: Time zone assigned to the device.
+        deviceFlags:
+          type: string
+          nullable: true
+          example: FLAG_001
+          description: Flags indicating device-specific properties.
+        deviceType:
+          type: string
+          nullable: true
+          example: GO9
+          description: Type/model of the device.
+        hardwareId:
+          type: string
+          nullable: true
+          example: HW-ABC-12345
+          description: Hardware identifier of the device.
+        ignoreDownloadsUntil:
+          type: string
+          format: date-time
+          nullable: true
+          example: '2025-05-15T12:00:00.000Z'
+          description: The device should ignore downloads until this time.
+        maxSecondsBetweenLogs:
+          type: integer
+          nullable: true
+          example: 300
+          description: Maximum number of seconds allowed between logs.
+        name:
+          type: string
+          nullable: true
+          example: Device A123
+          description: Name assigned to the device.
+        productId:
+          type: string
+          nullable: true
+          example: PROD-456
+          description: Product identifier of the device.
+        serialNumber:
+          type: string
+          nullable: true
+          example: SN123456789
+          description: Serial number of the device.
+        timeToDownload:
+          type: string
+          format: date-time
+          nullable: true
+          example: '2025-09-20T10:00:00.000Z'
+          description: Scheduled time for the device to download updates.
+        workTime:
+          type: string
+          nullable: true
+          example: 08:00-17:00
+          description: Work time configuration of the device.
+        registerDeviceResultLite:
+          type: object
+          nullable: true
+          description: Registration result details for the device.
+        devicePlanBillingInfo:
+          type: object
+          nullable: true
+          description: Billing information for the device plan.
+        deviceReplacementInfo:
+          type: object
+          nullable: true
+          description: Replacement information for the device.
+        customProperties:
+          type: object
+          nullable: true
+          description: Custom properties associated with the device.
+        mediaFiles:
+          type: array
+          items:
+            type: string
+          nullable: true
+          example:
+            - file1.jpg
+            - file2.mp4
+          description: Media files linked to the device.
+        tmpTrailerId:
+          type: string
+          nullable: true
+          example: TRAILER-123
+          description: Temporary trailer ID linked to the device.
+        version:
+          type: string
+          nullable: true
+          example: v1.2.3
+          description: Version information of the device.
+    UserResponseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: false
+          example: 1b33bcbe-15d3-445e-a06f-dda61208ad18
+          description: Unique identifier for the user.
+        firstName:
+          type: string
+          nullable: false
+          example: John
+          description: First name of the user.
+        lastName:
+          type: string
+          nullable: false
+          example: Doe
+          description: Last name of the user.
+        name:
+          type: string
+          nullable: true
+          example: John Doe
+          description: Full name of the user.
+        licenseNumber:
+          type: string
+          nullable: true
+          example: DL-123456
+          description: License number of the user.
+        licenseProvince:
+          type: string
+          nullable: true
+          example: CA
+          description: Province/state of the license.
+        acceptedEULA:
+          type: integer
+          nullable: false
+          example: 1
+          description: Version of the EULA accepted.
+        driveGuideVersion:
+          type: integer
+          example: 2
+          description: Drive Guide version used by the user.
+        wifiEULA:
+          type: integer
+          example: 1
+          description: WiFi EULA acceptance version.
+        activeFrom:
+          type: string
+          format: date-time
+          example: '2023-10-06T00:22:30.000Z'
+          description: Start date from which the user is active (UTC).
+        activeTo:
+          type: string
+          format: date-time
+          example: '2025-10-06T00:22:30.000Z'
+          description: End date until which the user is active (UTC).
+        lastAccessDate:
+          type: string
+          format: date-time
+          example: '2025-09-15T12:22:30.000Z'
+          description: Last time the user accessed the system.
+        companyName:
+          type: string
+          example: Acme Corp
+          description: Name of the company the user belongs to.
+        companyAddress:
+          type: string
+          example: 123 Main Street, Toronto, ON
+          description: Address of the company.
+        carrierNumber:
+          type: string
+          example: CARR123
+          description: Carrier number.
+        isDriver:
+          type: boolean
+          example: true
+          description: Indicates whether the user is a driver.
+        isEmailReportEnabled:
+          type: boolean
+          example: false
+          description: Whether email reports are enabled for the user.
+        language:
+          type: string
+          example: en-US
+          description: Preferred language of the user.
+        timeZoneId:
+          type: string
+          example: America/Toronto
+          description: Time zone of the user.
+        userAuthenticationType:
+          type: integer
+          example: 1
+          description: Authentication type of the user.
+        zoneDisplayMode:
+          type: integer
+          example: 2
+          description: Zone display mode preference.
+        driverGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupResponseViewModel'
+          description: List of driver groups associated with the user.
+        companyGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupResponseViewModel'
+          description: List of company groups associated with the user.
+        keys:
+          type: array
+          items:
+            type: object
+          description: List of keys assigned to the user.
+        bookmarks:
+          type: array
+          items:
+            type: object
+          description: List of bookmarks for the user.
+        viewDriversOwnDataOnly:
+          type: boolean
+          example: false
+          description: Whether user can only view their own driver data.
+        designation:
+          type: string
+          example: Manager
+          description: Job designation of the user.
+        employeeNo:
+          type: string
+          example: EMP12345
+          description: Employee number of the user.
+        phoneNumber:
+          type: string
+          example: +1-123-456-7890
+          description: Phone number of the user.
+        phoneNumberExtension:
+          type: string
+          example: '101'
+          description: Extension for the phone number.
+    GroupResponseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: false
+          example: grp-123
+          description: Unique identifier of the group.
+        name:
+          type: string
+          nullable: false
+          example: Drivers Group
+          description: Name of the group.
+        comment:
+          type: string
+          example: Main driver group
+          description: Additional comments about the group.
+        reference:
+          type: string
+          example: REF123
+          description: Reference information for the group.
+        parent:
+          $ref: '#/components/schemas/GroupResponseViewModel'
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupResponseViewModel'
+          description: List of child groups.
+        color:
+          $ref: '#/components/schemas/GroupResponseViewModel'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

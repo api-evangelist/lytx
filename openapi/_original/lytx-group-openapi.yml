@@ -1,0 +1,1552 @@
+openapi: 3.0.0
+info:
+  title: Lytx.Group.Api
+  description: >-
+    These routes are externally accessible and require authentication. All group
+    routes require the authenticated user to have the Group Manager role.
+  version: 1.0.0
+servers:
+  - url: https://api.lytx.com/v1
+paths:
+  /groups:
+    get:
+      tags:
+        - Groups (DriveCam)
+      description: Retrieve a list of groups in an organization.
+      summary: Retrieve List of Groups
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            example: '100'
+          description: Number of records to return.
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            example: '0'
+          description: Record to start with.
+        - name: groupIds
+          in: query
+          schema:
+            type: string
+          description: IDs of groups to return.
+        - name: includeSubgroups
+          in: query
+          schema:
+            type: boolean
+            example: 'false'
+          description: If true, all subgroups under the specified group are included.
+        - name: sort
+          in: query
+          schema:
+            type: string
+            example: Description
+          description: Name of the property to sort on.
+        - name: order
+          in: query
+          schema:
+            type: string
+            example: asc
+          description: Sort direction.
+        - name: encodeFullPath
+          in: query
+          schema:
+            type: boolean
+            example: 'false'
+            default: true
+          description: >-
+            If true, all returned groups will have their fullPath property url
+            encoded.
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  groups:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 880e60d8-fbed-217a-1720-6511d9f16361
+                          description: ID of the group.
+                        createdDate:
+                          type: string
+                          example: '0001-01-01T00:00:00'
+                          description: Date and time when the group was created.
+                        description:
+                          type: string
+                          example: Description Here
+                          description: Custom field.
+                        fullPath:
+                          type: string
+                          example: Test Root Group\Test Parent Group\Test Group Name
+                          description: >-
+                            Full path from the root group to the target group
+                            using group names.
+                        fullPathId:
+                          type: string
+                          example: >-
+                            880e60d8-fbed-217c-1720-6511d9f16361\880e60d8-fbed-217b-1720-6511d9f16361\880e60d8-fbed-217a-1720-6511d9f16361
+                          description: >-
+                            Full path from the root group to the target group
+                            using group IDs.
+                        name:
+                          type: string
+                          example: Test Group Name
+                          description: Name of the group.
+                        parentId:
+                          type: string
+                          example: 880e60d8-fbed-217b-1720-6511d9f16361
+                          description: >-
+                            ID of the parent group directly above the target
+                            group.
+                        revision:
+                          type: number
+                          example: 1
+                          description: Revision number for the group.
+                        rootGroupId:
+                          type: string
+                          example: 880e60d8-fbed-217b-1720-6511d9f16361
+                          description: >-
+                            ID of the highest level root group in the
+                            organization.
+                        updatedDate:
+                          type: string
+                          example: '0001-01-01T00:00:00'
+                          description: Date and time when the group was updated.
+                  metadata:
+                    type: object
+                    properties:
+                      count:
+                        type: number
+                        example: 102
+                      limit:
+                        type: number
+                        example: 100
+                      offset:
+                        type: number
+                        example: 2
+              examples:
+                Group Data:
+                  value:
+                    groups:
+                      - id: 880e60d8-fbed-217a-1720-6511d9f16361
+                        createdDate: '0001-01-01T00:00:00'
+                        description: Description here
+                        fullPath: Test Root Group\Test Parent Group\Test Group Name
+                        fullPathId: >-
+                          880e60d8-fbed-217b-1720-6511d9f16361\880e60d8-fbed-217b-1720-6511d9f16361\880e60d8-fbed-217a-1720-6511d9f16361
+                        name: Test Group Name
+                        parentId: 880e60d8-fbed-217b-1720-6511d9f16361
+                        revision: 0
+                        rootGroupId: 880e60d8-fbed-217c-1720-6511d9f16361
+                        updatedDate: '0001-01-01T00:00:00'
+                      - id: 880e60d8-fbed-217b-1720-6511d9f16361
+                        createdDate: '0001-01-01T00:00:00'
+                        description: Description here
+                        fullPath: Test Root Group\Test Parent Group
+                        fullPathId: >-
+                          880e60d8-fbed-217b-1720-6511d9f16361\880e60d8-fbed-217b-1720-6511d9f16361
+                        name: Test Parent Group
+                        parentId: 880e60d8-fbed-217b-1720-6511d9f16361
+                        revision: 1
+                        rootGroupId: 880e60d8-fbed-217c-1720-6511d9f16361
+                        updatedDate: '0001-01-01T00:00:00'
+                    metadata:
+                      count: 102
+                      limit: 100
+                      offset: 2
+                Empty:
+                  value:
+                    groups: []
+                    metadata:
+                      count: 0
+                      limit: 100
+                      offset: 0
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request
+                  message:
+                    type: string
+                    example: RootGroupId is empty.
+              examples:
+                Bad Request:
+                  value:
+                    error: Bad Request
+                    message: RootGroupId is empty.
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              examples:
+                Unauthorized:
+                  value: ''
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              examples:
+                Forbidden:
+                  value: ''
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: Requested operation cannot be performed.
+              examples:
+                Internal Server Error:
+                  value:
+                    error: Internal Server Error
+                    message: The requested operation cannot be performed.
+    post:
+      tags:
+        - Groups (DriveCam)
+      description: Add a new group to the organization.
+      summary: Add New Group to Organization
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddGroupRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request
+                  message:
+                    type: string
+                    example: The name must be 1-50 printable characters.
+              examples:
+                Invalid Description:
+                  value:
+                    error: Bad Request
+                    message: The Description max length is 255 printable characters.
+                Invalid ParentId Format:
+                  value:
+                    error: Bad Request
+                    message: The ParentId must be a valid UUID.
+                Invalid Characters:
+                  value:
+                    error: Bad Request
+                    message: The Name contains invalid characters.
+                Reached Maximum Hierarchy Depth:
+                  value:
+                    error: Bad Request
+                    message: Request exceeds maximum group hierarchy depth.
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              examples:
+                Unauthorized:
+                  value: ''
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              examples:
+                Forbidden:
+                  value: ''
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Conflict
+                  message:
+                    type: string
+                    example: Group already exists with same Name and ParentId.
+              examples:
+                Conflict:
+                  value:
+                    error: Conflict
+                    message: Group already exists with same Name and ParentId.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: Requested operation cannot be performed.
+              examples:
+                Internal Server Error:
+                  value:
+                    error: Internal Server Error
+                    message: The requested operation cannot be performed.
+  /groups/{groupIdentifier}:
+    get:
+      tags:
+        - Groups (DriveCam)
+      description: Retrieve one group in the organization by group ID.
+      summary: Retrieve Specific Group
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: groupIdentifier
+          in: path
+          schema:
+            type: string
+            example: 880e60d8-fbed-217a-1720-6511d9f16361
+          description: ID of the group to return.
+          required: true
+        - name: encodeFullPath
+          in: query
+          schema:
+            type: boolean
+            example: 'false'
+            default: true
+          description: If true, the group will have its fullPath property url encoded.
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request
+                  message:
+                    type: string
+                    example: GroupId is empty.
+              examples:
+                Bad Request:
+                  value:
+                    error: Bad Request
+                    message: GroupId is empty.
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              examples:
+                Unauthorized:
+                  value: ''
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              examples:
+                Forbidden:
+                  value: ''
+        '404':
+          description: Resource Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Resource Not Found
+                  message:
+                    type: string
+                    example: The requested resource doesn't exist.
+              examples:
+                Resource Not Found:
+                  value:
+                    error: Resource Not Found
+                    message: The requested resource doesn't exist.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: Requested operation cannot be performed.
+              examples:
+                Internal Server Error:
+                  value:
+                    error: Internal Server Error
+                    message: The requested operation cannot be performed.
+    put:
+      tags:
+        - Groups (DriveCam)
+      description: Update one group in the organization by group ID.
+      summary: Update Specific Group
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: groupIdentifier
+          in: path
+          schema:
+            type: string
+            example: 880e60d8-fbed-217a-1720-6511d9f16361
+          description: ID of the group to return.
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditGroupRequest'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request
+                  message:
+                    type: string
+                    example: The name must be 1-50 printable characters.
+              examples:
+                Invalid Id:
+                  value:
+                    error: Bad Request
+                    message: The GroupId must be a valid UUID.
+                Invalid Name:
+                  value:
+                    error: Bad Request
+                    message: The name must be 1-50 printable characters.
+                Invalid Description:
+                  value:
+                    error: Bad Request
+                    message: The Description max length is 255 printable characters.
+                Invalid Characters:
+                  value:
+                    error: Bad Request
+                    message: The Name contains invalid characters.
+                Invalid Parent Target:
+                  value:
+                    error: Bad Request
+                    message: The ParentId cannot be a descendant of the target Group.
+                Invalid Parent Format:
+                  value:
+                    error: Bad Request
+                    message: The ParentId must be a valid UUID.
+                Reached Maximum Hierarchy Depth:
+                  value:
+                    error: Bad Request
+                    message: Request exceeds maximum group hierarchy depth.
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              examples:
+                Unauthorized:
+                  value: ''
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Forbidden
+                  message:
+                    type: string
+                    example: Mandatory Groups cannot be updated.
+              examples:
+                Group is Default Group:
+                  value:
+                    error: Forbidden
+                    message: Mandatory Groups cannot be updated.
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Conflict
+                  message:
+                    type: string
+                    example: Group already exists with same Name and ParentId.
+              examples:
+                Conflict:
+                  value:
+                    error: Conflict
+                    message: Group already exists with same Name and ParentId.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: Requested operation cannot be performed.
+              examples:
+                Internal Server Error:
+                  value:
+                    error: Internal Server Error
+                    message: The requested operation cannot be performed.
+    delete:
+      tags:
+        - Groups (DriveCam)
+      description: >
+        Delete a group in the organization.
+
+
+        Use with extreme caution. Deleting a group that has associated entities
+        will result in orphaned entities, which cannot be recovered.
+
+
+        Ensure all entities are removed or moved before deleting the group to
+        avoid data loss.
+      summary: Delete Group
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: groupIdentifier
+          in: path
+          schema:
+            type: string
+            example: 880e60d8-fbed-217a-1720-6511d9f16361
+          description: ID of the group to delete.
+          required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request
+                  message:
+                    type: string
+                    example: Groups with subgroups cannot be deleted.
+              examples:
+                Group has subgroups:
+                  value:
+                    error: Bad Request
+                    message: Groups with subgroups cannot be deleted.
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              examples:
+                Unauthorized:
+                  value: ''
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Forbidden
+                  message:
+                    type: string
+                    example: Mandatory Groups cannot be deleted.
+              examples:
+                Group is Default Group:
+                  value:
+                    error: Forbidden
+                    message: Mandatory Groups cannot be deleted.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: Requested operation cannot be performed.
+              examples:
+                Internal Server Error:
+                  value:
+                    error: Internal Server Error
+                    message: The requested operation cannot be performed.
+  /groups/{groupIdentifier}/descendants:
+    get:
+      tags:
+        - Groups (DriveCam)
+      description: >-
+        Retrieve a list of descendant group IDs for the specified group and
+        depth.
+      summary: Retrieve List of Descendant Group IDs
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: groupIdentifier
+          in: path
+          schema:
+            type: string
+            example: 880e60d8-fbed-217a-1720-6511d9f16361
+          description: ID of the group to retrieve group descendant IDs for.
+          required: true
+        - name: depth
+          in: query
+          schema:
+            type: integer
+            example: '2'
+          description: >-
+            Number of levels of group descendants returned. 
+
+            - depth = NULL: Returns children group IDs directly under the
+            specified group.
+
+            - depth = 0: Returns group IDs of all groups within hierarchy. 
+
+            - depth = 1: Returns children group IDs directly under the specified
+            group.
+
+            - depth = 2: Returns children and grandchildren group IDs for the
+            specified group. 
+
+            - depth > maximum levels in hierarchy: Returns descendant group IDs
+            at all depths for the specified group.
+          required: false
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+              example:
+                - 880e60d8-fbed-217a-1720-6511d9f16361
+                - 880e60d8-fbed-217b-1720-6511d9f16361
+                - 880e60d8-fbed-217c-1720-6511d9f16361
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request
+                  message:
+                    type: string
+                    example: GroupId is empty.
+              examples:
+                Bad Request:
+                  value:
+                    error: Bad Request
+                    message: GroupId is empty.
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              examples:
+                Unauthorized:
+                  value: ''
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              examples:
+                Forbidden:
+                  value: ''
+        '404':
+          description: Resource Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Resource Not Found
+                  message:
+                    type: string
+                    example: The requested resource doesn't exist.
+              examples:
+                Resource Not Found:
+                  value:
+                    error: Resource Not Found
+                    message: The requested resource doesn't exist.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: Requested operation cannot be performed.
+              examples:
+                Internal Server Error:
+                  value:
+                    error: Internal Server Error
+                    message: The requested operation cannot be performed.
+  /groups/auditLogs:
+    get:
+      tags:
+        - Groups (DriveCam)
+      description: Retrieve a list of group audit logs in an organization.
+      summary: Retrieve List of Group Audit Logs
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            example: '100'
+          description: Number of records to return.
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            example: '0'
+          description: Record to start with.
+        - name: userIdentifier
+          in: query
+          schema:
+            type: string
+          description: ID or username of the user for which to return audit data.
+        - name: groupIdentifier
+          in: query
+          schema:
+            type: string
+          description: ID of the group for which to return audit data.
+        - name: includeSubgroups
+          in: query
+          schema:
+            type: boolean
+            example: 'false'
+          description: If true, all subgroups under the specified group are included.
+        - name: action
+          in: query
+          schema:
+            type: string
+          description: >-
+            The description of the action type (CREATE, UPDATE, DELETE, IMPORT,
+            MOVE).
+        - name: startDate
+          in: query
+          schema:
+            type: string
+            example: '2024-09-07T00:00:00Z'
+          description: >-
+            The start date and end date must be within 7 days of each other. If
+            no date specified, returns data from the last 7 days.
+        - name: endDate
+          in: query
+          schema:
+            type: string
+            example: '2024-09-10T00:00:00Z'
+          description: >-
+            The start date and end date must be within 7 days of each other. If
+            no date specified, returns data from the last 7 days.
+        - name: sort
+          in: query
+          schema:
+            type: string
+            example: UpdatedDate
+          description: Name of the property to sort on.
+        - name: order
+          in: query
+          schema:
+            type: string
+            example: desc
+          description: Sort direction.
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 880e60d8-fbed-217a-1720-6511d9f16361
+                          description: ID of the group.
+                        action:
+                          type: string
+                          example: DELETE
+                          description: >-
+                            The description of action type (CREATE, UPDATE,
+                            DELETE, IMPORT, MOVE).
+                        createdDate:
+                          type: string
+                          example: '2024-09-06T22:26:09.84'
+                          description: Date and time when the group was created.
+                        deletedDate:
+                          type: string
+                          example: '2024-09-26T02:27:09.34'
+                          description: Date and time when the group was deleted.
+                        description:
+                          type: string
+                          example: A new group being added.
+                          description: Custom field.
+                        email:
+                          type: string
+                          description: The actor’s email.
+                        employeeId:
+                          type: string
+                          description: The actor’s unique employee ID.
+                        firstName:
+                          type: string
+                          description: The actor’s first name.
+                        fullPath:
+                          type: string
+                          example: Test Root Group\Test Parent Group\testGroupName
+                          description: >-
+                            Full path from the root group to the target group
+                            using group names.
+                        fullPathId:
+                          type: string
+                          example: >-
+                            880e60d8-fbed-217c-1720-6511d9f16361\880e70d8-aaf8-18aa-7ab0-6533d8f1c360\880e60d8-fbed-217a-1720-6511d9f16361
+                          description: >-
+                            Full path from the root group to the target group
+                            using group IDs.
+                        isDeleted:
+                          type: boolean
+                          example: true
+                          description: Flag for whether or not group is deleted.
+                        lastName:
+                          type: string
+                          description: The actor’s last name.
+                        name:
+                          type: string
+                          example: testGroupName
+                          description: Name of the group.
+                        parentId:
+                          type: string
+                          example: 880e70d8-aaf8-18aa-7ab0-6533d8f1c360
+                          description: >-
+                            ID of the parent group directly above the target
+                            group.
+                        revision:
+                          type: number
+                          example: 4
+                          description: Revision number for the group.
+                        rootGroupId:
+                          type: string
+                          example: 880e60d8-fbed-217c-1720-6511d9f16361
+                          description: >-
+                            ID of the highest level root group in the
+                            organization.
+                        userId:
+                          type: string
+                          description: The actor’s ID in GUID format.
+                        username:
+                          type: string
+                          description: The actor’s unique username.
+                        updatedDate:
+                          type: string
+                          example: '2024-09-06T22:26:09.84'
+                          description: Date and time when the group was updated.
+                  metadata:
+                    type: object
+                    properties:
+                      count:
+                        type: number
+                        example: 102
+                      limit:
+                        type: number
+                        example: 100
+                      offset:
+                        type: number
+                        example: 2
+              examples:
+                Audit Data:
+                  value:
+                    data:
+                      - id: 880e60d8-fbed-217a-1720-6511d9f16361
+                        action: UPDATE
+                        createdDate: '2024-09-06T22:26:09.84'
+                        description: Updated Description here
+                        email: johnsmith@gmail.com
+                        employeeId: 1234567
+                        firstName: John
+                        fullPath: Test Root Group\Test Parent Group\Test Group Name
+                        fullPathId: >-
+                          880e60d8-fbed-217b-1720-6511d9f16361\880e60d8-fbed-217b-1720-6511d9f16361\880e60d8-fbed-217a-1720-6511d9f16361
+                        isDeleted: false
+                        lastName: Smith
+                        name: Test Group Name
+                        parentId: 880e60d8-fbed-217b-1720-6511d9f16361
+                        revision: 1
+                        rootGroupId: 880e60d8-fbed-217c-1720-6511d9f16361
+                        userId: 660e60d8-fbed-217c-1720-6511d9f16361
+                        userName: johnsmith
+                        updatedDate: '2024-09-07T22:26:09.84'
+                      - id: 880e60d8-fbed-217b-1720-6511d9f16361
+                        action: CREATE
+                        createdDate: '2024-09-06T22:26:09.84'
+                        description: Description here
+                        email: janedoe@hotmail.com
+                        fullPath: Test Root Group\Test Parent Group
+                        fullPathId: >-
+                          880e60d8-fbed-217b-1720-6511d9f16361\880e60d8-fbed-217b-1720-6511d9f16361
+                        isDeleted: false
+                        name: Test Parent Group
+                        parentId: 880e60d8-fbed-217b-1720-6511d9f16361
+                        revision: 0
+                        rootGroupId: 880e60d8-fbed-217c-1720-6511d9f16361
+                        userId: 770e60d8-fbed-217c-1720-6511d9f16361
+                        userName: janedoe
+                        updatedDate: '2024-09-06T22:26:09.84'
+                      - id: 880e60d8-fbed-217b-1720-6511d9f16361
+                        action: MOVE
+                        createdDate: '2024-09-06T22:26:09.84'
+                        description: Description here
+                        email: janedoe@hotmail.com
+                        fullPath: Test Root Group\Test Parent Group
+                        fullPathId: >-
+                          880e60d8-fbed-217b-1720-6511d9f16361\880e60d8-fbed-217b-1720-6511d9f16361
+                        isDeleted: false
+                        name: Test Parent Group
+                        parentId: 880e60d8-fbed-217b-1720-6511d9f16361
+                        revision: 1
+                        rootGroupId: 880e60d8-fbed-217c-1720-6511d9f16361
+                        userId: 770e60d8-fbed-217c-1720-6511d9f16361
+                        userName: janedoe
+                        updatedDate: '2024-09-07T22:26:09.84'
+                      - id: 880e60d8-fbed-217b-1720-6511d9f16361
+                        action: IMPORT
+                        createdDate: '2024-09-06T22:26:09.84'
+                        description: Description here
+                        email: janedoe@hotmail.com
+                        fullPath: Test Root Group\Test Parent Group
+                        fullPathId: >-
+                          880e60d8-fbed-217b-1720-6511d9f16361\880e60d8-fbed-217b-1720-6511d9f16361
+                        isDeleted: false
+                        name: Test Parent Group
+                        parentId: 880e60d8-fbed-217b-1720-6511d9f16361
+                        revision: 0
+                        rootGroupId: 880e60d8-fbed-217c-1720-6511d9f16361
+                        userId: 770e60d8-fbed-217c-1720-6511d9f16361
+                        userName: janedoe
+                        updatedDate: '2024-09-06T22:26:09.84'
+                    metadata:
+                      count: 102
+                      limit: 100
+                      offset: 2
+                Empty:
+                  value:
+                    data: []
+                    metadata:
+                      count: 0
+                      limit: 100
+                      offset: 0
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request
+                  message:
+                    type: string
+                    example: Audit data prior to 2024-09-04T00:00:00Z is not avaiable.
+              examples:
+                Minimum StartDate:
+                  value:
+                    error: Bad Request
+                    message: Audit data prior to 2024-09-04T00:00:00Z is not avaiable.
+                Invalid Username:
+                  value:
+                    error: Bad Request
+                    message: Username is invalid.
+                Invalid GroupId:
+                  value:
+                    error: Bad Request
+                    message: The GroupId must be a valid UUID.
+                Invalid UserId:
+                  value:
+                    error: Bad Request
+                    message: The UserId must be a valid UUID.
+                Invalid StartDate:
+                  value:
+                    error: Bad Request
+                    message: The StartDate must be a valid DateTime.
+                Future StartDate:
+                  value:
+                    error: Bad Request
+                    message: The StartDate cannot be in the future.
+                StartDate and EndDate Required:
+                  value:
+                    error: Bad Request
+                    message: >-
+                      The StartDate is required with the EndDate. The StartDate
+                      must be within 7 days before the EndDate.
+                Invalid EndDate:
+                  value:
+                    error: Bad Request
+                    message: The EndDate must be a valid DateTime.
+                StartDate and EndDate Range:
+                  value:
+                    error: Bad Request
+                    message: The EndDate must be within 7 days after the StartDate.
+                EndDate Before StartDate:
+                  value:
+                    error: Bad Request
+                    message: The EndDate must be after the StartDate.
+                Invalid Limit:
+                  value:
+                    error: Bad Request
+                    message: >-
+                      The Limit must be greater than 0 and less than or equal to
+                      100.
+                Invalid Offset:
+                  value:
+                    error: Bad Request
+                    message: The Offset must be greater or equal to 0.
+                Invalid Sort:
+                  value:
+                    error: Bad Request
+                    message: The Sort field is not valid.
+                Invalid Order:
+                  value:
+                    error: Bad Request
+                    message: The Order must be either 'asc' or 'desc' value.
+                Invalid Action:
+                  value:
+                    error: Bad Request
+                    message: The Action field is not valid.
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              examples:
+                Unauthorized:
+                  value: ''
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              examples:
+                Forbidden:
+                  value: ''
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: Requested operation cannot be performed.
+              examples:
+                Internal Server Error:
+                  value:
+                    error: Internal Server Error
+                    message: The requested operation cannot be performed.
+  /groups/bulkImport:
+    post:
+      tags:
+        - Groups (DriveCam)
+      description: Bulk import groups into the organization.
+      summary: Bulk Import Groups
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportGroupsResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                CsvDataEmpty:
+                  value:
+                    error: Bad Request
+                    message: Empty file can not be imported.
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              examples:
+                Unauthorized:
+                  value: ''
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              examples:
+                Forbidden:
+                  value: ''
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                InternalServerError:
+                  value:
+                    error: Internal Server Error
+                    message: The requested operation cannot be performed.
+  /groups/bulkMove:
+    post:
+      tags:
+        - Groups (DriveCam)
+      description: Bulk move groups in the organization.
+      summary: Bulk Move Groups
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkMoveGroupRequest'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkMoveGroupResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request
+                  message:
+                    type: string
+                    example: The parameters given in the request are invalid.
+              examples:
+                Invalid Request:
+                  value:
+                    error: Bad Request
+                    message: No groups provided for bulk move.
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              examples:
+                Unauthorized:
+                  value: ''
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              examples:
+                Forbidden:
+                  value: ''
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: The Requested operation cannot be performed.
+              examples:
+                Internal Server Error:
+                  value:
+                    error: Internal Server Error
+                    message: The requested operation cannot be performed.
+components:
+  schemas:
+    Group:
+      title: Group
+      type: object
+      required:
+        - id
+        - createdDate
+        - fullPath
+        - fullPathId
+        - name
+        - parentId
+        - revision
+        - rootGroupId
+        - updatedDate
+      properties:
+        id:
+          type: string
+          example: 0c3c9820-3ee4-e98d-0987-c7333e722f72
+        createdDate:
+          type: string
+          example: '2023-01-01T00:00:00Z'
+        description:
+          type: string
+          example: this is a description
+        fullPath:
+          type: string
+          example: '***Root\Food Transportation INC'
+        fullPathId:
+          type: string
+          example: >-
+            750c5226-0f0a-402d-dcec-f83ccbb5373e\0c3c9820-3ee4-e98d-0987-c7333e722f72
+        name:
+          type: string
+          example: Food Transportation INC
+        parentId:
+          type: string
+          example: 750c5226-0f0a-402d-dcec-f83ccbb5373e
+        revision:
+          type: number
+          example: 1
+        rootGroupId:
+          type: string
+          example: 750c5226-0f0a-402d-dcec-f83ccbb5373e
+        updatedDate:
+          type: string
+          example: '2023-02-01T00:00:00Z'
+    AuditLog:
+      title: AuditLog
+      type: object
+      required:
+        - id
+        - action
+        - createdDate
+        - fullPath
+        - fullPathId
+        - isDeleted
+        - name
+        - parentId
+        - revision
+        - rootGroupId
+        - updatedDate
+      properties:
+        id:
+          type: string
+          example: 0c3c9820-3ee4-e98d-0987-c7333e722f72
+        action:
+          type: string
+          example: UPDATE
+        createdDate:
+          type: string
+          example: '2023-01-01T00:00:00Z'
+        deletedDate:
+          type: boolean
+          example: '9999-01-01T00:00:00'
+        description:
+          type: string
+          example: this is a description
+        email:
+          type: string
+          example: serena@gmail.com
+        employeeId:
+          type: string
+          example: '12345678'
+        firstName:
+          type: string
+          example: Serena
+        fullPath:
+          type: string
+          example: '***Root\Food Transportation INC'
+        fullPathId:
+          type: string
+          example: >-
+            750c5226-0f0a-402d-dcec-f83ccbb5373e\0c3c9820-3ee4-e98d-0987-c7333e722f72
+        isDeleted:
+          type: boolean
+          example: false
+        lastName:
+          type: string
+          example: Smith
+        name:
+          type: string
+          example: Food Transportation INC
+        parentId:
+          type: string
+          example: 750c5226-0f0a-402d-dcec-f83ccbb5373e
+        revision:
+          type: number
+          example: 3
+        rootGroupId:
+          type: string
+          example: 750c5226-0f0a-402d-dcec-f83ccbb5373e
+        userId:
+          type: string
+          example: 110e60d8-fbed-217c-1720-6511d9f16361
+        username:
+          type: string
+          example: serenasmith
+        updatedDate:
+          type: string
+          example: '2023-02-01T00:00:00Z'
+    Metadata:
+      title: Metadata
+      type: object
+      required:
+        - count
+        - limit
+        - offset
+      properties:
+        count:
+          type: number
+          example: 102
+        limit:
+          type: number
+          example: 100
+        offset:
+          type: number
+          example: 2
+    Error:
+      title: Error
+      type: object
+      required:
+        - error
+        - message
+      properties:
+        error:
+          type: string
+          example: Not Found
+        message:
+          type: string
+          example: The page you are looking for does not exist.
+    AddGroupRequest:
+      title: AddGroupRequest
+      type: object
+      required:
+        - name
+        - parentId
+      properties:
+        name:
+          type: string
+          example: testGroupName
+          description: Name of the group to create.
+        parentId:
+          type: string
+          example: 880e70d8-aaf8-18aa-7ab0-6533d8f1c360
+          description: >-
+            ID of the parent group. The new group will be placed under this
+            parent.
+        description:
+          type: string
+          example: A new group being added.
+          description: Custom field.
+    EditGroupRequest:
+      title: EditGroupRequest
+      type: object
+      properties:
+        name:
+          type: string
+          example: testGroupName
+          description: Name of the group to edit.
+        parentId:
+          type: string
+          example: 880e70d8-aaf8-18aa-7ab0-6533d8f1c360
+          description: >-
+            ID of the new parent group. The group will be moved under this
+            parent.
+        description:
+          type: string
+          example: A group being edited.
+          description: Custom field.
+    ImportGroupRequest:
+      title: ImportGroupRequest
+      type: object
+      required:
+        - csvData
+      properties:
+        csvData:
+          type: string
+          format: base64Encoded
+          description: >-
+            The CSV file before conversion to base64 encoded string to imported
+            should follow fixed format(Please follow this complete format).
+            Group Name, Description, Subgroups, Lytx Account Parent Group,
+            Sub-Group (2nd Hierarchy), Sub-Group (3rd Hierarchy), Sub-Group (4th
+            Hierarchy), Sub-Group (5th Hierarchy), Sub-Group (6th Hierarchy),
+            Sub-Group (7th Hierarchy), Sub-Group (8th Hierarchy), Sub-Group (9th
+            Hierarchy), Sub-Group (10th Hierarchy), Sub-Group (11th Hierarchy),
+            Sub-Group (12th Hierarchy), Sub-Group (13th Hierarchy)
+    ImportGroupsResponse:
+      title: ImportGroupsResponse
+      type: object
+      properties:
+        importedGroups:
+          type: array
+          items:
+            type: string
+            example: Root\Group1
+          description: List of group names that were successfully imported.
+        existingGroups:
+          type: array
+          items:
+            type: string
+            example: Root\ExistingGroup
+          description: List of group names that already existed and were not imported.
+        groupsFailedToImport:
+          type: array
+          items:
+            type: string
+            example: Root\Group3\FailedGroup
+          description: List of group names that failed to import as Group3 is not present.
+        invalidGroupNames:
+          type: array
+          items:
+            type: string
+            example: InvalidGroup
+          description: List of group names that were invalid and could not be imported.
+    BulkMoveGroupRequest:
+      title: BulkMoveGroupRequest
+      type: object
+      required:
+        - op
+        - path
+        - value
+      properties:
+        op:
+          type: string
+          example: replace
+          description: It should be replace keyword always.
+        path:
+          type: string
+          example: 880e70d8-aaf8-18aa-7ab0-6533d8f1c360/parentId
+          description: Id of the moving group followed by parentId keyword.
+        value:
+          type: string
+          example: 780e70d8-aaf8-18aa-7ab0-6533d8f1c390/Id
+          description: Id of the parent group followed by Id keyword.
+    BulkMoveGroupResponse:
+      title: BulkMoveGroupResponse
+      type: object
+      required:
+        - MovedGroups
+        - UnmovedGroups
+      properties:
+        MovedGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group'
+          description: A list of groups that were moved successfully.
+        UnmovedGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/UnmovedGroup'
+          description: >-
+            A list of groups that were not moved with corresponding error
+            messages.
+    UnmovedGroup:
+      title: UnmovedGroup
+      type: object
+      required:
+        - Group
+        - ErrorMessage
+      properties:
+        Group:
+          $ref: '#/components/schemas/Group'
+        ErrorMessage:
+          type: string
+          description: The error message describes why the group was not moved.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

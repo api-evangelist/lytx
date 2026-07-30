@@ -1,0 +1,25 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/ (42 specs), docs
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: All 42 published specs are OpenAPI 3.0.0 (NSwag-generated).
+- id: oauth2
+  conforms: true
+  evidence: Portal MCP server exposes OAuth 2.0 authorization-server metadata; grant types authorization_code/refresh_token/client_credentials.
+- id: oidc
+  conforms: true
+  evidence: Advanced Authentication uses OIDC (idpId=oidc); scopes_supported include openid/profile/email.
+- id: bearer-token
+  conforms: true
+  evidence: http bearer securityScheme across 36 specs.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Error responses are plain HTTP status classes, not application/problem+json.
+- id: webhooks
+  conforms: true
+  evidence: GPS and DTC webhooks documented with sample payloads.
+- id: eld-hos
+  conforms: true
+  evidence: HOS (Hours of Service) and DVIR APIs present (FMCSA ELD compliance domain).

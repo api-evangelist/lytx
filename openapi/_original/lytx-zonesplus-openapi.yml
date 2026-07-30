@@ -1,0 +1,295 @@
+openapi: 3.0.1
+info:
+  title: Lytx.Telematics.Fleet.Api - Zones
+  description: API for accessing Zones data, requiring authentication.
+  version: 1.0.0
+servers:
+  - url: https://api.lytx.com
+security:
+  - bearerAuth: []
+paths:
+  /plus/v1/zones:
+    get:
+      summary: Get Telematics Zones Data
+      description: Retrieve a list of Geofences/Zones
+      tags:
+        - Zones (GO9)
+      parameters:
+        - name: groupId
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
+          description: Can use group ID or root group ID.
+        - name: includeSubGroups
+          in: query
+          required: false
+          schema:
+            type: boolean
+            example: 'false'
+            nullable: false
+            default: true
+          description: >-
+            If true, all descendant groups under the specified group are
+            included.
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            nullable: true
+            example: '5000'
+          description: Number of records to return.
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            nullable: true
+            example: '1500'
+          description: Record to start with.
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+            example: '2023-06-01'
+          description: The start date must be within the last 60 days.
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+            example: '2023-06-02'
+          description: End date to filter by.
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: asc
+          description: Sort direction.
+        - name: sortProperty
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: name
+          description: Name of property to sort on.
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            nullable: true
+            example: 1
+          description: API version number.
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ZoneResponseViewModel'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request
+                  message:
+                    type: string
+                    example: Invalid request data
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized
+                  message:
+                    type: string
+                    example: Access denied
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Forbidden
+                  message:
+                    type: string
+                    example: Non-permited user
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Not Found
+                  message:
+                    type: string
+                    example: No information found
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: An unexpected server error occurred
+components:
+  schemas:
+    ZoneResponseViewModel:
+      type: object
+      properties:
+        activeFrom:
+          type: string
+          format: date-time
+          nullable: true
+          example: '2025-05-29T19:18:26.063Z'
+          description: Start date/time when the zone is active.
+        activeTo:
+          type: string
+          format: date-time
+          nullable: true
+          example: '2025-06-29T19:18:26.063Z'
+          description: End date/time when the zone is active.
+        comment:
+          type: string
+          nullable: true
+          example: Restricted area for heavy vehicles
+          description: Optional comment for the zone.
+        displayed:
+          type: boolean
+          example: true
+          description: Indicates whether the zone is displayed on the map.
+        externalReference:
+          type: string
+          example: zone-ext-12345
+          description: External reference identifier.
+        fillColor:
+          $ref: '#/components/schemas/ColorResponseViewModel'
+        groups:
+          type: array
+          items:
+            type: string
+          example:
+            - group1
+            - group2
+          description: List of groups associated with the zone.
+        id:
+          type: string
+          example: zone1f6e56d-1234-4567-89ab-cdef12345678
+          description: Unique identifier of the zone.
+        metadata:
+          type: object
+          nullable: true
+          description: Metadata information for the zone.
+        mustIdentifyStops:
+          type: boolean
+          example: false
+          description: Indicates whether stops must be identified within the zone.
+        name:
+          type: string
+          example: No Parking Zone
+          description: Name of the zone.
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/CoordinateResponseViewModel'
+          description: List of coordinates representing the zone polygon.
+        version:
+          type: string
+          example: v1.0
+          description: Version of the zone record.
+        zoneTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ZoneTypeResponseViewModel'
+          description: Types associated with the zone.
+    ColorResponseViewModel:
+      type: object
+      properties:
+        a:
+          type: integer
+          example: 255
+          description: Alpha channel (transparency).
+        r:
+          type: integer
+          example: 255
+          description: Red channel (0-255).
+        g:
+          type: integer
+          example: 0
+          description: Green channel (0-255).
+        b:
+          type: integer
+          example: 0
+          description: Blue channel (0-255).
+    CoordinateResponseViewModel:
+      type: object
+      properties:
+        x:
+          type: number
+          format: double
+          example: -117.212799
+          description: X coordinate (longitude).
+        'y':
+          type: number
+          format: double
+          example: 32.8872185
+          description: Y coordinate (latitude).
+    ZoneTypeResponseViewModel:
+      type: object
+      properties:
+        comment:
+          type: string
+          example: Default restricted zone type
+          description: Comment for the zone type.
+        defaultFillColorForNewZoneType:
+          type: object
+          nullable: true
+          description: Default fill color for a new zone type.
+        fillColor:
+          type: object
+          nullable: true
+          description: Custom fill color for the zone type.
+        id:
+          type: object
+          description: Identifier for the zone type.
+        isBuiltIn:
+          type: boolean
+          example: true
+          description: Indicates if the zone type is built-in.
+        name:
+          type: string
+          example: Restricted Area
+          description: Name of the zone type.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

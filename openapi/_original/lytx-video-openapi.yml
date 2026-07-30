@@ -1,0 +1,852 @@
+openapi: 3.0.0
+info:
+  title: Video API
+  version: 0.0.1
+  description: API for managing video resources.
+servers:
+  - url: https://api.lytx.com/v0/video
+paths:
+  /vehicles:
+    get:
+      tags:
+        - Video (DriveCam)
+      summary: Retrieve List of Vehicles
+      operationId: Vehicle_GetVehicles
+      parameters:
+        - name: GroupId
+          in: query
+          description: >-
+            ID of the group that the vehicle of interest is associated to
+            (GUID).
+          schema:
+            type: string
+            format: guid
+            nullable: true
+          x-position: 1
+        - name: PageNumber
+          in: query
+          description: The page number of the list of vehicles. Default value is 1.
+          schema:
+            type: integer
+            format: int32
+            default: 1
+            minimum: 1
+          x-position: 2
+        - name: PageSize
+          in: query
+          description: The number of vehicles to return per page. Default value is 50.
+          schema:
+            type: integer
+            format: int32
+            maximum: 2147483647
+            minimum: 1
+          x-position: 3
+        - name: VehicleName
+          in: query
+          description: >-
+            An identifier to filter by a vehicle's name. This parameter allows
+            for matching all or any part of a vehicle name.
+                    If more than one vehicle matches the name pattern, a list of them will be returned.
+                    Pattern is considered as match either partially or fully (i.e. pattern=“ABC”, matches: ABC, myABCvehicle, ABCfleet, fleetABC etc.)
+          schema:
+            type: string
+            maxLength: 50
+            minLength: 1
+            nullable: true
+          x-position: 4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetVehiclesResponse'
+        '400':
+          description: The parameters given in the request are invalid.
+          content:
+            application/json:
+              schema:
+                type: string
+        '401':
+          description: Access is denied. This can occur from an invalid key or invalid pod.
+        '403':
+          description: You have no permissions to make this operation.
+        '500':
+          description: Requested operation cannot be performed.
+        '503':
+          description: Requested operation cannot be performed. Try again later.
+  /vehicles/{vehicleId}/timeline:
+    get:
+      tags:
+        - Video (DriveCam)
+      summary: >-
+        Return Timelines That Represent When Video is Available for the
+        Specified Vehicle
+      operationId: Vehicle_GetVehicleTimeline
+      parameters:
+        - name: vehicleId
+          in: path
+          required: true
+          description: The primary identifier of the vehicle.
+          schema:
+            type: integer
+            format: int64
+            maximum: 9223372036854776000
+            minimum: 1
+          x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetVehicleTimelineResponse'
+        '400':
+          description: The parameters given in the request are invalid.
+        '401':
+          description: Access is denied. This can occur from an invalid key or invalid pod.
+        '403':
+          description: You have no permissions to make this operation.
+        '404':
+          description: Vehicle does not exist.
+        '500':
+          description: Requested operation cannot be performed.
+        '503':
+          description: Requested operation cannot be performed. Try again later.
+  /vehicles/{vehicleIdentifier}:
+    get:
+      tags:
+        - Video (DriveCam)
+      summary: Return Vehicle Specified by ID or Device Serial Number
+      operationId: Vehicle_GetVehicleByIdentifier
+      parameters:
+        - name: vehicleIdentifier
+          in: path
+          required: true
+          description: >-
+            The primary identifier of the vehicle or the device serial number
+            associated to the vehicle.
+          schema:
+            type: string
+            example: SF88098990 or 112232224
+          x-position: 1
+      responses:
+        '200':
+          description: Vehicle Retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vehicle'
+        '400':
+          description: The parameters given in the request are invalid.
+          content:
+            application/json:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized due to providing an invalid access key, or invalid pod.
+        '403':
+          description: You have no permissions to make this operation.
+        '404':
+          description: Vehicle does not exist.
+        '500':
+          description: Requested operation cannot be performed.
+        '503':
+          description: Requested operation cannot be performed. Try again later.
+  /events:
+    post:
+      tags:
+        - Video (DriveCam)
+      summary: Create New Event and Return ID
+      operationId: Event_CreateEvent
+      requestBody:
+        x-name: createEventRequest
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEventRequest'
+        required: true
+        x-position: 1
+      responses:
+        '201':
+          description: Event Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateEventResponse'
+        '400':
+          description: The parameters given in the request are invalid.
+        '401':
+          description: Unauthorized due to providing an invalid access key, or invalid pod.
+        '403':
+          description: You have no permissions to make this operation.
+        '500':
+          description: Requested operation cannot be performed.
+        '503':
+          description: Requested operation cannot be performed. Try again later.
+    get:
+      tags:
+        - Video (DriveCam)
+      summary: Return All Events Specified by Query Terms
+      operationId: Event_SearchEvents
+      parameters:
+        - name: GroupId
+          in: query
+          description: Group identifier associated to event.
+          schema:
+            type: string
+            format: guid
+            nullable: true
+          x-position: 1
+        - name: StartDate
+          in: query
+          required: true
+          description: Events that occurred after this date. (Inclusive).
+          schema:
+            type: string
+            format: date-time
+          x-position: 2
+        - name: EndDate
+          in: query
+          required: true
+          description: Events that occurred before this date. (Inclusive).
+          schema:
+            type: string
+            format: date-time
+          x-position: 3
+        - name: PageNumber
+          in: query
+          description: The page number of the list of events. Default value is 1.
+          schema:
+            type: integer
+            format: int32
+            maximum: 2147483647
+            minimum: 1
+          x-position: 4
+        - name: PageSize
+          in: query
+          description: The number of events to return per page. Default value is 100.
+          schema:
+            type: integer
+            format: int32
+            maximum: 2147483647
+            minimum: 1
+          x-position: 5
+        - name: LabelSearch
+          in: query
+          description: Label associated to event.
+          schema:
+            type: string
+            nullable: true
+          x-position: 6
+        - name: VehicleName
+          in: query
+          description: Vehicle name associated to event.
+          schema:
+            type: string
+            nullable: true
+          x-position: 7
+        - name: IncludeVideoEvents
+          in: query
+          description: Include events with video. Default value is true.
+          schema:
+            type: boolean
+          x-position: 8
+        - name: IncludeNoVideoEvents
+          in: query
+          description: Include events with no video. Default value is true.
+          schema:
+            type: boolean
+          x-position: 9
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventCollection'
+        '400':
+          description: The parameters given in the request are invalid.
+        '401':
+          description: Unauthorized due to providing an invalid access key, or invalid pod.
+        '403':
+          description: You have no permissions to make this operation.
+        '500':
+          description: Requested operation cannot be performed.
+        '503':
+          description: Requested operation cannot be performed. Try again later.
+  /events/{eventId}/views/{deviceViewId}/medias/{mediaType}:
+    get:
+      tags:
+        - Video (DriveCam)
+      summary: Return Media Resource URL for Specified Event's View
+      operationId: Event_GetEventViewMedia
+      parameters:
+        - name: eventId
+          in: path
+          required: true
+          description: Primary event identifier.
+          schema:
+            type: integer
+            format: int64
+            maximum: 9223372036854780000
+            minimum: 1
+          x-position: 1
+        - name: deviceViewId
+          in: path
+          required: true
+          description: Primary identifier of a device's view.
+          schema:
+            type: integer
+            format: int64
+            maximum: 9223372036854780000
+            minimum: 1
+          x-position: 2
+        - name: mediaType
+          in: path
+          required: true
+          description: 'Media file type. Supported values: "mp4" or "dce".'
+          schema:
+            type: string
+            nullable: true
+          x-position: 3
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetEventViewMediaResponse'
+        '400':
+          description: The parameters given in the request are invalid.
+        '401':
+          description: Unauthorized due to providing an invalid access key, or invalid pod.
+        '403':
+          description: You have no permissions to make this operation.
+        '500':
+          description: Requested operation cannot be performed.
+        '503':
+          description: Requested operation cannot be performed. Try again later.
+  /events/{eventId}:
+    get:
+      tags:
+        - Video (DriveCam)
+      summary: Return Event Specified by its ID
+      operationId: Event_GetEventById
+      parameters:
+        - name: eventId
+          in: path
+          required: true
+          description: The primary event identifier.
+          schema:
+            type: integer
+            format: int64
+            maximum: 9223372036854780000
+            minimum: 1
+          x-position: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '400':
+          description: The parameters given in the request are invalid.
+        '401':
+          description: Unauthorized due to providing an invalid access key, or invalid pod.
+        '403':
+          description: You have no permissions to make this operation.
+        '500':
+          description: Requested operation cannot be performed.
+        '503':
+          description: Requested operation cannot be performed. Try again later.
+  /deviceViews/{deviceViewId}/snapshot:
+    get:
+      tags:
+        - Video (DriveCam)
+      summary: Retrieve Image (snapshot) from a Device's View at the Specified Time
+      operationId: DeviceView_GetDeviceViewSnapshot
+      parameters:
+        - name: deviceViewId
+          in: path
+          required: true
+          description: The primary device view identifier.
+          schema:
+            type: integer
+            format: int64
+            maximum: 9223372036854780000
+            minimum: 1
+          x-position: 1
+        - name: time
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+          x-position: 2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: The parameters given in the request are invalid.
+        '401':
+          description: Unauthorized due to providing an invalid access key, or invalid pod.
+        '403':
+          description: You have no permissions to make this operation.
+        '500':
+          description: Requested operation cannot be performed.
+        '502':
+          description: Communication with the device has timed out.
+        '503':
+          description: Requested operation cannot be performed. Try again later.
+components:
+  schemas:
+    GetVehiclesResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        totalCount:
+          type: integer
+          description: >-
+            The total number of vehicles that matches the query, ignoring
+            pagination.
+          format: int32
+        vehicles:
+          type: array
+          description: List of paginated vehicles that matches the query.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/Vehicle'
+    Vehicle:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          description: Primary vehicle identifier.
+          format: int64
+        groupId:
+          type: string
+          description: The group identifier of the vehicle.
+          format: guid
+        name:
+          type: string
+          description: The name of the vehicle.
+          nullable: true
+        status:
+          type: integer
+          description: |-
+            The current vehicle connectivity status.
+            Possible values:
+            3 (LoggedOut - Unknown) or
+            16 (MQTTOnline).
+          format: int32
+          nullable: true
+        isWaking:
+          type: boolean
+          description: Indicates if a wake request is in progress for the vehicle.
+          nullable: true
+        wakeable:
+          type: boolean
+          description: Indicates if the vehicle is wakeable.
+          nullable: true
+        lastCommunication:
+          type: string
+          description: Date last communicated with vehicle.
+          format: date-time
+          nullable: true
+        devices:
+          type: array
+          description: List of devices associated to vehicle.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/Device'
+        dcVehicleId:
+          type: string
+          description: The DC vehicle identifier.
+          format: guid
+          nullable: true
+        lastWakeAttempt:
+          type: string
+          description: Date of last wake attempt to the vehicle.
+          format: date-time
+          nullable: true
+    Device:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          description: Primary device identifier.
+          format: int64
+        serialNumber:
+          type: string
+          description: Physical device identifier.
+          nullable: true
+        lastCommunication:
+          type: string
+          description: Date last communicated with the device.
+          format: date-time
+          nullable: true
+        onlineStatus:
+          type: integer
+          description: |-
+            The current device connectivity status.
+            Possible values:
+            3 (LoggedOut - Unknown) or
+            16 (MQTTOnline).
+          format: int32
+          nullable: true
+        views:
+          type: array
+          description: List of camera views associated to the device.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/DeviceView'
+        capabilities:
+          type: array
+          description: |-
+            List of capabilities supported by the device. 
+                    [
+                        "Dvr",
+                        "LiveStream",
+                        "Gps",
+                        "WakeOnSms"
+                    ]
+          nullable: true
+        roleId:
+          type: integer
+          description: 'The device role. Possible values: 0 (follower) or 1 (leader).'
+          format: int32
+        supportedCommands:
+          type: array
+          description: |-
+            List of commands supported by the device. 
+                    [
+                        "alertrequestv1",
+                        "checkinv1",
+                        ..... more commands .....,
+                        "livestreamv2",
+                        "snapshotv2"
+                    ]
+          nullable: true
+        hardwarePlatform:
+          type: string
+          description: Hardware platform of the device.
+          nullable: true
+    DeviceView:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          description: Primary device view identifier.
+          format: int64
+        name:
+          type: string
+          description: >-
+            Type of device view that corresponds to a physical camera. Possible
+            values: "FORWARD", "REAR", "ANALOG_AUX_1", "ANALOG_AUX_2",
+            "ANALOG_AUX_3", or "ANALOG_AUX_4".
+          nullable: true
+        label:
+          type: string
+          description: User defined label of the device's view.
+          nullable: true
+    GetVehicleTimelineResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        viewTimelines:
+          type: array
+          description: >-
+            List of the device's camera views and the view's timelines of
+            available video. 
+          nullable: true
+          items:
+            $ref: '#/components/schemas/DeviceViewTimeline'
+        vehicleName:
+          type: string
+          description: Name of Vehicle.
+          nullable: true
+        groupId:
+          type: string
+          description: Group identifier associated to vehicle.
+          format: guid
+        capabilities:
+          type: array
+          description: |-
+            List of capabilities supported by the vehicle's devices. 
+                    [
+                        "Dvr",
+                        "LiveStream",
+                        "Gps",
+                        "WakeOnSms"
+                    ]
+          nullable: true
+          items:
+            type: string
+    DeviceViewTimeline:
+      type: object
+      additionalProperties: false
+      properties:
+        deviceView:
+          type: object
+          nullable: true
+          oneOf:
+            - $ref: '#/components/schemas/DeviceView'
+        available:
+          type: boolean
+          description: Whether the device view has any timeline intervals.
+        timeline:
+          type: array
+          description: A list of intervals with video for this device's view.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/DeviceViewTimelineInterval'
+    DeviceViewTimelineInterval:
+      type: object
+      additionalProperties: false
+      properties:
+        startDate:
+          type: string
+          description: Start date of interval.
+          format: date-time
+        endDate:
+          type: string
+          description: End date of interval.
+          format: date-time
+    CreateEventResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          description: Primary identifier of the newly created event.
+          format: int64
+    CreateEventRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        vehicleId:
+          type: integer
+          description: Vehicle identifier associated to event.
+          format: int64
+          maximum: 9223372036854780000
+          minimum: 1
+        deviceViewIds:
+          type: array
+          description: 'List of device view identifiers associated with event. '
+          nullable: true
+          items:
+            type: integer
+            format: int64
+        requestedStartDate:
+          type: string
+          description: 'Event start time. '
+          format: date-time
+          nullable: true
+        requestedEndDate:
+          type: string
+          description: Event end time.
+          format: date-time
+          nullable: true
+        label:
+          type: string
+          description: >-
+            User defined event identifier or description. Typically used to give
+            events a user-friendly name.
+          nullable: true
+        typeId:
+          type: integer
+          description: >-
+            Indicates the type of event. Possible values: 4 (for clip) or 7 (for
+            tags). Default value is 4.
+          format: int32
+          maximum: 10
+          minimum: 1
+          example: 4
+        subTypeId:
+          type: integer
+          description: >-
+            Indicates the type of tag. Used only when the event type is a tag.
+            Possible values: 3 (Custom) or leave parameter unpopulated when not
+            creating a tag event.
+          format: int32
+          nullable: true
+        eventTime:
+          type: string
+          description: >-
+            Time of event. The EventTime should be the same as RequestStartTime
+            when an event is a clip. When the event is a tag, EventTime is the
+            point of interest.
+          format: date-time
+    GetEventViewMediaResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        url:
+          type: string
+          nullable: true
+    Event:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          description: Primary event identifier.
+          format: int64
+        eventTime:
+          type: string
+          description: >-
+            Time of event. The EventTime is typically the RequestStartTime when
+            an event is a clip. When the event is a tag, EventTime is the point
+            of interest.
+          format: date-time
+        dateCreated:
+          type: string
+          description: Date when event was created.
+          format: date-time
+        mediaStatus:
+          type: integer
+          description: |-
+            Indicates the event media upload progress.
+            Common values:
+            "1" (Not Uploaded),
+            "2" (Upload Request Queued.),
+            "3" (Uploading),
+            "4" (Upload Complete),
+            "5" (Upload Cancelled),
+            or "6" (Upload Error.).
+          format: int32
+        vehicleId:
+          type: integer
+          description: 'Vehicle identifier associated to event. '
+          format: int64
+        eventType:
+          type: integer
+          description: >-
+            Indicates the type of event. Possible values: 4 (for clip) or 7 (for
+            tags).
+          format: int32
+        eventSubType:
+          type: integer
+          description: >-
+            Indicates the type of tag. Used only when the event type is a tag.
+            Possible values: 3 (Custom) or null when EventType is not a tag.
+          format: int32
+          nullable: true
+        vehicleName:
+          type: string
+          description: Name of vehicle associated to event.
+          nullable: true
+        groupId:
+          type: string
+          description: Group identifier associated to event.
+          format: guid
+        requestedStartTime:
+          type: string
+          description: Event start time.
+          format: date-time
+        requestedEndTime:
+          type: string
+          description: Event end time.
+          format: date-time
+        label:
+          type: string
+          description: User defined event identifier or description.
+          nullable: true
+        deviceViews:
+          type: array
+          description: List of a device's view associated to event.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/EventDeviceView'
+        dataElements:
+          type: array
+          description: |-
+            List of data elements associated to event.
+                  "dataElements": [
+                      "Video",
+                      "Audio",
+                      "Gps",
+                      "Accel",
+                      "--- more if exist --"
+                  ]
+          items:
+            type: string
+          nullable: true
+    EventDeviceView:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          description: Primary device's view identifier for the event.
+          format: int64
+        name:
+          type: string
+          description: >-
+            Type of device view that corresponds to a physical camera. Possible
+            values: "FORWARD", "REAR", "ANALOG_AUX_1", "ANALOG_AUX_2",
+            "ANALOG_AUX_3", or "ANALOG_AUX_4".
+          nullable: true
+        label:
+          type: string
+          description: User defined label of the device's view.
+          nullable: true
+        status:
+          type: integer
+          description: |-
+            Indicates the event media upload progress for this specific view.
+            Common values:
+            "1" (Not Uploaded),
+            "2" (Upload Request Queued.),
+            "3" (Uploading),
+            "4" (Upload Complete),
+            "5" (Upload Cancelled),
+            or "6" (Upload Error.).
+          format: int32
+          nullable: true
+        currentBytes:
+          type: integer
+          description: Number of bytes uploaded.
+          format: int64
+          nullable: true
+        progress:
+          type: number
+          description: >-
+            Number to indicate upload progress. Value ranges from 0 to 1, where
+            1 is when the upload has been completed.
+          format: double
+    EventCollection:
+      type: object
+      additionalProperties: false
+      properties:
+        totalCount:
+          type: integer
+          description: >-
+            The total number of events that matches the query, ignoring
+            pagination.
+          format: int32
+        events:
+          type: array
+          description: List of paginated events that matches the query.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/Event'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+security:
+  - bearerAuth: []
+tags:
+  - name: Video (DriveCam)
+    description: External Vehicles API. Uses bearer token authentication.

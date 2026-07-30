@@ -1,0 +1,320 @@
+openapi: 3.0.0
+info:
+  title: Lytx.GPS.API
+  version: 1.0.0
+servers:
+  - url: https://data.lytx.com
+security:
+  - bearerAuth: []
+paths:
+  /v1/gps:
+    get:
+      tags:
+        - GPS (DriveCam)
+      summary: Retrieve GPS Points
+      description: >-
+        Retrieve a list of GPS points for a device, vehicle, or group. The
+        organization must have a Fleet Tracking subscription to receive data
+        from this endpoint.
+      parameters:
+        - name: deviceIdentifier
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
+          description: Can use either device serial number or device ID.
+        - name: groupIdentifier
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
+          description: Can use group ID or root group ID.
+        - name: vehicleIdentifier
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
+          description: Can use either VIN or vehicle ID.
+        - name: includeSubGroups
+          in: query
+          required: false
+          schema:
+            type: boolean
+            example: 'false'
+            nullable: false
+          description: >-
+            If true, all descendant groups under the specified group are
+            included.
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            nullable: true
+            example: '5000'
+          description: Number of records to return.
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            nullable: true
+            example: '1500'
+          description: Record to start with.
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+            example: '2023-06-01'
+          description: The start date must be within the last 60 days.
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+            example: '2023-06-02'
+          description: End date to filter by.
+        - name: dateOption
+          in: query
+          required: false
+          schema:
+            type: string
+            example: timeInUtc
+          description: >-
+            Takes either the word createdDate or the word timeInUtc and filters
+            trackpoints by the field specified. Default value is timeInUtc.
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: asc
+          description: Sort direction.
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    type: array
+                    items:
+                      properties:
+                        deviceId:
+                          type: string
+                          nullable: false
+                          example: 1b33bcbe-15d3-445e-a06f-dda61208ad18
+                          description: Unique ID for the device.
+                        vehicleId:
+                          type: string
+                          nullable: false
+                          example: d77548ad-95db-40a8-bbcd-8259e5063f7f
+                          description: Unique ID for the vehicle.
+                        vehicleName:
+                          type: string
+                          nullable: false
+                          example: STANDARD 3-WIRE
+                          description: Name of the vehicle.
+                        vin:
+                          type: string
+                          nullable: true
+                          example: 9ATRPE9R2RO473355
+                          description: Vehicle Identification Number.
+                        serialNumber:
+                          type: string
+                          nullable: false
+                          example: QM0000221
+                          description: Serial number of the Lytx device.
+                        groupId:
+                          type: string
+                          nullable: false
+                          example: f7c8f5b8-85ff-4349-b674-ec53c119e141
+                          description: ID of the vehicle’s group.
+                        groupName:
+                          type: string
+                          nullable: false
+                          example: SubGroup1
+                          description: Name of the vehicle’s group.
+                        points:
+                          type: array
+                          description: A list of GPS points.
+                          items:
+                            properties:
+                              timeInUtc:
+                                type: string
+                                format: date-time
+                                example: '2023-10-06T00:21:30.000Z'
+                                description: Date and time in UTC for the GPS point.
+                              createdDate:
+                                type: string
+                                format: date-time
+                                example: '2023-10-06T00:22:30.000Z'
+                                description: >-
+                                  Date and time in UTC for when the GPS point
+                                  was ingested into our servers.
+                              latitude:
+                                type: number
+                                format: double
+                                nullable: false
+                                example: 32.887558
+                                description: Latitude coordinate for the GPS point.
+                              longitude:
+                                type: number
+                                format: double
+                                nullable: false
+                                example: -117.212288
+                                description: Longitude coordinate for the GPS point.
+                              heading:
+                                type: number
+                                format: double
+                                nullable: true
+                                example: 219.606
+                                description: The vehicle's direction, in degrees.
+                              hdop:
+                                type: number
+                                format: double
+                                nullable: true
+                                example: 0.8999
+                                description: >-
+                                  Horizontal dilution of precision. Used to
+                                  characterize the quality of GPS points.
+                              haccuracy:
+                                type: number
+                                format: double
+                                nullable: true
+                                example: 1.2
+                                description: >-
+                                  Horizontal accuracy, in meters. Used to
+                                  characterize the quality of GPS points.
+                              averageGpsSpeedMs:
+                                type: number
+                                format: double
+                                nullable: true
+                                example: 3.123456
+                                description: >-
+                                  Average Gps Speed in meters per second at the
+                                  time the GPS Point was sampled.
+                              maxGpsSpeedMs:
+                                type: number
+                                format: double
+                                nullable: true
+                                example: 5.67923
+                                description: >-
+                                  Maximum Gps Speed in meters per second at the
+                                  time the GPS Point was sampled.
+                              minGpsSpeedMs:
+                                type: number
+                                format: double
+                                nullable: true
+                                example: 1.67923
+                                description: >-
+                                  Minimum Gps Speed in meters per second at the
+                                  time the GPS Point was sampled.
+                  metadata:
+                    type: object
+                    properties:
+                      count:
+                        type: number
+                        nullable: false
+                        example: 5000
+                        description: >-
+                          Total number of GPS points across all
+                          vehicles/devices.
+                      limit:
+                        type: number
+                        nullable: false
+                        example: 5000
+                        description: >-
+                          Number of GPS points returned (Default 5000; Max
+                          5000).
+                      offset:
+                        type: number
+                        nullable: false
+                        example: 0
+                        description: Record to start with.
+                      startDate:
+                        type: string
+                        format: date-time
+                        example: '2024-04-10T00:00:00Z'
+                        description: Start date in the request body.
+                      endDate:
+                        type: string
+                        format: date-time
+                        example: '2024-04-10T09:16:00Z'
+                        description: End date of the most recent GPS point.
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request
+                  message:
+                    type: string
+                    example: Invalid request data
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized
+                  message:
+                    type: string
+                    example: Access denied
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Forbidden
+                  message:
+                    type: string
+                    example: Non-permited user
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Not Found
+                  message:
+                    type: string
+                    example: No information found
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: An unexpected server error occurred
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

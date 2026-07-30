@@ -1,0 +1,292 @@
+openapi: 3.0.1
+info:
+  title: Lytx.Telematics.Fleet.Api - MaintenanceRecords
+  description: API for accessing Maintenance records data, requiring authentication.
+  version: 1.0.0
+servers:
+  - url: https://api.lytx.com
+security:
+  - bearerAuth: []
+paths:
+  /plus/v1/maintenancerecords:
+    get:
+      summary: Get Telematics Maintenance Records Data
+      description: >-
+        Retrieve a list of all the maintenance records in an organization or
+        subset of an organization
+      tags:
+        - MaintenanceRecords (GO9)
+      parameters:
+        - name: deviceId
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
+          description: Can use either device serial number or device ID.
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            nullable: true
+            example: '5000'
+          description: Number of records to return.
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            nullable: true
+            example: '1500'
+          description: Record to start with.
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+            example: '2023-06-01'
+          description: The start date must be within the last 60 days.
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+            example: '2023-06-02'
+          description: End date to filter by.
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: asc
+          description: Sort direction.
+        - name: sortProperty
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: name
+          description: Name of property to sort on.
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+            nullable: true
+            example: 1
+          description: API version number.
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MaintenanceRecordsResponseViewModel'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request
+                  message:
+                    type: string
+                    example: Invalid request data
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized
+                  message:
+                    type: string
+                    example: Access denied
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Forbidden
+                  message:
+                    type: string
+                    example: Non-permited user
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Not Found
+                  message:
+                    type: string
+                    example: No information found
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: An unexpected server error occurred
+components:
+  schemas:
+    MaintenanceRecordsResponseViewModel:
+      type: object
+      properties:
+        deviceId:
+          type: string
+          nullable: true
+          example: 1b33bcbe-15d3-445e-a06f-dda61208ad18
+          description: Unique identifier of the device.
+        vehicleIdentificationNumber:
+          type: string
+          nullable: true
+          example: 1HGCM82633A004352
+          description: Vehicle Identification Number (VIN).
+        id:
+          type: string
+          nullable: true
+          example: maint-12345
+          description: Unique identifier of the maintenance record.
+        maintenanceType:
+          $ref: '#/components/schemas/EventTypeResponseViewModel'
+        dateTime:
+          type: string
+          format: date-time
+          nullable: true
+          example: '2025-01-10T10:30:00.000Z'
+          description: Date and time of the maintenance event.
+        estimateCost:
+          type: number
+          format: decimal
+          nullable: true
+          example: 4500.75
+          description: Estimated cost of maintenance.
+        description:
+          type: string
+          nullable: true
+          example: Brake pad replacement
+          description: Description of the maintenance work.
+        snoozeDate:
+          type: string
+          format: date-time
+          nullable: true
+          example: '2025-02-01T00:00:00.000Z'
+          description: Date until the maintenance reminder is snoozed.
+        currentOdometer:
+          type: integer
+          format: int64
+          nullable: true
+          example: 125000
+          description: Current odometer reading of the vehicle.
+        schedule:
+          $ref: '#/components/schemas/MaintenanceScheduleResponseViewModel'
+        updateDate:
+          type: string
+          format: date-time
+          nullable: true
+          example: '2025-01-12T08:15:00.000Z'
+          description: Last updated date of the maintenance record.
+    EventTypeResponseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+          example: evt-001
+          description: Unique identifier of the event type.
+        name:
+          type: string
+          nullable: true
+          example: Oil Change
+          description: Name of the maintenance type.
+        source:
+          type: string
+          nullable: true
+          example: System
+          description: Source of the event.
+        customSource:
+          type: string
+          nullable: true
+          example: UserDefined
+          description: Custom source of the event.
+        typeDescription:
+          type: string
+          nullable: true
+          example: Scheduled vehicle oil change
+          description: Description of the event type.
+        labels:
+          type: array
+          items:
+            type: string
+          nullable: true
+          example:
+            - Engine
+            - Routine
+          description: Labels associated with the event type.
+        createdBy:
+          $ref: '#/components/schemas/CreatedByResponseViewModel'
+        defect:
+          $ref: '#/components/schemas/MaintenanceDefectResponseViewModel'
+        sourceType:
+          type: string
+          nullable: true
+          example: Maintenance
+          description: Source type of the event.
+    CreatedByResponseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+          example: user-789
+          description: Identifier of the user who created the record.
+    MaintenanceDefectResponseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+          example: def-456
+          description: Defect identifier.
+        isDefectList:
+          type: boolean
+          nullable: true
+          example: true
+          description: Indicates whether this belongs to a defect list.
+    MaintenanceScheduleResponseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+          example: sched-101
+          description: Maintenance schedule identifier.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

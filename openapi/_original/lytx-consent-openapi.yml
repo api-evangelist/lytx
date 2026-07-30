@@ -1,0 +1,386 @@
+openapi: 3.0.1
+info:
+  title: Lytx.Consent.Management.Api - Consent
+  description: >
+    API for retrieving and updating user consent status, requiring
+    authentication.
+  version: 1.0.0
+servers:
+  - url: https://api.lytx.com/consent-management
+security:
+  - bearerAuth: []
+paths:
+  /userconsent/status:
+    get:
+      operationId: Consent_GetUserConsentStatus
+      summary: Get User Consent Status
+      description: >
+        Retrieve the current consent status for a user across all products.
+        Returns one consent record per product for the user.
+
+
+        **IMPORTANT:** This API is only available if your company and Lytx, Inc.
+        has executed an Addendum to Master Purchase Agreement (Facial ID and
+        Consent Management). Your company is solely responsible for providing
+        any necessary notices and/or obtaining all necessary consents for the
+        collection and processing of video, biometric and/or other data
+        processed by Lytx to perform the Facial ID Service which may be required
+        under applicable law.
+      tags:
+        - Consent
+      parameters:
+        - name: userId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+            nullable: true
+            example: 550e8400-e29b-41d4-a716-446655440000
+          description: >-
+            Unique identifier of the user. Required if `employeeId` is not
+            provided.
+        - name: employeeId
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: EMP-9876
+          description: >-
+            Employee identifier associated with the user. Required if `userId`
+            is not provided.
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ConsentStatusResponseViewModel'
+              example:
+                data:
+                  - userId: 550e8400-e29b-41d4-a716-446655440000
+                    employeeId: EMP-9876
+                    productName: facialId
+                    consentStatus: Obtained
+                    consentDate: '2026-03-15T10:30:00.000Z'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                missingIdentifier:
+                  summary: Neither userId nor employeeId provided
+                  value:
+                    error: Bad Request
+                    message: Either UserId or EmployeeId must be provided.
+                conflictingIdentifiers:
+                  summary: userId and employeeId refer to different users
+                  value:
+                    error: Bad Request
+                    message: >-
+                      The provided UserId and EmployeeId refer to different
+                      users.
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: Forbidden
+                message: Resource not available.
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                companyNotFound:
+                  summary: Company data not found
+                  value:
+                    error: Not Found
+                    message: Company data not found.
+                userNotFound:
+                  summary: No active user found for employee ID
+                  value:
+                    error: Not Found
+                    message: No active user found for the provided Employee ID.
+                consentNotFound:
+                  summary: No consent records found
+                  value:
+                    error: Not Found
+                    message: No consent records found for the specified user.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: Internal Server Error
+                message: An unexpected error occurred.
+  /userconsent/update:
+    post:
+      operationId: Consent_UpdateUserConsent
+      summary: Update User Consent
+      description: >
+        Update the consent status for one or more users (with Driver role) for a
+        specific product. Up to 2000 users can be updated in a single call.
+
+
+        **IMPORTANT:** This API is only available if your company and Lytx, Inc.
+        has executed an Addendum to Master Purchase Agreement (Facial ID and
+        Consent Management). Your company is solely responsible for providing
+        any necessary notices and/or obtaining all necessary consents for the
+        collection and processing of video, biometric and/or other data
+        processed by Lytx to perform the Facial ID Service which may be required
+        under applicable law.
+      tags:
+        - Consent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UpdateConsentRequestViewModel'
+              maxItems: 2000
+            example:
+              - userId: null
+                employeeId: EMP-9876
+                productName: facialId
+                consentStatus: Obtained
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UpdateConsentResponseViewModel'
+              example:
+                - userId: 0000ffff-0000-1600-e03a-ed46b0d60000
+                  employeeId: Test4kUsers546
+                  status: AlreadyUpdated
+                  errorMessage: null
+        '400':
+          description: >-
+            Bad Request — request body is null, empty, or exceeds the maximum
+            allowed items
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                emptyRequest:
+                  summary: Empty request body
+                  value:
+                    error: Bad Request
+                    message: At least one consent status update request is required.
+                maxItemsExceeded:
+                  summary: Too many items in request
+                  value:
+                    error: Bad Request
+                    message: >-
+                      A maximum of 2000 consent status update requests can be
+                      processed in a single call.
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: Unauthorized
+                message: Access denied
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: Forbidden
+                message: Resource not available.
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: Not Found
+                message: Company data not found.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: Internal Server Error
+                message: An unexpected error occurred.
+components:
+  schemas:
+    ConsentStatusResponseViewModel:
+      type: object
+      properties:
+        userId:
+          type: string
+          format: uuid
+          nullable: true
+          example: 550e8400-e29b-41d4-a716-446655440000
+          description: Unique identifier of the user.
+        employeeId:
+          type: string
+          nullable: true
+          example: EMP-9876
+          description: Employee identifier associated with the user.
+        productName:
+          type: string
+          nullable: false
+          example: facialId
+          description: >-
+            Human-readable product name. Only Facial ID product is supported as
+            of today.
+        consentStatus:
+          type: string
+          nullable: true
+          example: Obtained
+          description: Current driver consent status for this product.
+        consentDate:
+          type: string
+          format: date-time
+          nullable: true
+          example: '2026-03-15T10:30:00.000Z'
+          description: Date and time consent was given or last updated.
+    UpdateConsentRequestViewModel:
+      type: object
+      required:
+        - productName
+        - consentStatus
+      properties:
+        userId:
+          type: string
+          format: uuid
+          nullable: true
+          example: 550e8400-e29b-41d4-a716-446655440000
+          description: >
+            Unique identifier of the user. Required if `employeeId` is not
+            provided.
+        employeeId:
+          type: string
+          nullable: true
+          example: EMP-9876
+          description: >
+            Employee identifier associated with the user. Required if `userId`
+            is not provided. The system resolves the corresponding `userId`
+            internally before processing.
+        productName:
+          type: string
+          nullable: false
+          example: facialId
+          description: >
+            Product name to update consent status for. Only Facial ID product is
+            supported as of today. Enter product name as:
+
+            * `facialID`
+        consentStatus:
+          type: string
+          nullable: false
+          example: Obtained
+          description: >
+            New consent status to apply for the specified product.
+
+            - `Obtained`: Valid Consent Obtained Via Alternative Method.
+            Applicable when you have
+              obtained necessary consent through an alternative method and valid consents are still
+              in effect.
+
+            - `NotRequired`: Consent Not Required. Valid when your organization
+            has determined,
+              and bears sole responsibility for such determination, that consent is not required by
+              law or your organization's policies.
+          enum:
+            - Obtained
+            - NotRequired
+        source:
+          type: string
+          nullable: true
+          example: Manual
+          description: |
+            Source of the consent update. Defaults to "Manual" if not provided.
+    UpdateConsentResponseViewModel:
+      type: object
+      properties:
+        userId:
+          type: string
+          format: uuid
+          nullable: false
+          example: 0000ffff-0000-1600-e03a-ed46b0d60000
+          description: User ID the consent update was applied to.
+        employeeId:
+          type: string
+          nullable: true
+          example: Test4kUsers546
+          description: Employee ID associated with the user.
+        status:
+          type: string
+          nullable: true
+          example: AlreadyUpdated
+          description: >
+            Result status of the update operation.
+
+            - `UpdatedSuccessfully`: Consent status was updated.
+
+            - `AlreadyUpdated`: Consent was already set to the requested status;
+            no change made.
+
+            - `Failed`: Update failed. See `errorMessage` for details.
+          enum:
+            - UpdatedSuccessfully
+            - AlreadyUpdated
+            - Failed
+        errorMessage:
+          type: string
+          nullable: true
+          example: null
+          description: >
+            Error message if the update failed; `null` otherwise. Possible
+            per-row failure messages:
+
+            - `Either UserId or EmployeeId must be provided.`
+
+            - `No active user found for the provided Employee ID.`
+
+            - `No active user found for the provided User ID.`
+
+            - `Cannot update consent for non-driver users.`
+
+            - `Only 'FacialId' is allowed for ProductName.`
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Bad Request
+        message:
+          type: string
+          example: An unexpected error occurred.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

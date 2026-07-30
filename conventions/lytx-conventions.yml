@@ -1,0 +1,54 @@
+generated: '2026-07-20'
+method: searched
+source: https://developer.lytx.com/docs/callstructure
+authentication:
+  style: bearer
+  header: 'Authorization: Bearer {token}'
+  token_endpoint: https://login.lytx.com/api/auth/user
+  token_ttl_seconds: 3600
+  advanced: OIDC/SSO/MFA via Advanced Authentication (Postman-based user registration)
+  see: authentication/lytx-authentication.yml
+call_structure:
+  pattern: 'curl --request {httpMethod} ''https://{baseUrl}/{apiVersion}/{apiEndpoint}?{queryString}''
+    --header ''Authorization: Bearer {token}'''
+  base_url: https://api.lytx.com
+  also:
+  - https://data.lytx.com
+versioning:
+  scheme: uri-path
+  versions_observed:
+  - v0
+  - v1
+  - v2
+  note: Version is a path segment (e.g. /v1/devices). GO9-platform 'plus' APIs use /plus/v1/*.
+pagination:
+  style: offset-limit
+  params:
+  - limit
+  - offset
+  - page
+  sort_params:
+  - order
+  - sort
+  - sortProperty
+  note: Most list endpoints accept limit + offset (some page); ordering via order/sort/sortProperty.
+date_filtering:
+  params:
+  - startDate
+  - endDate
+  - from
+  - to
+  - dateOption
+idempotency:
+  supported: false
+  note: No idempotency-key header documented or present in the OpenAPI.
+error_envelope:
+  format: http-status
+  see: errors/lytx-error-codes.yml
+webhooks:
+  available: true
+  see: asyncapi/lytx-webhooks.yml
+cross_links:
+  authentication: authentication/lytx-authentication.yml
+  errors: errors/lytx-error-codes.yml
+  lifecycle: lifecycle/lytx-lifecycle.yml

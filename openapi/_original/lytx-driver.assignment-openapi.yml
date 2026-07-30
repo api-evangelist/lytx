@@ -1,0 +1,577 @@
+x-generator: NSwag v13.9.4.0 (NJsonSchema v10.3.1.0 (Newtonsoft.Json v12.0.0.0))
+openapi: 3.0.0
+info:
+  title: Lytx.DriverAssignment.API
+  version: 1.0.0
+servers:
+  - url: https://api.lytx.com
+security:
+  - bearerAuth: []
+paths:
+  /v1/driver-assignments:
+    get:
+      tags:
+        - Driver Assignments (DriveCam)
+      summary: Retrieve Assignments
+      description: >-
+        Retrieve a list of all the driver assignments in a organization or
+        subset of an organization.
+      parameters:
+        - name: vehicleIdentifier
+          in: query
+          required: false
+          description: Filter by vehicle identifier or VIN.
+          schema:
+            type: string
+            example: 5100DDDD-60B6-D7CD-3FA2-22CA712B0000
+        - name: userIdentifier
+          in: query
+          required: false
+          description: Filter by user identifier or name.
+          schema:
+            type: string
+            example: 5100CCCC-60B6-D7CD-3FA2-22CA712B0000
+        - name: groupIdentifier
+          in: query
+          required: false
+          description: Filter by group identifier or name.
+          schema:
+            type: string
+            example: 5100BBBB-60B6-D7CD-3FA2-22CA712B0000
+        - name: startDate
+          in: query
+          required: false
+          description: Filter by start date.
+          schema:
+            type: string
+            format: date-time
+            example: '2023-09-10'
+        - name: endDate
+          in: query
+          required: false
+          description: Filter by end date.
+          schema:
+            type: string
+            format: date-time
+            example: '2023-09-30'
+        - name: offset
+          in: query
+          required: false
+          description: Record to start with.
+          schema:
+            type: integer
+            example: '1'
+        - name: limit
+          in: query
+          required: false
+          description: Number of records to return.
+          schema:
+            type: integer
+            example: '100'
+        - name: order
+          in: query
+          required: false
+          description: Sort direction.
+          schema:
+            type: string
+            example: asc
+        - name: sort
+          in: query
+          required: false
+          description: Name of property to sort on.
+          schema:
+            type: string
+            example: SerialNumber
+        - name: includeSubgroups
+          in: query
+          required: false
+          description: Include subgroups.
+          schema:
+            type: boolean
+            example: 'false'
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  metadata:
+                    type: object
+                    properties:
+                      offset:
+                        type: integer
+                      limit:
+                        type: integer
+                      count:
+                        type: integer
+                      startDate:
+                        type: string
+                        format: date-time
+                      endDate:
+                        type: string
+                        format: date-time
+                  data:
+                    type: array
+                    nullable: true
+                    items:
+                      properties:
+                        userId:
+                          type: string
+                          format: uuid
+                        firstName:
+                          type: string
+                        lastName:
+                          type: string
+                        employeeNumber:
+                          type: string
+                        vehicles:
+                          type: array
+                          items:
+                            properties:
+                              id:
+                                type: string
+                                format: string
+                                nullable: false
+                              vehicleName:
+                                type: string
+                                nullable: false
+                              deviceId:
+                                type: string
+                                format: uuid
+                                nullable: false
+                              SerialNumber:
+                                type: string
+                                format: string
+                                nullable: false
+                              imei:
+                                type: string
+                                format: string
+                                nullable: false
+                              licensePlate:
+                                type: string
+                                nullable: false
+                              vin:
+                                type: string
+                                nullable: false
+                              assignmentStartDate:
+                                type: string
+                                format: date-time
+                                nullable: false
+                              assignmentEndDate:
+                                type: string
+                                format: date-time
+                                nullable: false
+        '204':
+          description: >-
+            No Content: HTTP request has been successfully completed, and there
+            is no message body
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                Error: Bad Request
+                Message: The parameters given in the request are invalid.
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Resource Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                Error: Resource Not Found
+                Message: The requested resource doesn't exist.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                Error: Internal Server Error
+                Message: The requested operation cannot be performed.
+  /v1/driver-assignments/dispatch:
+    post:
+      tags:
+        - Driver Assignments (DriveCam)
+      summary: Submit Dispatch Schedule
+      description: >-
+        Schedules drivers to specific vehicles over specified periods,
+        facilitating efficient fleet management. Unlike the Driver Assignment
+        API, which tracks actual driver usage of vehicles, this API focuses
+        solely on planned schedules.
+              
+        Below is the reference list of validation response codes that can be
+        found in response after submitting dispatch schedule:
+
+        - "SUCCESS" - Success
+
+        - "E_UNKNOWN" - Unknown error processing entry
+
+        - "E_NO_MATCH" - No matching entry found
+
+        - "E_NO_MATCH_DRIVER" - No matching entry found for Driver
+
+        - "E_NO_MATCH_VEHICLE" - No matching entry found for Vehicle
+
+        - "E_ACCESS_DENIED" - Access has been denied to one or more objects in
+        this operation
+
+        - "E_CREATE_USER_ACCESS_DENIED" - Access has been denied while
+        attempting to create a new user object
+
+        - "E_DUPLICATE_USERNAME_OR_EMPLOYEENUM" - The UserName field or
+        EmployeeId field matches an existing active user
+
+        - "E_CREATE_USER_INCLUDE_SPECIAL_CHARACTER - The FirstName field,
+        LastName field or EmployeeId field include special character
+
+        - "I_CREATE_USER_SUCCESS" - The user was successfully created
+
+        - "I_DUPLICATE_RULE" - A rule was added to the system that is a
+        duplicate of an existing rule.  The previous rule has been removed
+
+        - "E_CONFLICTING_SCHEDULE" - Another schedule with similar schedule
+        details was found, or was recently processed
+
+        - "E_FIRSTNAME_OR_LASTNAME_NOT_ALLOW_NULL" - The FirstName and LastName
+        fields are required while auto adding driver
+
+        - "E_DUPLICATE_VEHICLES" - Could not identify the vehicle because there
+        are multiple vehicles using the same vehicle name in company
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DriverDispatchRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DriverDispatchResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                Error: Bad Request
+                Message: The parameters given in the request are invalid.
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                Error: Internal Server Error
+                Message: The requested operation cannot be performed.
+  /v1/driver-assignments/status:
+    get:
+      tags:
+        - Driver Assignments (DriveCam)
+      summary: Retrieve Submission Log Status
+      description: >-
+        Retrieve the status of a submission log to understand if processing is
+        complete or in progress.
+      parameters:
+        - name: submissionBatchId
+          in: query
+          required: true
+          description: Identifier for a submission log
+          schema:
+            type: integer
+            example: 123456789
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      submissionStatusId:
+                        type: integer
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                Error: Bad Request
+                Message: The parameters given in the request are invalid.
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Resource Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                Error: Resource Not Found
+                Message: The requested resource doesn't exist.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                Error: Internal Server Error
+                Message: The requested operation cannot be performed.
+  /v1/driver-assignments/result:
+    get:
+      tags:
+        - Driver Assignments (DriveCam)
+      summary: Retrieve Submission Logs
+      description: >-
+        Retrieve submission entries of a submission log, which provide the
+        driver, vehicle, and dispatch start and end time.
+      parameters:
+        - name: submissionBatchId
+          in: query
+          required: true
+          description: Identifier for a submission log
+          schema:
+            type: integer
+            example: 123456789
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    nullable: true
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          properties:
+                            submissionId:
+                              type: integer
+                              nullable: false
+                            driverFirstName:
+                              type: string
+                              nullable: false
+                            driverLastName:
+                              type: string
+                              nullable: false
+                            employeeId:
+                              type: string
+                              nullable: false
+                            vehicleName:
+                              type: string
+                              nullable: false
+                            responseCodeId:
+                              type: string
+                              nullable: false
+                            assignmentsModified:
+                              type: integer
+                              nullable: false
+                            startDate:
+                              type: string
+                              format: date-time
+                              nullable: false
+                            endDate:
+                              type: string
+                              format: date-time
+                              nullable: false
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                Error: Bad Request
+                Message: The parameters given in the request are invalid.
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Resource Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                Error: Resource Not Found
+                Message: The requested resource doesn't exist.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                Error: Internal Server Error
+                Message: The requested operation cannot be performed.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+    DispatchEntry:
+      type: object
+      properties:
+        userIdentifier:
+          type: string
+          nullable: true
+          example: emp123
+          description: Employee Id of the driver
+        user:
+          description: Details to add new driver
+          type: object
+          properties:
+            firstName:
+              type: string
+              nullable: false
+              description: Firstname of the new driver
+              example: Jane
+            lastName:
+              type: string
+              nullable: false
+              description: Lastname of the new driver
+              example: Doe
+            id:
+              type: string
+              nullable: false
+              description: Employee Number of the new driver
+              example: '12345678'
+          nullable: true
+        vehicleIdentifier:
+          type: string
+          nullable: true
+          example: Toyota
+          description: Vehicle name
+        startDate:
+          type: string
+          format: date-time
+          description: Schedule start date-time
+        endDate:
+          type: string
+          format: date-time
+          description: Schedule end date-time
+      additionalProperties: false
+    DispatchEntryResponse:
+      type: object
+      properties:
+        submissionId:
+          type: integer
+          example: 123
+          description: ID of the driver schedule submission.
+        employeeId:
+          type: string
+          example: emp123
+          description: >-
+            Employee identification number of the driver, provided by the
+            driver’s employer.
+        driverFirstName:
+          type: string
+          example: John
+          description: Driver's first name.
+        driverLastName:
+          type: string
+          example: Doe
+          description: Driver's last name.
+        vehicleName:
+          type: string
+          example: Toyota
+          description: Name of the vehicle to which the driver was scheduled to drive.
+        responseCodeId:
+          type: string
+          example: SUCCESS
+          description: Validation response of the schedule submission entry.
+        startDate:
+          type: string
+          format: date-time
+          example: '2023-09-10T00:00:00Z'
+          description: >-
+            Date and time when the driver was scheduled to start driving the
+            vehicle.
+        endDate:
+          type: string
+          format: date-time
+          example: '2023-09-10T00:00:00Z'
+          description: >-
+            Date and time when the driver was scheduled to stop driving the
+            vehicle.
+    DriverDispatchRequest:
+      type: object
+      properties:
+        validate:
+          type: boolean
+          description: >-
+            Default to false. if set to true, only validate the submission
+            request otherwise validate and process the submission logs
+          example: false
+        autoAddDriver:
+          type: boolean
+          description: >
+            Default to true. 
+
+
+            If driver is not found based on userIdentifier and autoAddDriver is
+            set to true, It will try to add new driver based on information
+            provided in user object.
+
+
+            If autoadddriver is set to false and driver not found based on
+            userIdentifier then no new driver is created
+          example: true
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/DispatchEntry'
+          nullable: true
+      additionalProperties: false
+    DriverDispatchResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            submissionBatchId:
+              type: integer
+              format: int64
+            entries:
+              type: array
+              items:
+                $ref: '#/components/schemas/DispatchEntryResponse'
+      additionalProperties: false

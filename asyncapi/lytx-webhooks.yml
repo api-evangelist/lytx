@@ -1,0 +1,41 @@
+generated: '2026-07-20'
+method: searched
+source: https://developer.lytx.com/docs/webhookparent
+spec_type: Webhooks
+delivery: near real-time HTTP POST to a client-provided endpoint; onboarding via Lytx Technical Support
+authentication: client-specified (configured during onboarding)
+events:
+- name: gps
+  title: GPS Webhook
+  docs: https://developer.lytx.com/docs/webhook_gps
+  description: Near real-time GPS position data from Lytx devices (maintenance, payroll, routing).
+  payload_fields:
+  - vehicleId
+  - vehicleName
+  - groupId
+  - groupName
+  - serialNumber
+  - vin
+  - gpsPositions[].timeInUtc
+  - gpsPositions[].latitude
+  - gpsPositions[].longitude
+  - gpsPositions[].speedms
+  - gpsPositions[].heading
+  - gpsPositions[].hdop
+  - gpsPositions[].hAccuracyM
+- name: dtc
+  title: DTC Webhook
+  docs: https://developer.lytx.com/docs/webhook_dtc
+  description: Diagnostic Trouble Code data from Lytx devices to power maintenance solutions.
+  payload_fields:
+  - vehicleId
+  - vehicleName
+  - groupId
+  - groupName
+  - serialNumber
+  - vin
+  - code
+  - description
+  - source
+  - sourceId
+  - active

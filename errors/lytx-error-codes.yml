@@ -1,0 +1,39 @@
+generated: '2026-07-20'
+method: searched
+source: https://developer.lytx.com/docs/responsecodes
+format: http-status
+envelope: HTTP status code; error responses are plain HTTP status classes (2xx success, 4xx client error,
+  5xx server error). Not RFC 9457 problem+json.
+problems:
+- status: 400
+  title: Bad request
+  detail: General client error, possibly malformed data.
+- status: 401
+  title: Unauthenticated
+  detail: The bearer token / API key is missing or invalid.
+- status: 403
+  title: Forbidden
+  detail: Authenticated but not authorized for the requested resource or operation.
+- status: 404
+  title: Not found
+  detail: The API endpoint is invalid or a path parameter is missing or invalid.
+- status: 405
+  title: Method not allowed
+  detail: The API endpoint does not support the HTTP method used.
+- status: 409
+  title: Conflict
+  detail: The request conflicts with the current state of the resource.
+- status: 422
+  title: Unprocessable entity
+  detail: The request was well-formed but contained semantic errors.
+- status: 500
+  title: Internal server error
+  detail: A temporary issue on the Lytx side.
+- status: 502
+  title: Bad gateway
+  detail: Upstream error on the Lytx side.
+- status: 503
+  title: Service unavailable
+  detail: The service is temporarily unavailable; retry later.
+notes: Status/description harvested from the Lytx docs Response Codes page and cross-checked against 4xx/5xx
+  responses declared across the OpenAPI specs.

@@ -1,0 +1,711 @@
+openapi: 3.0.3
+info:
+  title: Lytx.Hos.Api
+  description: These routes are externally accessible and require authentication.
+  version: 1.0.0
+servers:
+  - url: https://api.lytx.com
+security:
+  - bearerAuth: []
+paths:
+  /v1/hos:
+    get:
+      tags:
+        - HOS (DriveCam)
+      description: >-
+        This endpoint is used to retrieve HOS Logs as a batch for all users for
+        your company.
+      summary: Get HOS Logs for all Users
+      operationId: Hos_GetHosLogs
+      parameters:
+        - name: startDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+            example: '2023-06-01'
+          description: The start date.
+        - name: endDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+            example: '2023-06-02'
+          description: End date must be within 1 day for company.
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  userName:
+                    type: string
+                    nullable: true
+                    example: UnknownDriver
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        userName:
+                          type: string
+                          nullable: true
+                          example: UnknownDriver
+                          description: The Account username.
+                        dateTime:
+                          type: string
+                          format: date-time
+                          example: '2023-09-21T20:30:40Z'
+                          description: Date Time of the log event.
+                        vehicleName:
+                          type: string
+                          nullable: true
+                          example: 2015 FRD Fleet Express
+                          description: Vehicle name or ID number.
+                        companyId:
+                          type: number
+                          example: '888'
+                          description: Company ID number.
+                        editDateTime:
+                          type: string
+                          format: date-time
+                          example: '2023-09-21T20:40:40Z'
+                          description: >-
+                            The date and time the log was edited. If the log has
+                            not been edited, this will not be set.
+                        latitude:
+                          type: number
+                          format: double
+                          example: 32.887558
+                          description: Latitude coordinates.
+                        longitude:
+                          type: number
+                          format: double
+                          example: -117.212288
+                          description: Longitude coordinates.
+                        status:
+                          type: string
+                          nullable: true
+                          example: D
+                          description: The driver�s duty status.
+                        verifyDateTime:
+                          type: string
+                          format: date-time
+                          example: '2023-01-01T00:00:00Z'
+                          description: >-
+                            The date and time the log was verified. If the log
+                            is unverified, this will not be set.
+                        origin:
+                          type: string
+                          nullable: true
+                          example: Automatic
+                          description: >-
+                            Indicates whether the event was generated
+                            automatically or created manually by the user.
+                        serialNumber:
+                          type: string
+                          nullable: true
+                          example: ''
+                          description: The serial number of the Lytx device.
+                        deviceId:
+                          type: string
+                          nullable: true
+                          example: ''
+                          description: Global unique identifier of the event recorder.
+                        userId:
+                          type: string
+                          nullable: true
+                          example: ''
+                          description: User ID number.
+                        state:
+                          type: string
+                          nullable: true
+                          example: Active
+                          description: >-
+                            The log�s status. Can be Active, Inactive, Rejected,
+                            or Requested.
+                        malfunction:
+                          type: string
+                          nullable: true
+                          example: None
+                          description: Indicates the malfunction state of the log.
+                        odometer:
+                          type: number
+                          format: double
+                          example: 1090001.375
+                          description: Odometer reading for distance traveled.
+                        engineHours:
+                          type: number
+                          format: double
+                          example: 81621
+                          description: >-
+                            The engine hours at the time of the log. The unit is
+                            seconds (not hours).
+                        eventRecordStatus:
+                          type: integer
+                          example: 1
+                          description: >-
+                            The record status number of this log. 1 = active 2 =
+                            inactive - changed 3 = inactive - change requested 4
+                            = inactive - change rejected.
+                        eventCode:
+                          type: integer
+                          example: 3
+                          description: >-
+                            Indicates what event occurred. Must be read in
+                            tandem with the eventType.
+                        eventType:
+                          type: integer
+                          example: 1
+                          description: >-
+                            Indicates what event occurred. Must be read in
+                            tandem with the eventCode.
+                        shipmentCommodity:
+                          type: string
+                          nullable: true
+                          example: Videogames
+                          description: Description of the commodity.
+                        shipmentDocumentNumber:
+                          type: string
+                          nullable: true
+                          example: '1234'
+                          description: The shipping document number input by the driver.
+              examples:
+                HosLog Data:
+                  value:
+                    data:
+                      - userName: UnknownDriver
+                        dateTime: '2023-09-21T20:30:40Z'
+                        vehicleName: V-INT-FMCSA0003
+                        companyId: 22048
+                        editDateTime: '2023-09-21T20:36:47.566Z'
+                        latitude: 32
+                        longitude: -111
+                        status: D
+                        verifyDateTime: '0001-01-01T00:00:00Z'
+                        origin: Automatic
+                        state: Active
+                        malfunction: None
+                        odometer: 1090001.375
+                        engineHours: 81621
+                        eventRecordStatus: 1
+                        eventCode: 3
+                        eventType: 1
+                        shipmentCommodity: Videogames
+                        shipmentDocumentNumber: '1234'
+                      - userName: UnknownDriver
+                        dateTime: '2023-09-21T20:33:54Z'
+                        vehicleName: V-INT-FMCSA0004
+                        companyId: 22048
+                        editDateTime: '2023-09-21T20:38:03.296Z'
+                        latitude: 32
+                        longitude: -111
+                        status: D
+                        verifyDateTime: '0001-01-01T00:00:00Z'
+                        origin: Automatic
+                        state: Active
+                        malfunction: None
+                        odometer: 1000000
+                        engineHours: 81000
+                        eventRecordStatus: 1
+                        eventCode: 3
+                        eventType: 1
+                      - userName: UnknownDriver
+                        dateTime: '2023-09-21T20:37:02Z'
+                        vehicleName: V-INT-FMCSA0003
+                        companyId: 22048
+                        editDateTime: '2023-09-21T20:42:22.52Z'
+                        latitude: 32
+                        longitude: -111
+                        status: 'ON'
+                        verifyDateTime: '0001-01-01T00:00:00Z'
+                        origin: Automatic
+                        state: Active
+                        malfunction: None
+                        odometer: 1090001.375
+                        engineHours: 81995
+                        eventRecordStatus: 1
+                        eventCode: 4
+                        eventType: 1
+                        shipmentCommodity: Videogames
+                        shipmentDocumentNumber: '1234'
+                Empty:
+                  value:
+                    data: []
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request Error
+                  message:
+                    type: string
+                    example: The parameters given in the request are invalid.
+              examples:
+                Not Found:
+                  value:
+                    error: Bad Request Error
+                    message: The parameters given in the request are invalid.
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              examples:
+                Unauthorized:
+                  value: ''
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              examples:
+                Forbidden:
+                  value: ''
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not Found Error
+                  message:
+                    type: string
+                    example: The requested resource doesn't exist.
+              examples:
+                Not Found:
+                  value:
+                    error: Not Found Error
+                    message: The requested resource doesn't exist.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: Requested operation cannot be performed.
+              examples:
+                Internal Server Error:
+                  value:
+                    error: Internal Server Error
+                    message: Requested operation cannot be performed.
+  /v1/hos/:
+    get:
+      tags:
+        - HOS (DriveCam)
+      description: >-
+        This endpoint is used to retrieve HOS Logs as a batch for for the
+        userName.
+      summary: Get HOS Logs for Specified User
+      operationId: Hos_GetHosLogs_ByUser
+      parameters:
+        - name: startDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+            example: '2023-06-01'
+          description: The start date.
+        - name: endDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+            example: '2023-06-02'
+          description: End date must be within 8 days for user.
+        - name: userIdentifier
+          in: query
+          required: true
+          schema:
+            type: string
+            format: string
+            example: UnknownDriver
+          description: userName or Lytx userId.
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  userName:
+                    type: string
+                    nullable: true
+                    example: UnknownDriver
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        userName:
+                          type: string
+                          nullable: true
+                          example: UnknownDriver
+                          description: Account username.
+                        dateTime:
+                          type: string
+                          format: date-time
+                          example: '2023-09-21T20:30:40Z'
+                          description: Date and time the log was created.
+                        vehicleName:
+                          type: string
+                          nullable: true
+                          example: 2015 FRD Fleet Express
+                          description: Vehicle name or ID number.
+                        companyId:
+                          type: number
+                          example: '888'
+                          description: Company ID number.
+                        editDateTime:
+                          type: string
+                          format: date-time
+                          example: '2023-09-21T20:40:40Z'
+                          description: >-
+                            The date and time the log was edited. If the log has
+                            not been edited, this will not be set.
+                        latitude:
+                          type: number
+                          format: double
+                          example: 32.887558
+                          description: Latitude coordinates.
+                        longitude:
+                          type: number
+                          format: double
+                          example: -117.212288
+                          description: Longitude coordinates.
+                        status:
+                          type: string
+                          nullable: true
+                          example: D
+                          description: The driver�s duty status.
+                        verifyDateTime:
+                          type: string
+                          format: date-time
+                          example: '2023-01-01T00:00:00Z'
+                          description: >-
+                            The date and time the log was verified. If the log
+                            is unverified, this will not be set.
+                        origin:
+                          type: string
+                          nullable: true
+                          example: Automatic
+                          description: >-
+                            Indicates whether the event was generated
+                            automatically or created manually by the user.
+                        serialNumber:
+                          type: string
+                          nullable: true
+                          example: ''
+                          description: The serial number of the Lytx device.
+                        deviceId:
+                          type: string
+                          nullable: true
+                          example: ''
+                          description: Global unique identifier of the event recorder.
+                        userId:
+                          type: string
+                          nullable: true
+                          example: ''
+                          description: User ID number.
+                        state:
+                          type: string
+                          nullable: true
+                          example: Active
+                          description: >-
+                            The log�s status. Can be Active, Inactive, Rejected,
+                            or Requested.
+                        malfunction:
+                          type: string
+                          nullable: true
+                          example: None
+                          description: Indicates the malfunction state of the log.
+                        odometer:
+                          type: number
+                          format: double
+                          example: 1090001.375
+                          description: Odometer reading for distance traveled.
+                        engineHours:
+                          type: number
+                          format: double
+                          example: 81621
+                          description: >-
+                            The engine hours at the time of the log. The unit is
+                            seconds (not hours).
+                        eventRecordStatus:
+                          type: integer
+                          example: 1
+                          description: >-
+                            The record status number of this log. 1 = active 2 =
+                            inactive - changed 3 = inactive - change requested 4
+                            = inactive - change rejected.
+                        eventCode:
+                          type: integer
+                          example: 3
+                          description: >-
+                            Indicates what event occurred. Must be read in
+                            tandem with the eventType.
+                        eventType:
+                          type: integer
+                          example: 1
+                          description: >-
+                            Indicates what event occurred. Must be read in
+                            tandem with the eventCode.
+                        shipmentCommodity:
+                          type: string
+                          nullable: true
+                          example: Videogames
+                          description: Description of the commodity.
+                        shipmentDocumentNumber:
+                          type: string
+                          nullable: true
+                          example: '1234'
+                          description: The shipping document number input by the driver.
+              examples:
+                HosLog Data:
+                  value:
+                    data:
+                      - userName: UnknownDriver
+                        dateTime: '2023-09-21T20:30:40Z'
+                        vehicleName: V-INT-FMCSA0003
+                        companyId: 22048
+                        editDateTime: '2023-09-21T20:36:47.566Z'
+                        latitude: 32
+                        longitude: -111
+                        status: D
+                        verifyDateTime: '0001-01-01T00:00:00Z'
+                        origin: Automatic
+                        state: Active
+                        malfunction: None
+                        odometer: 1090001.375
+                        engineHours: 81621
+                        eventRecordStatus: 1
+                        eventCode: 3
+                        eventType: 1
+                        shipmentCommodity: Videogames
+                        shipmentDocumentNumber: '1234'
+                      - userName: UnknownDriver
+                        dateTime: '2023-09-21T20:33:54Z'
+                        vehicleName: V-INT-FMCSA0004
+                        companyId: 22048
+                        editDateTime: '2023-09-21T20:38:03.296Z'
+                        latitude: 32
+                        longitude: -111
+                        status: D
+                        verifyDateTime: '0001-01-01T00:00:00Z'
+                        origin: Automatic
+                        state: Active
+                        malfunction: None
+                        odometer: 1000000
+                        engineHours: 81000
+                        eventRecordStatus: 1
+                        eventCode: 3
+                        eventType: 1
+                      - userName: UnknownDriver
+                        dateTime: '2023-09-21T20:37:02Z'
+                        vehicleName: V-INT-FMCSA0003
+                        companyId: 22048
+                        editDateTime: '2023-09-21T20:42:22.52Z'
+                        latitude: 32
+                        longitude: -111
+                        status: 'ON'
+                        verifyDateTime: '0001-01-01T00:00:00Z'
+                        origin: Automatic
+                        state: Active
+                        malfunction: None
+                        odometer: 1090001.375
+                        engineHours: 81995
+                        eventRecordStatus: 1
+                        eventCode: 4
+                        eventType: 1
+                        shipmentCommodity: Videogames
+                        shipmentDocumentNumber: '1234'
+                Empty:
+                  value:
+                    data: []
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request Error
+                  message:
+                    type: string
+                    example: The parameters given in the request are invalid.
+              examples:
+                Not Found:
+                  value:
+                    error: Bad Request Error
+                    message: The parameters given in the request are invalid.
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              examples:
+                Unauthorized:
+                  value: ''
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              examples:
+                Forbidden:
+                  value: ''
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Not Found Error
+                  message:
+                    type: string
+                    example: The requested resource doesn't exist.
+              examples:
+                Not Found:
+                  value:
+                    error: Not Found Error
+                    message: The requested resource doesn't exist.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: Requested operation cannot be performed.
+              examples:
+                Internal Server Error:
+                  value:
+                    error: Internal Server Error
+                    message: Requested operation cannot be performed.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    HosLogByUserIdentifier:
+      title: HosLogByUserIdentifier
+      type: object
+      properties:
+        userName:
+          type: string
+          example: UnknownDriver
+        hosLogs:
+          type: array
+          items:
+            $ref: '#/components/schemas/HosLog'
+    HosLogByCompany:
+      title: HosLogByCompany
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/HosLogByUserIdentifier'
+    HosLog:
+      title: HosLog
+      type: array
+      nullable: true
+      items:
+        properties:
+          userName:
+            type: string
+            example: UnknownDriver
+          dateTime:
+            type: string
+            example: '2023-09-21T20:30:40Z'
+          vehicleName:
+            type: string
+            example: 2015 FRD Fleet Express
+          companyId:
+            type: number
+            example: '888'
+          editDateTime:
+            type: string
+            example: '2023-09-21T20:40:40Z'
+          latitude:
+            type: number
+            example: 32.887558
+          longitude:
+            type: number
+            example: -117.212288
+          status:
+            type: string
+            example: D
+          verifyDateTime:
+            type: string
+            example: '2023-01-01T00:00:00Z'
+          origin:
+            type: string
+            example: Automatic
+          state:
+            type: string
+            example: Active
+          malfunction:
+            type: string
+            example: None
+          odometer:
+            type: number
+            example: 1090001.375
+          engineHours:
+            type: number
+            example: 81621
+          eventRecordStatus:
+            type: integer
+            example: 1
+          eventCode:
+            type: integer
+            example: 3
+          eventType:
+            type: integer
+            example: 1
+          shipmentCommodity:
+            type: string
+            example: Videogames
+          shipmentDocumentNumber:
+            type: string
+            example: '1234'
+    Error:
+      title: Error
+      type: object
+      required:
+        - error
+        - message
+      properties:
+        error:
+          type: string
+          example: Not Found Error
+        message:
+          type: string
+          example: The page you are looking for does not exist.

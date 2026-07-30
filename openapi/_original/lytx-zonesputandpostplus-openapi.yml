@@ -1,0 +1,359 @@
+openapi: 3.0.1
+info:
+  title: Lytx.Telematics.Fleet.Api - Zones
+  description: API for creating and updating Zones data, requiring authentication.
+  version: 1.0.0
+servers:
+  - url: https://api.lytx.com
+security:
+  - bearerAuth: []
+paths:
+  /plus/v1/zones:
+    post:
+      summary: Add Telematics Zones Data
+      description: Add data for Geofences/Zones
+      tags:
+        - Zones (GO9)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddZonesRequestViewModel'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+                example: bb5
+                description: >-
+                  Unique identifier of the zone returned after a successful
+                  creation.
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request
+                  message:
+                    type: string
+                    example: Invalid ShapeType
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized
+                  message:
+                    type: string
+                    example: Access denied
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Forbidden
+                  message:
+                    type: string
+                    example: Non-permitted user
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Not Found
+                  message:
+                    type: string
+                    example: No information found
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: An unexpected server error occurred
+    put:
+      summary: Edit Telematics Zones Data
+      description: Edit data for Geofences/Zones
+      tags:
+        - Zones (GO9)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditZonesRequestViewModel'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Zone with Id bb5 updated Successfully
+                description: >-
+                  Confirmation message indicating that the zone was updated
+                  successfully.
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Bad Request
+                  message:
+                    type: string
+                    example: Invalid request data
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Unauthorized
+                  message:
+                    type: string
+                    example: Access denied
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Forbidden
+                  message:
+                    type: string
+                    example: Non-permitted user
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Not Found
+                  message:
+                    type: string
+                    example: No information found
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+                    example: An unexpected server error occurred
+components:
+  schemas:
+    AddZonesRequestViewModel:
+      type: object
+      required:
+        - name
+        - points
+        - groups
+      properties:
+        name:
+          type: string
+          example: San Diego Zone
+          description: Name of the zone.
+        comment:
+          type: string
+          nullable: true
+          example: Primary service area for San Diego
+          description: Optional comment or description for the zone.
+        mustIdentifyStops:
+          type: boolean
+          nullable: true
+          example: true
+          description: Indicates whether stops must be identified within the zone.
+        displayed:
+          type: boolean
+          nullable: true
+          example: true
+          description: Indicates whether the zone is visible in the UI.
+        activeFrom:
+          type: string
+          nullable: true
+          example: '2025-01-01T00:00:00Z'
+          description: Date and time from which the zone becomes active.
+        activeTo:
+          type: string
+          nullable: true
+          example: '2025-12-31T23:59:59Z'
+          description: Date and time until which the zone remains active.
+        zoneTypes:
+          type: array
+          description: List of zone types applicable to this zone.
+          items:
+            $ref: '#/components/schemas/ZoneTypesEnumRequestViewModel'
+          example: Customer
+        fillColor:
+          $ref: '#/components/schemas/CreateZoneColorRequestViewModel'
+        externalReference:
+          type: string
+          nullable: true
+          example: EXT-ZONE-001
+          description: External reference identifier for the zone.
+        points:
+          type: array
+          description: List of geographic points defining the zone boundary.
+          items:
+            $ref: '#/components/schemas/CreateZonePointRequestViewModel'
+        groups:
+          type: array
+          description: Groups to which the zone belongs.
+          items:
+            $ref: '#/components/schemas/CreateZoneGroupRequestViewModel'
+    ZoneTypesEnumRequestViewModel:
+      type: string
+      description: Type of zone.
+      enum:
+        - Customer
+        - Home
+        - InHouseServiceCenter
+        - Office
+        - VendorServiceCenter
+    CreateZoneColorRequestViewModel:
+      type: object
+      properties:
+        r:
+          type: integer
+          example: 255
+          description: Red color component.
+        g:
+          type: integer
+          example: 0
+          description: Green color component.
+        b:
+          type: integer
+          example: 0
+          description: Blue color component.
+        a:
+          type: integer
+          example: 255
+          description: Alpha (opacity) color component.
+    CreateZonePointRequestViewModel:
+      type: object
+      required:
+        - x
+        - 'y'
+      properties:
+        x:
+          type: number
+          format: double
+          example: 32.7157
+          description: X coordinate (longitude).
+        'y':
+          type: number
+          format: double
+          example: -117.1611
+          description: Y coordinate (latitude).
+    CreateZoneGroupRequestViewModel:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+          example: group-12345
+          description: Identifier of the group the zone belongs to.
+    EditZonesRequestViewModel:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+          example: b28
+          description: Unique identifier of the zone to be updated.
+        name:
+          type: string
+          nullable: true
+          example: San Diego Zone
+          description: Updated name of the zone.
+        comment:
+          type: string
+          nullable: true
+          example: Primary service area for San Diego
+          description: Optional comment or description for the zone.
+        mustIdentifyStops:
+          type: boolean
+          nullable: true
+          example: true
+          description: Indicates whether stops must be identified within the zone.
+        displayed:
+          type: boolean
+          nullable: true
+          example: true
+          description: Indicates whether the zone is visible in the UI.
+        externalReference:
+          type: string
+          nullable: true
+          example: EXT-ZONE-001
+          description: External reference identifier for the zone.
+        activeFrom:
+          type: string
+          nullable: true
+          example: '2025-01-01T00:00:00Z'
+          description: Date and time from which the zone becomes active.
+        activeTo:
+          type: string
+          nullable: true
+          example: '2025-12-31T23:59:59Z'
+          description: Date and time until which the zone remains active.
+        zoneTypes:
+          type: array
+          nullable: true
+          description: List of zone types applicable to this zone.
+          items:
+            $ref: '#/components/schemas/ZoneTypesEnumRequestViewModel'
+          example: Customer
+        fillColor:
+          nullable: true
+          $ref: '#/components/schemas/CreateZoneColorRequestViewModel'
+        points:
+          type: array
+          nullable: true
+          description: List of geographic points defining the updated zone boundary.
+          items:
+            $ref: '#/components/schemas/CreateZonePointRequestViewModel'
+        groups:
+          type: array
+          nullable: true
+          description: Groups to which the zone belongs.
+          items:
+            $ref: '#/components/schemas/CreateZoneGroupRequestViewModel'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
