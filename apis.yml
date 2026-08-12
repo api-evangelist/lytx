@@ -6636,6 +6636,8 @@ apis:
   - type: APIReference
     url: https://developer.lytx.com/openapispec/zonesputandpostplus.openapi
 common:
+- type: Overlay
+  url: overlays/lytx-consent--overlay.yaml
 - type: AgenticAccess
   url: agentic-access/lytx-agentic-access.yml
 - type: DomainSecurity
