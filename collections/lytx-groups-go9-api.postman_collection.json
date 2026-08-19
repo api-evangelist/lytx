@@ -1,0 +1,655 @@
+{
+  "item": [
+    {
+      "id": "304e3bd2-d813-41ac-b87e-13b7dc7ac120",
+      "name": "Groups (GO9)",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e78986ec-641b-4a03-b856-11202b0b1956",
+          "name": "Get Telematics Groups Data",
+          "request": {
+            "name": "Get Telematics Groups Data",
+            "description": {
+              "content": "Retrieve a list of all the groups in an organization or subset of an organization",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plus",
+                "v1",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "groupIds",
+                  "value": "<uuid>",
+                  "description": "Can use one or more group IDs or root group IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "groupIds",
+                  "value": "<uuid>",
+                  "description": "Can use one or more group IDs or root group IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeSubGroups",
+                  "value": "false",
+                  "description": "If true, all descendant groups under the specified group are included."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Record to start with."
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<dateTime>",
+                  "description": "The start date must be within the last 60 days."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<dateTime>",
+                  "description": "End date to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Sort direction."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortProperty",
+                  "value": "<string>",
+                  "description": "Name of property to sort on."
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>",
+                  "description": "(Required) API version number."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cc41728a-c2d8-4116-9f4f-dbb485219e24",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupIds",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIds",
+                      "value": "5100AAAA-12B6-D7CD-3FA2-22CA712B1111"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"grp-123\",\n      \"name\": \"Drivers Group\",\n      \"comment\": \"Main driver group\",\n      \"reference\": \"REF123\",\n      \"parent\": {\n        \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n      },\n      \"children\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n        }\n      ],\n      \"color\": {\n        \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n      }\n    },\n    {\n      \"id\": \"grp-123\",\n      \"name\": \"Drivers Group\",\n      \"comment\": \"Main driver group\",\n      \"reference\": \"REF123\",\n      \"parent\": {\n        \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n      },\n      \"children\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n        }\n      ],\n      \"color\": {\n        \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82f40bc0-9dfd-4e47-95b8-e3ef7f6a7cda",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupIds",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIds",
+                      "value": "5100AAAA-12B6-D7CD-3FA2-22CA712B1111"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5487bbb1-ced6-4ff1-b2aa-3afd84d679e6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupIds",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIds",
+                      "value": "5100AAAA-12B6-D7CD-3FA2-22CA712B1111"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unauthorized\",\n  \"message\": \"Access denied\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "916a2956-b770-4375-8788-ec9ed98f2f47",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupIds",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIds",
+                      "value": "5100AAAA-12B6-D7CD-3FA2-22CA712B1111"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"Non-permited user\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06c1e416-f082-453e-ae16-d6ab74bd24b7",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupIds",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIds",
+                      "value": "5100AAAA-12B6-D7CD-3FA2-22CA712B1111"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"No information found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68a3a618-017e-4e0d-a2e6-e7729d893f2e",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupIds",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIds",
+                      "value": "5100AAAA-12B6-D7CD-3FA2-22CA712B1111"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"An unexpected server error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lytx.com/consent-management",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0c9a145d-3bfc-4034-a70b-45202a7b5bde",
+    "name": "Lytx..Management.Api Consent Groups (GO9) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for retrieving and updating user consent status, requiring authentication.\n",
+      "type": "text/plain"
+    }
+  }
+}

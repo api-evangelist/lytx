@@ -1,0 +1,535 @@
+{
+  "item": [
+    {
+      "id": "ce5c8477-00e2-4844-9c98-4a78a4e21aa6",
+      "name": "Rule (GO9)",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "db6cf5b1-2102-481a-8d78-d707b46244c9",
+          "name": "Get Rules Data",
+          "request": {
+            "name": "Get Rules Data",
+            "description": {
+              "content": "Retrieve a list of Rules",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plus",
+                "v1",
+                "rule"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "groupId",
+                  "value": "<string>",
+                  "description": "Can use group ID or root group ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Record to start with."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Sort direction."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortProperty",
+                  "value": "<string>",
+                  "description": "Name of property to sort on."
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>",
+                  "description": "(Required) API version number."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1c42ef6f-1da1-4430-86b0-9e50a571130b",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "rule"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"activeFrom\": \"2023-10-06T00:22:30.000Z\",\n      \"activeTo\": \"2025-10-06T00:22:30.000Z\",\n      \"baseType\": \"SpeedingRule\",\n      \"color\": {\n        \"a\": 255,\n        \"b\": 0,\n        \"g\": 128,\n        \"r\": 255\n      },\n      \"comment\": \"Triggers when speed exceeds limit\",\n      \"condition\": {\n        \"children\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/ConditionResponseViewModel detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/ConditionResponseViewModel detected>\"\n          }\n        ],\n        \"conditionType\": \"SpeedCondition\",\n        \"device\": {\n          \"id\": \"1b33bcbe-15d3-445e-a06f-dda61208ad18\",\n          \"activeFrom\": \"2023-10-06T00:22:30.000Z\",\n          \"activeTo\": \"2025-10-06T00:22:30.000Z\",\n          \"comment\": \"Installed in vehicle A123\",\n          \"groups\": [\n            \"Group1\",\n            \"Group2\"\n          ],\n          \"timeZoneId\": \"America/Toronto\",\n          \"deviceFlags\": \"FLAG_001\",\n          \"deviceType\": \"GO9\",\n          \"hardwareId\": \"HW-ABC-12345\",\n          \"ignoreDownloadsUntil\": \"2025-05-15T12:00:00.000Z\",\n          \"maxSecondsBetweenLogs\": 300,\n          \"name\": \"Device A123\",\n          \"productId\": \"PROD-456\",\n          \"serialNumber\": \"SN123456789\",\n          \"timeToDownload\": \"2025-09-20T10:00:00.000Z\",\n          \"workTime\": \"08:00-17:00\",\n          \"registerDeviceResultLite\": {},\n          \"devicePlanBillingInfo\": {},\n          \"deviceReplacementInfo\": {},\n          \"customProperties\": {},\n          \"mediaFiles\": [\n            \"file1.jpg\",\n            \"file2.mp4\"\n          ],\n          \"tmpTrailerId\": \"TRAILER-123\",\n          \"version\": \"v1.2.3\"\n        },\n        \"diagnostic\": {\n          \"code\": \"P0300\",\n          \"id\": \"diag-001\",\n          \"name\": \"Engine Fault\",\n          \"sourceAddress\": 0,\n          \"unitOfMeasure\": {}\n        },\n        \"driver\": {\n          \"id\": \"1b33bcbe-15d3-445e-a06f-dda61208ad18\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"name\": \"John Doe\",\n          \"licenseNumber\": \"DL-123456\",\n          \"licenseProvince\": \"CA\",\n          \"acceptedEULA\": 1,\n          \"driveGuideVersion\": 2,\n          \"wifiEULA\": 1,\n          \"activeFrom\": \"2023-10-06T00:22:30.000Z\",\n          \"activeTo\": \"2025-10-06T00:22:30.000Z\",\n          \"lastAccessDate\": \"2025-09-15T12:22:30.000Z\",\n          \"companyName\": \"Acme Corp\",\n          \"companyAddress\": \"123 Main Street, Toronto, ON\",\n          \"carrierNumber\": \"CARR123\",\n          \"isDriver\": true,\n          \"isEmailReportEnabled\": false,\n          \"language\": \"en-US\",\n          \"timeZoneId\": \"America/Toronto\",\n          \"userAuthenticationType\": 1,\n          \"zoneDisplayMode\": 2,\n          \"driverGroups\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"companyGroups\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"viewDriversOwnDataOnly\": false,\n          \"designation\": \"Manager\",\n          \"employeeNo\": \"EMP12345\",\n          \"phoneNumber\": \"+1-123-456-7890\",\n          \"phoneNumberExtension\": \"101\"\n        },\n        \"group\": {\n          \"id\": \"grp-123\",\n          \"name\": \"Drivers Group\",\n          \"comment\": \"Main driver group\",\n          \"reference\": \"REF123\",\n          \"parent\": {\n            \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n          },\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          ],\n          \"color\": {\n            \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n          }\n        },\n        \"id\": \"cond-abc-123\",\n        \"value\": 90.5,\n        \"workTime\": {\n          \"comment\": \"Standard working hours\",\n          \"details\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"holidayGroup\": {\n            \"groupId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"id\": \"wt-001\",\n          \"name\": \"Weekday Schedule\"\n        },\n        \"zone\": {\n          \"activeFrom\": \"2023-01-01T00:00:00.000Z\",\n          \"activeTo\": \"2025-12-31T23:59:59.000Z\",\n          \"comment\": \"City center boundary\",\n          \"groups\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"id\": \"zone-001\",\n          \"name\": \"Downtown Zone\",\n          \"zoneTypes\": [\n            \"Customer\",\n            \"Restricted\"\n          ]\n        }\n      },\n      \"groups\": [\n        {\n          \"id\": \"grp-123\",\n          \"name\": \"Drivers Group\",\n          \"comment\": \"Main driver group\",\n          \"reference\": \"REF123\",\n          \"parent\": {\n            \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n          },\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          ],\n          \"color\": {\n            \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n          }\n        },\n        {\n          \"id\": \"grp-123\",\n          \"name\": \"Drivers Group\",\n          \"comment\": \"Main driver group\",\n          \"reference\": \"REF123\",\n          \"parent\": {\n            \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n          },\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          ],\n          \"color\": {\n            \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n          }\n        }\n      ],\n      \"id\": \"1b33bcbe-15d3-445e-a06f-dda61208ad18\",\n      \"name\": \"Speeding Rule\",\n      \"version\": \"v1.0.0\"\n    },\n    {\n      \"activeFrom\": \"2023-10-06T00:22:30.000Z\",\n      \"activeTo\": \"2025-10-06T00:22:30.000Z\",\n      \"baseType\": \"SpeedingRule\",\n      \"color\": {\n        \"a\": 255,\n        \"b\": 0,\n        \"g\": 128,\n        \"r\": 255\n      },\n      \"comment\": \"Triggers when speed exceeds limit\",\n      \"condition\": {\n        \"children\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/ConditionResponseViewModel detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/ConditionResponseViewModel detected>\"\n          }\n        ],\n        \"conditionType\": \"SpeedCondition\",\n        \"device\": {\n          \"id\": \"1b33bcbe-15d3-445e-a06f-dda61208ad18\",\n          \"activeFrom\": \"2023-10-06T00:22:30.000Z\",\n          \"activeTo\": \"2025-10-06T00:22:30.000Z\",\n          \"comment\": \"Installed in vehicle A123\",\n          \"groups\": [\n            \"Group1\",\n            \"Group2\"\n          ],\n          \"timeZoneId\": \"America/Toronto\",\n          \"deviceFlags\": \"FLAG_001\",\n          \"deviceType\": \"GO9\",\n          \"hardwareId\": \"HW-ABC-12345\",\n          \"ignoreDownloadsUntil\": \"2025-05-15T12:00:00.000Z\",\n          \"maxSecondsBetweenLogs\": 300,\n          \"name\": \"Device A123\",\n          \"productId\": \"PROD-456\",\n          \"serialNumber\": \"SN123456789\",\n          \"timeToDownload\": \"2025-09-20T10:00:00.000Z\",\n          \"workTime\": \"08:00-17:00\",\n          \"registerDeviceResultLite\": {},\n          \"devicePlanBillingInfo\": {},\n          \"deviceReplacementInfo\": {},\n          \"customProperties\": {},\n          \"mediaFiles\": [\n            \"file1.jpg\",\n            \"file2.mp4\"\n          ],\n          \"tmpTrailerId\": \"TRAILER-123\",\n          \"version\": \"v1.2.3\"\n        },\n        \"diagnostic\": {\n          \"code\": \"P0300\",\n          \"id\": \"diag-001\",\n          \"name\": \"Engine Fault\",\n          \"sourceAddress\": 0,\n          \"unitOfMeasure\": {}\n        },\n        \"driver\": {\n          \"id\": \"1b33bcbe-15d3-445e-a06f-dda61208ad18\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"name\": \"John Doe\",\n          \"licenseNumber\": \"DL-123456\",\n          \"licenseProvince\": \"CA\",\n          \"acceptedEULA\": 1,\n          \"driveGuideVersion\": 2,\n          \"wifiEULA\": 1,\n          \"activeFrom\": \"2023-10-06T00:22:30.000Z\",\n          \"activeTo\": \"2025-10-06T00:22:30.000Z\",\n          \"lastAccessDate\": \"2025-09-15T12:22:30.000Z\",\n          \"companyName\": \"Acme Corp\",\n          \"companyAddress\": \"123 Main Street, Toronto, ON\",\n          \"carrierNumber\": \"CARR123\",\n          \"isDriver\": true,\n          \"isEmailReportEnabled\": false,\n          \"language\": \"en-US\",\n          \"timeZoneId\": \"America/Toronto\",\n          \"userAuthenticationType\": 1,\n          \"zoneDisplayMode\": 2,\n          \"driverGroups\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"companyGroups\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"viewDriversOwnDataOnly\": false,\n          \"designation\": \"Manager\",\n          \"employeeNo\": \"EMP12345\",\n          \"phoneNumber\": \"+1-123-456-7890\",\n          \"phoneNumberExtension\": \"101\"\n        },\n        \"group\": {\n          \"id\": \"grp-123\",\n          \"name\": \"Drivers Group\",\n          \"comment\": \"Main driver group\",\n          \"reference\": \"REF123\",\n          \"parent\": {\n            \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n          },\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          ],\n          \"color\": {\n            \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n          }\n        },\n        \"id\": \"cond-abc-123\",\n        \"value\": 90.5,\n        \"workTime\": {\n          \"comment\": \"Standard working hours\",\n          \"details\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"holidayGroup\": {\n            \"groupId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"id\": \"wt-001\",\n          \"name\": \"Weekday Schedule\"\n        },\n        \"zone\": {\n          \"activeFrom\": \"2023-01-01T00:00:00.000Z\",\n          \"activeTo\": \"2025-12-31T23:59:59.000Z\",\n          \"comment\": \"City center boundary\",\n          \"groups\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"id\": \"zone-001\",\n          \"name\": \"Downtown Zone\",\n          \"zoneTypes\": [\n            \"Customer\",\n            \"Restricted\"\n          ]\n        }\n      },\n      \"groups\": [\n        {\n          \"id\": \"grp-123\",\n          \"name\": \"Drivers Group\",\n          \"comment\": \"Main driver group\",\n          \"reference\": \"REF123\",\n          \"parent\": {\n            \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n          },\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          ],\n          \"color\": {\n            \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n          }\n        },\n        {\n          \"id\": \"grp-123\",\n          \"name\": \"Drivers Group\",\n          \"comment\": \"Main driver group\",\n          \"reference\": \"REF123\",\n          \"parent\": {\n            \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n          },\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          ],\n          \"color\": {\n            \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n          }\n        }\n      ],\n      \"id\": \"1b33bcbe-15d3-445e-a06f-dda61208ad18\",\n      \"name\": \"Speeding Rule\",\n      \"version\": \"v1.0.0\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f263e115-9a28-4961-a8e0-eb2356e4bdeb",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "rule"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16031522-555e-47ae-a2ce-2d001456fa68",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "rule"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unauthorized\",\n  \"message\": \"Access denied\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe6ed7e9-25d9-4fd0-97e8-bfe26c2b0381",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "rule"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"Non-permited user\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f5e797e-4d52-47b2-adcf-f53979fae452",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "rule"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"No information found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba82c5c7-49e7-41bd-9478-2dccd100d031",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "rule"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"An unexpected server error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lytx.com/consent-management",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b0a77a5b-f18a-4525-9fb5-bd349c1c337d",
+    "name": "Lytx..Management.Api Consent Rule (GO9) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for retrieving and updating user consent status, requiring authentication.\n",
+      "type": "text/plain"
+    }
+  }
+}

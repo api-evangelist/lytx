@@ -1,0 +1,655 @@
+{
+  "item": [
+    {
+      "id": "062343d5-02ab-4b75-a821-14fb8d45a862",
+      "name": "IFTAReport (GO9)",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "29f1a975-185d-4e46-91c9-1c43829b2863",
+          "name": "Get Telematics IFTA Report Data",
+          "request": {
+            "name": "Get Telematics IFTA Report Data",
+            "description": {
+              "content": "Retrieve a Fuel Tax Report",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plus",
+                "v1",
+                "iftareport"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<string>",
+                  "description": "Can use either device serial number or device ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "driverId",
+                  "value": "<string>",
+                  "description": "Can use driver ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "groupId",
+                  "value": "<string>",
+                  "description": "Can use group ID or root group ID. All descendant groups under the specified group are included in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Record to start with."
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<dateTime>",
+                  "description": "The start date must be within the last 60 days."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<dateTime>",
+                  "description": "End date to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Sort direction."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortProperty",
+                  "value": "<string>",
+                  "description": "Name of property to sort on."
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>",
+                  "description": "(Required) API version number."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7fde4e0c-ca25-44da-80f8-e704dd9175e8",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "iftareport"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "driverId",
+                      "value": "b4F7"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"b1f6e56d-1234-4567-89ab-cdef12345678\",\n      \"authority\": \"None\",\n      \"device\": {\n        \"id\": \"1b33bcbe-15d3-445e-a06f-dda61208ad18\",\n        \"activeFrom\": \"2023-10-06T00:22:30.000Z\",\n        \"activeTo\": \"2025-10-06T00:22:30.000Z\",\n        \"comment\": \"Installed in vehicle A123\",\n        \"groups\": [\n          \"Group1\",\n          \"Group2\"\n        ],\n        \"timeZoneId\": \"America/Toronto\",\n        \"deviceFlags\": \"FLAG_001\",\n        \"deviceType\": \"GO9\",\n        \"hardwareId\": \"HW-ABC-12345\",\n        \"ignoreDownloadsUntil\": \"2025-05-15T12:00:00.000Z\",\n        \"maxSecondsBetweenLogs\": 300,\n        \"name\": \"Device A123\",\n        \"productId\": \"PROD-456\",\n        \"serialNumber\": \"SN123456789\",\n        \"timeToDownload\": \"2025-09-20T10:00:00.000Z\",\n        \"workTime\": \"08:00-17:00\",\n        \"registerDeviceResultLite\": {},\n        \"devicePlanBillingInfo\": {},\n        \"deviceReplacementInfo\": {},\n        \"customProperties\": {},\n        \"mediaFiles\": [\n          \"file1.jpg\",\n          \"file2.mp4\"\n        ],\n        \"tmpTrailerId\": \"TRAILER-123\",\n        \"version\": \"v1.2.3\"\n      },\n      \"driver\": {\n        \"id\": \"1b33bcbe-15d3-445e-a06f-dda61208ad18\",\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"name\": \"John Doe\",\n        \"licenseNumber\": \"DL-123456\",\n        \"licenseProvince\": \"CA\",\n        \"acceptedEULA\": 1,\n        \"driveGuideVersion\": 2,\n        \"wifiEULA\": 1,\n        \"activeFrom\": \"2023-10-06T00:22:30.000Z\",\n        \"activeTo\": \"2025-10-06T00:22:30.000Z\",\n        \"lastAccessDate\": \"2025-09-15T12:22:30.000Z\",\n        \"companyName\": \"Acme Corp\",\n        \"companyAddress\": \"123 Main Street, Toronto, ON\",\n        \"carrierNumber\": \"CARR123\",\n        \"isDriver\": true,\n        \"isEmailReportEnabled\": false,\n        \"language\": \"en-US\",\n        \"timeZoneId\": \"America/Toronto\",\n        \"userAuthenticationType\": 1,\n        \"zoneDisplayMode\": 2,\n        \"driverGroups\": [\n          {\n            \"id\": \"grp-123\",\n            \"name\": \"Drivers Group\",\n            \"comment\": \"Main driver group\",\n            \"reference\": \"REF123\",\n            \"parent\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"color\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          },\n          {\n            \"id\": \"grp-123\",\n            \"name\": \"Drivers Group\",\n            \"comment\": \"Main driver group\",\n            \"reference\": \"REF123\",\n            \"parent\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"color\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          }\n        ],\n        \"companyGroups\": [\n          {\n            \"id\": \"grp-123\",\n            \"name\": \"Drivers Group\",\n            \"comment\": \"Main driver group\",\n            \"reference\": \"REF123\",\n            \"parent\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"color\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          },\n          {\n            \"id\": \"grp-123\",\n            \"name\": \"Drivers Group\",\n            \"comment\": \"Main driver group\",\n            \"reference\": \"REF123\",\n            \"parent\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"color\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          }\n        ],\n        \"viewDriversOwnDataOnly\": false,\n        \"designation\": \"Manager\",\n        \"employeeNo\": \"EMP12345\",\n        \"phoneNumber\": \"+1-123-456-7890\",\n        \"phoneNumberExtension\": \"101\"\n      },\n      \"enterGpsOdometer\": 12543.5,\n      \"enterLatitude\": 32.8872185,\n      \"enterLongitude\": -117.212799,\n      \"enterOdometer\": 12550,\n      \"enterTime\": \"2025-05-29T19:18:26.063Z\",\n      \"exitGpsOdometer\": 12650.3,\n      \"exitLatitude\": 33.123456,\n      \"exitLongitude\": -118.123456,\n      \"exitOdometer\": 12660,\n      \"exitTime\": \"2025-05-30T08:22:30.000Z\",\n      \"hourlyGpsOdometer\": [\n        2162.4761972795613,\n        5317.852013516933\n      ],\n      \"hourlyIsOdometerInterpolated\": [\n        true,\n        false\n      ],\n      \"hourlyLatitude\": [\n        866.2955199406863,\n        233.31051856211982\n      ],\n      \"hourlyLongitude\": [\n        6981.956132425327,\n        3683.8020744193245\n      ],\n      \"hourlyOdometer\": [\n        8315.775925804837,\n        7528.826242492151\n      ],\n      \"isEnterOdometerInterpolated\": false,\n      \"isExitOdometerInterpolated\": true,\n      \"jurisdiction\": \"California\",\n      \"tollRoad\": null\n    },\n    {\n      \"id\": \"b1f6e56d-1234-4567-89ab-cdef12345678\",\n      \"authority\": \"None\",\n      \"device\": {\n        \"id\": \"1b33bcbe-15d3-445e-a06f-dda61208ad18\",\n        \"activeFrom\": \"2023-10-06T00:22:30.000Z\",\n        \"activeTo\": \"2025-10-06T00:22:30.000Z\",\n        \"comment\": \"Installed in vehicle A123\",\n        \"groups\": [\n          \"Group1\",\n          \"Group2\"\n        ],\n        \"timeZoneId\": \"America/Toronto\",\n        \"deviceFlags\": \"FLAG_001\",\n        \"deviceType\": \"GO9\",\n        \"hardwareId\": \"HW-ABC-12345\",\n        \"ignoreDownloadsUntil\": \"2025-05-15T12:00:00.000Z\",\n        \"maxSecondsBetweenLogs\": 300,\n        \"name\": \"Device A123\",\n        \"productId\": \"PROD-456\",\n        \"serialNumber\": \"SN123456789\",\n        \"timeToDownload\": \"2025-09-20T10:00:00.000Z\",\n        \"workTime\": \"08:00-17:00\",\n        \"registerDeviceResultLite\": {},\n        \"devicePlanBillingInfo\": {},\n        \"deviceReplacementInfo\": {},\n        \"customProperties\": {},\n        \"mediaFiles\": [\n          \"file1.jpg\",\n          \"file2.mp4\"\n        ],\n        \"tmpTrailerId\": \"TRAILER-123\",\n        \"version\": \"v1.2.3\"\n      },\n      \"driver\": {\n        \"id\": \"1b33bcbe-15d3-445e-a06f-dda61208ad18\",\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"name\": \"John Doe\",\n        \"licenseNumber\": \"DL-123456\",\n        \"licenseProvince\": \"CA\",\n        \"acceptedEULA\": 1,\n        \"driveGuideVersion\": 2,\n        \"wifiEULA\": 1,\n        \"activeFrom\": \"2023-10-06T00:22:30.000Z\",\n        \"activeTo\": \"2025-10-06T00:22:30.000Z\",\n        \"lastAccessDate\": \"2025-09-15T12:22:30.000Z\",\n        \"companyName\": \"Acme Corp\",\n        \"companyAddress\": \"123 Main Street, Toronto, ON\",\n        \"carrierNumber\": \"CARR123\",\n        \"isDriver\": true,\n        \"isEmailReportEnabled\": false,\n        \"language\": \"en-US\",\n        \"timeZoneId\": \"America/Toronto\",\n        \"userAuthenticationType\": 1,\n        \"zoneDisplayMode\": 2,\n        \"driverGroups\": [\n          {\n            \"id\": \"grp-123\",\n            \"name\": \"Drivers Group\",\n            \"comment\": \"Main driver group\",\n            \"reference\": \"REF123\",\n            \"parent\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"color\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          },\n          {\n            \"id\": \"grp-123\",\n            \"name\": \"Drivers Group\",\n            \"comment\": \"Main driver group\",\n            \"reference\": \"REF123\",\n            \"parent\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"color\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          }\n        ],\n        \"companyGroups\": [\n          {\n            \"id\": \"grp-123\",\n            \"name\": \"Drivers Group\",\n            \"comment\": \"Main driver group\",\n            \"reference\": \"REF123\",\n            \"parent\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"color\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          },\n          {\n            \"id\": \"grp-123\",\n            \"name\": \"Drivers Group\",\n            \"comment\": \"Main driver group\",\n            \"reference\": \"REF123\",\n            \"parent\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"color\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          }\n        ],\n        \"viewDriversOwnDataOnly\": false,\n        \"designation\": \"Manager\",\n        \"employeeNo\": \"EMP12345\",\n        \"phoneNumber\": \"+1-123-456-7890\",\n        \"phoneNumberExtension\": \"101\"\n      },\n      \"enterGpsOdometer\": 12543.5,\n      \"enterLatitude\": 32.8872185,\n      \"enterLongitude\": -117.212799,\n      \"enterOdometer\": 12550,\n      \"enterTime\": \"2025-05-29T19:18:26.063Z\",\n      \"exitGpsOdometer\": 12650.3,\n      \"exitLatitude\": 33.123456,\n      \"exitLongitude\": -118.123456,\n      \"exitOdometer\": 12660,\n      \"exitTime\": \"2025-05-30T08:22:30.000Z\",\n      \"hourlyGpsOdometer\": [\n        4495.225094503641,\n        4939.9696062098765\n      ],\n      \"hourlyIsOdometerInterpolated\": [\n        true,\n        true\n      ],\n      \"hourlyLatitude\": [\n        6387.671420295255,\n        2791.766781003009\n      ],\n      \"hourlyLongitude\": [\n        2433.494951980928,\n        2399.8868426270283\n      ],\n      \"hourlyOdometer\": [\n        2762.776260845132,\n        7669.362120954214\n      ],\n      \"isEnterOdometerInterpolated\": false,\n      \"isExitOdometerInterpolated\": true,\n      \"jurisdiction\": \"California\",\n      \"tollRoad\": null\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96969b0c-202a-46fa-ae7d-185656694bb7",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "iftareport"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "driverId",
+                      "value": "b4F7"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2662232c-97d0-460d-9901-6fba64a3a9f8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "iftareport"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "driverId",
+                      "value": "b4F7"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unauthorized\",\n  \"message\": \"Access denied\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f78bae4-79d4-44c2-9e7b-0a43f257a004",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "iftareport"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "driverId",
+                      "value": "b4F7"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"Non-permited user\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d6dd4e9-af4a-410d-9ab5-c5a38552136b",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "iftareport"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "driverId",
+                      "value": "b4F7"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"No information found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24516989-1a3f-4b12-9089-8a12a3fcbb13",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "iftareport"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "driverId",
+                      "value": "b4F7"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"An unexpected server error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lytx.com/consent-management",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2c547fb2-0d76-4ce9-8ff5-3e78e21f1ede",
+    "name": "Lytx..Management.Api Consent IFTAReport (GO9) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for retrieving and updating user consent status, requiring authentication.\n",
+      "type": "text/plain"
+    }
+  }
+}

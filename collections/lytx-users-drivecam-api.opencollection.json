@@ -1,0 +1,210 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lytx..Management.Api Consent Users (DriveCam) API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users (DriveCam)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve List of Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/users",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "query",
+                "description": "User role groups to search against."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "query",
+                "description": "User roles to search against."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "User Lytx statuses to search against."
+              },
+              {
+                "name": "loginEnabled",
+                "value": "",
+                "type": "query",
+                "description": "The setting that allows for login."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Record to start with."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              },
+              {
+                "name": "includeSubGroups",
+                "value": "",
+                "type": "query",
+                "description": "If true, all subgroups under the specified group(s) are included."
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query",
+                "description": "Search parameter for first+last name, username, and employeeId."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Description: Retrieve a list of all users in a company or subset of a company."
+        },
+        {
+          "info": {
+            "name": "Create User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lytx.com/consent-management/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Description: Create a new user. Only one user created per call."
+        },
+        {
+          "info": {
+            "name": "Retrieve User with Specified Identifier",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/users/:userIdentifier",
+            "params": [
+              {
+                "name": "userIdentifier",
+                "value": "4af860ae-2e53-4d8b-a48e-606b862effed",
+                "type": "path",
+                "description": "Unique user identifier."
+              },
+              {
+                "name": "searchBy",
+                "value": "",
+                "type": "query",
+                "description": "User field to search for unique identifier [UserId, Username, EmployeeId]."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Description: Retrieve a user with a specific identifier. Only retrieves one user at a time. For results for multiple users, use GET: Retrieve a list of users."
+        },
+        {
+          "info": {
+            "name": "Update User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.lytx.com/consent-management/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "4af860ae-2e53-4d8b-a48e-606b862effed",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Description: Update a user. Only updates one user at a time."
+        },
+        {
+          "info": {
+            "name": "Retrieve List of Possible Roles for User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/users/roles",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Description: Retrieve a list of all possible user roles, mapping role id to role name."
+        },
+        {
+          "info": {
+            "name": "Patch Update User's Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.lytx.com/consent-management/users/:userId/groupRoles",
+            "params": [
+              {
+                "name": "userId",
+                "value": "4af860ae-2e53-4d8b-a48e-606b862effed",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Description: Patch updates a user’s group roles. This is a partial update, so only the roles specified in the request body will be updated. Currently only supports adding or removing roles."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,121 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lytx..Management.Api Consent Zones (GO9) API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Zones (GO9)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Telematics Zones Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/plus/v1/zones",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "query",
+                "description": "Can use group ID or root group ID."
+              },
+              {
+                "name": "includeSubGroups",
+                "value": "",
+                "type": "query",
+                "description": "If true, all descendant groups under the specified group are included."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Record to start with."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "The start date must be within the last 60 days."
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "End date to filter by."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              },
+              {
+                "name": "sortProperty",
+                "value": "",
+                "type": "query",
+                "description": "Name of property to sort on."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "API version number."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of Geofences/Zones"
+        },
+        {
+          "info": {
+            "name": "Add Telematics Zones Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lytx.com/consent-management/plus/v1/zones",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add data for Geofences/Zones"
+        },
+        {
+          "info": {
+            "name": "Edit Telematics Zones Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.lytx.com/consent-management/plus/v1/zones",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edit data for Geofences/Zones"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

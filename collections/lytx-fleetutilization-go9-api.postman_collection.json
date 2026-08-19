@@ -1,0 +1,655 @@
+{
+  "item": [
+    {
+      "id": "8e89e8fe-1196-41fa-87ff-27b48ef5498e",
+      "name": "FleetUtilization (GO9)",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "013818d8-614b-44db-a162-4c2b3c94cf1e",
+          "name": "Get Telematics Fleet Utilization Data",
+          "request": {
+            "name": "Get Telematics Fleet Utilization Data",
+            "description": {
+              "content": "Retrieve a list of Fleet Utilization details",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plus",
+                "v1",
+                "fleetutilization"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<string>",
+                  "description": "Can use either device serial number or device ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "minUtilizationPercentage",
+                  "value": "<double>",
+                  "description": "Specifies the minimum fleet utilization percentage."
+                },
+                {
+                  "disabled": false,
+                  "key": "maxUtilizationPercentage",
+                  "value": "<double>",
+                  "description": "Specifies the maximum fleet utilization percentage."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Record to start with."
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<dateTime>",
+                  "description": "(Required) The start date must be within the last 60 days."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<dateTime>",
+                  "description": "(Required) End date to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Sort direction."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortProperty",
+                  "value": "<string>",
+                  "description": "Name of property to sort on."
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>",
+                  "description": "(Required) API version number."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7de50066-0c7d-464b-b216-0028fb110c85",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "fleetutilization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "minUtilizationPercentage",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "maxUtilizationPercentage",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"deviceId\": \"b18A\",\n      \"vin\": \"1HGCM82633A004352\",\n      \"vehicleType\": \"OldGeotab\",\n      \"tripsId\": [\n        \"b25\",\n        \"b25\"\n      ],\n      \"creationDateTime\": \"2025-01-15T10:30:00Z\",\n      \"utilizationMetrics\": {\n        \"timeInUse\": \"00:06:57.515\",\n        \"distanceTraveled\": 245.75,\n        \"idleTime\": \"00:12:42\",\n        \"utilizationPercentage\": 78.5\n      }\n    },\n    {\n      \"deviceId\": \"b18A\",\n      \"vin\": \"1HGCM82633A004352\",\n      \"vehicleType\": \"OldGeotab\",\n      \"tripsId\": [\n        \"b25\",\n        \"b25\"\n      ],\n      \"creationDateTime\": \"2025-01-15T10:30:00Z\",\n      \"utilizationMetrics\": {\n        \"timeInUse\": \"00:06:57.515\",\n        \"distanceTraveled\": 245.75,\n        \"idleTime\": \"00:12:42\",\n        \"utilizationPercentage\": 78.5\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "689efd0b-3dbd-4032-8d14-8b0a09219a28",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "fleetutilization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "minUtilizationPercentage",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "maxUtilizationPercentage",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88a01dfb-83b4-4fa0-8039-d290779f04f9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "fleetutilization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "minUtilizationPercentage",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "maxUtilizationPercentage",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unauthorized\",\n  \"message\": \"Access denied\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5aadd3a-72bb-45c2-b319-c6de79ab9a34",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "fleetutilization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "minUtilizationPercentage",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "maxUtilizationPercentage",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"Non-permited user\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b71153f4-6036-4e18-a7c9-db64e823b0ce",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "fleetutilization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "minUtilizationPercentage",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "maxUtilizationPercentage",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"No information found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c480a8f-dc47-43e6-a7b0-41c21bdf44c8",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "fleetutilization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "minUtilizationPercentage",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "maxUtilizationPercentage",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"An unexpected server error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lytx.com/consent-management",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "74c656ce-8494-4dfd-b6e0-36c6cc4c0612",
+    "name": "Lytx..Management.Api Consent FleetUtilization (GO9) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for retrieving and updating user consent status, requiring authentication.\n",
+      "type": "text/plain"
+    }
+  }
+}

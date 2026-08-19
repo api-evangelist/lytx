@@ -1,0 +1,789 @@
+{
+  "item": [
+    {
+      "id": "582e0c32-810e-4aac-9cdb-b9aab685cc01",
+      "name": "DVIR (DriveCam)",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aab74e9d-1480-4f26-804d-6be394096d6a",
+          "name": "Retrieve All DVIRs",
+          "request": {
+            "name": "Retrieve All DVIRs",
+            "description": {
+              "content": "Retrieves a list of driver-vehicle inspection reports (DVIRs) including details on defects found and defects resolved.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "dvir"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "reportIdentifiers",
+                  "value": "<string>",
+                  "description": "ID(s) of the inspection report(s)."
+                },
+                {
+                  "disabled": false,
+                  "key": "groupIdentifier",
+                  "value": "<string>",
+                  "description": "ID of the group."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeSubGroups",
+                  "value": "<boolean>",
+                  "description": "If true, all subgroups under the specified group are included."
+                },
+                {
+                  "disabled": false,
+                  "key": "vehicleIdentifier",
+                  "value": "<string>",
+                  "description": "ID of the vehicle."
+                },
+                {
+                  "disabled": false,
+                  "key": "trailerIdentifier",
+                  "value": "<number>",
+                  "description": "ID of the trailer."
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<dateTime>",
+                  "description": "Filter for a specific date-time period."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<dateTime>",
+                  "description": "Filter for a specific date-time period."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Record to start with."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Name of the property to sort on."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Sort direction."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ff1f94cc-38a7-4ebd-ae87-650db3934796",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dvir"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reportIdentifiers",
+                      "value": "9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2,9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd3"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2"
+                    },
+                    {
+                      "key": "trailerIdentifier",
+                      "value": "123"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "VehicleName"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 10,\n      \"creationDate\": \"2024-01-19T00:00:00.000Z\",\n      \"certificationDate\": \"2024-01-19T00:00:00.000Z\",\n      \"location\": \"Washington DC\",\n      \"inspectionType\": \"pre-trip\",\n      \"vehicleId\": \"9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2\",\n      \"vehicleGroupId\": \"9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2\",\n      \"vehicleName\": \"Vehicle example name\",\n      \"trailerId\": 123,\n      \"trailerGroupId\": \"9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2\",\n      \"trailerName\": \"Trailer example name\",\n      \"driverName\": \"John\",\n      \"generalNote\": \"Note comments\",\n      \"duration\": \"0:03:09\",\n      \"odometer\": 29.5,\n      \"dvirStatus\": \"Safe\",\n      \"inspectionListId\": 1,\n      \"inspectionListName\": \"Some inspection list\",\n      \"defects\": [\n        {\n          \"id\": 10,\n          \"name\": \"inspection point name\",\n          \"severityLevel\": \"Minor\",\n          \"status\": \"Resolved\",\n          \"notes\": {\n            \"mobileNoteDescription\": \"This is a mobile note\",\n            \"webNote\": {\n              \"id\": 1,\n              \"description\": \"This is a web note\",\n              \"creationDate\": \"2024-01-19T00:00:00.000Z\",\n              \"creatorName\": \"The author of the note\"\n            }\n          },\n          \"isSignedByMechanic\": true\n        },\n        {\n          \"id\": 10,\n          \"name\": \"inspection point name\",\n          \"severityLevel\": \"Minor\",\n          \"status\": \"Resolved\",\n          \"notes\": {\n            \"mobileNoteDescription\": \"This is a mobile note\",\n            \"webNote\": {\n              \"id\": 1,\n              \"description\": \"This is a web note\",\n              \"creationDate\": \"2024-01-19T00:00:00.000Z\",\n              \"creatorName\": \"The author of the note\"\n            }\n          },\n          \"isSignedByMechanic\": true\n        }\n      ],\n      \"mechanicSignature\": {\n        \"vehicle\": {\n          \"userId\": 1,\n          \"firstName\": \"John\",\n          \"lastName\": \"Lennon\",\n          \"userRole\": \"role\"\n        },\n        \"trailer\": {\n          \"userId\": 1,\n          \"firstName\": \"John\",\n          \"lastName\": \"Lennon\",\n          \"userRole\": \"role\"\n        }\n      },\n      \"reviewerSignature\": {\n        \"vehicle\": {\n          \"userId\": 1,\n          \"firstName\": \"John\",\n          \"lastName\": \"Lennon\",\n          \"userRole\": \"role\"\n        },\n        \"trailer\": {\n          \"userId\": 1,\n          \"firstName\": \"John\",\n          \"lastName\": \"Lennon\",\n          \"userRole\": \"role\"\n        }\n      }\n    },\n    {\n      \"id\": 10,\n      \"creationDate\": \"2024-01-19T00:00:00.000Z\",\n      \"certificationDate\": \"2024-01-19T00:00:00.000Z\",\n      \"location\": \"Washington DC\",\n      \"inspectionType\": \"pre-trip\",\n      \"vehicleId\": \"9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2\",\n      \"vehicleGroupId\": \"9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2\",\n      \"vehicleName\": \"Vehicle example name\",\n      \"trailerId\": 123,\n      \"trailerGroupId\": \"9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2\",\n      \"trailerName\": \"Trailer example name\",\n      \"driverName\": \"John\",\n      \"generalNote\": \"Note comments\",\n      \"duration\": \"0:03:09\",\n      \"odometer\": 29.5,\n      \"dvirStatus\": \"Safe\",\n      \"inspectionListId\": 1,\n      \"inspectionListName\": \"Some inspection list\",\n      \"defects\": [\n        {\n          \"id\": 10,\n          \"name\": \"inspection point name\",\n          \"severityLevel\": \"Major\",\n          \"status\": \"Resolved\",\n          \"notes\": {\n            \"mobileNoteDescription\": \"This is a mobile note\",\n            \"webNote\": {\n              \"id\": 1,\n              \"description\": \"This is a web note\",\n              \"creationDate\": \"2024-01-19T00:00:00.000Z\",\n              \"creatorName\": \"The author of the note\"\n            }\n          },\n          \"isSignedByMechanic\": true\n        },\n        {\n          \"id\": 10,\n          \"name\": \"inspection point name\",\n          \"severityLevel\": \"Minor\",\n          \"status\": \"Resolved\",\n          \"notes\": {\n            \"mobileNoteDescription\": \"This is a mobile note\",\n            \"webNote\": {\n              \"id\": 1,\n              \"description\": \"This is a web note\",\n              \"creationDate\": \"2024-01-19T00:00:00.000Z\",\n              \"creatorName\": \"The author of the note\"\n            }\n          },\n          \"isSignedByMechanic\": true\n        }\n      ],\n      \"mechanicSignature\": {\n        \"vehicle\": {\n          \"userId\": 1,\n          \"firstName\": \"John\",\n          \"lastName\": \"Lennon\",\n          \"userRole\": \"role\"\n        },\n        \"trailer\": {\n          \"userId\": 1,\n          \"firstName\": \"John\",\n          \"lastName\": \"Lennon\",\n          \"userRole\": \"role\"\n        }\n      },\n      \"reviewerSignature\": {\n        \"vehicle\": {\n          \"userId\": 1,\n          \"firstName\": \"John\",\n          \"lastName\": \"Lennon\",\n          \"userRole\": \"role\"\n        },\n        \"trailer\": {\n          \"userId\": 1,\n          \"firstName\": \"John\",\n          \"lastName\": \"Lennon\",\n          \"userRole\": \"role\"\n        }\n      }\n    }\n  ],\n  \"metadata\": {\n    \"count\": 7887,\n    \"limit\": 4358,\n    \"offset\": 3597,\n    \"startDate\": \"1975-03-31T17:42:44.916Z\",\n    \"endDate\": \"1986-03-19T09:34:26.472Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "231ebf4d-f177-4ca5-80a4-6b534d968332",
+          "name": "Retrieve Specified DVIR",
+          "request": {
+            "name": "Retrieve Specified DVIR",
+            "description": {
+              "content": "Retrieve a specific driver-vehicle inspection report (DVIR) by report ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "dvir",
+                ":reportIdentifier"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "reportIdentifier",
+                  "description": "(Required) ID of the inspection report."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "13512e12-c79c-4ebf-9588-79125ab72b4d",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dvir",
+                    ":reportIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "reportIdentifier",
+                      "description": "(Required) ID of the inspection report."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 10,\n  \"creationDate\": \"2024-01-19T00:00:00.000Z\",\n  \"certificationDate\": \"2024-01-19T00:00:00.000Z\",\n  \"location\": \"Washington DC\",\n  \"inspectionType\": \"post-trip\",\n  \"vehicleId\": \"9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2\",\n  \"vehicleGroupId\": \"9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2\",\n  \"vehicleName\": \"Vehicle example name\",\n  \"trailerId\": 123,\n  \"trailerGroupId\": \"9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2\",\n  \"trailerName\": \"Trailer example name\",\n  \"driverName\": \"John\",\n  \"generalNote\": \"Note comments\",\n  \"duration\": \"0:03:09\",\n  \"odometer\": 29.5,\n  \"dvirStatus\": \"Defect\",\n  \"inspectionListId\": 1,\n  \"inspectionListName\": \"Some inspection list\",\n  \"defects\": [\n    {\n      \"id\": 10,\n      \"name\": \"inspection point name\",\n      \"severityLevel\": \"Major\",\n      \"status\": \"Resolved\",\n      \"notes\": {\n        \"mobileNoteDescription\": \"This is a mobile note\",\n        \"webNote\": {\n          \"id\": 1,\n          \"description\": \"This is a web note\",\n          \"creationDate\": \"2024-01-19T00:00:00.000Z\",\n          \"creatorName\": \"The author of the note\"\n        }\n      },\n      \"isSignedByMechanic\": true\n    },\n    {\n      \"id\": 10,\n      \"name\": \"inspection point name\",\n      \"severityLevel\": \"Minor\",\n      \"status\": \"Safe\",\n      \"notes\": {\n        \"mobileNoteDescription\": \"This is a mobile note\",\n        \"webNote\": {\n          \"id\": 1,\n          \"description\": \"This is a web note\",\n          \"creationDate\": \"2024-01-19T00:00:00.000Z\",\n          \"creatorName\": \"The author of the note\"\n        }\n      },\n      \"isSignedByMechanic\": true\n    }\n  ],\n  \"mechanicSignature\": {\n    \"vehicle\": {\n      \"userId\": 1,\n      \"firstName\": \"John\",\n      \"lastName\": \"Lennon\",\n      \"userRole\": \"role\"\n    },\n    \"trailer\": {\n      \"userId\": 1,\n      \"firstName\": \"John\",\n      \"lastName\": \"Lennon\",\n      \"userRole\": \"role\"\n    }\n  },\n  \"reviewerSignature\": {\n    \"vehicle\": {\n      \"userId\": 1,\n      \"firstName\": \"John\",\n      \"lastName\": \"Lennon\",\n      \"userRole\": \"role\"\n    },\n    \"trailer\": {\n      \"userId\": 1,\n      \"firstName\": \"John\",\n      \"lastName\": \"Lennon\",\n      \"userRole\": \"role\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae910e8f-a77c-45b3-860f-1ecd12275afa",
+              "name": "Invalid ID supplied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dvir",
+                    ":reportIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "reportIdentifier",
+                      "description": "(Required) ID of the inspection report."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7246dc53-7af0-49bc-9108-d1e29394a26f",
+              "name": "DVIR not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dvir",
+                    ":reportIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "reportIdentifier",
+                      "description": "(Required) ID of the inspection report."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e80e08f8-47d4-4507-86b5-cf22c12e1832",
+          "name": "Retrieve List of Inspection Lists",
+          "request": {
+            "name": "Retrieve List of Inspection Lists",
+            "description": {
+              "content": "Retrieves a list of inspection lists, including their inspection points and schedules.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "dvir",
+                "inspectionlists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "assetType",
+                  "value": "<string>",
+                  "description": "Can be either vehicle or trailer."
+                },
+                {
+                  "disabled": false,
+                  "key": "vehicleIdentifier",
+                  "value": "<string>",
+                  "description": "ID of the vehicle."
+                },
+                {
+                  "disabled": false,
+                  "key": "trailerIdentifier",
+                  "value": "<number>",
+                  "description": "ID of the trailer."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Record to start with."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Name of the property to sort on."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Sort direction."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8f8623b4-9e3d-4bed-b126-6233466ed387",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dvir",
+                    "inspectionlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assetType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2"
+                    },
+                    {
+                      "key": "trailerIdentifier",
+                      "value": "123"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "Name"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"inspectionListId\": 1,\n      \"inspectionName\": \"inspection list name example\",\n      \"scheduleFrequency\": \"monthly\",\n      \"repeatEvery\": 1,\n      \"repeatsOnDays\": \"1\",\n      \"repeatsDayOfWeek\": 1,\n      \"repeatsDayOfMonth\": \"First\",\n      \"repeatsYearlyOnDay\": 1,\n      \"repeatsYearlyOnMonth\": 1,\n      \"sections\": [\n        {\n          \"id\": 1,\n          \"name\": \"section name example\",\n          \"inspectionPoints\": [\n            {\n              \"inspectionItem\": \"review tires\"\n            },\n            {\n              \"inspectionItem\": \"review tires\"\n            }\n          ]\n        },\n        {\n          \"id\": 1,\n          \"name\": \"section name example\",\n          \"inspectionPoints\": [\n            {\n              \"inspectionItem\": \"review tires\"\n            },\n            {\n              \"inspectionItem\": \"review tires\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"inspectionListId\": 1,\n      \"inspectionName\": \"inspection list name example\",\n      \"scheduleFrequency\": \"daily\",\n      \"repeatEvery\": 1,\n      \"repeatsOnDays\": \"1\",\n      \"repeatsDayOfWeek\": 1,\n      \"repeatsDayOfMonth\": \"First\",\n      \"repeatsYearlyOnDay\": 1,\n      \"repeatsYearlyOnMonth\": 1,\n      \"sections\": [\n        {\n          \"id\": 1,\n          \"name\": \"section name example\",\n          \"inspectionPoints\": [\n            {\n              \"inspectionItem\": \"review tires\"\n            },\n            {\n              \"inspectionItem\": \"review tires\"\n            }\n          ]\n        },\n        {\n          \"id\": 1,\n          \"name\": \"section name example\",\n          \"inspectionPoints\": [\n            {\n              \"inspectionItem\": \"review tires\"\n            },\n            {\n              \"inspectionItem\": \"review tires\"\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"metadata\": {\n    \"count\": 516,\n    \"limit\": 7998,\n    \"offset\": 1493\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f3fcbdb-267a-46aa-bbf0-83c858921475",
+          "name": "Retrieve List of Inspection Schedules",
+          "request": {
+            "name": "Retrieve List of Inspection Schedules",
+            "description": {
+              "content": "Retrieves a list of inspection schedules for assets with details on the most recent inspections for each asset.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "dvir",
+                "schedules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "assetType",
+                  "value": "<string>",
+                  "description": "Can be either vehicle or trailer."
+                },
+                {
+                  "disabled": false,
+                  "key": "groupIdentifier",
+                  "value": "<string>",
+                  "description": "ID of the group."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeSubGroups",
+                  "value": "<boolean>",
+                  "description": "If true, all subgroups under the specified group are included."
+                },
+                {
+                  "disabled": false,
+                  "key": "vehicleIdentifier",
+                  "value": "<string>",
+                  "description": "ID of the vehicle."
+                },
+                {
+                  "disabled": false,
+                  "key": "trailerIdentifier",
+                  "value": "<number>",
+                  "description": "ID of the trailer."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Record to start with."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Name of the property to sort on."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Sort direction."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "072f8b98-e345-4323-9308-a98b8c96221d",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "dvir",
+                    "schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assetType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2"
+                    },
+                    {
+                      "key": "trailerIdentifier",
+                      "value": "123"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "VehicleName"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": 1,\n      \"assetType\": \"Vehicle\",\n      \"assetName\": \"vehicle name example\",\n      \"assetGroup\": \"9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2\",\n      \"status\": \"Overdue\",\n      \"statusDayDiff\": 1,\n      \"dueDate\": \"2024-01-19T00:00:00.000Z\",\n      \"expiredDueDate\": \"2024-01-19T00:00:00.000Z\",\n      \"lastInspectedDate\": \"2024-01-19T00:00:00.000Z\",\n      \"lastInspectedDriver\": \"John\",\n      \"inspectionListId\": 1,\n      \"inspectionListName\": \"Some inspection list\",\n      \"inspectionFrequency\": \"Daily\"\n    },\n    {\n      \"id\": 1,\n      \"assetType\": \"Vehicle\",\n      \"assetName\": \"vehicle name example\",\n      \"assetGroup\": \"9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2\",\n      \"status\": \"Completed\",\n      \"statusDayDiff\": 1,\n      \"dueDate\": \"2024-01-19T00:00:00.000Z\",\n      \"expiredDueDate\": \"2024-01-19T00:00:00.000Z\",\n      \"lastInspectedDate\": \"2024-01-19T00:00:00.000Z\",\n      \"lastInspectedDriver\": \"John\",\n      \"inspectionListId\": 1,\n      \"inspectionListName\": \"Some inspection list\",\n      \"inspectionFrequency\": \"Daily\"\n    }\n  ],\n  \"metadata\": {\n    \"count\": 5097,\n    \"limit\": 3457,\n    \"offset\": 7719\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lytx.com/consent-management",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6050ae93-ecd6-4f97-8c5b-48ec54c2e015",
+    "name": "Lytx..Management.Api Consent DVIR (DriveCam) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for retrieving and updating user consent status, requiring authentication.\n",
+      "type": "text/plain"
+    }
+  }
+}

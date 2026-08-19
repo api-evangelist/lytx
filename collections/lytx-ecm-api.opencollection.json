@@ -1,0 +1,107 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lytx..Management.Api Consent ECM API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ECM",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve ECM data (V2 - Enhanced with Sample Type filtering)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/v2/ecm",
+            "params": [
+              {
+                "name": "deviceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Can use either device serial number or deviceId. If no device, vehicle, or group is specified, returns data for all devices."
+              },
+              {
+                "name": "vehicleIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Can use either VIN, vehicleId, or vehicle name. If no device, vehicle, or group is specified, returns data for all vehicles."
+              },
+              {
+                "name": "groupIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Can use groupId, rootGroupId, or group name. If no device, vehicle, or group is specified, returns data for all devices."
+              },
+              {
+                "name": "includeSubGroups",
+                "value": "",
+                "type": "query",
+                "description": "If true, all descendant groups under the specified group are included."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Record to start with."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "The startDate must be within the last 6 months. The startDate and endDate must be 24 hours of each other. ECM data is available for up to 7 days; DTC data is available for up to 6 months. Defaults to current UTC date."
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "The startDate and endDate must be within 24 hours of each other."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Name of the property to sort on."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction (asc or desc)."
+              },
+              {
+                "name": "sampleType",
+                "value": "",
+                "type": "query",
+                "description": "Type of ECM sample data to retrieve. This parameter is required for V2 endpoint to filter specific data types."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves engine computer module (ECM) data from vehicles with enhanced filtering by sample type. ECM data availability varies by vehicle, device, and cable configuration. Also, the organization must have a Fleet Tracking subscription to receive data from this endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

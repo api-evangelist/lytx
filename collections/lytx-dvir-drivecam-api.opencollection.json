@@ -1,0 +1,260 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lytx..Management.Api Consent DVIR (DriveCam) API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DVIR (DriveCam)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve All DVIRs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/v1/dvir",
+            "params": [
+              {
+                "name": "reportIdentifiers",
+                "value": "",
+                "type": "query",
+                "description": "ID(s) of the inspection report(s)."
+              },
+              {
+                "name": "groupIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "ID of the group."
+              },
+              {
+                "name": "includeSubGroups",
+                "value": "",
+                "type": "query",
+                "description": "If true, all subgroups under the specified group are included."
+              },
+              {
+                "name": "vehicleIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "ID of the vehicle."
+              },
+              {
+                "name": "trailerIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "ID of the trailer."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter for a specific date-time period."
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter for a specific date-time period."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Record to start with."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Name of the property to sort on."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves a list of driver-vehicle inspection reports (DVIRs) including details on defects found and defects resolved."
+        },
+        {
+          "info": {
+            "name": "Retrieve Specified DVIR",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/v1/dvir/:reportIdentifier",
+            "params": [
+              {
+                "name": "reportIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "ID of the inspection report."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a specific driver-vehicle inspection report (DVIR) by report ID."
+        },
+        {
+          "info": {
+            "name": "Retrieve List of Inspection Lists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/v1/dvir/inspectionlists",
+            "params": [
+              {
+                "name": "assetType",
+                "value": "",
+                "type": "query",
+                "description": "Can be either vehicle or trailer."
+              },
+              {
+                "name": "vehicleIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "ID of the vehicle."
+              },
+              {
+                "name": "trailerIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "ID of the trailer."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Record to start with."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Name of the property to sort on."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves a list of inspection lists, including their inspection points and schedules."
+        },
+        {
+          "info": {
+            "name": "Retrieve List of Inspection Schedules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/v1/dvir/schedules",
+            "params": [
+              {
+                "name": "assetType",
+                "value": "",
+                "type": "query",
+                "description": "Can be either vehicle or trailer."
+              },
+              {
+                "name": "groupIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "ID of the group."
+              },
+              {
+                "name": "includeSubGroups",
+                "value": "",
+                "type": "query",
+                "description": "If true, all subgroups under the specified group are included."
+              },
+              {
+                "name": "vehicleIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "ID of the vehicle."
+              },
+              {
+                "name": "trailerIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "ID of the trailer."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Record to start with."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Name of the property to sort on."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves a list of inspection schedules for assets with details on the most recent inspections for each asset."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

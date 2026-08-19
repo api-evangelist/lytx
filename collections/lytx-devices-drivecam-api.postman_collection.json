@@ -1,0 +1,1454 @@
+{
+  "item": [
+    {
+      "id": "f454879d-c31e-4292-a45c-c185c2a292f3",
+      "name": "Devices (DriveCam)",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e07e3bb7-339d-4ab2-881c-160fe1b1bc17",
+          "name": "Retrieve List of Devices",
+          "request": {
+            "name": "Retrieve List of Devices",
+            "description": {
+              "content": "Retrieve a list of devices.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "devices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Record to start with."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "The device's service status."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Name of the property to sort on."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Sort direction."
+                },
+                {
+                  "disabled": false,
+                  "key": "groupId",
+                  "value": "<string>",
+                  "description": "ID of the group for which to return data."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeSubgroups",
+                  "value": "<boolean>",
+                  "description": "If true, all subgroups under the specified group are included."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e1d53324-02af-4a1e-84ef-ab20190983c3",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "Pending Removal from Fleet"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "SerialNumber"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"deviceId\": \"880e60d8-fbed-217a-1720-6511d9f16361\",\n      \"serialNumber\": \"ER946234\",\n      \"deviceModel\": \"ER-SF300\",\n      \"firmwareVersion\": \"5.37\",\n      \"build\": 330,\n      \"groupId\": \"0c3c9820-3ee4-e98d-0987-c7333e722f72\",\n      \"groupName\": \"Smith Transportation\",\n      \"groupPath\": \"***Root/Smith%20Transportation\",\n      \"initialConnection\": \"2023-01-01T00:00:00Z\",\n      \"status\": \"Spare\",\n      \"vehicleId\": \"ae17072e-ef19-9aa3-bfd0-c551f3d947ca\",\n      \"vehicleName\": \"2015 FRD Fleet Express\",\n      \"vin\": \"3ALACWFD0KDKY0669\"\n    },\n    {\n      \"deviceId\": \"750c5226-0f0a-402d-dcec-f83ccbb5373e\",\n      \"serialNumber\": \"ER94874E\",\n      \"deviceModel\": \"ER-SF64\",\n      \"firmwareVersion\": \"6.37\",\n      \"build\": 136,\n      \"groupId\": \"0c3c9820-3ee4-e98d-0987-c7333e722f72\",\n      \"groupName\": \"Food Transportation INC\",\n      \"groupPath\": \"***Root/Food%20Transportation%20INC\",\n      \"initialConnection\": \"2023-02-01T00:00:00Z\",\n      \"status\": \"Spare\",\n      \"vehicleId\": \"59c75865-d776-04e9-7ae4-a489570efc68\",\n      \"vehicleName\": \"2010 XYC Terrain\",\n      \"vin\": \"2NKHLJ0X1LM377326\"\n    }\n  ],\n  \"metadata\": {\n    \"count\": 102,\n    \"limit\": 100,\n    \"offset\": 2\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2db5e504-ca98-497a-83a9-020516f7772d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "Pending Removal from Fleet"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "SerialNumber"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request Error\",\n  \"message\": \"The parameters given in the request are invalid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3da652e7-b463-4338-8048-93c9d29a26b9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "Pending Removal from Fleet"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "SerialNumber"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "45e488a1-e823-43b7-97da-798912931654",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "Pending Removal from Fleet"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "SerialNumber"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "77deffc8-2c0e-47ed-b908-5055d4d7804c",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "Pending Removal from Fleet"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "SerialNumber"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found Error\",\n  \"message\": \"The requested resource doesn't exist.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f4d6801-bbe7-4178-9ada-a893eda06698",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "Pending Removal from Fleet"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "SerialNumber"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"Requested operation cannot be performed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3251ea72-c357-4c0a-b333-4bc6d1341606",
+          "name": "Retrieve Specific Device",
+          "request": {
+            "name": "Retrieve Specific Device",
+            "description": {
+              "content": "Retrieve a specific device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "devices",
+                ":deviceIdentifier"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deviceIdentifier",
+                  "description": "(Required) Can use serial number, IMEI, or device ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ff5c74d6-72ee-4e4e-8a8b-a031e3f4e75a",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devices",
+                    ":deviceIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceIdentifier",
+                      "description": "(Required) Can use serial number, IMEI, or device ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"deviceId\": \"750c5226-0f0a-402d-dcec-f83ccbb5373e\",\n    \"serialNumber\": \"ER946234\",\n    \"createdDate\": \"2023-02-01T00:00:00Z\",\n    \"deviceModel\": \"ER-SF300\",\n    \"firmwareVersion\": \"5.37\",\n    \"build\": 330,\n    \"groupId\": \"0c3c9820-3ee4-e98d-0987-c7333e722f72\",\n    \"groupName\": \"Food Transportation INC\",\n    \"groupPath\": \"***Root/Food%20Transportation%20INC\",\n    \"initialConnection\": \"2023-02-01T00:00:00Z\",\n    \"status\": \"Spare\",\n    \"updatedDate\": \"2023-04-07T00:00:00Z\",\n    \"vehicleId\": \"59c75865-d776-04e9-7ae4-a489570efc68\",\n    \"vehicleName\": \"2010 XYC Terrain\",\n    \"vin\": \"2NKHLJ0X1LM377326\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57591132-b308-4215-8cb0-5b18ee297213",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devices",
+                    ":deviceIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceIdentifier",
+                      "description": "(Required) Can use serial number, IMEI, or device ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request Error\",\n  \"message\": \"The parameters given in the request are invalid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf29a9cf-3686-48c6-a4d3-32098017c8aa",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devices",
+                    ":deviceIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceIdentifier",
+                      "description": "(Required) Can use serial number, IMEI, or device ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "641ca421-75fd-4791-af25-21024b8eb860",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devices",
+                    ":deviceIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceIdentifier",
+                      "description": "(Required) Can use serial number, IMEI, or device ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "39c53d37-56d6-424a-a203-c2f559b1723b",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devices",
+                    ":deviceIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceIdentifier",
+                      "description": "(Required) Can use serial number, IMEI, or device ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found Error\",\n  \"message\": \"The requested resource doesn't exist.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4fe54dda-18b3-4a3e-a955-e4957af1c7ee",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devices",
+                    ":deviceIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceIdentifier",
+                      "description": "(Required) Can use serial number, IMEI, or device ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"Requested operation cannot be performed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22c07569-d7c8-4c74-b80f-76ab25a7fba6",
+          "name": "Retrieve Vehicle Assignment Changes",
+          "request": {
+            "name": "Retrieve Vehicle Assignment Changes",
+            "description": {
+              "content": "Retrieve vehicle assignment changes. This includes:\n- Moving devices between vehicles;\n- Adding devices to vehicles (in this case, a sample vehicle ID is used for previous vehicle data);\n- Removing devices from vehicles (in this case, a sample vehicle ID is used for target vehicle data).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "devices",
+                "vehicleAssignments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<string>",
+                  "description": "The start date and end date must be within 7 days of each other. If no date specified, returns data from the last 24 hours."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<string>",
+                  "description": "The start date and end date must be within 7 days of each other. If no date specified, returns data from the last 24 hours."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<string>",
+                  "description": "Number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<string>",
+                  "description": "Record to start with."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Name of the property to sort on."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Sort direction."
+                },
+                {
+                  "disabled": false,
+                  "key": "groupId",
+                  "value": "<string>",
+                  "description": "ID of the group for which to return data."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeSubgroups",
+                  "value": "<string>",
+                  "description": "If true, all subgroups under the specified group are included."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "020b2f43-0b02-40cb-962c-314b0c31a40e",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devices",
+                    "vehicleAssignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "1961-11-05T00:19:40.694Z"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "1961-11-05T00:19:40.694Z"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "27468291"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "serialNumber"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "urn:uuid:d74f88ac-c8ab-494e-67a6-7c17f0b6f970"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"deviceId\": \"880e60d8-fbed-217a-1720-6511d9f16361\",\n      \"serialNumber\": \"ER946234\",\n      \"deviceModel\": \"ER-SF300\",\n      \"groupId\": \"0c3c9820-3ee4-e98d-0987-c7333e722f72\",\n      \"groupName\": \"Food Transportation INC\",\n      \"groupPath\": \"***Root/Food%20Transportation%20INC\",\n      \"previousGroupId\": \"0c3c9820-3ee4-e98d-0987-c7333e722f72\",\n      \"previousGroupName\": \"International Travel INC\",\n      \"previousGroupPath\": \"***Root/International%20Travel%20INC\",\n      \"previousVehicleId\": \"750c5226-0f0a-402d-dcec-f83ccbb5373e\",\n      \"previousVehicleName\": \"Food Transportation INC\",\n      \"updatedDate\": \"2023-04-07T00:00:00Z\",\n      \"vehicleId\": \"59c75865-d776-04e9-7ae4-a489570efc68\",\n      \"vehicleName\": \"2010 XYC Terrain\"\n    },\n    {\n      \"deviceId\": \"880e60d8-fbed-217a-18A4-6511d9f16361\",\n      \"serialNumber\": \"ER946235\",\n      \"deviceModel\": \"ER-SF64\",\n      \"groupId\": \"0c3c9820-3ee4-e98d-AABC-c7333e722f72\",\n      \"groupName\": \"Food Transportation INC\",\n      \"groupPath\": \"***Root/Food%20Transportation%20INC\",\n      \"previousGroupId\": \"0c3c9820-3ee4-e98d-0987-c7333e722f72\",\n      \"previousGroupName\": \"International Travel INC\",\n      \"previousGroupPath\": \"***Root/International%20Travel%20INC\",\n      \"previousVehicleId\": \"750c5226-0f0a-13A1-dcec-f83ccbb5373e\",\n      \"previousVehicleName\": \"ThePreviousVehicle\",\n      \"updatedDate\": \"2023-04-07T00:00:00Z\",\n      \"vehicleId\": \"59c75865-d776-04e9-7ae4-a489570efc68\",\n      \"vehicleName\": \"TheCurrentVehicle\"\n    }\n  ],\n  \"metadata\": {\n    \"count\": 2,\n    \"limit\": 100,\n    \"offset\": 1\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "40d0cd98-0c71-43b4-b656-6e0493dca528",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devices",
+                    "vehicleAssignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "1961-11-05T00:19:40.694Z"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "1961-11-05T00:19:40.694Z"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "27468291"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "serialNumber"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "urn:uuid:d74f88ac-c8ab-494e-67a6-7c17f0b6f970"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request Error\",\n  \"message\": \"The endDate is required with the startDate. The endDate must be within 7 days after the startDate.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c0d70c0-ae2d-4d9a-b4b5-6398f3920f13",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devices",
+                    "vehicleAssignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "1961-11-05T00:19:40.694Z"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "1961-11-05T00:19:40.694Z"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "27468291"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "serialNumber"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "urn:uuid:d74f88ac-c8ab-494e-67a6-7c17f0b6f970"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d2ac24cc-c309-4791-b901-d904790aea49",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devices",
+                    "vehicleAssignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "1961-11-05T00:19:40.694Z"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "1961-11-05T00:19:40.694Z"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "27468291"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "serialNumber"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "urn:uuid:d74f88ac-c8ab-494e-67a6-7c17f0b6f970"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5a5bade6-797c-4c40-bcad-dda51add567c",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devices",
+                    "vehicleAssignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "1961-11-05T00:19:40.694Z"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "1961-11-05T00:19:40.694Z"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "27468291"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "serialNumber"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "urn:uuid:d74f88ac-c8ab-494e-67a6-7c17f0b6f970"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found Error\",\n  \"message\": \"The requested resource doesn't exist.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ca21cee-4e2f-4b02-b00e-efc9ea13aeb5",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devices",
+                    "vehicleAssignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "1961-11-05T00:19:40.694Z"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "1961-11-05T00:19:40.694Z"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "27468291"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "serialNumber"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "urn:uuid:d74f88ac-c8ab-494e-67a6-7c17f0b6f970"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"Requested operation cannot be performed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lytx.com/consent-management",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d70576bd-2c20-4d36-8f04-ddcddf892497",
+    "name": "Lytx..Management.Api Consent Devices (DriveCam) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for retrieving and updating user consent status, requiring authentication.\n",
+      "type": "text/plain"
+    }
+  }
+}

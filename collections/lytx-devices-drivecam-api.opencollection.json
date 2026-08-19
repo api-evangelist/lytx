@@ -1,0 +1,159 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lytx..Management.Api Consent Devices (DriveCam) API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Devices (DriveCam)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve List of Devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/devices",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Record to start with."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "The device's service status."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Name of the property to sort on."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "query",
+                "description": "ID of the group for which to return data."
+              },
+              {
+                "name": "includeSubgroups",
+                "value": "",
+                "type": "query",
+                "description": "If true, all subgroups under the specified group are included."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of devices."
+        },
+        {
+          "info": {
+            "name": "Retrieve Specific Device",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/devices/:deviceIdentifier",
+            "params": [
+              {
+                "name": "deviceIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "Can use serial number, IMEI, or device ID."
+              }
+            ]
+          },
+          "docs": "Retrieve a specific device."
+        },
+        {
+          "info": {
+            "name": "Retrieve Vehicle Assignment Changes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/devices/vehicleAssignments",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "The start date and end date must be within 7 days of each other. If no date specified, returns data from the last 24 hours."
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "The start date and end date must be within 7 days of each other. If no date specified, returns data from the last 24 hours."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Record to start with."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Name of the property to sort on."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "query",
+                "description": "ID of the group for which to return data."
+              },
+              {
+                "name": "includeSubgroups",
+                "value": "",
+                "type": "query",
+                "description": "If true, all subgroups under the specified group are included."
+              }
+            ]
+          },
+          "docs": "Retrieve vehicle assignment changes. This includes:\n- Moving devices between vehicles;\n- Adding devices to vehicles (in this case, a sample vehicle ID is used for previous vehicle data);\n- Removing devices from vehicles (in this case, a sample vehicle ID is used for target vehicle data)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

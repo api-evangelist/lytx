@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lytx..Management.Api Consent Driver ID (DriveCam) API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Driver ID (DriveCam)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Return All Trips Specified by Query Terms",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lytx.com/consent-management/trips",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return All Trips Specified by Query Terms"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

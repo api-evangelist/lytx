@@ -1,0 +1,255 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lytx..Management.Api Consent Video (DriveCam) API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Video (DriveCam)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Return all Vehicles for the Specified Query Terms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/vehicles",
+            "params": [
+              {
+                "name": "GroupId",
+                "value": "",
+                "type": "query",
+                "description": "An identifier to filter by a group."
+              },
+              {
+                "name": "PageNumber",
+                "value": "",
+                "type": "query",
+                "description": "The page number of the list of vehicles. Default value is 1."
+              },
+              {
+                "name": "PageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of vehicles to return per page. Default value is 50."
+              },
+              {
+                "name": "VehicleName",
+                "value": "",
+                "type": "query",
+                "description": "An identifier to filter by a vehicle's name."
+              }
+            ]
+          },
+          "docs": "Return all Vehicles for the Specified Query Terms"
+        },
+        {
+          "info": {
+            "name": "Return Timelines That Represent When Video is Available for Specified Vehicle",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/vehicles/:vehicleId/timeline",
+            "params": [
+              {
+                "name": "vehicleId",
+                "value": "",
+                "type": "path",
+                "description": "The primary identifier of the vehicle."
+              }
+            ]
+          },
+          "docs": "Return Timelines That Represent When Video is Available for Specified Vehicle"
+        },
+        {
+          "info": {
+            "name": "Return Vehicle Specified by ID or Device Serial Number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/vehicles/:vehicleIdentifier",
+            "params": [
+              {
+                "name": "vehicleIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "The primary identifier of the vehicle or the device serial number associated to the vehicle."
+              }
+            ]
+          },
+          "docs": "Return Vehicle Specified by ID or Device Serial Number"
+        },
+        {
+          "info": {
+            "name": "Return All Events Specified by Query Terms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/events",
+            "params": [
+              {
+                "name": "GroupId",
+                "value": "",
+                "type": "query",
+                "description": "Group identifier associated to event."
+              },
+              {
+                "name": "StartDate",
+                "value": "",
+                "type": "query",
+                "description": "Events that occurred after this date. (Inclusive)."
+              },
+              {
+                "name": "EndDate",
+                "value": "",
+                "type": "query",
+                "description": "Events that occurred before this date. (Inclusive)."
+              },
+              {
+                "name": "PageNumber",
+                "value": "",
+                "type": "query",
+                "description": "The page number of the list of events. Default value is 1."
+              },
+              {
+                "name": "PageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of events to return per page. Default value is 100."
+              },
+              {
+                "name": "LabelSearch",
+                "value": "",
+                "type": "query",
+                "description": "Label associated to event."
+              },
+              {
+                "name": "VehicleName",
+                "value": "",
+                "type": "query",
+                "description": "Vehicle name associated to event."
+              },
+              {
+                "name": "IncludeVideoEvents",
+                "value": "",
+                "type": "query",
+                "description": "Include events with video. Default value is true."
+              },
+              {
+                "name": "IncludeNoVideoEvents",
+                "value": "",
+                "type": "query",
+                "description": "Include events with no video. Default value is true."
+              }
+            ]
+          },
+          "docs": "Return All Events Specified by Query Terms"
+        },
+        {
+          "info": {
+            "name": "Creates New Event and Return ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lytx.com/consent-management/events",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates New Event and Return ID"
+        },
+        {
+          "info": {
+            "name": "Return Media Resource URL for Specified Event's View",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/events/:eventId/views/:deviceViewId/medias/:mediaType",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "Primary event identifier."
+              },
+              {
+                "name": "deviceViewId",
+                "value": "",
+                "type": "path",
+                "description": "Primary identifier of a device's view."
+              },
+              {
+                "name": "mediaType",
+                "value": "",
+                "type": "path",
+                "description": "Media file type. Supported values: \"mp4\" or \"dce\"."
+              }
+            ]
+          },
+          "docs": "Return Media Resource URL for Specified Event's View"
+        },
+        {
+          "info": {
+            "name": "Return Event Specified by its ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/events/:eventId",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "The primary event identifier."
+              }
+            ]
+          },
+          "docs": "Return Event Specified by its ID"
+        },
+        {
+          "info": {
+            "name": "Retrieve Image (snapshot) from a Device's View at the Specified Time",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/deviceViews/:deviceViewId/snapshot",
+            "params": [
+              {
+                "name": "deviceViewId",
+                "value": "",
+                "type": "path",
+                "description": "The primary device view identifier."
+              },
+              {
+                "name": "time",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve Image (snapshot) from a Device's View at the Specified Time"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

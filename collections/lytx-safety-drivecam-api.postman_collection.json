@@ -1,0 +1,4239 @@
+{
+  "item": [
+    {
+      "id": "d5686d14-6db4-4c4b-badb-b8b0692869c8",
+      "name": "Safety (DriveCam)",
+      "description": {
+        "content": "Legacy API to retrieve vehicles events data. Uses obsolete X-APIKey authentication.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b02368f0-8b84-402e-8913-b6e7df0f2754",
+          "name": "Return Accessible Events IDs",
+          "request": {
+            "name": "Return Accessible Events IDs",
+            "description": {},
+            "url": {
+              "path": [
+                "safety",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<string>",
+                  "description": "Start of a time range supplied in dateOption parameter. If not provided the latest events will be retrieved. Format must be compliant with ISO8601 and expressed in UTC format. (Example: 2021-03-16T16:19:58.80Z)."
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<string>",
+                  "description": "End of a time range supplied in dateOption parameter. If not provided the latest events will be retrieved. Format must be compliant with ISO8601 and expressed in UTC format. (Example: 2021-03-16T16:19:58.80Z)."
+                },
+                {
+                  "disabled": false,
+                  "key": "dateOption",
+                  "value": "lastUpdatedDate",
+                  "description": "Date range option (lastUpdatedDate, recordDate). By default service will return the latest events."
+                },
+                {
+                  "disabled": false,
+                  "key": "groupId",
+                  "value": "<string>",
+                  "description": "Id of the group of the events of interest. If the group does not exist or is not visible to the user due to security then no results will be returned. If not supplied, then events in all groups accessible to the group of encompassed access key will be returned (GUID)."
+                },
+                {
+                  "disabled": false,
+                  "key": "triggers",
+                  "value": "<integer>",
+                  "description": "Ids of triggers of events to be filtered."
+                },
+                {
+                  "disabled": false,
+                  "key": "triggers",
+                  "value": "<integer>",
+                  "description": "Ids of triggers of events to be filtered."
+                },
+                {
+                  "disabled": false,
+                  "key": "statuses",
+                  "value": "<integer>",
+                  "description": "Ids of statuses of events to be filtered."
+                },
+                {
+                  "disabled": false,
+                  "key": "statuses",
+                  "value": "<integer>",
+                  "description": "Ids of statuses of events to be filtered."
+                },
+                {
+                  "disabled": false,
+                  "key": "behaviors",
+                  "value": "<integer>",
+                  "description": "Ids of behaviors of events to be filtered."
+                },
+                {
+                  "disabled": false,
+                  "key": "behaviors",
+                  "value": "<integer>",
+                  "description": "Ids of behaviors of events to be filtered."
+                },
+                {
+                  "disabled": false,
+                  "key": "driverId",
+                  "value": "<string>",
+                  "description": "Id of a driver associated to the event (GUID)."
+                },
+                {
+                  "disabled": false,
+                  "key": "vehicleId",
+                  "value": "<string>",
+                  "description": "Id of a vehicle associated to the event (GUID)."
+                },
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<string>",
+                  "description": "Id of a device associated to the event."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDirection",
+                  "value": "desc",
+                  "description": "Type of sorting direction (asc or desc). By default the service will return items in descending order."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "lastUpdatedDate",
+                  "description": "A value to sort by (lastUpdatedDate, recordDate). By deafult the service will return items sorted by last updated date."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeSubgroups",
+                  "value": "true",
+                  "description": "Indicates whether results should include data for all subgroups of the group specified. Default to true."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "1000",
+                  "description": "Indicates count of items to retrieve. By default the service will return 1000 items. Range: [1, 1000]"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Number of the page of event records to be returned.\n            If not provided, first page of records will be returned."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d0471300-e5a9-4772-98ac-bcaebbe9ecb0",
+              "name": "Events retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateOption",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "driverId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicleId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCount\": 589,\n  \"eventsIds\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d64e16e3-f252-4a9a-976f-8021fb5318f3",
+              "name": "No events were found that match the specified selection criteria.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateOption",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "driverId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicleId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ca8c5d87-d294-4993-b5b7-99e30fa3791e",
+              "name": "The parameters given in the request are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateOption",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "driverId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicleId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "33227c1a-de0b-4d1a-ade4-7b2974fda810",
+              "name": "Unauthorized due to providing an invalid access key, or invalid pod.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateOption",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "driverId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicleId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "46ebea9c-edf5-42a7-880d-804878d2598b",
+              "name": "Access is forbidden. The given API access-key does not have the required permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateOption",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "driverId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicleId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "68e364d3-72a8-4e6f-a01e-09af5a3ce7e6",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateOption",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "driverId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicleId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5ccdedea-9f7c-4320-871f-08b7716f4547",
+              "name": "Database is unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateOption",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "driverId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicleId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "97e439d8-789f-4bde-9f55-b305619a4d01",
+          "name": "Return Specified Event",
+          "request": {
+            "name": "Return Specified Event",
+            "description": {},
+            "url": {
+              "path": [
+                "safety",
+                "events",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeSubgroups",
+                  "value": "true",
+                  "description": "Indicates whether results should include data for all subgroups of the group specified. Defaults to true"
+                },
+                {
+                  "disabled": false,
+                  "key": "idOption",
+                  "value": "id",
+                  "description": "Indicates whether event should be returned by ID of event (id) or customer id (cid). By default the service will search by event id."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID or Customer specific ID of the event of interest. The parameter depends on idOption parameter"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "579ff281-1cc6-438b-996a-757aadd4d2bc",
+              "name": "Event retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeSubgroups",
+                      "value": "true"
+                    },
+                    {
+                      "key": "idOption",
+                      "value": "id"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID or Customer specific ID of the event of interest. The parameter depends on idOption parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"customerEventId\": \"string\",\n  \"eventTriggerId\": 1498,\n  \"eventTriggerSubTypeId\": 4129,\n  \"eventStatusId\": 8799,\n  \"recordDateUTC\": \"1957-10-13T16:12:25.699Z\",\n  \"recordDateTZ\": \"string\",\n  \"recordDateUTCOffset\": 8561,\n  \"score\": 4728,\n  \"erSerialNumber\": \"string\",\n  \"groupId\": \"string\",\n  \"creationDate\": \"1992-10-13T07:13:30.433Z\",\n  \"objectRevision\": 3839,\n  \"downloadedDate\": \"1959-10-18T07:59:37.503Z\",\n  \"reviewedDate\": \"1983-08-19T06:31:30.270Z\",\n  \"overDue\": 3158.937212307793,\n  \"vehicleId\": \"string\",\n  \"forwardMax\": 330.3574822530697,\n  \"lateralMax\": 3629.812392716215,\n  \"forwardThreshold\": 7779.537529289601,\n  \"lateralThreshold\": 8957.708688581142,\n  \"shockThreshold\": 521.8656450064485,\n  \"speed\": 9250.843717645188,\n  \"latitude\": 1085.3525765156403,\n  \"longitude\": 2023.9767923535035,\n  \"heading\": 9433.171627577774,\n  \"driverId\": \"string\",\n  \"coachId\": \"string\",\n  \"coachedDate\": \"1958-01-20T22:08:36.412Z\",\n  \"notes\": [\n    {\n      \"id\": \"str\",\n      \"body\": \"string\",\n      \"creationDate\": \"2014-12-22T15:04:47.969Z\",\n      \"authorUserId\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"body\": \"string\",\n      \"creationDate\": \"1987-08-03T06:15:29.860Z\",\n      \"authorUserId\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\"\n    }\n  ],\n  \"eventNotes\": [\n    {\n      \"id\": \"string\",\n      \"body\": \"string\",\n      \"creationDate\": \"2012-08-29T17:12:41.714Z\",\n      \"authorUserId\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"body\": \"string\",\n      \"creationDate\": \"2002-04-30T13:30:32.105Z\",\n      \"authorUserId\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\"\n    }\n  ],\n  \"coachingSessionNotes\": [\n    {\n      \"id\": \"string\",\n      \"body\": \"str\",\n      \"creationDate\": \"1990-04-03T18:24:59.451Z\",\n      \"authorUserId\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"body\": \"string\",\n      \"creationDate\": \"1959-03-31T01:35:27.412Z\",\n      \"authorUserId\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"s\"\n    }\n  ],\n  \"reviewNotes\": [\n    {\n      \"id\": \"string\",\n      \"body\": \"string\",\n      \"creationDate\": \"1986-05-26T22:31:26.975Z\",\n      \"authorUserId\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"body\": \"string\",\n      \"creationDate\": \"1999-01-25T20:10:02.249Z\",\n      \"authorUserId\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\"\n    }\n  ],\n  \"behaviors\": [\n    {\n      \"id\": 7680,\n      \"name\": \"string\",\n      \"creationDate\": \"1964-12-18T04:22:20.612Z\",\n      \"revisionDate\": \"1988-12-30T20:11:07.678Z\"\n    },\n    {\n      \"id\": 6384,\n      \"name\": \"s\",\n      \"creationDate\": \"2006-04-30T11:14:54.353Z\",\n      \"revisionDate\": \"1993-11-19T21:02:01.594Z\"\n    }\n  ],\n  \"dynamicRisks\": [\n    {\n      \"id\": 5085,\n      \"name\": \"string\",\n      \"creationDate\": \"2013-02-14T18:44:53.739Z\"\n    },\n    {\n      \"id\": 6661,\n      \"name\": \"string\",\n      \"creationDate\": \"1991-10-14T21:03:53.079Z\"\n    }\n  ],\n  \"revisionDate\": \"1988-07-21T21:32:29.829Z\",\n  \"coachingOverdueDate\": \"1956-01-28T18:46:34.464Z\",\n  \"coachableDate\": \"1990-02-15T04:19:59.107Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e54f241c-f143-4c92-810b-05ca19742846",
+              "name": "The parameters given in the request are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeSubgroups",
+                      "value": "true"
+                    },
+                    {
+                      "key": "idOption",
+                      "value": "id"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID or Customer specific ID of the event of interest. The parameter depends on idOption parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f1743dc6-3745-4404-ba1d-195ea18a7d01",
+              "name": "Unauthorized due to providing an invalid access key, or invalid pod.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeSubgroups",
+                      "value": "true"
+                    },
+                    {
+                      "key": "idOption",
+                      "value": "id"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID or Customer specific ID of the event of interest. The parameter depends on idOption parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6e1b38b2-c3ba-47d3-a20f-9755abc3067a",
+              "name": "Access is forbidden. The given API access-key does not have the required permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeSubgroups",
+                      "value": "true"
+                    },
+                    {
+                      "key": "idOption",
+                      "value": "id"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID or Customer specific ID of the event of interest. The parameter depends on idOption parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "de556424-a31e-4a98-a977-c40a0ec03350",
+              "name": "Event does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeSubgroups",
+                      "value": "true"
+                    },
+                    {
+                      "key": "idOption",
+                      "value": "id"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID or Customer specific ID of the event of interest. The parameter depends on idOption parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2ead91b3-488d-49ef-8916-fc2ea23410b7",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeSubgroups",
+                      "value": "true"
+                    },
+                    {
+                      "key": "idOption",
+                      "value": "id"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID or Customer specific ID of the event of interest. The parameter depends on idOption parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "119e5e6b-7141-477f-94dc-e43f9ef3bf9b",
+              "name": "Database is unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeSubgroups",
+                      "value": "true"
+                    },
+                    {
+                      "key": "idOption",
+                      "value": "id"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID or Customer specific ID of the event of interest. The parameter depends on idOption parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "12556dfb-2d76-4b55-b463-bc129258e444",
+          "name": "Return Event File for Specified Event in Specified File Format",
+          "request": {
+            "name": "Return Event File for Specified Event in Specified File Format",
+            "description": {},
+            "url": {
+              "path": [
+                "safety",
+                "events",
+                ":eventId",
+                "file"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "(Required) Format of the wanted file (dce or mp4)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "eventId",
+                  "description": "(Required) Id of the event of interest."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8f51d1dd-5857-471f-a270-38c398f12916",
+              "name": "File retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    ":eventId",
+                    "file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventId",
+                      "description": "(Required) Id of the event of interest."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "49b546ea-8a1f-481d-90bf-1802572e51d2",
+              "name": "The parameters given in the request are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    ":eventId",
+                    "file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventId",
+                      "description": "(Required) Id of the event of interest."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "394d8af2-c1d7-4952-9bd8-2781fe7cdcd6",
+              "name": "Unauthorized due to providing an invalid access key, or invalid pod.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    ":eventId",
+                    "file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventId",
+                      "description": "(Required) Id of the event of interest."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7db8068b-2052-4936-9c91-4cecfec7fa04",
+              "name": "Access is forbidden. The given API access-key does not have the required permissions. In order to enable video file downloads, contact lytx team.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    ":eventId",
+                    "file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventId",
+                      "description": "(Required) Id of the event of interest."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b3902e30-2115-4d72-bb63-998f8c3244dd",
+              "name": "File does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    ":eventId",
+                    "file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventId",
+                      "description": "(Required) Id of the event of interest."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c68dc4ef-601e-4b97-987f-225f76e3ad46",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    ":eventId",
+                    "file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventId",
+                      "description": "(Required) Id of the event of interest."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2405464d-b0d8-482f-9049-393d2db0663d",
+              "name": "Database is unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    ":eventId",
+                    "file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventId",
+                      "description": "(Required) Id of the event of interest."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b7f37402-5bab-4771-99c7-5ccc7cba8259",
+          "name": "Return List of Possible Event Statuses",
+          "request": {
+            "name": "Return List of Possible Event Statuses",
+            "description": {},
+            "url": {
+              "path": [
+                "safety",
+                "events",
+                "statuses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8a02d399-5e7d-42b5-9b1e-d4c2202ca6cf",
+              "name": "Event statuses retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "statuses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1561,\n    \"name\": \"string\",\n    \"creationDate\": \"1960-08-03T11:15:57.433Z\",\n    \"revisionDate\": \"1993-04-14T10:02:57.676Z\"\n  },\n  {\n    \"id\": 1458,\n    \"name\": \"string\",\n    \"creationDate\": \"2020-02-16T16:29:20.388Z\",\n    \"revisionDate\": \"1956-12-13T17:43:10.559Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22df9fd9-bfa5-461d-af26-71d776afc2fc",
+              "name": "No event statuses found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "statuses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "51abb8ea-1c23-4c17-8012-c1143213c4c4",
+              "name": "Unauthorized due to providing an invalid access key, or invalid pod.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "statuses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f5f55007-a268-46bc-a465-ec2280bcdb7a",
+              "name": "Access is forbidden. The given API access-key does not have the required permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "statuses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "59a05e49-598d-4023-8f6f-1f64b0b1fed5",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "statuses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "69de5a11-9a41-4bd2-bc3e-46d8b8b446a9",
+              "name": "Database is unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "statuses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d1db026c-af15-427b-9544-0ebf1028b6ca",
+          "name": "Return List of Possible Event Triggers",
+          "request": {
+            "name": "Return List of Possible Event Triggers",
+            "description": {},
+            "url": {
+              "path": [
+                "safety",
+                "events",
+                "triggers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e99a5f18-8755-439e-9d5b-e98d10a29c48",
+              "name": "Event triggers retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "triggers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 8865,\n    \"name\": \"string\",\n    \"creationDate\": \"1950-03-25T08:05:33.598Z\",\n    \"revisionDate\": \"2014-11-28T09:40:42.493Z\"\n  },\n  {\n    \"id\": 9232,\n    \"name\": \"string\",\n    \"creationDate\": \"1989-12-15T03:20:37.203Z\",\n    \"revisionDate\": \"2003-03-25T15:02:09.417Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae5158d4-36f4-4cf8-9334-50d23c5eb0cd",
+              "name": "No event triggers found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "triggers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cc777e72-b8bd-477d-8de6-50d0d8e47cae",
+              "name": "Unauthorized due to providing an invalid access key, or invalid pod.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "triggers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "34ffe011-e7f1-4fb7-a979-c52e9ec1fbf6",
+              "name": "Access is forbidden. The given API access-key does not have the required permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "triggers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ffe611c6-ec32-4f92-a55e-253a26384a20",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "triggers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "09c219ef-6b82-4aad-a27d-5718d71243e5",
+              "name": "Database is unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "triggers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d68ecae8-5a10-47ed-bdf0-aa1b5f82c2fb",
+          "name": "Return List of Possible Event Trigger Subtypes",
+          "request": {
+            "name": "Return List of Possible Event Trigger Subtypes",
+            "description": {},
+            "url": {
+              "path": [
+                "safety",
+                "events",
+                "triggersubtypes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e211980e-4ae0-4404-9abf-5c3f0e1c609a",
+              "name": "Event trigger subtype retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "triggersubtypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 4822,\n    \"name\": \"string\",\n    \"creationDate\": \"1983-12-29T05:44:08.154Z\",\n    \"revisionDate\": \"1972-11-10T19:45:37.758Z\"\n  },\n  {\n    \"id\": 6675,\n    \"name\": \"string\",\n    \"creationDate\": \"1985-11-17T21:37:24.019Z\",\n    \"revisionDate\": \"2017-05-14T12:54:32.803Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d37ffc7-9969-4be8-8431-c202ce69447f",
+              "name": "No event trigger subtype found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "triggersubtypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "75d94d7d-5926-465d-8b11-aa2cb4d8fd62",
+              "name": "Unauthorized due to providing an invalid access key, or invalid pod.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "triggersubtypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c523301d-142d-4635-9214-25169e6d35a5",
+              "name": "Access is forbidden. The given API access-key does not have the required permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "triggersubtypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6ee3b3a2-e0ff-4da6-8db6-438cf12c9d61",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "triggersubtypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cdd28cd0-ca8e-4a84-a133-402afcf1d77d",
+              "name": "Database is unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "triggersubtypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2244d4af-4849-44c8-81ba-8654f2e2af2e",
+          "name": "Return List of Possible Event Behaviors",
+          "request": {
+            "name": "Return List of Possible Event Behaviors",
+            "description": {},
+            "url": {
+              "path": [
+                "safety",
+                "events",
+                "behaviors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "94658ac7-4026-4384-a8ff-03af19a89090",
+              "name": "Event behaviors retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "behaviors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 6249,\n    \"name\": \"string\",\n    \"creationDate\": \"2011-01-22T11:25:03.338Z\",\n    \"revisionDate\": \"1947-06-14T16:37:56.227Z\"\n  },\n  {\n    \"id\": 7094,\n    \"name\": \"string\",\n    \"creationDate\": \"1975-08-03T09:40:02.407Z\",\n    \"revisionDate\": \"1960-09-30T09:05:16.543Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "defb3904-f4f4-414e-bfbe-51fbef037068",
+              "name": "No event behaviors found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "behaviors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3b3419a8-6ba5-43e0-8d44-4dbb9eb241d6",
+              "name": "Unauthorized due to providing an invalid access key, or invalid pod.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "behaviors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c81a758d-8da4-4d81-804a-3e4f16d495cc",
+              "name": "Access is forbidden. The given API access-key does not have the required permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "behaviors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "603419bd-0be8-4c8d-bb21-ea4430403333",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "behaviors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7b718627-f75e-4cbf-b3ef-b97aa1923ba4",
+              "name": "Database is unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "behaviors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e39e6ebf-635d-4a95-a215-cfd02d7ed857",
+          "name": "Return List of Possible Dynamic Risks",
+          "request": {
+            "name": "Return List of Possible Dynamic Risks",
+            "description": {},
+            "url": {
+              "path": [
+                "safety",
+                "events",
+                "dynamicRisks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "06d3ee88-c020-4909-afeb-6eca4a871ffb",
+              "name": "Dynamic risks retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "dynamicRisks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 2463,\n    \"name\": \"string\",\n    \"creationDate\": \"1994-08-26T16:16:03.236Z\"\n  },\n  {\n    \"id\": 4426,\n    \"name\": \"string\",\n    \"creationDate\": \"2022-09-13T16:37:22.399Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e22a638e-6694-4c7b-bc29-95d8d44c62d9",
+              "name": "No dynamic risks found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "dynamicRisks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "53fa3e3c-a472-4450-9e21-4455036090b4",
+              "name": "Unauthorized due to providing an invalid access key, or invalid pod.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "dynamicRisks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4a42eb3b-bf33-4aeb-8473-d6b579cce17e",
+              "name": "Access is forbidden. The given API access-key does not have the required permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "dynamicRisks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "29b1b214-5e2a-405e-b3d7-71fe73d8d111",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "dynamicRisks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "08c51116-839f-44cd-b72f-75ad3be05cfe",
+              "name": "Database is unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "events",
+                    "dynamicRisks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "931f9c47-8f0f-45c1-9748-add3faaecbe1",
+          "name": "Return Accessible Events with Metadata",
+          "request": {
+            "name": "Return Accessible Events with Metadata",
+            "description": {},
+            "url": {
+              "path": [
+                "safety",
+                "eventsWithMetadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<string>",
+                  "description": "Start of a time range supplied in dateOption parameter. If not provided the latest events will be retrieved. Format must be compliant with ISO8601 and expressed in UTC format. (Example: 2021-03-16T16:19:58.80Z)."
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<string>",
+                  "description": "End of a time range supplied in dateOption parameter. If not provided the latest events will be retrieved. Format must be compliant with ISO8601 and expressed in UTC format. (Example: 2021-03-16T16:19:58.80Z)."
+                },
+                {
+                  "disabled": false,
+                  "key": "dateOption",
+                  "value": "lastUpdatedDate",
+                  "description": "Date range option (lastUpdatedDate, recordDate). By default service will return the latest events."
+                },
+                {
+                  "disabled": false,
+                  "key": "groupId",
+                  "value": "<string>",
+                  "description": "Id of the group of the events of interest. If the group does not exist or is not visible to the user due to security then no results will be returned. If not supplied, then events in all groups accessible to the group of encompassed access key will be returned (GUID)."
+                },
+                {
+                  "disabled": false,
+                  "key": "triggers",
+                  "value": "<integer>",
+                  "description": "Ids of triggers of events to be filtered."
+                },
+                {
+                  "disabled": false,
+                  "key": "triggers",
+                  "value": "<integer>",
+                  "description": "Ids of triggers of events to be filtered."
+                },
+                {
+                  "disabled": false,
+                  "key": "statuses",
+                  "value": "<integer>",
+                  "description": "Ids of statuses of events to be filtered."
+                },
+                {
+                  "disabled": false,
+                  "key": "statuses",
+                  "value": "<integer>",
+                  "description": "Ids of statuses of events to be filtered."
+                },
+                {
+                  "disabled": false,
+                  "key": "behaviors",
+                  "value": "<integer>",
+                  "description": "Ids of behaviors of events to be filtered."
+                },
+                {
+                  "disabled": false,
+                  "key": "behaviors",
+                  "value": "<integer>",
+                  "description": "Ids of behaviors of events to be filtered."
+                },
+                {
+                  "disabled": false,
+                  "key": "driverId",
+                  "value": "<string>",
+                  "description": "Id of a driver associated to the event (GUID)."
+                },
+                {
+                  "disabled": false,
+                  "key": "vehicleId",
+                  "value": "<string>",
+                  "description": "Id of a vehicle associated to the event (GUID)."
+                },
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<string>",
+                  "description": "Id of a device associated to the event."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDirection",
+                  "value": "desc",
+                  "description": "Type of sorting direction (asc or desc). By default the service will return items in descending order."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "lastUpdatedDate",
+                  "description": "A value to sort by (lastUpdatedDate, recordDate). By deafult the service will return items sorted by last updated date."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeSubgroups",
+                  "value": "true",
+                  "description": "Indicates whether results should include data for all subgroups of the group specified. Default to true."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "1000",
+                  "description": "Indicates count of items to retrieve. By default the service will return 1000 items. Range: [1, 1000]"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Number of the page of event records to be returned.\r\n            If not provided, first page of records will be returned."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c7c04070-02c3-4f12-9476-cb767ba67577",
+              "name": "Events retrieved with metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "eventsWithMetadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateOption",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "driverId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicleId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"customerEventId\": \"string\",\n    \"eventTriggerId\": 3274,\n    \"eventTriggerSubTypeId\": 9920,\n    \"eventStatusId\": 2712,\n    \"recordDateUTC\": \"2016-05-22T05:56:41.553Z\",\n    \"recordDateTZ\": \"string\",\n    \"recordDateUTCOffset\": 8717,\n    \"score\": 5503,\n    \"erSerialNumber\": \"string\",\n    \"groupId\": \"string\",\n    \"creationDate\": \"1959-07-11T04:20:31.403Z\",\n    \"objectRevision\": 1753,\n    \"downloadedDate\": \"1946-08-15T09:39:19.966Z\",\n    \"reviewedDate\": \"1998-08-29T08:40:52.515Z\",\n    \"overDue\": 5608.028078297619,\n    \"vehicleId\": \"string\",\n    \"forwardMax\": 9425.077945392799,\n    \"lateralMax\": 2794.9366748033044,\n    \"forwardThreshold\": 7949.6169632368765,\n    \"lateralThreshold\": 2681.787595770937,\n    \"shockThreshold\": 8906.921346254798,\n    \"speed\": 2591.439860521416,\n    \"latitude\": 5683.636476620042,\n    \"longitude\": 4808.601465703088,\n    \"heading\": 9258.329509631407,\n    \"driverId\": \"string\",\n    \"coachId\": \"string\",\n    \"coachedDate\": \"1986-07-28T17:01:18.262Z\",\n    \"notes\": [\n      {\n        \"id\": \"string\",\n        \"body\": \"string\",\n        \"creationDate\": \"1974-12-17T23:33:42.566Z\",\n        \"authorUserId\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"body\": \"string\",\n        \"creationDate\": \"1994-11-05T23:38:53.474Z\",\n        \"authorUserId\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\"\n      }\n    ],\n    \"eventNotes\": [\n      {\n        \"id\": \"string\",\n        \"body\": \"string\",\n        \"creationDate\": \"2016-10-15T12:49:58.757Z\",\n        \"authorUserId\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"body\": \"string\",\n        \"creationDate\": \"1995-12-18T13:23:34.376Z\",\n        \"authorUserId\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\"\n      }\n    ],\n    \"coachingSessionNotes\": [\n      {\n        \"id\": \"string\",\n        \"body\": \"string\",\n        \"creationDate\": \"1967-09-02T21:55:37.002Z\",\n        \"authorUserId\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"body\": \"string\",\n        \"creationDate\": \"2024-10-22T01:33:35.084Z\",\n        \"authorUserId\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"str\"\n      }\n    ],\n    \"reviewNotes\": [\n      {\n        \"id\": \"st\",\n        \"body\": \"string\",\n        \"creationDate\": \"1958-06-07T06:19:09.940Z\",\n        \"authorUserId\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"body\": \"string\",\n        \"creationDate\": \"2002-05-26T08:19:45.137Z\",\n        \"authorUserId\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\"\n      }\n    ],\n    \"behaviors\": [\n      {\n        \"id\": 1501,\n        \"name\": \"string\",\n        \"creationDate\": \"2009-01-29T06:14:01.061Z\",\n        \"revisionDate\": \"2023-06-05T18:26:54.064Z\"\n      },\n      {\n        \"id\": 3952,\n        \"name\": \"string\",\n        \"creationDate\": \"1957-09-06T22:09:40.867Z\",\n        \"revisionDate\": \"2013-05-18T13:47:30.132Z\"\n      }\n    ],\n    \"dynamicRisks\": [\n      {\n        \"id\": 1637,\n        \"name\": \"string\",\n        \"creationDate\": \"1998-06-22T03:32:50.984Z\"\n      },\n      {\n        \"id\": 1641,\n        \"name\": \"string\",\n        \"creationDate\": \"1981-12-26T13:43:44.852Z\"\n      }\n    ],\n    \"revisionDate\": \"1966-10-22T06:40:46.117Z\",\n    \"coachingOverdueDate\": \"1949-07-29T12:21:57.822Z\",\n    \"coachableDate\": \"1964-11-11T05:41:08.245Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"customerEventId\": \"string\",\n    \"eventTriggerId\": 5604,\n    \"eventTriggerSubTypeId\": 96,\n    \"eventStatusId\": 6475,\n    \"recordDateUTC\": \"2019-08-26T00:13:27.836Z\",\n    \"recordDateTZ\": \"string\",\n    \"recordDateUTCOffset\": 8337,\n    \"score\": 9038,\n    \"erSerialNumber\": \"string\",\n    \"groupId\": \"string\",\n    \"creationDate\": \"1976-03-28T14:02:23.300Z\",\n    \"objectRevision\": 1897,\n    \"downloadedDate\": \"1946-09-20T11:50:00.438Z\",\n    \"reviewedDate\": \"1971-12-24T02:46:11.520Z\",\n    \"overDue\": 2552.0971656666547,\n    \"vehicleId\": \"string\",\n    \"forwardMax\": 6045.704103606744,\n    \"lateralMax\": 4257.861499183246,\n    \"forwardThreshold\": 5548.2335267383105,\n    \"lateralThreshold\": 7311.508204842921,\n    \"shockThreshold\": 6589.9380445730185,\n    \"speed\": 7697.0461447396265,\n    \"latitude\": 3517.5773595947026,\n    \"longitude\": 2233.9573954217694,\n    \"heading\": 6598.162971673653,\n    \"driverId\": \"string\",\n    \"coachId\": \"string\",\n    \"coachedDate\": \"2010-07-09T12:58:32.637Z\",\n    \"notes\": [\n      {\n        \"id\": \"string\",\n        \"body\": \"string\",\n        \"creationDate\": \"1998-10-22T13:49:40.772Z\",\n        \"authorUserId\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"body\": \"string\",\n        \"creationDate\": \"2002-06-23T17:46:41.000Z\",\n        \"authorUserId\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\"\n      }\n    ],\n    \"eventNotes\": [\n      {\n        \"id\": \"string\",\n        \"body\": \"string\",\n        \"creationDate\": \"1970-10-18T07:11:05.331Z\",\n        \"authorUserId\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"body\": \"string\",\n        \"creationDate\": \"2009-11-21T11:02:33.359Z\",\n        \"authorUserId\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\"\n      }\n    ],\n    \"coachingSessionNotes\": [\n      {\n        \"id\": \"string\",\n        \"body\": \"string\",\n        \"creationDate\": \"1972-05-06T01:43:42.295Z\",\n        \"authorUserId\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"body\": \"string\",\n        \"creationDate\": \"2021-11-25T08:59:21.688Z\",\n        \"authorUserId\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\"\n      }\n    ],\n    \"reviewNotes\": [\n      {\n        \"id\": \"string\",\n        \"body\": \"string\",\n        \"creationDate\": \"1979-08-26T19:15:43.742Z\",\n        \"authorUserId\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"body\": \"string\",\n        \"creationDate\": \"1978-12-31T11:22:40.864Z\",\n        \"authorUserId\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\"\n      }\n    ],\n    \"behaviors\": [\n      {\n        \"id\": 8064,\n        \"name\": \"string\",\n        \"creationDate\": \"1969-07-13T02:50:15.294Z\",\n        \"revisionDate\": \"1985-10-09T18:35:20.664Z\"\n      },\n      {\n        \"id\": 6161,\n        \"name\": \"string\",\n        \"creationDate\": \"2012-08-16T21:53:11.960Z\",\n        \"revisionDate\": \"1954-10-08T23:21:38.562Z\"\n      }\n    ],\n    \"dynamicRisks\": [\n      {\n        \"id\": 3879,\n        \"name\": \"string\",\n        \"creationDate\": \"2025-02-05T11:47:48.974Z\"\n      },\n      {\n        \"id\": 7236,\n        \"name\": \"string\",\n        \"creationDate\": \"2003-04-18T06:36:43.664Z\"\n      }\n    ],\n    \"revisionDate\": \"2020-08-11T11:05:48.705Z\",\n    \"coachingOverdueDate\": \"1967-12-08T15:39:34.104Z\",\n    \"coachableDate\": \"1990-10-11T14:21:14.301Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "36ba0a64-a885-4dbe-9496-16e497e03cd5",
+              "name": "No events were found that match the specified selection criteria.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "eventsWithMetadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateOption",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "driverId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicleId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0d242bfd-a9ca-4034-a3d7-6d276381f476",
+              "name": "The parameters given in the request are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "eventsWithMetadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateOption",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "driverId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicleId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4d194e25-a88f-44d6-aa3c-6e59448350fc",
+              "name": "Unauthorized due to providing an invalid access key, or invalid pod.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "eventsWithMetadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateOption",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "driverId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicleId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1259a287-d798-4a2c-8cbd-fd10b3a69c4e",
+              "name": "Access is forbidden. The given API access-key does not have the required permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "eventsWithMetadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateOption",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "driverId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicleId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5d082243-b51e-4c22-aa92-85ee1eba2852",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "eventsWithMetadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateOption",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "driverId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicleId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "57a6dd08-d996-4a60-9af7-a356e1280c3b",
+              "name": "Database is unavailable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "safety",
+                    "eventsWithMetadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateOption",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "triggers",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "behaviors",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "driverId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicleId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deviceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "lastUpdatedDate"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lytx.com/consent-management",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1f21c2e4-f007-4fd3-b3a4-da45dd8e50a1",
+    "name": "Lytx..Management.Api Consent Safety (DriveCam) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for retrieving and updating user consent status, requiring authentication.\n",
+      "type": "text/plain"
+    }
+  }
+}

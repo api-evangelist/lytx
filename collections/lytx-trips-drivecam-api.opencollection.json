@@ -1,0 +1,103 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lytx..Management.Api Consent Trips (DriveCam) API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Trips (DriveCam)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Trips",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/v1/trips",
+            "params": [
+              {
+                "name": "deviceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by device identifier or serial number."
+              },
+              {
+                "name": "vehicleIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by vehicle identifier or VIN."
+              },
+              {
+                "name": "userIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by user identifier."
+              },
+              {
+                "name": "groupIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by group identifier."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter by start date."
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter by end date."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Record to start with."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Name of property to sort on."
+              },
+              {
+                "name": "includeSubgroups",
+                "value": "",
+                "type": "query",
+                "description": "Include subgroups."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all the trips in an organization or subset of an organization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

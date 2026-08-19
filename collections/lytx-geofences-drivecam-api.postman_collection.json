@@ -1,0 +1,3013 @@
+{
+  "item": [
+    {
+      "id": "a02342ec-a896-4a62-974c-d9684a57d9d7",
+      "name": "Geofences (DriveCam)",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a0cd8996-67d1-4507-8564-f79f5589168a",
+          "name": "Create Geofence",
+          "request": {
+            "name": "Create Geofence",
+            "description": {
+              "content": "Create a Geofence",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "geofences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"isInside\": \"<boolean>\",\n  \"geofenceGeography\": {\n    \"radius\": \"<double>\",\n    \"shapeType\": \"<number>\",\n    \"points\": [\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    ]\n  },\n  \"groupIdentifier\": \"<string>\",\n  \"includeSubGroups\": \"<boolean>\",\n  \"isActive\": \"<boolean>\",\n  \"assets\": [\n    {\n      \"assetId\": \"<string>\",\n      \"assetType\": \"<string>\"\n    },\n    {\n      \"assetId\": \"<string>\",\n      \"assetType\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f8aceb94-d776-465c-809e-eee800de36b3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"San Diego\",\n  \"isInside\": \"<boolean>\",\n  \"geofenceGeography\": {\n    \"radius\": 5,\n    \"shapeType\": 3,\n    \"points\": [\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    ]\n  },\n  \"groupIdentifier\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n  \"includeSubGroups\": \"<boolean>\",\n  \"isActive\": \"<boolean>\",\n  \"assets\": [\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    },\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"geofenceId\": \"3F136C14-79C8-4BAA-B9DE-ADA9C0C68EBC\",\n  \"name\": \"San Diego 92120\",\n  \"rootGroupId\": \"2BB2D9B4-C801-E111-81CE-E61F13277AAB\",\n  \"groupId\": \"2BB2D9B4-C801-E111-81CE-E61F13277AAB\",\n  \"groupName\": \"Root Group\",\n  \"groupPath\": \"2BB2D9B4-C801-E111-81CE-E61F13277AAB\\\\\\\\2CB2D9B4-C801-E111-81CE-E61F13277AAB\",\n  \"includeSubGroups\": true,\n  \"isInside\": true,\n  \"geofenceGeography\": {\n    \"radius\": 25,\n    \"shapeType\": 3,\n    \"points\": [\n      {\n        \"latitude\": 874.915049701731,\n        \"longitude\": 7017.079862289046\n      },\n      {\n        \"latitude\": 8394.22724692179,\n        \"longitude\": 210.73333844274234\n      }\n    ]\n  },\n  \"color\": \"#800080\",\n  \"effectiveDaysOfWeek\": \"1,3,5\",\n  \"createdDate\": \"2024-06-28T15:31:42.8955131Z\",\n  \"assetGroupId\": \"2CB2D9B4-C801-E111-81CE-E61F13277AAB\",\n  \"assetIncludeSubGroups\": false,\n  \"assets\": [\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    },\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    }\n  ],\n  \"effectiveStartTime\": \"15:00:00\",\n  \"effectiveEndTime\": \"05:59:00\",\n  \"effectiveTimezoneOffset\": \"-7:00\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae29f9ff-2395-4bd5-bf64-bb89c662ad0b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"San Diego\",\n  \"isInside\": \"<boolean>\",\n  \"geofenceGeography\": {\n    \"radius\": 5,\n    \"shapeType\": 3,\n    \"points\": [\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    ]\n  },\n  \"groupIdentifier\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n  \"includeSubGroups\": \"<boolean>\",\n  \"isActive\": \"<boolean>\",\n  \"assets\": [\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    },\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid ShapeType\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9241ef91-7d6c-4e5f-9d83-8896d0cf43eb",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"San Diego\",\n  \"isInside\": \"<boolean>\",\n  \"geofenceGeography\": {\n    \"radius\": 5,\n    \"shapeType\": 3,\n    \"points\": [\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    ]\n  },\n  \"groupIdentifier\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n  \"includeSubGroups\": \"<boolean>\",\n  \"isActive\": \"<boolean>\",\n  \"assets\": [\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    },\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unauthorized\",\n  \"message\": \"Access denied\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33742213-6641-4ecf-848c-f558ed672cc0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"San Diego\",\n  \"isInside\": \"<boolean>\",\n  \"geofenceGeography\": {\n    \"radius\": 5,\n    \"shapeType\": 3,\n    \"points\": [\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    ]\n  },\n  \"groupIdentifier\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n  \"includeSubGroups\": \"<boolean>\",\n  \"isActive\": \"<boolean>\",\n  \"assets\": [\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    },\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"Non-permitted user\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14e46acf-fad6-43e2-850d-e1517e90dbd8",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"San Diego\",\n  \"isInside\": \"<boolean>\",\n  \"geofenceGeography\": {\n    \"radius\": 5,\n    \"shapeType\": 3,\n    \"points\": [\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    ]\n  },\n  \"groupIdentifier\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n  \"includeSubGroups\": \"<boolean>\",\n  \"isActive\": \"<boolean>\",\n  \"assets\": [\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    },\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"No information found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ddc2a66f-dd65-4757-93d8-950af6735239",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"San Diego\",\n  \"isInside\": \"<boolean>\",\n  \"geofenceGeography\": {\n    \"radius\": 5,\n    \"shapeType\": 3,\n    \"points\": [\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    ]\n  },\n  \"groupIdentifier\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n  \"includeSubGroups\": \"<boolean>\",\n  \"isActive\": \"<boolean>\",\n  \"assets\": [\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    },\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"An unexpected server error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bc6d7319-a3b1-4dba-8445-9670f5913f77",
+          "name": "Retrieve Geofences",
+          "request": {
+            "name": "Retrieve Geofences",
+            "description": {
+              "content": "Retrieve a list of Geofences filtered by identifier. Only 0 or 1 identifiers are allowed in a query.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "geofences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "geofenceIdentifier",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "deviceIdentifier",
+                  "value": "<string>",
+                  "description": "Filter by Device Id or Serial Number."
+                },
+                {
+                  "disabled": false,
+                  "key": "groupIdentifier",
+                  "value": "<string>",
+                  "description": "Filter by Group Identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "vehicleIdentifier",
+                  "value": "<string>",
+                  "description": "Filter by Vehicle Identifier or Vin."
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<dateTime>",
+                  "description": "Filter by start date."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<dateTime>",
+                  "description": "Filter by end date."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Record to start with."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Sort direction."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Name of field to sort on. Sort field must be either \"name\", \"groupId\", \"groupName\", \"isInside\", or \"creationDate\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeSubGroups",
+                  "value": "<boolean>",
+                  "description": "Include Sub Groups."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "89a7e975-889f-4abb-afdc-b12df1f58501",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "geofenceIdentifier",
+                      "value": "2CB2D9B4-C801-E111-81CE-E61F13277AAB"
+                    },
+                    {
+                      "key": "deviceIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "GeofenceName"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"metadata\": {\n    \"limit\": 5000,\n    \"count\": 5000,\n    \"offset\": 0,\n    \"startDate\": \"2024-07-10T12:12:12Z\",\n    \"endDate\": \"2024-07-11T12:12:12Z\"\n  },\n  \"data\": [\n    {\n      \"geofenceId\": \"3F136C14-79C8-4BAA-B9DE-ADA9C0C68EBC\",\n      \"name\": \"San Diego 92120\",\n      \"rootGroupId\": \"2BB2D9B4-C801-E111-81CE-E61F13277AAB\",\n      \"groupId\": \"2BB2D9B4-C801-E111-81CE-E61F13277AAB\",\n      \"groupName\": \"Root Group\",\n      \"groupPath\": \"2BB2D9B4-C801-E111-81CE-E61F13277AAB\\\\\\\\2CB2D9B4-C801-E111-81CE-E61F13277AAB\",\n      \"includeSubGroups\": true,\n      \"isInside\": true,\n      \"geofenceGeography\": {\n        \"radius\": 25,\n        \"shapeType\": 3,\n        \"points\": [\n          {\n            \"latitude\": 2938.198958057525,\n            \"longitude\": 6430.344833729693\n          },\n          {\n            \"latitude\": 7114.731242745847,\n            \"longitude\": 949.3219235439132\n          }\n        ]\n      },\n      \"color\": \"#800080\",\n      \"effectiveDaysOfWeek\": \"1,3,5\",\n      \"createdDate\": \"2024-06-28T15:31:42.8955131Z\",\n      \"assetGroupId\": \"2CB2D9B4-C801-E111-81CE-E61F13277AAB\",\n      \"assetIncludeSubGroups\": false,\n      \"assets\": [\n        {\n          \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n          \"assetType\": \"vehicle\"\n        },\n        {\n          \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n          \"assetType\": \"vehicle\"\n        }\n      ],\n      \"effectiveStartTime\": \"15:00:00\",\n      \"effectiveEndTime\": \"05:59:00\",\n      \"effectiveTimezoneOffset\": \"-7:00\"\n    },\n    {\n      \"geofenceId\": \"3F136C14-79C8-4BAA-B9DE-ADA9C0C68EBC\",\n      \"name\": \"San Diego 92120\",\n      \"rootGroupId\": \"2BB2D9B4-C801-E111-81CE-E61F13277AAB\",\n      \"groupId\": \"2BB2D9B4-C801-E111-81CE-E61F13277AAB\",\n      \"groupName\": \"Root Group\",\n      \"groupPath\": \"2BB2D9B4-C801-E111-81CE-E61F13277AAB\\\\\\\\2CB2D9B4-C801-E111-81CE-E61F13277AAB\",\n      \"includeSubGroups\": true,\n      \"isInside\": true,\n      \"geofenceGeography\": {\n        \"radius\": 25,\n        \"shapeType\": 3,\n        \"points\": [\n          {\n            \"latitude\": 7300.33105358364,\n            \"longitude\": 9683.617073095282\n          },\n          {\n            \"latitude\": 9824.372920648417,\n            \"longitude\": 4391.366727753461\n          }\n        ]\n      },\n      \"color\": \"#800080\",\n      \"effectiveDaysOfWeek\": \"1,3,5\",\n      \"createdDate\": \"2024-06-28T15:31:42.8955131Z\",\n      \"assetGroupId\": \"2CB2D9B4-C801-E111-81CE-E61F13277AAB\",\n      \"assetIncludeSubGroups\": false,\n      \"assets\": [\n        {\n          \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n          \"assetType\": \"vehicle\"\n        },\n        {\n          \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n          \"assetType\": \"vehicle\"\n        }\n      ],\n      \"effectiveStartTime\": \"15:00:00\",\n      \"effectiveEndTime\": \"05:59:00\",\n      \"effectiveTimezoneOffset\": \"-7:00\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f2bc123-a4ec-459e-b491-ec3ac979e9c2",
+              "name": "No Content: HTTP request has been successfully completed, and there is no message body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "geofenceIdentifier",
+                      "value": "2CB2D9B4-C801-E111-81CE-E61F13277AAB"
+                    },
+                    {
+                      "key": "deviceIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "GeofenceName"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a88d7480-fa99-4e4a-a49f-4e9bc7f43a1b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "geofenceIdentifier",
+                      "value": "2CB2D9B4-C801-E111-81CE-E61F13277AAB"
+                    },
+                    {
+                      "key": "deviceIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "GeofenceName"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c69429ae-323a-4ceb-aa18-fceeb2672ab7",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "geofenceIdentifier",
+                      "value": "2CB2D9B4-C801-E111-81CE-E61F13277AAB"
+                    },
+                    {
+                      "key": "deviceIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "GeofenceName"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unauthorized\",\n  \"message\": \"Access denied\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aee6526c-2e03-4738-a9c3-e3a3f82f6938",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "geofenceIdentifier",
+                      "value": "2CB2D9B4-C801-E111-81CE-E61F13277AAB"
+                    },
+                    {
+                      "key": "deviceIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "GeofenceName"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"Non-permitted user\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "748159d2-7116-4f68-9166-5be9aa8fc780",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "geofenceIdentifier",
+                      "value": "2CB2D9B4-C801-E111-81CE-E61F13277AAB"
+                    },
+                    {
+                      "key": "deviceIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "GeofenceName"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"No information found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4458e403-3bbb-4ec6-9c43-b5748a583bcc",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "geofenceIdentifier",
+                      "value": "2CB2D9B4-C801-E111-81CE-E61F13277AAB"
+                    },
+                    {
+                      "key": "deviceIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "GeofenceName"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"An unexpected server error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f070a304-c782-4ee0-ad44-7ae67c748b3d",
+          "name": "Delete Specified Geofence by ID",
+          "request": {
+            "name": "Delete Specified Geofence by ID",
+            "description": {
+              "content": "Delete a Geofence",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "geofences",
+                ":geofenceIdentifier"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "geofenceIdentifier",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7d8133da-e1a4-4698-b784-7ea301f41b02",
+              "name": "Successful deletion of Geofence",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofences",
+                    ":geofenceIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geofenceIdentifier",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c9cdcd34-31bb-4a4c-8733-eca576f2b7e3",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofences",
+                    ":geofenceIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geofenceIdentifier",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d87db5a7-fc78-420c-a284-1443cae659da",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofences",
+                    ":geofenceIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geofenceIdentifier",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unauthorized\",\n  \"message\": \"Access denied\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3bbf6ee1-6604-4f44-a713-29d7bc4dc041",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofences",
+                    ":geofenceIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geofenceIdentifier",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"Non-permitted user\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "31512bb5-e413-46b0-b9aa-41097e7eebf3",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofences",
+                    ":geofenceIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geofenceIdentifier",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"No information found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16859637-eff7-436e-a7e8-86d447e4c97e",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofences",
+                    ":geofenceIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geofenceIdentifier",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"An unexpected server error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bc9f125e-51b0-4f57-aa91-025e2c248e41",
+          "name": "Update Specified Geofence",
+          "request": {
+            "name": "Update Specified Geofence",
+            "description": {
+              "content": "Update a specific Geofence by Identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "geofences",
+                ":geofenceIdentifier"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "geofenceIdentifier",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"isInside\": \"<boolean>\",\n  \"geofenceGeography\": {\n    \"radius\": \"<double>\",\n    \"shapeType\": \"<number>\",\n    \"points\": [\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    ]\n  },\n  \"groupIdentifier\": \"<string>\",\n  \"includeSubGroups\": \"<boolean>\",\n  \"isActive\": \"<boolean>\",\n  \"assets\": [\n    {\n      \"assetId\": \"<string>\",\n      \"assetType\": \"<string>\"\n    },\n    {\n      \"assetId\": \"<string>\",\n      \"assetType\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6f715948-348b-45b7-bcac-fd80ca3de02b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofences",
+                    ":geofenceIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geofenceIdentifier",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"San Diego\",\n  \"isInside\": \"<boolean>\",\n  \"geofenceGeography\": {\n    \"radius\": 5,\n    \"shapeType\": 3,\n    \"points\": [\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    ]\n  },\n  \"groupIdentifier\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n  \"includeSubGroups\": \"<boolean>\",\n  \"isActive\": \"<boolean>\",\n  \"assets\": [\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    },\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"geofenceId\": \"3F136C14-79C8-4BAA-B9DE-ADA9C0C68EBC\",\n  \"name\": \"San Diego 92120\",\n  \"rootGroupId\": \"2BB2D9B4-C801-E111-81CE-E61F13277AAB\",\n  \"groupId\": \"2BB2D9B4-C801-E111-81CE-E61F13277AAB\",\n  \"groupName\": \"Root Group\",\n  \"groupPath\": \"2BB2D9B4-C801-E111-81CE-E61F13277AAB\\\\\\\\2CB2D9B4-C801-E111-81CE-E61F13277AAB\",\n  \"includeSubGroups\": true,\n  \"isInside\": true,\n  \"geofenceGeography\": {\n    \"radius\": 25,\n    \"shapeType\": 3,\n    \"points\": [\n      {\n        \"latitude\": 3055.1883927974077,\n        \"longitude\": 2213.9032741325136\n      },\n      {\n        \"latitude\": 3665.314081741736,\n        \"longitude\": 250.9468143854454\n      }\n    ]\n  },\n  \"color\": \"#800080\",\n  \"effectiveDaysOfWeek\": \"1,3,5\",\n  \"createdDate\": \"2024-06-28T15:31:42.8955131Z\",\n  \"assetGroupId\": \"2CB2D9B4-C801-E111-81CE-E61F13277AAB\",\n  \"assetIncludeSubGroups\": false,\n  \"assets\": [\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    },\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    }\n  ],\n  \"effectiveStartTime\": \"15:00:00\",\n  \"effectiveEndTime\": \"05:59:00\",\n  \"effectiveTimezoneOffset\": \"-7:00\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c513a91-f2c2-499f-b619-1a695d4da7c5",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofences",
+                    ":geofenceIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geofenceIdentifier",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"San Diego\",\n  \"isInside\": \"<boolean>\",\n  \"geofenceGeography\": {\n    \"radius\": 5,\n    \"shapeType\": 3,\n    \"points\": [\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    ]\n  },\n  \"groupIdentifier\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n  \"includeSubGroups\": \"<boolean>\",\n  \"isActive\": \"<boolean>\",\n  \"assets\": [\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    },\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c03f1d3-362a-4395-b6a4-a8ef6133f768",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofences",
+                    ":geofenceIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geofenceIdentifier",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"San Diego\",\n  \"isInside\": \"<boolean>\",\n  \"geofenceGeography\": {\n    \"radius\": 5,\n    \"shapeType\": 3,\n    \"points\": [\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    ]\n  },\n  \"groupIdentifier\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n  \"includeSubGroups\": \"<boolean>\",\n  \"isActive\": \"<boolean>\",\n  \"assets\": [\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    },\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unauthorized\",\n  \"message\": \"Access denied\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "93cb6fe8-c570-4042-aeec-3d59f574d573",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofences",
+                    ":geofenceIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geofenceIdentifier",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"San Diego\",\n  \"isInside\": \"<boolean>\",\n  \"geofenceGeography\": {\n    \"radius\": 5,\n    \"shapeType\": 3,\n    \"points\": [\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    ]\n  },\n  \"groupIdentifier\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n  \"includeSubGroups\": \"<boolean>\",\n  \"isActive\": \"<boolean>\",\n  \"assets\": [\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    },\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"Non-permitted user\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bdff3a7d-c9a8-4ee2-8b8b-094c2f0c421c",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofences",
+                    ":geofenceIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geofenceIdentifier",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"San Diego\",\n  \"isInside\": \"<boolean>\",\n  \"geofenceGeography\": {\n    \"radius\": 5,\n    \"shapeType\": 3,\n    \"points\": [\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    ]\n  },\n  \"groupIdentifier\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n  \"includeSubGroups\": \"<boolean>\",\n  \"isActive\": \"<boolean>\",\n  \"assets\": [\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    },\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"No information found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25df85d9-97a1-4768-bdf4-501e87e872d8",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofences",
+                    ":geofenceIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "geofenceIdentifier",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"San Diego\",\n  \"isInside\": \"<boolean>\",\n  \"geofenceGeography\": {\n    \"radius\": 5,\n    \"shapeType\": 3,\n    \"points\": [\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      }\n    ]\n  },\n  \"groupIdentifier\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n  \"includeSubGroups\": \"<boolean>\",\n  \"isActive\": \"<boolean>\",\n  \"assets\": [\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    },\n    {\n      \"assetId\": \"5100FFFF-60B6-D7CD-3FA2-22CA712B0000\",\n      \"assetType\": \"vehicle\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"An unexpected server error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "32589af9-da0b-42f7-8087-351597bc5d38",
+          "name": "Get Geofence Activations",
+          "request": {
+            "name": "Get Geofence Activations",
+            "description": {
+              "content": "Get Geofence Activations",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "geofence",
+                "activations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "activationIdentifier",
+                  "value": "<string>",
+                  "description": "Unique Id for Geofence Activation."
+                },
+                {
+                  "disabled": false,
+                  "key": "geofenceIdentifier",
+                  "value": "<string>",
+                  "description": "Unique Id for Geofence."
+                },
+                {
+                  "disabled": false,
+                  "key": "deviceIdentifier",
+                  "value": "<string>",
+                  "description": "Filter by Device Id or Serial Number."
+                },
+                {
+                  "disabled": false,
+                  "key": "groupIdentifier",
+                  "value": "<string>",
+                  "description": "Filter by Group Identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "vehicleIdentifier",
+                  "value": "<string>",
+                  "description": "Filter by Vehicle Identifier or Vin."
+                },
+                {
+                  "disabled": false,
+                  "key": "userIdentifier",
+                  "value": "<string>",
+                  "description": "Filter by User Identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<dateTime>",
+                  "description": "Filter by start date."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<dateTime>",
+                  "description": "Filter by end date."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Record to start with."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Sort direction."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Name of property to sort on (Default Sort on ActivationStartDate only otherwise LastUpdateDateTime)."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeSubGroups",
+                  "value": "<boolean>",
+                  "description": "Include Sub Groups."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5c27f277-8177-4547-ab19-7c5df16566c6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofence",
+                    "activations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "activationIdentifier",
+                      "value": "2CB2D9B4-C801-E111-81CE-E61F13277AAB"
+                    },
+                    {
+                      "key": "geofenceIdentifier",
+                      "value": "2CB2D9B4-C801-E111-81CE-E61F13277AAB"
+                    },
+                    {
+                      "key": "deviceIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "userIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"metadata\": {\n      \"limit\": 5000,\n      \"count\": 5000,\n      \"offset\": 0,\n      \"startDate\": \"2024-07-10T12:12:12Z\",\n      \"endDate\": \"2024-07-11T12:12:12Z\"\n    },\n    \"data\": [\n      {\n        \"vehicleId\": \"d77548ad-95db-40a8-bbcd-8259e5063f7f\",\n        \"vehicleName\": \"2012 Toyota Tundra\",\n        \"vin\": \"1B4HR28Y6XF631743\",\n        \"deviceId\": \"d77548ad-95db-40a8-bbcd-8259e5063f7f\",\n        \"serialNumber\": \"QM123456\",\n        \"groupId\": \"d77548ad-95db-40a8-bbcd-8259e5063f7f\",\n        \"activations\": [\n          {\n            \"activationId\": \"a2c08cb1-0df9-4452-a8e8-38b2e74f2e8d\",\n            \"geofenceName\": \"San Diego - UTC\",\n            \"geofenceId\": \"a2c08cb1-0df9-4452-a8e8-38b2e74f2e8d\",\n            \"startPosition\": {\n              \"latitude\": 32.123,\n              \"longitude\": 101.432\n            },\n            \"activationStartDate\": \"2024-07-09T16:11:11Z\",\n            \"activationEndDate\": \"2024-07-11T20:31:33Z\",\n            \"endPosition\": {\n              \"latitude\": 32.123,\n              \"longitude\": 101.432\n            },\n            \"userIdentifier\": \"d77548ad-95db-40a8-bbcd-8259e5063f7f\",\n            \"endReason\": 1,\n            \"lastUpdateDateTime\": \"2024-07-11T20:31:33Z\"\n          },\n          {\n            \"activationId\": \"a2c08cb1-0df9-4452-a8e8-38b2e74f2e8d\",\n            \"geofenceName\": \"San Diego - UTC\",\n            \"geofenceId\": \"a2c08cb1-0df9-4452-a8e8-38b2e74f2e8d\",\n            \"startPosition\": {\n              \"latitude\": 32.123,\n              \"longitude\": 101.432\n            },\n            \"activationStartDate\": \"2024-07-09T16:11:11Z\",\n            \"activationEndDate\": \"2024-07-11T20:31:33Z\",\n            \"endPosition\": {\n              \"latitude\": 32.123,\n              \"longitude\": 101.432\n            },\n            \"userIdentifier\": \"d77548ad-95db-40a8-bbcd-8259e5063f7f\",\n            \"endReason\": 1,\n            \"lastUpdateDateTime\": \"2024-07-11T20:31:33Z\"\n          }\n        ]\n      },\n      {\n        \"vehicleId\": \"d77548ad-95db-40a8-bbcd-8259e5063f7f\",\n        \"vehicleName\": \"2012 Toyota Tundra\",\n        \"vin\": \"1B4HR28Y6XF631743\",\n        \"deviceId\": \"d77548ad-95db-40a8-bbcd-8259e5063f7f\",\n        \"serialNumber\": \"QM123456\",\n        \"groupId\": \"d77548ad-95db-40a8-bbcd-8259e5063f7f\",\n        \"activations\": [\n          {\n            \"activationId\": \"a2c08cb1-0df9-4452-a8e8-38b2e74f2e8d\",\n            \"geofenceName\": \"San Diego - UTC\",\n            \"geofenceId\": \"a2c08cb1-0df9-4452-a8e8-38b2e74f2e8d\",\n            \"startPosition\": {\n              \"latitude\": 32.123,\n              \"longitude\": 101.432\n            },\n            \"activationStartDate\": \"2024-07-09T16:11:11Z\",\n            \"activationEndDate\": \"2024-07-11T20:31:33Z\",\n            \"endPosition\": {\n              \"latitude\": 32.123,\n              \"longitude\": 101.432\n            },\n            \"userIdentifier\": \"d77548ad-95db-40a8-bbcd-8259e5063f7f\",\n            \"endReason\": 1,\n            \"lastUpdateDateTime\": \"2024-07-11T20:31:33Z\"\n          },\n          {\n            \"activationId\": \"a2c08cb1-0df9-4452-a8e8-38b2e74f2e8d\",\n            \"geofenceName\": \"San Diego - UTC\",\n            \"geofenceId\": \"a2c08cb1-0df9-4452-a8e8-38b2e74f2e8d\",\n            \"startPosition\": {\n              \"latitude\": 32.123,\n              \"longitude\": 101.432\n            },\n            \"activationStartDate\": \"2024-07-09T16:11:11Z\",\n            \"activationEndDate\": \"2024-07-11T20:31:33Z\",\n            \"endPosition\": {\n              \"latitude\": 32.123,\n              \"longitude\": 101.432\n            },\n            \"userIdentifier\": \"d77548ad-95db-40a8-bbcd-8259e5063f7f\",\n            \"endReason\": 1,\n            \"lastUpdateDateTime\": \"2024-07-11T20:31:33Z\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ccf84ab-fb7a-4078-9d4a-6798def12c42",
+              "name": "No Content: HTTP request has been successfully completed, and there is no message body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofence",
+                    "activations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "activationIdentifier",
+                      "value": "2CB2D9B4-C801-E111-81CE-E61F13277AAB"
+                    },
+                    {
+                      "key": "geofenceIdentifier",
+                      "value": "2CB2D9B4-C801-E111-81CE-E61F13277AAB"
+                    },
+                    {
+                      "key": "deviceIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "userIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ce218bd0-6c23-4834-ad68-e5eb9e2c1352",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofence",
+                    "activations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "activationIdentifier",
+                      "value": "2CB2D9B4-C801-E111-81CE-E61F13277AAB"
+                    },
+                    {
+                      "key": "geofenceIdentifier",
+                      "value": "2CB2D9B4-C801-E111-81CE-E61F13277AAB"
+                    },
+                    {
+                      "key": "deviceIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "userIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "438db804-7d8c-434e-8aa3-b7bf02920c87",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofence",
+                    "activations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "activationIdentifier",
+                      "value": "2CB2D9B4-C801-E111-81CE-E61F13277AAB"
+                    },
+                    {
+                      "key": "geofenceIdentifier",
+                      "value": "2CB2D9B4-C801-E111-81CE-E61F13277AAB"
+                    },
+                    {
+                      "key": "deviceIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "userIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unauthorized\",\n  \"message\": \"Access denied\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a8d6cdb-a1d1-4f40-97dc-68dd7f825329",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofence",
+                    "activations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "activationIdentifier",
+                      "value": "2CB2D9B4-C801-E111-81CE-E61F13277AAB"
+                    },
+                    {
+                      "key": "geofenceIdentifier",
+                      "value": "2CB2D9B4-C801-E111-81CE-E61F13277AAB"
+                    },
+                    {
+                      "key": "deviceIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "userIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"Non-permitted user\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63bd10cd-d8aa-44ee-bb4e-fd8cf5cc960c",
+              "name": "Resource Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofence",
+                    "activations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "activationIdentifier",
+                      "value": "2CB2D9B4-C801-E111-81CE-E61F13277AAB"
+                    },
+                    {
+                      "key": "geofenceIdentifier",
+                      "value": "2CB2D9B4-C801-E111-81CE-E61F13277AAB"
+                    },
+                    {
+                      "key": "deviceIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "userIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"No information found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3e90014-55c0-4bb6-ab05-3987a5a4c595",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofence",
+                    "activations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "activationIdentifier",
+                      "value": "2CB2D9B4-C801-E111-81CE-E61F13277AAB"
+                    },
+                    {
+                      "key": "geofenceIdentifier",
+                      "value": "2CB2D9B4-C801-E111-81CE-E61F13277AAB"
+                    },
+                    {
+                      "key": "deviceIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "userIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"An unexpected server error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "429216fd-5865-4b4c-8a6b-f2087c5cc399",
+          "name": "Get Activation End Reasons",
+          "request": {
+            "name": "Get Activation End Reasons",
+            "description": {
+              "content": "Get the end reasons activations",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "geofence",
+                "activations",
+                "endreason"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0b94454c-174e-454c-94bd-fc1929ecd92a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofence",
+                    "activations",
+                    "endreason"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"metadata\": {\n      \"limit\": 5000,\n      \"count\": 5000\n    },\n    \"data\": [\n      {\n        \"reasonId\": 0,\n        \"description\": \"Not Deleted\",\n        \"creationDate\": \"23-Jun-2024\"\n      },\n      {\n        \"reasonId\": 0,\n        \"description\": \"Not Deleted\",\n        \"creationDate\": \"23-Jun-2024\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66a56588-49ab-44ec-8245-28c1e352444e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofence",
+                    "activations",
+                    "endreason"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f6b6445-6179-435d-a709-5a2160d80c51",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofence",
+                    "activations",
+                    "endreason"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unauthorized\",\n  \"message\": \"Access denied\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e111c58c-fc9a-4e43-932e-c8d3f07ee761",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofence",
+                    "activations",
+                    "endreason"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"Non-permitted user\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c7e6b93-b48e-4c21-a077-195504399bb3",
+              "name": "Resource Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofence",
+                    "activations",
+                    "endreason"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"No information found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b77300c-45b7-4a88-b60f-7cb7d3502fe5",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "geofence",
+                    "activations",
+                    "endreason"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"An unexpected server error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lytx.com/consent-management",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0bfc1d1c-277c-4adc-897c-b3bc90e0a553",
+    "name": "Lytx..Management.Api Consent Geofences (DriveCam) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for retrieving and updating user consent status, requiring authentication.\n",
+      "type": "text/plain"
+    }
+  }
+}

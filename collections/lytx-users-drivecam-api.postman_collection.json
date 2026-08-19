@@ -1,0 +1,2402 @@
+{
+  "item": [
+    {
+      "id": "e00d6c1b-f43e-4ed4-87a3-bb1d433f3485",
+      "name": "Users (DriveCam)",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5346d4aa-d5c2-4aad-8f91-398e4c929ad1",
+          "name": "Create User",
+          "request": {
+            "name": "Create User",
+            "description": {
+              "content": "Description: Create a new user. Only one user created per call.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"<string>\",\n  \"groupRoles\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"roleId\": \"<integer>\"\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"roleId\": \"<integer>\"\n    }\n  ],\n  \"lastName\": \"<string>\",\n  \"allowVideoSearchDownload\": \"<boolean>\",\n  \"cellPhoneCountry\": \"<string>\",\n  \"cellPhoneNumber\": \"<string>\",\n  \"email\": \"<string>\",\n  \"employeeId\": \"<string>\",\n  \"loginEnabled\": false,\n  \"password\": \"<string>\",\n  \"primaryGroupId\": \"<uuid>\",\n  \"username\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fc12aa82-3f75-44b9-a81e-1a4700bdfe7f",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allowVideoSearchDownload\": false,\n  \"cellPhoneCountry\": \"US\",\n  \"cellPhoneNumber\": \"+1234567890\",\n  \"email\": \"email@email.com\",\n  \"employeeId\": \"j.smith\",\n  \"firstName\": \"John\",\n  \"groupRoles\": [\n    {\n      \"groupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n      \"roleId\": 4\n    }\n  ],\n  \"lastName\": \"Smith\",\n  \"loginEnabled\": true,\n  \"password\": \"123Abcd!\",\n  \"primaryGroupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n  \"username\": \"j.smith\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The location of the created resource",
+                  "key": "Location",
+                  "value": "/users/4af860ae-2e53-4d8b-a48e-606b862effed"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"userId\": \"4af860ae-2e53-4d8b-a48e-606b862effed\",\n  \"allowSafetyEventDownload\": false,\n  \"allowVideoSearchDownload\": false,\n  \"cellPhoneCountry\": \"US\",\n  \"cellPhoneNumber\": \"+1234567890\",\n  \"createdDate\": \"2025-06-20T11:25:07.848413-07:00\",\n  \"email\": \"email@email.com\",\n  \"employeeId\": \"j.smith\",\n  \"firstName\": \"John\",\n  \"groupRoles\": [\n    {\n      \"groupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n      \"roleId\": 4\n    }\n  ],\n  \"lastLoginDate\": \"2025-06-24T11:25:07.848507-07:00\",\n  \"lastName\": \"Smith\",\n  \"loginEnabled\": true,\n  \"primaryGroupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n  \"status\": \"Active\",\n  \"updatedDate\": \"2025-06-27T11:25:07.848603-07:00\",\n  \"username\": \"j.smith\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0de42eb3-2ee1-4f98-993b-7f2b140f8879",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allowVideoSearchDownload\": false,\n  \"cellPhoneCountry\": \"US\",\n  \"cellPhoneNumber\": \"+1234567890\",\n  \"email\": \"email@email.com\",\n  \"employeeId\": \"j.smith\",\n  \"firstName\": \"John\",\n  \"groupRoles\": [\n    {\n      \"groupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n      \"roleId\": 4\n    }\n  ],\n  \"lastName\": \"Smith\",\n  \"loginEnabled\": true,\n  \"password\": \"123Abcd!\",\n  \"primaryGroupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n  \"username\": \"j.smith\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": [\n    \"Error Reason\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb67a6a2-6ce2-439b-8572-a3c2a6822ff0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allowVideoSearchDownload\": false,\n  \"cellPhoneCountry\": \"US\",\n  \"cellPhoneNumber\": \"+1234567890\",\n  \"email\": \"email@email.com\",\n  \"employeeId\": \"j.smith\",\n  \"firstName\": \"John\",\n  \"groupRoles\": [\n    {\n      \"groupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n      \"roleId\": 4\n    }\n  ],\n  \"lastName\": \"Smith\",\n  \"loginEnabled\": true,\n  \"password\": \"123Abcd!\",\n  \"primaryGroupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n  \"username\": \"j.smith\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0bb7b138-f10c-4d6c-96c6-f48c2226a119",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allowVideoSearchDownload\": false,\n  \"cellPhoneCountry\": \"US\",\n  \"cellPhoneNumber\": \"+1234567890\",\n  \"email\": \"email@email.com\",\n  \"employeeId\": \"j.smith\",\n  \"firstName\": \"John\",\n  \"groupRoles\": [\n    {\n      \"groupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n      \"roleId\": 4\n    }\n  ],\n  \"lastName\": \"Smith\",\n  \"loginEnabled\": true,\n  \"password\": \"123Abcd!\",\n  \"primaryGroupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n  \"username\": \"j.smith\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f7c4eed6-0277-4f2c-a79d-2e9977ef3bdc",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allowVideoSearchDownload\": false,\n  \"cellPhoneCountry\": \"US\",\n  \"cellPhoneNumber\": \"+1234567890\",\n  \"email\": \"email@email.com\",\n  \"employeeId\": \"j.smith\",\n  \"firstName\": \"John\",\n  \"groupRoles\": [\n    {\n      \"groupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n      \"roleId\": 4\n    }\n  ],\n  \"lastName\": \"Smith\",\n  \"loginEnabled\": true,\n  \"password\": \"123Abcd!\",\n  \"primaryGroupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n  \"username\": \"j.smith\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Conflict\",\n  \"message\": [\n    \"Error Reason\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b95996c6-1e59-41a0-b5be-24c1b193719a",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allowVideoSearchDownload\": false,\n  \"cellPhoneCountry\": \"US\",\n  \"cellPhoneNumber\": \"+1234567890\",\n  \"email\": \"email@email.com\",\n  \"employeeId\": \"j.smith\",\n  \"firstName\": \"John\",\n  \"groupRoles\": [\n    {\n      \"groupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n      \"roleId\": 4\n    }\n  ],\n  \"lastName\": \"Smith\",\n  \"loginEnabled\": true,\n  \"password\": \"123Abcd!\",\n  \"primaryGroupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n  \"username\": \"j.smith\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"Error Reason\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f234b5c8-f9e6-4ec3-8408-9a37bec1ba8c",
+          "name": "Retrieve List of Users",
+          "request": {
+            "name": "Retrieve List of Users",
+            "description": {
+              "content": "Description: Retrieve a list of all users in a company or subset of a company.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "groupId",
+                  "value": "<uuid>",
+                  "description": "User role groups to search against."
+                },
+                {
+                  "disabled": false,
+                  "key": "groupId",
+                  "value": "<uuid>",
+                  "description": "User role groups to search against."
+                },
+                {
+                  "disabled": false,
+                  "key": "roleId",
+                  "value": "<integer>",
+                  "description": "User roles to search against."
+                },
+                {
+                  "disabled": false,
+                  "key": "roleId",
+                  "value": "<integer>",
+                  "description": "User roles to search against."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "User Lytx statuses to search against."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "User Lytx statuses to search against."
+                },
+                {
+                  "disabled": false,
+                  "key": "loginEnabled",
+                  "value": "<boolean>",
+                  "description": "The setting that allows for login."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10000",
+                  "description": "Number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Record to start with."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Sort direction."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeSubGroups",
+                  "value": "<boolean>",
+                  "description": "If true, all subgroups under the specified group(s) are included."
+                },
+                {
+                  "disabled": false,
+                  "key": "searchText",
+                  "value": "<string>",
+                  "description": "Search parameter for first+last name, username, and employeeId."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "86757c1e-7256-45b2-a15e-6026ff5d5e5a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "roleId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "roleId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "loginEnabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10000"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "searchText",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"userId\": \"4af860ae-2e53-4d8b-a48e-606b862effed\",\n      \"allowSafetyEventDownload\": false,\n      \"allowVideoSearchDownload\": false,\n      \"cellPhoneCountry\": \"US\",\n      \"cellPhoneNumber\": \"+1234567890\",\n      \"createdDate\": \"2025-06-20T11:25:07.860471-07:00\",\n      \"email\": \"email@email.com\",\n      \"employeeId\": \"j.smith\",\n      \"firstName\": \"John\",\n      \"groupRoles\": [\n        {\n          \"groupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n          \"roleId\": 4\n        }\n      ],\n      \"lastLoginDate\": \"2025-06-24T11:25:07.860473-07:00\",\n      \"lastName\": \"Smith\",\n      \"loginEnabled\": true,\n      \"primaryGroupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n      \"status\": \"Active\",\n      \"updatedDate\": \"2025-06-27T11:25:07.860474-07:00\",\n      \"username\": \"j.smith\"\n    },\n    {\n      \"userId\": \"923db788-a460-40f6-976f-05550abe59c5\",\n      \"allowVideoSearchDownload\": true,\n      \"createdDate\": \"0001-01-01T00:00:00\",\n      \"email\": \"email@email.com\",\n      \"employeeId\": \"j.doe\",\n      \"firstName\": \"Jane\",\n      \"groupRoles\": [\n        {\n          \"groupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n          \"groupName\": \"West Coast Group\",\n          \"roleId\": 4\n        }\n      ],\n      \"lastName\": \"Doe\",\n      \"loginEnabled\": true,\n      \"primaryGroupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n      \"status\": \"Active\",\n      \"updatedDate\": \"0001-01-01T00:00:00\",\n      \"username\": \"j.doe\"\n    }\n  ],\n  \"metadata\": {\n    \"count\": 2,\n    \"limit\": 10,\n    \"offset\": 0\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bef50354-d11d-4e9b-a909-458f00089886",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "roleId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "roleId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "loginEnabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10000"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "searchText",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Error Reason\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0eec14a7-f59a-40ca-b0d3-68477f567265",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "roleId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "roleId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "loginEnabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10000"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "searchText",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cb7e8c0d-1d85-4f60-8f55-ddb2d757b074",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "roleId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "roleId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "loginEnabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10000"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "searchText",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ef9e0885-dae6-4879-b465-8d87903bc146",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "roleId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "roleId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "loginEnabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10000"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "searchText",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"Error Reason\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3152a225-98d0-45a3-b951-b2b745bb2816",
+          "name": "Retrieve User with Specified Identifier",
+          "request": {
+            "name": "Retrieve User with Specified Identifier",
+            "description": {
+              "content": "Description: Retrieve a user with a specific identifier. Only retrieves one user at a time. For results for multiple users, use GET: Retrieve a list of users.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":userIdentifier"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "searchBy",
+                  "value": "UserId",
+                  "description": "User field to search for unique identifier [UserId, Username, EmployeeId]."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userIdentifier",
+                  "description": "(Required) Unique user identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a339fb80-4d81-4045-8a49-e9f4962aeb44",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchBy",
+                      "value": "UserId"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userIdentifier",
+                      "description": "(Required) Unique user identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"userId\": \"4af860ae-2e53-4d8b-a48e-606b862effed\",\n  \"allowSafetyEventDownload\": false,\n  \"allowVideoSearchDownload\": false,\n  \"cellPhoneCountry\": \"US\",\n  \"cellPhoneNumber\": \"+1234567890\",\n  \"createdDate\": \"2025-06-20T11:25:07.871814-07:00\",\n  \"email\": \"email@email.com\",\n  \"employeeId\": \"j.smith\",\n  \"firstName\": \"John\",\n  \"groupRoles\": [\n    {\n      \"groupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n      \"roleId\": 4\n    }\n  ],\n  \"lastLoginDate\": \"2025-06-24T11:25:07.871818-07:00\",\n  \"lastName\": \"Smith\",\n  \"loginEnabled\": true,\n  \"primaryGroupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n  \"status\": \"Active\",\n  \"updatedDate\": \"2025-06-27T11:25:07.871818-07:00\",\n  \"username\": \"j.smith\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86bdef4f-5fd4-4825-989f-9e3042446cd2",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchBy",
+                      "value": "UserId"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userIdentifier",
+                      "description": "(Required) Unique user identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Error Reason\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7184a8bd-bff6-485c-a889-e502036d563f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchBy",
+                      "value": "UserId"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userIdentifier",
+                      "description": "(Required) Unique user identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5c2c3af6-5caf-43e8-b371-7932e69455ee",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchBy",
+                      "value": "UserId"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userIdentifier",
+                      "description": "(Required) Unique user identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6d51f8fd-3283-46ea-8294-642c1bed7e36",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchBy",
+                      "value": "UserId"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userIdentifier",
+                      "description": "(Required) Unique user identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"Error Reason\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c34d7b4-a555-4bce-8059-78d20de4378e",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchBy",
+                      "value": "UserId"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userIdentifier",
+                      "description": "(Required) Unique user identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"Error Reason\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "746e4170-862f-4ec0-9f39-9a101a2e9cd7",
+          "name": "Update User",
+          "request": {
+            "name": "Update User",
+            "description": {
+              "content": "Description: Update a user. Only updates one user at a time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"allowVideoSearchDownload\": \"<boolean>\",\n  \"cellPhoneCountry\": \"<string>\",\n  \"cellPhoneNumber\": \"<string>\",\n  \"email\": \"<string>\",\n  \"employeeId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"groupRoles\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"roleId\": \"<integer>\"\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"roleId\": \"<integer>\"\n    }\n  ],\n  \"lastName\": \"<string>\",\n  \"loginEnabled\": false,\n  \"primaryGroupId\": \"<uuid>\",\n  \"status\": \"<string>\",\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d7bc15b2-e685-4a23-8def-abece26a504e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allowVideoSearchDownload\": false,\n  \"cellPhoneCountry\": \"US\",\n  \"cellPhoneNumber\": \"+1234567890\",\n  \"email\": \"email@email.com\",\n  \"employeeId\": \"j.smith\",\n  \"firstName\": \"John\",\n  \"groupRoles\": [\n    {\n      \"groupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n      \"roleId\": 4\n    }\n  ],\n  \"lastName\": \"Smith\",\n  \"loginEnabled\": true,\n  \"primaryGroupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n  \"status\": \"Active\",\n  \"username\": \"j.smith\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"userId\": \"4af860ae-2e53-4d8b-a48e-606b862effed\",\n  \"allowSafetyEventDownload\": false,\n  \"allowVideoSearchDownload\": false,\n  \"cellPhoneCountry\": \"US\",\n  \"cellPhoneNumber\": \"+1234567890\",\n  \"createdDate\": \"2025-06-20T11:25:07.874569-07:00\",\n  \"email\": \"email@email.com\",\n  \"employeeId\": \"j.smith\",\n  \"firstName\": \"John\",\n  \"groupRoles\": [\n    {\n      \"groupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n      \"roleId\": 4\n    }\n  ],\n  \"lastLoginDate\": \"2025-06-24T11:25:07.874571-07:00\",\n  \"lastName\": \"Smith\",\n  \"loginEnabled\": true,\n  \"primaryGroupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n  \"status\": \"Active\",\n  \"updatedDate\": \"2025-06-27T11:25:07.874572-07:00\",\n  \"username\": \"j.smith\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87120f69-f3cf-4798-af48-47b70c1c533e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allowVideoSearchDownload\": false,\n  \"cellPhoneCountry\": \"US\",\n  \"cellPhoneNumber\": \"+1234567890\",\n  \"email\": \"email@email.com\",\n  \"employeeId\": \"j.smith\",\n  \"firstName\": \"John\",\n  \"groupRoles\": [\n    {\n      \"groupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n      \"roleId\": 4\n    }\n  ],\n  \"lastName\": \"Smith\",\n  \"loginEnabled\": true,\n  \"primaryGroupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n  \"status\": \"Active\",\n  \"username\": \"j.smith\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": [\n    \"Error Reason\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c95f1abd-ada3-4006-9774-af9dd480d371",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allowVideoSearchDownload\": false,\n  \"cellPhoneCountry\": \"US\",\n  \"cellPhoneNumber\": \"+1234567890\",\n  \"email\": \"email@email.com\",\n  \"employeeId\": \"j.smith\",\n  \"firstName\": \"John\",\n  \"groupRoles\": [\n    {\n      \"groupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n      \"roleId\": 4\n    }\n  ],\n  \"lastName\": \"Smith\",\n  \"loginEnabled\": true,\n  \"primaryGroupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n  \"status\": \"Active\",\n  \"username\": \"j.smith\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c0bd27a5-a8b3-407c-8eaa-b583d0091577",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allowVideoSearchDownload\": false,\n  \"cellPhoneCountry\": \"US\",\n  \"cellPhoneNumber\": \"+1234567890\",\n  \"email\": \"email@email.com\",\n  \"employeeId\": \"j.smith\",\n  \"firstName\": \"John\",\n  \"groupRoles\": [\n    {\n      \"groupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n      \"roleId\": 4\n    }\n  ],\n  \"lastName\": \"Smith\",\n  \"loginEnabled\": true,\n  \"primaryGroupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n  \"status\": \"Active\",\n  \"username\": \"j.smith\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "28fcbb4d-e4cc-4c6c-8ced-73049445d854",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allowVideoSearchDownload\": false,\n  \"cellPhoneCountry\": \"US\",\n  \"cellPhoneNumber\": \"+1234567890\",\n  \"email\": \"email@email.com\",\n  \"employeeId\": \"j.smith\",\n  \"firstName\": \"John\",\n  \"groupRoles\": [\n    {\n      \"groupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n      \"roleId\": 4\n    }\n  ],\n  \"lastName\": \"Smith\",\n  \"loginEnabled\": true,\n  \"primaryGroupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n  \"status\": \"Active\",\n  \"username\": \"j.smith\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Conflict\",\n  \"message\": [\n    \"Error Reason\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b256beb-1c73-4f7f-8c44-37317e2f3643",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allowVideoSearchDownload\": false,\n  \"cellPhoneCountry\": \"US\",\n  \"cellPhoneNumber\": \"+1234567890\",\n  \"email\": \"email@email.com\",\n  \"employeeId\": \"j.smith\",\n  \"firstName\": \"John\",\n  \"groupRoles\": [\n    {\n      \"groupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n      \"roleId\": 4\n    }\n  ],\n  \"lastName\": \"Smith\",\n  \"loginEnabled\": true,\n  \"primaryGroupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n  \"status\": \"Active\",\n  \"username\": \"j.smith\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"Error Reason\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b22abf71-48d9-42e0-8be9-b7efefb87879",
+          "name": "Retrieve List of Possible Roles for User",
+          "request": {
+            "name": "Retrieve List of Possible Roles for User",
+            "description": {
+              "content": "Description: Retrieve a list of all possible user roles, mapping role id to role name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "roles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "607b4fcb-3b5e-4ea4-a6b8-bfbdb03c4c64",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"description\": \"string\",\n    \"id\": 5494,\n    \"name\": \"string\"\n  },\n  {\n    \"description\": \"string\",\n    \"id\": 2078,\n    \"name\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b171adc-3082-4c6b-815b-8ef0a89e52dc",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e8edd80f-0877-4d9e-9b5b-7d0ccb6f0467",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5bec1bc3-dcb1-4df8-915e-bd5ae34acbe7",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"Error Reason\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "664ee3e4-0ef0-48ff-9726-6356ea670e7e",
+          "name": "Patch Update User's Roles",
+          "request": {
+            "name": "Patch Update User's Roles",
+            "description": {
+              "content": "Description: Patch updates a user’s group roles. This is a partial update, so only the roles specified in the request body will be updated. Currently only supports adding or removing roles.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":userId",
+                "groupRoles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"op\": \"<string>\",\n    \"path\": \"<string>\",\n    \"value\": \"<object>\"\n  },\n  {\n    \"op\": \"<string>\",\n    \"path\": \"<string>\",\n    \"value\": \"<object>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5faae013-d1a5-414d-b88b-8ab87572df4b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userId",
+                    "groupRoles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"op\": \"add\",\n    \"path\": \"/roles\",\n    \"value\": {\n      \"groupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n      \"roleId\": 4\n    }\n  },\n  {\n    \"op\": \"remove\",\n    \"path\": \"/groups/30b69c7e-2186-47b1-8833-965842d2af3c/roles/4\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"userId\": \"4af860ae-2e53-4d8b-a48e-606b862effed\",\n  \"groupRoles\": [\n    {\n      \"groupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n      \"roleId\": 4\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a08f787-535d-424d-a851-73972085b0e8",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userId",
+                    "groupRoles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"op\": \"add\",\n    \"path\": \"/roles\",\n    \"value\": {\n      \"groupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n      \"roleId\": 4\n    }\n  },\n  {\n    \"op\": \"remove\",\n    \"path\": \"/groups/30b69c7e-2186-47b1-8833-965842d2af3c/roles/4\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Error Reason\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f4d7715-8e6b-4d11-95c5-8cb594cb7e93",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userId",
+                    "groupRoles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"op\": \"add\",\n    \"path\": \"/roles\",\n    \"value\": {\n      \"groupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n      \"roleId\": 4\n    }\n  },\n  {\n    \"op\": \"remove\",\n    \"path\": \"/groups/30b69c7e-2186-47b1-8833-965842d2af3c/roles/4\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "730a94b4-ebad-41da-b691-f239cf784ef9",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userId",
+                    "groupRoles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"op\": \"add\",\n    \"path\": \"/roles\",\n    \"value\": {\n      \"groupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n      \"roleId\": 4\n    }\n  },\n  {\n    \"op\": \"remove\",\n    \"path\": \"/groups/30b69c7e-2186-47b1-8833-965842d2af3c/roles/4\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7f460ba7-2018-4854-a681-5cabfb982391",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":userId",
+                    "groupRoles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"op\": \"add\",\n    \"path\": \"/roles\",\n    \"value\": {\n      \"groupId\": \"28a6d1a3-92c8-4eca-b8b3-d5d0e2d308d0\",\n      \"roleId\": 4\n    }\n  },\n  {\n    \"op\": \"remove\",\n    \"path\": \"/groups/30b69c7e-2186-47b1-8833-965842d2af3c/roles/4\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"Error Reason\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lytx.com/consent-management",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "afaac2ba-11e1-4a23-8a8e-98eb686150cd",
+    "name": "Lytx..Management.Api Consent Users (DriveCam) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for retrieving and updating user consent status, requiring authentication.\n",
+      "type": "text/plain"
+    }
+  }
+}

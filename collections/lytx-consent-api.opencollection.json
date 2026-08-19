@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lytx..Management.Api Consent API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Consent",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get User Consent Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/userconsent/status",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier of the user. Required if `employeeId` is not provided."
+              },
+              {
+                "name": "employeeId",
+                "value": "",
+                "type": "query",
+                "description": "Employee identifier associated with the user. Required if `userId` is not provided."
+              }
+            ]
+          },
+          "docs": "Retrieve the current consent status for a user across all products. Returns one consent record per product for the user.\n\n**IMPORTANT:** This API is only available if your company and Lytx, Inc. has executed an Addendum to Master Purchase Agreement (Facial ID and Consent Management). Your company is solely responsible for providing any necessary notices and/or obtaining all necessary consents for the collection and processing of video, biometric and/or other data processed by Lytx to perform the"
+        },
+        {
+          "info": {
+            "name": "Update User Consent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lytx.com/consent-management/userconsent/update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the consent status for one or more users (with Driver role) for a specific product. Up to 2000 users can be updated in a single call.\n\n**IMPORTANT:** This API is only available if your company and Lytx, Inc. has executed an Addendum to Master Purchase Agreement (Facial ID and Consent Management). Your company is solely responsible for providing any necessary notices and/or obtaining all necessary consents for the collection and processing of video, biometric and/or other data processed by"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

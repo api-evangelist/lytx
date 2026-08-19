@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lytx..Management.Api Consent Distances (DriveCam) API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Distances (DriveCam)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Distances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/v1/distances",
+            "params": [
+              {
+                "name": "deviceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Device Identifier."
+              },
+              {
+                "name": "groupIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Group Identifier."
+              },
+              {
+                "name": "vehicleIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Vehicle Identifier."
+              },
+              {
+                "name": "includeSubGroups",
+                "value": "",
+                "type": "query",
+                "description": "Include Sub Groups."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Record to start with."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter by start date."
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter by end date."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Name of the property to sort on."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of distances in a organization or subset of an organization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,194 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lytx..Management.Api Consent Vehicles (DriveCam) API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Vehicles (DriveCam)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Vehicles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/all",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "query",
+                "description": "ID of the group that the vehicle of interest is associated to (GUID)."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "An identifier to filter by a vehicle's name. This parameter allows for matching all or any part of a vehicle name.\n            If more than one vehicle matches the name pattern, a list of them will be returned.\n            Pattern is considered as match either partially or fully (i.e. pattern=“ABC”, matches: ABC, myABCvehicle, ABCfleet, fleetABC etc.)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of vehicles to receive."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number of the page from which vehicles should be receive."
+              },
+              {
+                "name": "includeSubgroups",
+                "value": "",
+                "type": "query",
+                "description": "Indicates whether results should include data for all subgroups of the group specified."
+              }
+            ]
+          },
+          "docs": "Retrieve Vehicles"
+        },
+        {
+          "info": {
+            "name": "Adds New Vehicle",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lytx.com/consent-management/all",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds New Vehicle"
+        },
+        {
+          "info": {
+            "name": "Retrieve Vehicle with Specified ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the vehicle of interest (GUID)."
+              }
+            ]
+          },
+          "docs": "Retrieve Vehicle with Specified ID"
+        },
+        {
+          "info": {
+            "name": "Update Vehicle with Specified ID (full or partial)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.lytx.com/consent-management/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the vehicle to be updated (GUID)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Vehicle with Specified ID (full or partial)"
+        },
+        {
+          "info": {
+            "name": "Delete Vehicle with Specified ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.lytx.com/consent-management/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the vehicle to delete (GUID)."
+              }
+            ]
+          },
+          "docs": "Delete Vehicle with Specified ID"
+        },
+        {
+          "info": {
+            "name": "Retrieve List of Possible Vehicle Statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/statuses"
+          },
+          "docs": "Retrieve List of Possible Vehicle Statuses"
+        },
+        {
+          "info": {
+            "name": "Retrieve List of Possible Vehicle Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/types"
+          },
+          "docs": "Retrieve List of Possible Vehicle Types"
+        },
+        {
+          "info": {
+            "name": "Retrieve List of Possible Seatbelt Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/seatbelt-types"
+          },
+          "docs": "Retrieve List of Possible Seatbelt Types"
+        },
+        {
+          "info": {
+            "name": "Retrieve List of Subdivisions for Country with Specified Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/country-subdivisions",
+            "params": [
+              {
+                "name": "countryCode",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve List of Subdivisions for Country with Specified Code"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

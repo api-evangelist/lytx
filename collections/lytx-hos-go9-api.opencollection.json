@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lytx..Management.Api Consent HOS (GO9) API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "HOS (GO9)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Telematics HOS Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/plus/v1/hos",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query",
+                "description": "Can use user ID."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Record to start with."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "The start date must be within the last 60 days."
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "End date to filter by."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              },
+              {
+                "name": "sortProperty",
+                "value": "",
+                "type": "query",
+                "description": "Name of property to sort on."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "API version number."
+              }
+            ]
+          },
+          "docs": "Retrieve HOS Logs"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

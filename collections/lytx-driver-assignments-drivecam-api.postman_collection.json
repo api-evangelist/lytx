@@ -1,0 +1,1700 @@
+{
+  "item": [
+    {
+      "id": "c04e2ed6-d9b1-4055-96b1-952b8e19306f",
+      "name": "Driver Assignments (DriveCam)",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bc8c4ae4-cb8d-45aa-8ac2-81fe0c63436a",
+          "name": "Retrieve Assignments",
+          "request": {
+            "name": "Retrieve Assignments",
+            "description": {
+              "content": "Retrieve a list of all the driver assignments in a organization or subset of an organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "driver-assignments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "vehicleIdentifier",
+                  "value": "<string>",
+                  "description": "Filter by vehicle identifier or VIN."
+                },
+                {
+                  "disabled": false,
+                  "key": "userIdentifier",
+                  "value": "<string>",
+                  "description": "Filter by user identifier or name."
+                },
+                {
+                  "disabled": false,
+                  "key": "groupIdentifier",
+                  "value": "<string>",
+                  "description": "Filter by group identifier or name."
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<dateTime>",
+                  "description": "Filter by start date."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<dateTime>",
+                  "description": "Filter by end date."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Record to start with."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Sort direction."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Name of property to sort on."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeSubgroups",
+                  "value": "<boolean>",
+                  "description": "Include subgroups."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d498d4dd-b501-4e33-8319-7fec8e396076",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "driver-assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "5100DDDD-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "userIdentifier",
+                      "value": "5100CCCC-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "5100BBBB-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "SerialNumber"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"metadata\": {\n    \"offset\": 6919,\n    \"limit\": 1068,\n    \"count\": 5100,\n    \"startDate\": \"1995-10-11T14:49:24.409Z\",\n    \"endDate\": \"1966-03-09T21:29:24.653Z\"\n  },\n  \"data\": [\n    {\n      \"userId\": \"addb04a0-7b0a-35a2-f6ae-0b7754ccf10b\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"employeeNumber\": \"string\",\n      \"vehicles\": [\n        {\n          \"id\": \"string\",\n          \"vehicleName\": \"string\",\n          \"deviceId\": \"071d003d-2859-00ec-80ea-51a2b72bcca0\",\n          \"SerialNumber\": \"string\",\n          \"imei\": \"string\",\n          \"licensePlate\": \"string\",\n          \"vin\": \"string\",\n          \"assignmentStartDate\": \"1971-12-23T15:22:50.472Z\",\n          \"assignmentEndDate\": \"1988-06-18T02:52:59.180Z\"\n        },\n        {\n          \"id\": \"string\",\n          \"vehicleName\": \"string\",\n          \"deviceId\": \"334e2ac8-a017-558d-10cf-5cb56c5053e2\",\n          \"SerialNumber\": \"string\",\n          \"imei\": \"string\",\n          \"licensePlate\": \"string\",\n          \"vin\": \"string\",\n          \"assignmentStartDate\": \"1982-07-25T10:56:39.893Z\",\n          \"assignmentEndDate\": \"1959-05-08T10:05:32.855Z\"\n        }\n      ]\n    },\n    {\n      \"userId\": \"db25d1ea-26b1-dd5d-be84-3f55a71e8aec\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"employeeNumber\": \"string\",\n      \"vehicles\": [\n        {\n          \"id\": \"string\",\n          \"vehicleName\": \"string\",\n          \"deviceId\": \"1937a3d7-fb05-1ec2-53ae-28a2182ae3e8\",\n          \"SerialNumber\": \"string\",\n          \"imei\": \"string\",\n          \"licensePlate\": \"string\",\n          \"vin\": \"string\",\n          \"assignmentStartDate\": \"1955-02-20T15:45:10.465Z\",\n          \"assignmentEndDate\": \"1992-10-15T19:45:58.672Z\"\n        },\n        {\n          \"id\": \"string\",\n          \"vehicleName\": \"string\",\n          \"deviceId\": \"03fe0bc5-6ce9-0408-85d8-6596652186fd\",\n          \"SerialNumber\": \"string\",\n          \"imei\": \"string\",\n          \"licensePlate\": \"string\",\n          \"vin\": \"string\",\n          \"assignmentStartDate\": \"2006-06-30T16:57:32.852Z\",\n          \"assignmentEndDate\": \"1988-08-06T08:14:51.111Z\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e21f127c-33a5-47eb-9c57-80008e247b98",
+              "name": "No Content: HTTP request has been successfully completed, and there is no message body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "driver-assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "5100DDDD-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "userIdentifier",
+                      "value": "5100CCCC-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "5100BBBB-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "SerialNumber"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "318e7029-29ad-48ce-b376-b5c8a97cbbf7",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "driver-assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "5100DDDD-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "userIdentifier",
+                      "value": "5100CCCC-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "5100BBBB-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "SerialNumber"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Error\": \"Bad Request\",\n  \"Message\": \"The parameters given in the request are invalid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4cf6a71a-af26-423c-b69c-b0fa05d57e38",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "driver-assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "5100DDDD-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "userIdentifier",
+                      "value": "5100CCCC-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "5100BBBB-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "SerialNumber"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b543d5e6-a193-4bb2-8198-faa6b3fa558d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "driver-assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "5100DDDD-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "userIdentifier",
+                      "value": "5100CCCC-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "5100BBBB-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "SerialNumber"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5bb0697a-2036-4f6f-a88b-9cf65b8d9702",
+              "name": "Resource Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "driver-assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "5100DDDD-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "userIdentifier",
+                      "value": "5100CCCC-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "5100BBBB-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "SerialNumber"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Error\": \"Resource Not Found\",\n  \"Message\": \"The requested resource doesn't exist.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eeba913b-73b5-47d6-a0d3-20ea82f907ca",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "driver-assignments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "5100DDDD-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "userIdentifier",
+                      "value": "5100CCCC-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "5100BBBB-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "SerialNumber"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Error\": \"Internal Server Error\",\n  \"Message\": \"The requested operation cannot be performed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1b36a8ce-321b-4d50-a54a-7e5ccb15eacb",
+          "name": "Submit Dispatch Schedule",
+          "request": {
+            "name": "Submit Dispatch Schedule",
+            "description": {
+              "content": "Schedules drivers to specific vehicles over specified periods, facilitating efficient fleet management. Unlike the Driver Assignment API, which tracks actual driver usage of vehicles, this API focuses solely on planned schedules.\n      \nBelow is the reference list of validation response codes that can be found in response after submitting dispatch schedule:\n- \"SUCCESS\" - Success\n- \"E_UNKNOWN\" - Unknown error processing entry\n- \"E_NO_MATCH\" - No matching entry found\n- \"E_NO_MATCH_DRIVER\" - No matching entry found for Driver\n- \"E_NO_MATCH_VEHICLE\" - No matching entry found for Vehicle\n- \"E_ACCESS_DENIED\" - Access has been denied to one or more objects in this operation\n- \"E_CREATE_USER_ACCESS_DENIED\" - Access has been denied while attempting to create a new user object\n- \"E_DUPLICATE_USERNAME_OR_EMPLOYEENUM\" - The UserName field or EmployeeId field matches an existing active user\n- \"E_CREATE_USER_INCLUDE_SPECIAL_CHARACTER - The FirstName field, LastName field or EmployeeId field include special character\n- \"I_CREATE_USER_SUCCESS\" - The user was successfully created\n- \"I_DUPLICATE_RULE\" - A rule was added to the system that is a duplicate of an existing rule.  The previous rule has been removed\n- \"E_CONFLICTING_SCHEDULE\" - Another schedule with similar schedule details was found, or was recently processed\n- \"E_FIRSTNAME_OR_LASTNAME_NOT_ALLOW_NULL\" - The FirstName and LastName fields are required while auto adding driver\n- \"E_DUPLICATE_VEHICLES\" - Could not identify the vehicle because there are multiple vehicles using the same vehicle name in company",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "driver-assignments",
+                "dispatch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"validate\": \"<boolean>\",\n  \"autoAddDriver\": \"<boolean>\",\n  \"entries\": [\n    {\n      \"userIdentifier\": \"<string>\",\n      \"user\": {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"id\": \"<string>\"\n      },\n      \"vehicleIdentifier\": \"<string>\",\n      \"startDate\": \"<dateTime>\",\n      \"endDate\": \"<dateTime>\"\n    },\n    {\n      \"userIdentifier\": \"<string>\",\n      \"user\": {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"id\": \"<string>\"\n      },\n      \"vehicleIdentifier\": \"<string>\",\n      \"startDate\": \"<dateTime>\",\n      \"endDate\": \"<dateTime>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "63b90dca-a6a6-4c52-811b-99aabf86ce51",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "driver-assignments",
+                    "dispatch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"validate\": false,\n  \"autoAddDriver\": true,\n  \"entries\": [\n    {\n      \"userIdentifier\": \"emp123\",\n      \"user\": {\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"id\": \"12345678\"\n      },\n      \"vehicleIdentifier\": \"Toyota\",\n      \"startDate\": \"<dateTime>\",\n      \"endDate\": \"<dateTime>\"\n    },\n    {\n      \"userIdentifier\": \"emp123\",\n      \"user\": {\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"id\": \"12345678\"\n      },\n      \"vehicleIdentifier\": \"Toyota\",\n      \"startDate\": \"<dateTime>\",\n      \"endDate\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"submissionBatchId\": 6403,\n    \"entries\": [\n      {\n        \"submissionId\": 123,\n        \"employeeId\": \"emp123\",\n        \"driverFirstName\": \"John\",\n        \"driverLastName\": \"Doe\",\n        \"vehicleName\": \"Toyota\",\n        \"responseCodeId\": \"SUCCESS\",\n        \"startDate\": \"2023-09-10T00:00:00Z\",\n        \"endDate\": \"2023-09-10T00:00:00Z\"\n      },\n      {\n        \"submissionId\": 123,\n        \"employeeId\": \"emp123\",\n        \"driverFirstName\": \"John\",\n        \"driverLastName\": \"Doe\",\n        \"vehicleName\": \"Toyota\",\n        \"responseCodeId\": \"SUCCESS\",\n        \"startDate\": \"2023-09-10T00:00:00Z\",\n        \"endDate\": \"2023-09-10T00:00:00Z\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff298f1b-db5a-4368-aaea-e51de6ba0dc8",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "driver-assignments",
+                    "dispatch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"validate\": false,\n  \"autoAddDriver\": true,\n  \"entries\": [\n    {\n      \"userIdentifier\": \"emp123\",\n      \"user\": {\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"id\": \"12345678\"\n      },\n      \"vehicleIdentifier\": \"Toyota\",\n      \"startDate\": \"<dateTime>\",\n      \"endDate\": \"<dateTime>\"\n    },\n    {\n      \"userIdentifier\": \"emp123\",\n      \"user\": {\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"id\": \"12345678\"\n      },\n      \"vehicleIdentifier\": \"Toyota\",\n      \"startDate\": \"<dateTime>\",\n      \"endDate\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Error\": \"Bad Request\",\n  \"Message\": \"The parameters given in the request are invalid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d241ccdf-072b-4124-9f80-337431d7705e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "driver-assignments",
+                    "dispatch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"validate\": false,\n  \"autoAddDriver\": true,\n  \"entries\": [\n    {\n      \"userIdentifier\": \"emp123\",\n      \"user\": {\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"id\": \"12345678\"\n      },\n      \"vehicleIdentifier\": \"Toyota\",\n      \"startDate\": \"<dateTime>\",\n      \"endDate\": \"<dateTime>\"\n    },\n    {\n      \"userIdentifier\": \"emp123\",\n      \"user\": {\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"id\": \"12345678\"\n      },\n      \"vehicleIdentifier\": \"Toyota\",\n      \"startDate\": \"<dateTime>\",\n      \"endDate\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a130ffc8-fddb-45f3-b80a-7418b84274ff",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "driver-assignments",
+                    "dispatch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"validate\": false,\n  \"autoAddDriver\": true,\n  \"entries\": [\n    {\n      \"userIdentifier\": \"emp123\",\n      \"user\": {\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"id\": \"12345678\"\n      },\n      \"vehicleIdentifier\": \"Toyota\",\n      \"startDate\": \"<dateTime>\",\n      \"endDate\": \"<dateTime>\"\n    },\n    {\n      \"userIdentifier\": \"emp123\",\n      \"user\": {\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"id\": \"12345678\"\n      },\n      \"vehicleIdentifier\": \"Toyota\",\n      \"startDate\": \"<dateTime>\",\n      \"endDate\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "472f57dd-312b-4155-bf0c-446a8a67ac36",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "driver-assignments",
+                    "dispatch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"validate\": false,\n  \"autoAddDriver\": true,\n  \"entries\": [\n    {\n      \"userIdentifier\": \"emp123\",\n      \"user\": {\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"id\": \"12345678\"\n      },\n      \"vehicleIdentifier\": \"Toyota\",\n      \"startDate\": \"<dateTime>\",\n      \"endDate\": \"<dateTime>\"\n    },\n    {\n      \"userIdentifier\": \"emp123\",\n      \"user\": {\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"id\": \"12345678\"\n      },\n      \"vehicleIdentifier\": \"Toyota\",\n      \"startDate\": \"<dateTime>\",\n      \"endDate\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Error\": \"Internal Server Error\",\n  \"Message\": \"The requested operation cannot be performed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c2ee01c-f69c-4f82-8a89-adb984126370",
+          "name": "Retrieve Submission Log Status",
+          "request": {
+            "name": "Retrieve Submission Log Status",
+            "description": {
+              "content": "Retrieve the status of a submission log to understand if processing is complete or in progress.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "driver-assignments",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "submissionBatchId",
+                  "value": "<integer>",
+                  "description": "(Required) Identifier for a submission log"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a428354-0651-4fd5-b98c-73abdb83a9d8",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "driver-assignments",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "submissionBatchId",
+                      "value": "123456789"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"submissionStatusId\": 8148\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fbf782fb-0c07-4d70-8584-e9f339047147",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "driver-assignments",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "submissionBatchId",
+                      "value": "123456789"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Error\": \"Bad Request\",\n  \"Message\": \"The parameters given in the request are invalid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c537694-a785-42c4-829a-04ae50ea6a13",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "driver-assignments",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "submissionBatchId",
+                      "value": "123456789"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ec3030e0-7623-477f-84b4-2f0a26bc41e7",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "driver-assignments",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "submissionBatchId",
+                      "value": "123456789"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5cec6cf3-41e2-46dc-805b-9fe259096d2e",
+              "name": "Resource Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "driver-assignments",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "submissionBatchId",
+                      "value": "123456789"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Error\": \"Resource Not Found\",\n  \"Message\": \"The requested resource doesn't exist.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d68e1166-1d02-4951-8133-dbb747e4ca04",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "driver-assignments",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "submissionBatchId",
+                      "value": "123456789"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Error\": \"Internal Server Error\",\n  \"Message\": \"The requested operation cannot be performed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "61b68d8b-831a-4e2a-8eaf-5c6797fb8d3b",
+          "name": "Retrieve Submission Logs",
+          "request": {
+            "name": "Retrieve Submission Logs",
+            "description": {
+              "content": "Retrieve submission entries of a submission log, which provide the driver, vehicle, and dispatch start and end time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "driver-assignments",
+                "result"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "submissionBatchId",
+                  "value": "<integer>",
+                  "description": "(Required) Identifier for a submission log"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6ef688c1-907e-4fb3-830c-c2eef17aa41b",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "driver-assignments",
+                    "result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "submissionBatchId",
+                      "value": "123456789"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"results\": [\n      {\n        \"submissionId\": 6924,\n        \"driverFirstName\": \"string\",\n        \"driverLastName\": \"string\",\n        \"employeeId\": \"string\",\n        \"vehicleName\": \"string\",\n        \"responseCodeId\": \"string\",\n        \"assignmentsModified\": 8380,\n        \"startDate\": \"1961-09-14T21:34:11.217Z\",\n        \"endDate\": \"2014-11-02T02:48:40.821Z\"\n      },\n      {\n        \"submissionId\": 3065,\n        \"driverFirstName\": \"string\",\n        \"driverLastName\": \"string\",\n        \"employeeId\": \"string\",\n        \"vehicleName\": \"string\",\n        \"responseCodeId\": \"string\",\n        \"assignmentsModified\": 1505,\n        \"startDate\": \"1973-01-24T00:29:09.214Z\",\n        \"endDate\": \"1949-01-28T08:58:52.234Z\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1b2a1c4-7938-4e38-abc7-3dc7c14cb1ed",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "driver-assignments",
+                    "result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "submissionBatchId",
+                      "value": "123456789"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Error\": \"Bad Request\",\n  \"Message\": \"The parameters given in the request are invalid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "549923dd-7d70-4bbe-8f42-b3316dadf984",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "driver-assignments",
+                    "result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "submissionBatchId",
+                      "value": "123456789"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "aee29adc-9bfe-4749-8b84-99ef6966bb03",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "driver-assignments",
+                    "result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "submissionBatchId",
+                      "value": "123456789"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0d80ca91-e449-47ed-ad70-e34ad24b657a",
+              "name": "Resource Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "driver-assignments",
+                    "result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "submissionBatchId",
+                      "value": "123456789"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Error\": \"Resource Not Found\",\n  \"Message\": \"The requested resource doesn't exist.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e41c9ad0-fd13-43df-9d76-ae96cb26709e",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "driver-assignments",
+                    "result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "submissionBatchId",
+                      "value": "123456789"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Error\": \"Internal Server Error\",\n  \"Message\": \"The requested operation cannot be performed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lytx.com/consent-management",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d969911a-5bdd-491d-943d-076989bececf",
+    "name": "Lytx..Management.Api Consent Driver Assignments (DriveCam) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for retrieving and updating user consent status, requiring authentication.\n",
+      "type": "text/plain"
+    }
+  }
+}

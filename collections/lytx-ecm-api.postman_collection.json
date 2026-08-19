@@ -1,0 +1,771 @@
+{
+  "item": [
+    {
+      "id": "c931432c-7456-49d9-b712-51b4a7f7d251",
+      "name": "ECM",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "490304fa-d023-49e5-b79b-dc99135422b2",
+          "name": "Retrieve ECM data (V2 - Enhanced with Sample Type filtering)",
+          "request": {
+            "name": "Retrieve ECM data (V2 - Enhanced with Sample Type filtering)",
+            "description": {
+              "content": "Retrieves engine computer module (ECM) data from vehicles with enhanced filtering by sample type. ECM data availability varies by vehicle, device, and cable configuration. Also, the organization must have a Fleet Tracking subscription to receive data from this endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "ecm"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceIdentifier",
+                  "value": "<string>",
+                  "description": "Can use either device serial number or deviceId. If no device, vehicle, or group is specified, returns data for all devices."
+                },
+                {
+                  "disabled": false,
+                  "key": "vehicleIdentifier",
+                  "value": "<string>",
+                  "description": "Can use either VIN, vehicleId, or vehicle name. If no device, vehicle, or group is specified, returns data for all vehicles."
+                },
+                {
+                  "disabled": false,
+                  "key": "groupIdentifier",
+                  "value": "<uuid>",
+                  "description": "Can use groupId, rootGroupId, or group name. If no device, vehicle, or group is specified, returns data for all devices."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeSubGroups",
+                  "value": "false",
+                  "description": "If true, all descendant groups under the specified group are included."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Record to start with."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<dateTime>",
+                  "description": "The startDate must be within the last 6 months. The startDate and endDate must be 24 hours of each other. ECM data is available for up to 7 days; DTC data is available for up to 6 months. Defaults to current UTC date."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<dateTime>",
+                  "description": "The startDate and endDate must be within 24 hours of each other."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Name of the property to sort on."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Sort direction (asc or desc)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sampleType",
+                  "value": "<string>",
+                  "description": "(Required) Type of ECM sample data to retrieve. This parameter is required for V2 endpoint to filter specific data types."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "58611321-fe54-4291-b47c-cace86ab97db",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ecm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "false"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1500"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "VehicleName"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sampleType",
+                      "value": "ODOMETER"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"deviceId\": \"2d9430b4-0319-cba7-44ed-8380de37aecb\",\n      \"serialNumber\": \"NT00210007\",\n      \"groupId\": \"3c00f0f7-adda-4644-de9f-c63f82a2c4c1\",\n      \"licensePlate\": \"74980RP\",\n      \"vehicleId\": \"7b00e469-c3eb-e4b8-7410-44abfc00cf3c\",\n      \"vehicleName\": \"Example Car\",\n      \"vin\": \"9ATRPE9R2RO473355\",\n      \"groupName\": \"Fleet Group 1\",\n      \"samples\": [\n        {\n          \"sampleType\": \"ENGINE_HOURS\",\n          \"sampleDateTime\": \"2024-05-29T22:24:27.804Z\",\n          \"sampleValue\": \"1600\"\n        },\n        {\n          \"sampleType\": \"ENGINE_HOURS\",\n          \"sampleDateTime\": \"2024-05-29T22:24:27.804Z\",\n          \"sampleValue\": \"1600\"\n        }\n      ]\n    },\n    {\n      \"deviceId\": \"91267cfe-04b3-688b-5258-94ff2a5c301a\",\n      \"serialNumber\": \"NT00210007\",\n      \"groupId\": \"81db342c-075a-b274-7008-1026740bda1f\",\n      \"licensePlate\": \"74980RP\",\n      \"vehicleId\": \"c277acb5-d461-692b-71a0-9e08e0430658\",\n      \"vehicleName\": \"Example Car\",\n      \"vin\": \"9ATRPE9R2RO473355\",\n      \"groupName\": \"Fleet Group 1\",\n      \"samples\": [\n        {\n          \"sampleType\": \"ENGINE_HOURS\",\n          \"sampleDateTime\": \"2024-05-29T22:24:27.804Z\",\n          \"sampleValue\": \"1600\"\n        },\n        {\n          \"sampleType\": \"ENGINE_HOURS\",\n          \"sampleDateTime\": \"2024-05-29T22:24:27.804Z\",\n          \"sampleValue\": \"1600\"\n        }\n      ]\n    }\n  ],\n  \"metadata\": {\n    \"count\": \"30\",\n    \"limit\": 100,\n    \"offset\": 0,\n    \"startDate\": \"2010-02-18T23:44:38.345Z\",\n    \"endDate\": \"2020-02-06T04:27:11.094Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d136913b-698e-4298-b404-4da802836778",
+              "name": "No Content - No data found matching the criteria",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ecm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "false"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1500"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "VehicleName"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sampleType",
+                      "value": "ODOMETER"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4106251e-743a-4ee3-9cc9-4d98d2f9e6c6",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ecm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "false"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1500"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "VehicleName"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sampleType",
+                      "value": "ODOMETER"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Invalid request data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b67d175-66f7-42ec-bca1-c21aa0672fd4",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ecm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "false"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1500"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "VehicleName"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sampleType",
+                      "value": "ODOMETER"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unauthorized\",\n  \"message\": \"Access denied\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d3bb5e2-d73f-442a-a609-0a2e141481d5",
+              "name": "Forbidden - Non-permitted user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ecm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "false"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1500"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "VehicleName"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sampleType",
+                      "value": "ODOMETER"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"Non-permitted user\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fae8b0e4-b270-4d4b-af1f-cd9f92a3d338",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ecm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "false"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1500"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "VehicleName"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sampleType",
+                      "value": "ODOMETER"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"Non-permitted user\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85b8a3ca-ec6b-47cc-a6f4-8d0aecddefbe",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "ecm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "false"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1500"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "VehicleName"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sampleType",
+                      "value": "ODOMETER"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"An unexpected server error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lytx.com/consent-management",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2fb78adc-7460-4f98-907a-1502e037479e",
+    "name": "Lytx..Management.Api Consent ECM API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for retrieving and updating user consent status, requiring authentication.\n",
+      "type": "text/plain"
+    }
+  }
+}

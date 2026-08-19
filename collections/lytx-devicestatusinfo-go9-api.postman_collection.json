@@ -1,0 +1,655 @@
+{
+  "item": [
+    {
+      "id": "4c5dbab9-9eb0-49c4-b1e9-9dcacaab2154",
+      "name": "DeviceStatusInfo (GO9)",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "edeef965-e38c-45f1-866a-cacb01dc8506",
+          "name": "Get Telematics Device Status Info Data",
+          "request": {
+            "name": "Get Telematics Device Status Info Data",
+            "description": {
+              "content": "Retrieve a list of all the device status info in an organization or subset of an organization",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plus",
+                "v1",
+                "devicestatusinfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceId",
+                  "value": "<string>",
+                  "description": "Can use either device serial number or device ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "groupId",
+                  "value": "<string>",
+                  "description": "Can use group ID or root group ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "isDriving",
+                  "value": "<boolean>",
+                  "description": "If true, only devices that are currently driving are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "isDeviceCommunicating",
+                  "value": "<boolean>",
+                  "description": "If true, only devices that are currently communicating are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Record to start with."
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<dateTime>",
+                  "description": "The start date must be within the last 60 days."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Sort direction."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortProperty",
+                  "value": "<string>",
+                  "description": "Name of property to sort on."
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>",
+                  "description": "(Required) API version number."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bee24065-e7ff-420c-8b98-c2fdac983b39",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "devicestatusinfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "isDriving",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "isDeviceCommunicating",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"deviceId\": \"dev-123\",\n      \"vehicleIdentificationNumber\": \"1HGCM82633A004352\",\n      \"serialNumber\": {},\n      \"id\": \"status-001\",\n      \"latitude\": 43.6532,\n      \"longitude\": -79.3832,\n      \"bearing\": 180,\n      \"speed\": 65.5,\n      \"isDriving\": true,\n      \"isDeviceCommunicating\": true,\n      \"driverId\": \"driver-789\",\n      \"groups\": [\n        {\n          \"id\": \"grp-123\",\n          \"name\": \"Drivers Group\",\n          \"comment\": \"Main driver group\",\n          \"reference\": \"REF123\",\n          \"parent\": {\n            \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n          },\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          ],\n          \"color\": {\n            \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n          }\n        },\n        {\n          \"id\": \"grp-123\",\n          \"name\": \"Drivers Group\",\n          \"comment\": \"Main driver group\",\n          \"reference\": \"REF123\",\n          \"parent\": {\n            \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n          },\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          ],\n          \"color\": {\n            \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n          }\n        }\n      ],\n      \"dateTime\": \"2025-01-20T12:30:00.000Z\",\n      \"exceptionEvents\": [\n        {\n          \"id\": \"ex-123\",\n          \"activeFrom\": \"2025-01-20T08:00:00.000Z\",\n          \"activeTo\": \"2025-01-20T10:00:00.000Z\",\n          \"ruleId\": \"rule-456\"\n        },\n        {\n          \"id\": \"ex-123\",\n          \"activeFrom\": \"2025-01-20T08:00:00.000Z\",\n          \"activeTo\": \"2025-01-20T10:00:00.000Z\",\n          \"ruleId\": \"rule-456\"\n        }\n      ],\n      \"lastTrip\": {\n        \"id\": \"trip-999\",\n        \"start\": \"2025-01-20T06:30:00.000Z\",\n        \"stop\": \"2025-01-20T07:15:00.000Z\"\n      }\n    },\n    {\n      \"deviceId\": \"dev-123\",\n      \"vehicleIdentificationNumber\": \"1HGCM82633A004352\",\n      \"serialNumber\": {},\n      \"id\": \"status-001\",\n      \"latitude\": 43.6532,\n      \"longitude\": -79.3832,\n      \"bearing\": 180,\n      \"speed\": 65.5,\n      \"isDriving\": true,\n      \"isDeviceCommunicating\": true,\n      \"driverId\": \"driver-789\",\n      \"groups\": [\n        {\n          \"id\": \"grp-123\",\n          \"name\": \"Drivers Group\",\n          \"comment\": \"Main driver group\",\n          \"reference\": \"REF123\",\n          \"parent\": {\n            \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n          },\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          ],\n          \"color\": {\n            \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n          }\n        },\n        {\n          \"id\": \"grp-123\",\n          \"name\": \"Drivers Group\",\n          \"comment\": \"Main driver group\",\n          \"reference\": \"REF123\",\n          \"parent\": {\n            \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n          },\n          \"children\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          ],\n          \"color\": {\n            \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n          }\n        }\n      ],\n      \"dateTime\": \"2025-01-20T12:30:00.000Z\",\n      \"exceptionEvents\": [\n        {\n          \"id\": \"ex-123\",\n          \"activeFrom\": \"2025-01-20T08:00:00.000Z\",\n          \"activeTo\": \"2025-01-20T10:00:00.000Z\",\n          \"ruleId\": \"rule-456\"\n        },\n        {\n          \"id\": \"ex-123\",\n          \"activeFrom\": \"2025-01-20T08:00:00.000Z\",\n          \"activeTo\": \"2025-01-20T10:00:00.000Z\",\n          \"ruleId\": \"rule-456\"\n        }\n      ],\n      \"lastTrip\": {\n        \"id\": \"trip-999\",\n        \"start\": \"2025-01-20T06:30:00.000Z\",\n        \"stop\": \"2025-01-20T07:15:00.000Z\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74287a61-7773-4006-88d0-ebb55e24a3f9",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "devicestatusinfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "isDriving",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "isDeviceCommunicating",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f2c07fe-857d-48b2-9f53-955c1f27464a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "devicestatusinfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "isDriving",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "isDeviceCommunicating",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unauthorized\",\n  \"message\": \"Access denied\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86d84317-6393-453b-a6d3-4ccb7f61f521",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "devicestatusinfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "isDriving",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "isDeviceCommunicating",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"Non-permited user\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "983e7bc7-a2a0-45f0-a9f7-91dbde17e163",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "devicestatusinfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "isDriving",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "isDeviceCommunicating",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"No information found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da6e69b7-0a6b-4656-aa29-73c99033e8cb",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "devicestatusinfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "isDriving",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "isDeviceCommunicating",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"An unexpected server error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lytx.com/consent-management",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a738451e-e630-49e6-a75b-63dc55301492",
+    "name": "Lytx..Management.Api Consent DeviceStatusInfo (GO9) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for retrieving and updating user consent status, requiring authentication.\n",
+      "type": "text/plain"
+    }
+  }
+}

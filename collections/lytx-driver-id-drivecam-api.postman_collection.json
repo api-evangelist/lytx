@@ -1,0 +1,335 @@
+{
+  "item": [
+    {
+      "id": "0c534102-cdf1-431e-b6cf-d23802ede581",
+      "name": "Driver ID (DriveCam)",
+      "description": {
+        "content": "Legacy API to retrieve vehicle trips, including drivers and vehicles assigned to each trip. Uses obsolete X-APIKey authentication.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9f7cac10-a32f-4fd8-be79-494ad2a712f0",
+          "name": "Return All Trips Specified by Query Terms",
+          "request": {
+            "name": "Return All Trips Specified by Query Terms",
+            "description": {},
+            "url": {
+              "path": [
+                "trips"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"groupId\": \"<guid>\",\n  \"groupIds\": [\n    \"<guid>\",\n    \"<guid>\"\n  ],\n  \"driverId\": \"<guid>\",\n  \"vehicleId\": \"<guid>\",\n  \"sortColumn\": \"<string>\",\n  \"sortDirection\": \"<string>\",\n  \"pageNumber\": \"<integer>\",\n  \"pageSize\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a75485c0-ce60-422a-a550-45639ed87414",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"groupId\": \"<guid>\",\n  \"groupIds\": [\n    \"<guid>\",\n    \"<guid>\"\n  ],\n  \"driverId\": \"<guid>\",\n  \"vehicleId\": \"<guid>\",\n  \"sortColumn\": \"<string>\",\n  \"sortDirection\": \"<string>\",\n  \"pageNumber\": 1,\n  \"pageSize\": 1000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCount\": 4963,\n  \"results\": [\n    {\n      \"identificationType\": 281,\n      \"interval\": {\n        \"startTime\": \"2021-02-10T06:16:58.179Z\",\n        \"endTime\": \"2005-07-12T02:37:42.117Z\"\n      },\n      \"driver\": {\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"fullName\": \"string\",\n        \"employeeId\": \"string\"\n      },\n      \"vehicle\": {\n        \"name\": \"string\"\n      },\n      \"device\": {\n        \"serialNumber\": \"string\"\n      },\n      \"group\": {\n        \"name\": \"string\"\n      },\n      \"startLocation\": {\n        \"latitude\": 883.4174704086706,\n        \"longitude\": 6488.765306208556\n      },\n      \"endLocation\": {\n        \"latitude\": 302.0716796151635,\n        \"longitude\": 2830.5547135727384\n      }\n    },\n    {\n      \"identificationType\": 6836,\n      \"interval\": {\n        \"startTime\": \"1982-08-24T21:42:26.129Z\",\n        \"endTime\": \"1989-09-01T07:51:29.616Z\"\n      },\n      \"driver\": {\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"fullName\": \"string\",\n        \"employeeId\": \"string\"\n      },\n      \"vehicle\": {\n        \"name\": \"string\"\n      },\n      \"device\": {\n        \"serialNumber\": \"string\"\n      },\n      \"group\": {\n        \"name\": \"string\"\n      },\n      \"startLocation\": {\n        \"latitude\": 7275.088704598176,\n        \"longitude\": 7391.775513904705\n      },\n      \"endLocation\": {\n        \"latitude\": 2276.480099967455,\n        \"longitude\": 8327.080970565585\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac4c03b2-fa5f-423c-8ef2-f782482ce170",
+              "name": "The parameters given in the request are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"groupId\": \"<guid>\",\n  \"groupIds\": [\n    \"<guid>\",\n    \"<guid>\"\n  ],\n  \"driverId\": \"<guid>\",\n  \"vehicleId\": \"<guid>\",\n  \"sortColumn\": \"<string>\",\n  \"sortDirection\": \"<string>\",\n  \"pageNumber\": 1,\n  \"pageSize\": 1000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b7e92608-d0a0-49bb-8eac-39afadb49a61",
+              "name": "The request could not be authenticated. It can occur due to inputting an invalid key or invalid pod.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"groupId\": \"<guid>\",\n  \"groupIds\": [\n    \"<guid>\",\n    \"<guid>\"\n  ],\n  \"driverId\": \"<guid>\",\n  \"vehicleId\": \"<guid>\",\n  \"sortColumn\": \"<string>\",\n  \"sortDirection\": \"<string>\",\n  \"pageNumber\": 1,\n  \"pageSize\": 1000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82402532-8f20-41a9-bf22-f19e104cb218",
+              "name": "Access is denied to query trips for the specified group id. The given API key's context does not have the proper permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"groupId\": \"<guid>\",\n  \"groupIds\": [\n    \"<guid>\",\n    \"<guid>\"\n  ],\n  \"driverId\": \"<guid>\",\n  \"vehicleId\": \"<guid>\",\n  \"sortColumn\": \"<string>\",\n  \"sortDirection\": \"<string>\",\n  \"pageNumber\": 1,\n  \"pageSize\": 1000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c204f4b5-af7b-4748-9017-e98a09c89f66",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"groupId\": \"<guid>\",\n  \"groupIds\": [\n    \"<guid>\",\n    \"<guid>\"\n  ],\n  \"driverId\": \"<guid>\",\n  \"vehicleId\": \"<guid>\",\n  \"sortColumn\": \"<string>\",\n  \"sortDirection\": \"<string>\",\n  \"pageNumber\": 1,\n  \"pageSize\": 1000\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lytx.com/consent-management",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d93de512-f5f5-4830-9918-b28cdb281218",
+    "name": "Lytx..Management.Api Consent Driver ID (DriveCam) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for retrieving and updating user consent status, requiring authentication.\n",
+      "type": "text/plain"
+    }
+  }
+}

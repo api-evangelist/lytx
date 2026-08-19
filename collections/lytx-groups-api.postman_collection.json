@@ -1,0 +1,519 @@
+{
+  "item": [
+    {
+      "id": "2ec9d26d-e5a8-4b3b-bf4c-e32d7ca1a08b",
+      "name": "Groups",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "12217deb-fa9d-4c55-982d-85ade99d5ccc",
+          "name": "Retrieve a list of group audit logs in the organization.",
+          "request": {
+            "name": "Retrieve a list of group audit logs in the organization.",
+            "description": {
+              "content": "Retrieve a list of group audit logs",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups",
+                "auditlogs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyId\": \"<string>\",\n  \"groupIdentifier\": \"<string>\",\n  \"includeSubgroups\": \"<boolean>\",\n  \"action\": \"<string>\",\n  \"userIdentifier\": \"<string>\",\n  \"sort\": \"<string>\",\n  \"order\": \"<string>\",\n  \"startDate\": \"<string>\",\n  \"endDate\": \"<string>\",\n  \"limit\": \"<number>\",\n  \"offset\": \"<number>\",\n  \"searchtext\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "85b5e2d1-bd64-4a19-97f8-a8e29675e92e",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    "auditlogs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyId\": \"1129\",\n  \"groupIdentifier\": \"880e60d8-fbed-217a-1720-6511d9f16361\",\n  \"includeSubgroups\": true,\n  \"action\": \"CREATE\",\n  \"userIdentifier\": \"880e60d8-fbed-217a-1720-6511d9f16361\",\n  \"sort\": \"UpdatedDate\",\n  \"order\": \"desc\",\n  \"startDate\": \"2024-09-07T00:00:00Z\",\n  \"endDate\": \"2024-09-10T00:00:00Z\",\n  \"limit\": 10000,\n  \"offset\": 0,\n  \"searchtext\": \"testGroupName\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"0c3c9820-3ee4-e98d-0987-c7333e722f72\",\n  \"action\": \"UPDATE\",\n  \"createdDate\": \"2023-01-01T00:00:00Z\",\n  \"fullPath\": \"***Root\\\\\\\\Food%20Transportation%20INC\",\n  \"fullPathId\": \"750c5226-0f0a-402d-dcec-f83ccbb5373e\\\\\\\\0c3c9820-3ee4-e98d-0987-c7333e722f72\",\n  \"isDeleted\": false,\n  \"name\": \"Food Transportation INC\",\n  \"parentId\": \"750c5226-0f0a-402d-dcec-f83ccbb5373e\",\n  \"revision\": 3,\n  \"rootGroupId\": \"750c5226-0f0a-402d-dcec-f83ccbb5373e\",\n  \"updatedDate\": \"2023-02-01T00:00:00Z\",\n  \"deletedDate\": false,\n  \"description\": \"this is a description\",\n  \"email\": \"serena@gmail.com\",\n  \"employeeId\": \"12345678\",\n  \"firstName\": \"Serena\",\n  \"lastName\": \"Smith\",\n  \"userId\": \"110e60d8-fbed-217c-1720-6511d9f16361\",\n  \"username\": \"serenasmith\",\n  \"actionDescription\": \"Group was updated\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "040e3a9a-55aa-4aa3-8684-29f6f20e1a15",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    "auditlogs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyId\": \"1129\",\n  \"groupIdentifier\": \"880e60d8-fbed-217a-1720-6511d9f16361\",\n  \"includeSubgroups\": true,\n  \"action\": \"CREATE\",\n  \"userIdentifier\": \"880e60d8-fbed-217a-1720-6511d9f16361\",\n  \"sort\": \"UpdatedDate\",\n  \"order\": \"desc\",\n  \"startDate\": \"2024-09-07T00:00:00Z\",\n  \"endDate\": \"2024-09-10T00:00:00Z\",\n  \"limit\": 10000,\n  \"offset\": 0,\n  \"searchtext\": \"testGroupName\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Audit data prior to 2024-09-04T00:00:00Z is not available.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7db85dea-4a75-4d2e-93aa-9ebd5cbb3e24",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    "auditlogs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyId\": \"1129\",\n  \"groupIdentifier\": \"880e60d8-fbed-217a-1720-6511d9f16361\",\n  \"includeSubgroups\": true,\n  \"action\": \"CREATE\",\n  \"userIdentifier\": \"880e60d8-fbed-217a-1720-6511d9f16361\",\n  \"sort\": \"UpdatedDate\",\n  \"order\": \"desc\",\n  \"startDate\": \"2024-09-07T00:00:00Z\",\n  \"endDate\": \"2024-09-10T00:00:00Z\",\n  \"limit\": 10000,\n  \"offset\": 0,\n  \"searchtext\": \"testGroupName\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fb6a24b4-d814-4b5b-866c-f9a51e246911",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    "auditlogs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyId\": \"1129\",\n  \"groupIdentifier\": \"880e60d8-fbed-217a-1720-6511d9f16361\",\n  \"includeSubgroups\": true,\n  \"action\": \"CREATE\",\n  \"userIdentifier\": \"880e60d8-fbed-217a-1720-6511d9f16361\",\n  \"sort\": \"UpdatedDate\",\n  \"order\": \"desc\",\n  \"startDate\": \"2024-09-07T00:00:00Z\",\n  \"endDate\": \"2024-09-10T00:00:00Z\",\n  \"limit\": 10000,\n  \"offset\": 0,\n  \"searchtext\": \"testGroupName\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fac82a9d-9217-45f5-b526-60b852c4cf7c",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    "auditlogs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyId\": \"1129\",\n  \"groupIdentifier\": \"880e60d8-fbed-217a-1720-6511d9f16361\",\n  \"includeSubgroups\": true,\n  \"action\": \"CREATE\",\n  \"userIdentifier\": \"880e60d8-fbed-217a-1720-6511d9f16361\",\n  \"sort\": \"UpdatedDate\",\n  \"order\": \"desc\",\n  \"startDate\": \"2024-09-07T00:00:00Z\",\n  \"endDate\": \"2024-09-10T00:00:00Z\",\n  \"limit\": 10000,\n  \"offset\": 0,\n  \"searchtext\": \"testGroupName\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"The requested operation cannot be performed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b853273-5840-4f71-adef-c434c5b3328a",
+          "name": "Export group audit logs in the organization.",
+          "request": {
+            "name": "Export group audit logs in the organization.",
+            "description": {
+              "content": "Export group audit logs",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "groups",
+                "exportAuditLogs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyId\": \"<string>\",\n  \"groupIdentifier\": \"<string>\",\n  \"includeSubgroups\": \"<boolean>\",\n  \"action\": \"<string>\",\n  \"userIdentifier\": \"<string>\",\n  \"sort\": \"<string>\",\n  \"order\": \"<string>\",\n  \"startDate\": \"<string>\",\n  \"endDate\": \"<string>\",\n  \"limit\": \"<number>\",\n  \"offset\": \"<number>\",\n  \"searchtext\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a3df6a9b-1407-41b5-9185-7e98b96eba0a",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    "exportAuditLogs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyId\": \"1129\",\n  \"groupIdentifier\": \"880e60d8-fbed-217a-1720-6511d9f16361\",\n  \"includeSubgroups\": true,\n  \"action\": \"CREATE\",\n  \"userIdentifier\": \"880e60d8-fbed-217a-1720-6511d9f16361\",\n  \"sort\": \"UpdatedDate\",\n  \"order\": \"desc\",\n  \"startDate\": \"2024-09-07T00:00:00Z\",\n  \"endDate\": \"2024-09-10T00:00:00Z\",\n  \"limit\": 10000,\n  \"offset\": 0,\n  \"searchtext\": \"testGroupName\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"csvData\": \"VXNlciwgR3JvdXAocyksIEFjdGlvbiwgQWN0aW9uIERldGFpbHMsIEFjdGlvbiBEYXRlDQosIHp6eiwgREVMRVRFLCB6enogZGVsZXRlZCwgMy8zLzIwMjUgNDoyNDo0MyBQTQ0KLCB6eiwgREVMRVRFLCB6eiBkZWxldGVkLCAzLzMvMjAyNSA0OjI1OjI2IFBNDQosIGpua2FiYmFiaGphYiwgREVMRVRFLCBqbmthYmJhYmhqYWIgZGVsZXRlZCwgMy80LzIwMjUgNzozMDoyNCBBTQ0KLCB6enosIERFTEVURSwgenp6IGRlbGV0ZWQsIDMvNC8yMDI1IDc6NTE6MDYgQU0NCiwgenosIERFTEVURSwgenogZGVsZXRlZCwgMy80LzIwMjUgMTA6MjY6MjQgQU0NCiwgTmV3IGdyb3VwIDEsIERFTEVURSwgTmV3IGdyb3VwIDEgZGVsZXRlZCwgMy80LzIwMjUgNzozNDoyMCBQTQ0KLCBOZXcgZ3JvdXAgUmVmcmVzaCB0ZXN0LCBERUxFVEUsIE5ldyBncm91cCBSZWZyZXNoIHRlc3QgZGVsZXRlZCwgMy80LzIwMjUgNzozNDoyOCBQTQ0KLCBOZXcgR3JvdXAgMTAwMiwgREVMRVRFLCBOZXcgR3JvdXAgMTAwMiBkZWxldGVkLCAzLzQvMjAyNSA3OjM0OjM3IFBNDQosIEFBVGVzdCBHcm91cCBBZGQgQVBJLCBERUxFVEUsIEFBVGVzdCBHcm91cCBBZGQgQVBJIGRlbGV0ZWQsIDMvNC8yMDI1IDc6MzQ6NTYgUE0NCiwgZHNkZmRzZmRmLCBERUxFVEUsIGRzZGZkc2ZkZiBkZWxldGVkLCAzLzQvMjAyNSA3OjM1OjAyIFBNDQosIGRzZHNkc2RzZHNkc2QsIERFTEVURSwgZHNkc2RzZHNkc2RzZCBkZWxldGVkLCAzLzQvMjAyNSA3OjM1OjA4IFBNDQosIGV3cmZlZmZmZGdnZmYsIERFTEVURSwgZXdyZmVmZmZkZ2dmZiBkZWxldGVkLCAzLzQvMjAyNSA3OjM1OjEzIFBNDQosIE5ldyBncm91cCAxLCBERUxFVEUsIE5ldyBncm91cCAxIGRlbGV0ZWQsIDMvNC8yMDI1IDc6MzU6MTkgUE0NCiwgQSBuZXcgZ3JvdXAgYWEsIERFTEVURSwgQSBuZXcgZ3JvdXAgYWEgZGVsZXRlZCwgMy80LzIwMjUgNzozNToyOSBQTQ0KLCBOZXcgZ3JvdXAgMSwgREVMRVRFLCBOZXcgZ3JvdXAgMSBkZWxldGVkLCAzLzQvMjAyNSA3OjM1OjM0IFBNDQosIEFkZCBHcm91cDEsIERFTEVURSwgQWRkIEdyb3VwMSBkZWxldGVkLCAzLzQvMjAyNSA3OjM1OjQzIFBNDQosIFRlc3QgR3JvdXAgQWRkIEFQSSwgREVMRVRFLCBUZXN0IEdyb3VwIEFkZCBBUEkgZGVsZXRlZCwgMy80LzIwMjUgNzozNTo0OSBQTQ0KLCBhYU5ld0dyb3VwQWRkaW5nNDQsIERFTEVURSwgYWFOZXdHcm91cEFkZGluZzQ0IGRlbGV0ZWQsIDMvNC8yMDI1IDc6MzY6MDEgUE0NCiwgTmV3IGdyb3VwIDExLCBERUxFVEUsIE5ldyBncm91cCAxMSBkZWxldGVkLCAzLzQvMjAyNSA3OjM2OjA3IFBNDQosIE5ldyBncm91cCAxMiwgREVMRVRFLCBOZXcgZ3JvdXAgMTIgZGVsZXRlZCwgMy80LzIwMjUgNzozNjoxMyBQTQ0KLCBaWiBOZXdHcm91cEFkZGluZzMzLCBERUxFVEUsIFpaIE5ld0dyb3VwQWRkaW5nMzMgZGVsZXRlZCwgMy80LzIwMjUgNzozNjoxOSBQTQ0KLCBBQSBOZXcgZ3JvdXAsIERFTEVURSwgQUEgTmV3IGdyb3VwIGRlbGV0ZWQsIDMvNC8yMDI1IDc6MzY6MzIgUE0NCiwgZHNhZHNhZHNhMTIzNCwgREVMRVRFLCBkc2Fkc2Fkc2ExMjM0IGRlbGV0ZWQsIDMvNC8yMDI1IDc6MzY6NDAgUE0NCiwgVEVTVDEyMzQ0NDUsIERFTEVURSwgVEVTVDEyMzQ0NDUgZGVsZXRlZCwgMy80LzIwMjUgNzozNjo0NiBQTQ0KLCBOZXdHcm91cEFkZGluZ1JlZnJlc2gsIERFTEVURSwgTmV3R3JvdXBBZGRpbmdSZWZyZXNoIGRlbGV0ZWQsIDMvNC8yMDI1IDc6Mzc6MjAgUE0NCiwgVGVzdCBOZXcgMTIzIEdyb3VwLCBERUxFVEUsIFRlc3QgTmV3IDEyMyBHcm91cCBkZWxldGVkLCAzLzQvMjAyNSA3OjM3OjI2IFBNDQosIGJramJrYmZkLCBERUxFVEUsIGJramJrYmZkIGRlbGV0ZWQsIDMvNC8yMDI1IDc6Mzc6MzUgUE0NCiwgenosIERFTEVURSwgenogZGVsZXRlZCwgMy\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a41fcd51-86f7-4474-b9df-578bbab34bdf",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "groups",
+                    "exportAuditLogs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyId\": \"1129\",\n  \"groupIdentifier\": \"880e60d8-fbed-217a-1720-6511d9f16361\",\n  \"includeSubgroups\": true,\n  \"action\": \"CREATE\",\n  \"userIdentifier\": \"880e60d8-fbed-217a-1720-6511d9f16361\",\n  \"sort\": \"UpdatedDate\",\n  \"order\": \"desc\",\n  \"startDate\": \"2024-09-07T00:00:00Z\",\n  \"endDate\": \"2024-09-10T00:00:00Z\",\n  \"limit\": 10000,\n  \"offset\": 0,\n  \"searchtext\": \"testGroupName\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Audit data prior to 2024-09-04T00:00:00Z is not available.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lytx.com/consent-management",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "46f9a411-7ff3-49a1-8563-89729abfaedf",
+    "name": "Lytx..Management.Api Consent Groups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for retrieving and updating user consent status, requiring authentication.\n",
+      "type": "text/plain"
+    }
+  }
+}

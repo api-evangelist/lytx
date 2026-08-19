@@ -1,0 +1,189 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lytx..Management.Api Consent ECM (DriveCam) API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ECM (DriveCam)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve ECM Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/v1/ecm",
+            "params": [
+              {
+                "name": "deviceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Can use either device serial number or deviceId. If no device, vehicle, or group is specified, returns data for all devices."
+              },
+              {
+                "name": "vehicleIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Can use either VIN, vehicleId, or vehicle name. If no device, vehicle, or group is specified, returns data for all vehicles."
+              },
+              {
+                "name": "groupIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Can use groupId, rootGroupId, or group name. If no device, vehicle, or group is specifid, returns data for all devices."
+              },
+              {
+                "name": "includeSubGroups",
+                "value": "",
+                "type": "query",
+                "description": "If true, all descendant groups under the specified group are included."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Record to start with."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "The startDate must be within the last 6 months. The startDate and endDate must be 24 hours of each other. ECM data is available for up to 7 days; DTC data is available for up to 6 months."
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "The startDate and endDate must be within 24 hours of each other."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Name of the property to sort on."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves engine computer module (ECM) data from vehicles. ECM data availability varies by vehicle, device, and cable configuration. Also, the organization must have a Fleet Tracking subscription to receive data from this endpoint."
+        },
+        {
+          "info": {
+            "name": "Retrieve Location of Specified Vehicle",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/vehicles/:vehicleId/location",
+            "params": [
+              {
+                "name": "vehicleId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the vehicle."
+              },
+              {
+                "name": "time",
+                "value": "",
+                "type": "query",
+                "description": "Optional. If supplied, the response will contain the position of the vehicle closest to the given time."
+              }
+            ]
+          },
+          "docs": "Retrieve Location of Specified Vehicle"
+        },
+        {
+          "info": {
+            "name": "Get ECM Data for Specified Vehicle",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/vehicles/:vehicleId/odometer",
+            "params": [
+              {
+                "name": "vehicleId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the vehicle."
+              }
+            ]
+          },
+          "docs": "Get ECM Data for Specified Vehicle"
+        },
+        {
+          "info": {
+            "name": "Retrieve List of Vehicles Associated to Callers Company",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/vehicles",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number of the list of vehicles. Default is 1. Cannot be less than 1."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The page size of each page. Value should be between 1-1000."
+              }
+            ]
+          },
+          "docs": "Retrieve List of Vehicles Associated to Callers Company"
+        },
+        {
+          "info": {
+            "name": "Retrieve ECM Data of Specified Vehicle",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/vehicles/:vehicleId",
+            "params": [
+              {
+                "name": "vehicleId",
+                "value": "",
+                "type": "path",
+                "description": "The primary idenfitier of the vehicle."
+              }
+            ]
+          },
+          "docs": "Retrieve ECM Data of Specified Vehicle"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

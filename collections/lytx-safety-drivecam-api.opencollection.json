@@ -1,0 +1,341 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lytx..Management.Api Consent Safety (DriveCam) API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Safety (DriveCam)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Return Accessible Events IDs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/safety/events",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Start of a time range supplied in dateOption parameter. If not provided the latest events will be retrieved. Format must be compliant with ISO8601 and expressed in UTC format. (Example: 2021-03-16T16:19:58.80Z)."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End of a time range supplied in dateOption parameter. If not provided the latest events will be retrieved. Format must be compliant with ISO8601 and expressed in UTC format. (Example: 2021-03-16T16:19:58.80Z)."
+              },
+              {
+                "name": "dateOption",
+                "value": "",
+                "type": "query",
+                "description": "Date range option (lastUpdatedDate, recordDate). By default service will return the latest events."
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "query",
+                "description": "Id of the group of the events of interest. If the group does not exist or is not visible to the user due to security then no results will be returned. If not supplied, then events in all groups accessible to the group of encompassed access key will be returned (GUID)."
+              },
+              {
+                "name": "triggers",
+                "value": "",
+                "type": "query",
+                "description": "Ids of triggers of events to be filtered."
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "Ids of statuses of events to be filtered."
+              },
+              {
+                "name": "behaviors",
+                "value": "",
+                "type": "query",
+                "description": "Ids of behaviors of events to be filtered."
+              },
+              {
+                "name": "driverId",
+                "value": "",
+                "type": "query",
+                "description": "Id of a driver associated to the event (GUID)."
+              },
+              {
+                "name": "vehicleId",
+                "value": "",
+                "type": "query",
+                "description": "Id of a vehicle associated to the event (GUID)."
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "Id of a device associated to the event."
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query",
+                "description": "Type of sorting direction (asc or desc). By default the service will return items in descending order."
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "A value to sort by (lastUpdatedDate, recordDate). By deafult the service will return items sorted by last updated date."
+              },
+              {
+                "name": "includeSubgroups",
+                "value": "",
+                "type": "query",
+                "description": "Indicates whether results should include data for all subgroups of the group specified. Default to true."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Indicates count of items to retrieve. By default the service will return 1000 items. Range: [1, 1000]"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number of the page of event records to be returned.\n            If not provided, first page of records will be returned."
+              }
+            ]
+          },
+          "docs": "Return Accessible Events IDs"
+        },
+        {
+          "info": {
+            "name": "Return Specified Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/safety/events/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID or Customer specific ID of the event of interest. The parameter depends on idOption parameter"
+              },
+              {
+                "name": "includeSubgroups",
+                "value": "",
+                "type": "query",
+                "description": "Indicates whether results should include data for all subgroups of the group specified. Defaults to true"
+              },
+              {
+                "name": "idOption",
+                "value": "",
+                "type": "query",
+                "description": "Indicates whether event should be returned by ID of event (id) or customer id (cid). By default the service will search by event id."
+              }
+            ]
+          },
+          "docs": "Return Specified Event"
+        },
+        {
+          "info": {
+            "name": "Return Event File for Specified Event in Specified File Format",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/safety/events/:eventId/file",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the event of interest."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Format of the wanted file (dce or mp4)."
+              }
+            ]
+          },
+          "docs": "Return Event File for Specified Event in Specified File Format"
+        },
+        {
+          "info": {
+            "name": "Return List of Possible Event Statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/safety/events/statuses"
+          },
+          "docs": "Return List of Possible Event Statuses"
+        },
+        {
+          "info": {
+            "name": "Return List of Possible Event Triggers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/safety/events/triggers"
+          },
+          "docs": "Return List of Possible Event Triggers"
+        },
+        {
+          "info": {
+            "name": "Return List of Possible Event Trigger Subtypes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/safety/events/triggersubtypes"
+          },
+          "docs": "Return List of Possible Event Trigger Subtypes"
+        },
+        {
+          "info": {
+            "name": "Return List of Possible Event Behaviors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/safety/events/behaviors"
+          },
+          "docs": "Return List of Possible Event Behaviors"
+        },
+        {
+          "info": {
+            "name": "Return List of Possible Dynamic Risks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/safety/events/dynamicRisks"
+          },
+          "docs": "Return List of Possible Dynamic Risks"
+        },
+        {
+          "info": {
+            "name": "Return Accessible Events with Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/safety/eventsWithMetadata",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Start of a time range supplied in dateOption parameter. If not provided the latest events will be retrieved. Format must be compliant with ISO8601 and expressed in UTC format. (Example: 2021-03-16T16:19:58.80Z)."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End of a time range supplied in dateOption parameter. If not provided the latest events will be retrieved. Format must be compliant with ISO8601 and expressed in UTC format. (Example: 2021-03-16T16:19:58.80Z)."
+              },
+              {
+                "name": "dateOption",
+                "value": "",
+                "type": "query",
+                "description": "Date range option (lastUpdatedDate, recordDate). By default service will return the latest events."
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "query",
+                "description": "Id of the group of the events of interest. If the group does not exist or is not visible to the user due to security then no results will be returned. If not supplied, then events in all groups accessible to the group of encompassed access key will be returned (GUID)."
+              },
+              {
+                "name": "triggers",
+                "value": "",
+                "type": "query",
+                "description": "Ids of triggers of events to be filtered."
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "Ids of statuses of events to be filtered."
+              },
+              {
+                "name": "behaviors",
+                "value": "",
+                "type": "query",
+                "description": "Ids of behaviors of events to be filtered."
+              },
+              {
+                "name": "driverId",
+                "value": "",
+                "type": "query",
+                "description": "Id of a driver associated to the event (GUID)."
+              },
+              {
+                "name": "vehicleId",
+                "value": "",
+                "type": "query",
+                "description": "Id of a vehicle associated to the event (GUID)."
+              },
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "query",
+                "description": "Id of a device associated to the event."
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query",
+                "description": "Type of sorting direction (asc or desc). By default the service will return items in descending order."
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "A value to sort by (lastUpdatedDate, recordDate). By deafult the service will return items sorted by last updated date."
+              },
+              {
+                "name": "includeSubgroups",
+                "value": "",
+                "type": "query",
+                "description": "Indicates whether results should include data for all subgroups of the group specified. Default to true."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Indicates count of items to retrieve. By default the service will return 1000 items. Range: [1, 1000]"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number of the page of event records to be returned.\r\n            If not provided, first page of records will be returned."
+              }
+            ]
+          },
+          "docs": "Return Accessible Events with Metadata"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

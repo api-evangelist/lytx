@@ -1,0 +1,259 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lytx..Management.Api Consent Geofences (DriveCam) API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Geofences (DriveCam)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Geofences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/v1/geofences",
+            "params": [
+              {
+                "name": "geofenceIdentifier",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "deviceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Device Id or Serial Number."
+              },
+              {
+                "name": "groupIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Group Identifier."
+              },
+              {
+                "name": "vehicleIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Vehicle Identifier or Vin."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter by start date."
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter by end date."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Record to start with."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Name of field to sort on. Sort field must be either \"name\", \"groupId\", \"groupName\", \"isInside\", or \"creationDate\"."
+              },
+              {
+                "name": "includeSubGroups",
+                "value": "",
+                "type": "query",
+                "description": "Include Sub Groups."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of Geofences filtered by identifier. Only 0 or 1 identifiers are allowed in a query."
+        },
+        {
+          "info": {
+            "name": "Create Geofence",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lytx.com/consent-management/v1/geofences",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Geofence"
+        },
+        {
+          "info": {
+            "name": "Update Specified Geofence",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.lytx.com/consent-management/v1/geofences/:geofenceIdentifier",
+            "params": [
+              {
+                "name": "geofenceIdentifier",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a specific Geofence by Identifier."
+        },
+        {
+          "info": {
+            "name": "Delete Specified Geofence by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.lytx.com/consent-management/v1/geofences/:geofenceIdentifier",
+            "params": [
+              {
+                "name": "geofenceIdentifier",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a Geofence"
+        },
+        {
+          "info": {
+            "name": "Get Geofence Activations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/v1/geofence/activations",
+            "params": [
+              {
+                "name": "activationIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Unique Id for Geofence Activation."
+              },
+              {
+                "name": "geofenceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Unique Id for Geofence."
+              },
+              {
+                "name": "deviceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Device Id or Serial Number."
+              },
+              {
+                "name": "groupIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Group Identifier."
+              },
+              {
+                "name": "vehicleIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Vehicle Identifier or Vin."
+              },
+              {
+                "name": "userIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by User Identifier."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter by start date."
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter by end date."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Record to start with."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Name of property to sort on (Default Sort on ActivationStartDate only otherwise LastUpdateDateTime)."
+              },
+              {
+                "name": "includeSubGroups",
+                "value": "",
+                "type": "query",
+                "description": "Include Sub Groups."
+              }
+            ]
+          },
+          "docs": "Get Geofence Activations"
+        },
+        {
+          "info": {
+            "name": "Get Activation End Reasons",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/v1/geofence/activations/endreason"
+          },
+          "docs": "Get the end reasons activations"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

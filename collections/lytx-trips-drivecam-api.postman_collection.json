@@ -1,0 +1,678 @@
+{
+  "item": [
+    {
+      "id": "ba9b7707-89d0-4c13-99f3-10cc251ced93",
+      "name": "Trips (DriveCam)",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dd9b6996-fed5-43b2-8b25-3ea62923032e",
+          "name": "Retrieve Trips",
+          "request": {
+            "name": "Retrieve Trips",
+            "description": {
+              "content": "Retrieve a list of all the trips in an organization or subset of an organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "trips"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceIdentifier",
+                  "value": "<string>",
+                  "description": "Filter by device identifier or serial number."
+                },
+                {
+                  "disabled": false,
+                  "key": "vehicleIdentifier",
+                  "value": "<string>",
+                  "description": "Filter by vehicle identifier or VIN."
+                },
+                {
+                  "disabled": false,
+                  "key": "userIdentifier",
+                  "value": "<string>",
+                  "description": "Filter by user identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "groupIdentifier",
+                  "value": "<string>",
+                  "description": "Filter by group identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<dateTime>",
+                  "description": "Filter by start date."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<dateTime>",
+                  "description": "Filter by end date."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Record to start with."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Sort direction."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Name of property to sort on."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeSubgroups",
+                  "value": "<boolean>",
+                  "description": "Include subgroups."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b04563bd-ec1e-41c4-8287-bcd9cd408383",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "trips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "5100DDDD-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "userIdentifier",
+                      "value": "5100CCCC-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "5100BBBB-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "2023-09-10T00:00:00Z"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2023-09-30T23:59:59Z"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "EndDate"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"metadata\": {\n    \"limit\": 1,\n    \"count\": 10,\n    \"offset\": 1,\n    \"startDate\": \"2023-09-10T00:00:00Z\",\n    \"endDate\": \"2023-09-30T23:59:59Z\"\n  },\n  \"data\": [\n    {\n      \"tripId\": \"aee75b95-dfbc-88db-9e04-77f3a9b8932a\",\n      \"startDate\": \"2023-09-10T08:00:00Z\",\n      \"endDate\": \"2023-09-10T08:45:00Z\",\n      \"creationDateTime\": \"2023-09-10T09:00:00Z\",\n      \"startPosition\": {\n        \"latitude\": 32.887558,\n        \"longitude\": -117.212288,\n        \"address\": \"9785 Scranton Rd, San Diego, CA 92121\",\n        \"occurrenceDateTime\": \"2023-09-10T08:00:00Z\",\n        \"timezoneOffset\": -480\n      },\n      \"endPosition\": {\n        \"latitude\": 32.887558,\n        \"longitude\": -117.212288,\n        \"address\": \"1600 Pacific Hwy, San Diego, CA 92101\",\n        \"occurrenceDateTime\": \"2023-09-10T08:45:00Z\",\n        \"timezoneOffset\": -480\n      },\n      \"maxSpeedKph\": 55,\n      \"distanceKm\": 11,\n      \"deviceDistanceKm\": 11.4,\n      \"driver\": {\n        \"id\": \"6bf4c60a-07f5-1969-a5dc-6a55f0aaead1\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"employeeNumber\": \"string\"\n      },\n      \"vehicle\": {\n        \"id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n        \"imei\": \"6TJJS89\",\n        \"serialNumber\": \"7365990\",\n        \"vehicleName\": \"Toyota Tundra\",\n        \"deviceId\": \"b2c3d4e5-f6a7-8901-bcde-f12345678901\",\n        \"licensePlate\": \"7TMR879\",\n        \"vin\": \"1HGCM82633A000001\",\n        \"groupId\": \"c3d4e5f6-a7b8-9012-cdef-123456789012\",\n        \"groupAppId\": 12345,\n        \"groupName\": \"North Division\"\n      },\n      \"eventRecorderTimezone\": \"PST\"\n    },\n    {\n      \"tripId\": \"da08cc26-0eaa-8627-8ca3-9a3f1f274ec6\",\n      \"startDate\": \"2023-09-10T08:00:00Z\",\n      \"endDate\": \"2023-09-10T08:45:00Z\",\n      \"creationDateTime\": \"2023-09-10T09:00:00Z\",\n      \"startPosition\": {\n        \"latitude\": 32.887558,\n        \"longitude\": -117.212288,\n        \"address\": \"9785 Scranton Rd, San Diego, CA 92121\",\n        \"occurrenceDateTime\": \"2023-09-10T08:00:00Z\",\n        \"timezoneOffset\": -480\n      },\n      \"endPosition\": {\n        \"latitude\": 32.887558,\n        \"longitude\": -117.212288,\n        \"address\": \"1600 Pacific Hwy, San Diego, CA 92101\",\n        \"occurrenceDateTime\": \"2023-09-10T08:45:00Z\",\n        \"timezoneOffset\": -480\n      },\n      \"maxSpeedKph\": 55,\n      \"distanceKm\": 11,\n      \"deviceDistanceKm\": 11.4,\n      \"driver\": {\n        \"id\": \"1eb70df4-6156-1055-4d49-3ef27f2bb02e\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"employeeNumber\": \"string\"\n      },\n      \"vehicle\": {\n        \"id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n        \"imei\": \"6TJJS89\",\n        \"serialNumber\": \"7365990\",\n        \"vehicleName\": \"Toyota Tundra\",\n        \"deviceId\": \"b2c3d4e5-f6a7-8901-bcde-f12345678901\",\n        \"licensePlate\": \"7TMR879\",\n        \"vin\": \"1HGCM82633A000001\",\n        \"groupId\": \"c3d4e5f6-a7b8-9012-cdef-123456789012\",\n        \"groupAppId\": 12345,\n        \"groupName\": \"North Division\"\n      },\n      \"eventRecorderTimezone\": \"PST\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a37ff71c-00de-4c02-ba7b-194af9a032f1",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "trips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "5100DDDD-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "userIdentifier",
+                      "value": "5100CCCC-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "5100BBBB-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "2023-09-10T00:00:00Z"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2023-09-30T23:59:59Z"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "EndDate"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"The parameters given in the request are invalid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99cb8bf0-a86e-41da-9c9e-eb765cd654fa",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "trips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "5100DDDD-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "userIdentifier",
+                      "value": "5100CCCC-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "5100BBBB-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "2023-09-10T00:00:00Z"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2023-09-30T23:59:59Z"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "EndDate"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unauthorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b9e6ef4-16ff-48ec-802b-0f9da7f4a66a",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "trips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "5100DDDD-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "userIdentifier",
+                      "value": "5100CCCC-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "5100BBBB-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "2023-09-10T00:00:00Z"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2023-09-30T23:59:59Z"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "EndDate"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"The requested resource is forbidden.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a07f8f8-fdd9-40f7-9c8b-15d53b6537f8",
+              "name": "Resource Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "trips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "5100DDDD-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "userIdentifier",
+                      "value": "5100CCCC-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "5100BBBB-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "2023-09-10T00:00:00Z"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2023-09-30T23:59:59Z"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "EndDate"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Resource Not Found\",\n  \"message\": \"The requested resource doesn't exist.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00065098-10dd-415d-9d03-ad955d99f234",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "trips"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceIdentifier",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "vehicleIdentifier",
+                      "value": "5100DDDD-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "userIdentifier",
+                      "value": "5100CCCC-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "groupIdentifier",
+                      "value": "5100BBBB-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "2023-09-10T00:00:00Z"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2023-09-30T23:59:59Z"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "EndDate"
+                    },
+                    {
+                      "key": "includeSubgroups",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"The requested operation cannot be performed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lytx.com/consent-management",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "40a1386b-b3ab-421b-b0dd-d2bf94c904e3",
+    "name": "Lytx..Management.Api Consent Trips (DriveCam) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for retrieving and updating user consent status, requiring authentication.\n",
+      "type": "text/plain"
+    }
+  }
+}

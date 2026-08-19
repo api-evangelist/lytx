@@ -1,0 +1,364 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lytx..Management.Api Consent Groups (DriveCam) API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Groups (DriveCam)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve List of Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/groups",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Record to start with."
+              },
+              {
+                "name": "groupIds",
+                "value": "",
+                "type": "query",
+                "description": "IDs of groups to return."
+              },
+              {
+                "name": "includeSubgroups",
+                "value": "",
+                "type": "query",
+                "description": "If true, all subgroups under the specified group are included."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Name of the property to sort on."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              },
+              {
+                "name": "encodeFullPath",
+                "value": "",
+                "type": "query",
+                "description": "If true, all returned groups will have their fullPath property url encoded."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a list of groups in an organization."
+        },
+        {
+          "info": {
+            "name": "Add New Group to Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lytx.com/consent-management/groups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Add a new group to the organization."
+        },
+        {
+          "info": {
+            "name": "Retrieve Specific Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/groups/:groupIdentifier",
+            "params": [
+              {
+                "name": "groupIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "ID of the group to return."
+              },
+              {
+                "name": "encodeFullPath",
+                "value": "",
+                "type": "query",
+                "description": "If true, the group will have its fullPath property url encoded."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve one group in the organization by group ID."
+        },
+        {
+          "info": {
+            "name": "Update Specific Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.lytx.com/consent-management/groups/:groupIdentifier",
+            "params": [
+              {
+                "name": "groupIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "ID of the group to return."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update one group in the organization by group ID."
+        },
+        {
+          "info": {
+            "name": "Delete Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.lytx.com/consent-management/groups/:groupIdentifier",
+            "params": [
+              {
+                "name": "groupIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "ID of the group to delete."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a group in the organization.\n\nUse with extreme caution. Deleting a group that has associated entities will result in orphaned entities, which cannot be recovered.\n\nEnsure all entities are removed or moved before deleting the group to avoid data loss.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve List of Descendant Group IDs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/groups/:groupIdentifier/descendants",
+            "params": [
+              {
+                "name": "groupIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "ID of the group to retrieve group descendant IDs for."
+              },
+              {
+                "name": "depth",
+                "value": "",
+                "type": "query",
+                "description": "Number of levels of group descendants returned. \n- depth = NULL: Returns children group IDs directly under the specified group.\n- depth = 0: Returns group IDs of all groups within hierarchy. \n- depth = 1: Returns children group IDs directly under the specified group.\n- depth = 2: Returns children and grandchildren group IDs for the specified group. \n- depth > maximum levels in hierarchy: Returns descendant group IDs at all depths for the specified group."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a list of descendant group IDs for the specified group and depth."
+        },
+        {
+          "info": {
+            "name": "Retrieve List of Group Audit Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/groups/auditLogs",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Record to start with."
+              },
+              {
+                "name": "userIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "ID or username of the user for which to return audit data."
+              },
+              {
+                "name": "groupIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "ID of the group for which to return audit data."
+              },
+              {
+                "name": "includeSubgroups",
+                "value": "",
+                "type": "query",
+                "description": "If true, all subgroups under the specified group are included."
+              },
+              {
+                "name": "action",
+                "value": "",
+                "type": "query",
+                "description": "The description of the action type (CREATE, UPDATE, DELETE, IMPORT, MOVE)."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "The start date and end date must be within 7 days of each other. If no date specified, returns data from the last 7 days."
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "The start date and end date must be within 7 days of each other. If no date specified, returns data from the last 7 days."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Name of the property to sort on."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve a list of group audit logs in an organization."
+        },
+        {
+          "info": {
+            "name": "Bulk Import Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lytx.com/consent-management/groups/bulkImport",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Bulk import groups into the organization."
+        },
+        {
+          "info": {
+            "name": "Bulk Move Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lytx.com/consent-management/groups/bulkMove",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Bulk move groups in the organization."
+        },
+        {
+          "info": {
+            "name": "Return Groups Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Id of the group of interest. Either GUID or URL-Encoded version of path\\to\\group string depending on groupOption value.\n            If not specified, response will contain all groups data for the homegroup of the user who created the API token being used on the call \n            data with or without its underlying subgroups depending on includeSubgroups value."
+              },
+              {
+                "name": "groupOption",
+                "value": "",
+                "type": "query",
+                "description": "Option to retrieve groups info, either by its 'id' (GUID) or by 'path'.\n            If id was not specified groupOption is ignored and data will be returned as neither id or groupOpion were specified."
+              },
+              {
+                "name": "includeSubgroups",
+                "value": "",
+                "type": "query",
+                "description": "Indicates whether results should include data for all subgroups of the group specified."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Number of the page of group records to be returned.\n            If not provided, first page of records will be returned."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Indicates count of items to retrieve. By default the service will return 100 items."
+              }
+            ]
+          },
+          "docs": "Return Groups Data"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

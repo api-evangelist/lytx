@@ -1,0 +1,1690 @@
+{
+  "item": [
+    {
+      "id": "bf3e2b56-d097-43de-b1b7-724e19b61196",
+      "name": "HOS (DriveCam)",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0b63c0e1-e1aa-4919-946b-e49f6e91a58c",
+          "name": "Get HOS Logs for all Users",
+          "request": {
+            "name": "Get HOS Logs for all Users",
+            "description": {
+              "content": "This endpoint is used to retrieve HOS Logs as a batch for all users for your company.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "hos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<dateTime>",
+                  "description": "(Required) The start date."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<dateTime>",
+                  "description": "(Required) End date must be within 1 day for company."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "631cf877-b164-4ce1-a171-79f6f8398c10",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "hos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"userName\": \"UnknownDriver\",\n      \"dateTime\": \"2023-09-21T20:30:40Z\",\n      \"vehicleName\": \"V-INT-FMCSA0003\",\n      \"companyId\": 22048,\n      \"editDateTime\": \"2023-09-21T20:36:47.566Z\",\n      \"latitude\": 32,\n      \"longitude\": -111,\n      \"status\": \"D\",\n      \"verifyDateTime\": \"0001-01-01T00:00:00Z\",\n      \"origin\": \"Automatic\",\n      \"state\": \"Active\",\n      \"malfunction\": \"None\",\n      \"odometer\": 1090001.375,\n      \"engineHours\": 81621,\n      \"eventRecordStatus\": 1,\n      \"eventCode\": 3,\n      \"eventType\": 1,\n      \"shipmentCommodity\": \"Videogames\",\n      \"shipmentDocumentNumber\": \"1234\"\n    },\n    {\n      \"userName\": \"UnknownDriver\",\n      \"dateTime\": \"2023-09-21T20:33:54Z\",\n      \"vehicleName\": \"V-INT-FMCSA0004\",\n      \"companyId\": 22048,\n      \"editDateTime\": \"2023-09-21T20:38:03.296Z\",\n      \"latitude\": 32,\n      \"longitude\": -111,\n      \"status\": \"D\",\n      \"verifyDateTime\": \"0001-01-01T00:00:00Z\",\n      \"origin\": \"Automatic\",\n      \"state\": \"Active\",\n      \"malfunction\": \"None\",\n      \"odometer\": 1000000,\n      \"engineHours\": 81000,\n      \"eventRecordStatus\": 1,\n      \"eventCode\": 3,\n      \"eventType\": 1\n    },\n    {\n      \"userName\": \"UnknownDriver\",\n      \"dateTime\": \"2023-09-21T20:37:02Z\",\n      \"vehicleName\": \"V-INT-FMCSA0003\",\n      \"companyId\": 22048,\n      \"editDateTime\": \"2023-09-21T20:42:22.52Z\",\n      \"latitude\": 32,\n      \"longitude\": -111,\n      \"status\": \"ON\",\n      \"verifyDateTime\": \"0001-01-01T00:00:00Z\",\n      \"origin\": \"Automatic\",\n      \"state\": \"Active\",\n      \"malfunction\": \"None\",\n      \"odometer\": 1090001.375,\n      \"engineHours\": 81995,\n      \"eventRecordStatus\": 1,\n      \"eventCode\": 4,\n      \"eventType\": 1,\n      \"shipmentCommodity\": \"Videogames\",\n      \"shipmentDocumentNumber\": \"1234\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "179b14af-a120-40e9-b52b-c42358aa120b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "hos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request Error\",\n  \"message\": \"The parameters given in the request are invalid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91d8c946-4f19-44df-b87f-85baba514403",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "hos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "aaccc5c1-38af-49de-92ef-4a97b4c2da16",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "hos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "97ecbcd5-bb43-454f-a753-d0531048cad9",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "hos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found Error\",\n  \"message\": \"The requested resource doesn't exist.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "288d5af9-8676-4f82-b745-1a5d86f3249e",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "hos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"Requested operation cannot be performed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a48fb8b-2ab2-4073-803a-ac25c8958fba",
+          "name": "Get HOS Logs for Specified User",
+          "request": {
+            "name": "Get HOS Logs for Specified User",
+            "description": {
+              "content": "This endpoint is used to retrieve HOS Logs as a batch for for the userName.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "hos",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<dateTime>",
+                  "description": "(Required) The start date."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<dateTime>",
+                  "description": "(Required) End date must be within 8 days for user."
+                },
+                {
+                  "disabled": false,
+                  "key": "userIdentifier",
+                  "value": "<string>",
+                  "description": "(Required) userName or Lytx userId."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "01485137-fa85-4da9-b989-d7cb397fdb96",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "hos",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "userIdentifier",
+                      "value": "UnknownDriver"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"userName\": \"UnknownDriver\",\n      \"dateTime\": \"2023-09-21T20:30:40Z\",\n      \"vehicleName\": \"V-INT-FMCSA0003\",\n      \"companyId\": 22048,\n      \"editDateTime\": \"2023-09-21T20:36:47.566Z\",\n      \"latitude\": 32,\n      \"longitude\": -111,\n      \"status\": \"D\",\n      \"verifyDateTime\": \"0001-01-01T00:00:00Z\",\n      \"origin\": \"Automatic\",\n      \"state\": \"Active\",\n      \"malfunction\": \"None\",\n      \"odometer\": 1090001.375,\n      \"engineHours\": 81621,\n      \"eventRecordStatus\": 1,\n      \"eventCode\": 3,\n      \"eventType\": 1,\n      \"shipmentCommodity\": \"Videogames\",\n      \"shipmentDocumentNumber\": \"1234\"\n    },\n    {\n      \"userName\": \"UnknownDriver\",\n      \"dateTime\": \"2023-09-21T20:33:54Z\",\n      \"vehicleName\": \"V-INT-FMCSA0004\",\n      \"companyId\": 22048,\n      \"editDateTime\": \"2023-09-21T20:38:03.296Z\",\n      \"latitude\": 32,\n      \"longitude\": -111,\n      \"status\": \"D\",\n      \"verifyDateTime\": \"0001-01-01T00:00:00Z\",\n      \"origin\": \"Automatic\",\n      \"state\": \"Active\",\n      \"malfunction\": \"None\",\n      \"odometer\": 1000000,\n      \"engineHours\": 81000,\n      \"eventRecordStatus\": 1,\n      \"eventCode\": 3,\n      \"eventType\": 1\n    },\n    {\n      \"userName\": \"UnknownDriver\",\n      \"dateTime\": \"2023-09-21T20:37:02Z\",\n      \"vehicleName\": \"V-INT-FMCSA0003\",\n      \"companyId\": 22048,\n      \"editDateTime\": \"2023-09-21T20:42:22.52Z\",\n      \"latitude\": 32,\n      \"longitude\": -111,\n      \"status\": \"ON\",\n      \"verifyDateTime\": \"0001-01-01T00:00:00Z\",\n      \"origin\": \"Automatic\",\n      \"state\": \"Active\",\n      \"malfunction\": \"None\",\n      \"odometer\": 1090001.375,\n      \"engineHours\": 81995,\n      \"eventRecordStatus\": 1,\n      \"eventCode\": 4,\n      \"eventType\": 1,\n      \"shipmentCommodity\": \"Videogames\",\n      \"shipmentDocumentNumber\": \"1234\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9e88733-8aa4-4d5e-a8ba-ae75a8b8010b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "hos",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "userIdentifier",
+                      "value": "UnknownDriver"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request Error\",\n  \"message\": \"The parameters given in the request are invalid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef98fade-9838-442d-894a-7019bfc0ac20",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "hos",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "userIdentifier",
+                      "value": "UnknownDriver"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "444d98d8-b963-4a2e-a9dc-25ac0e819edd",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "hos",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "userIdentifier",
+                      "value": "UnknownDriver"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1a6eac35-b7ab-4783-9807-a08ef1095111",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "hos",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "userIdentifier",
+                      "value": "UnknownDriver"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found Error\",\n  \"message\": \"The requested resource doesn't exist.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "95b38ae0-68af-437b-9126-c553f2f7b6f1",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "hos",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "userIdentifier",
+                      "value": "UnknownDriver"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"Requested operation cannot be performed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1518dfd2-f1a2-4b9e-9f14-e72a01b64dfa",
+          "name": "Get HOS Logs for All Users",
+          "request": {
+            "name": "Get HOS Logs for All Users",
+            "description": {
+              "content": "This endpoint is used to retrieve HOS Logs as a batch for all users for your company",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<dateTime>",
+                  "description": "(Required) End date must be within 1 day for company"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "30ee4236-3933-4566-a10b-36be2be3c381",
+              "name": "HOS Logs retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"users\": [\n      {\n        \"userName\": \"string\",\n        \"hosLogs\": [\n          {\n            \"userName\": \"string\",\n            \"dateTime\": \"1965-12-17T01:27:14.900Z\",\n            \"vehicleName\": \"string\",\n            \"companyId\": 5036,\n            \"editDateTime\": \"1975-09-09T22:45:41.464Z\",\n            \"latitude\": 1335.6523173080348,\n            \"longitude\": 3271.77561441387,\n            \"status\": \"string\",\n            \"verifyDateTime\": \"1993-05-19T18:59:53.437Z\",\n            \"origin\": \"string\",\n            \"serialNumber\": \"string\",\n            \"deviceId\": \"string\",\n            \"userId\": \"string\",\n            \"state\": \"string\",\n            \"malfunction\": \"string\",\n            \"odometer\": 8480.55276805634,\n            \"engineHours\": 8865.819948347187,\n            \"eventRecordStatus\": 4396,\n            \"eventCode\": 7341,\n            \"eventType\": 3532,\n            \"shipmentCommodity\": \"string\",\n            \"shipmentDocumentNumber\": \"string\"\n          },\n          {\n            \"userName\": \"string\",\n            \"dateTime\": \"2006-11-16T07:40:47.140Z\",\n            \"vehicleName\": \"string\",\n            \"companyId\": 1956,\n            \"editDateTime\": \"1997-07-10T21:16:43.830Z\",\n            \"latitude\": 1952.0325916856461,\n            \"longitude\": 6560.020749680491,\n            \"status\": \"string\",\n            \"verifyDateTime\": \"1981-11-20T02:14:52.521Z\",\n            \"origin\": \"string\",\n            \"serialNumber\": \"string\",\n            \"deviceId\": \"string\",\n            \"userId\": \"string\",\n            \"state\": \"string\",\n            \"malfunction\": \"string\",\n            \"odometer\": 796.9171611079539,\n            \"engineHours\": 5503.025044275116,\n            \"eventRecordStatus\": 3256,\n            \"eventCode\": 9579,\n            \"eventType\": 7584,\n            \"shipmentCommodity\": \"string\",\n            \"shipmentDocumentNumber\": \"string\"\n          }\n        ]\n      },\n      {\n        \"userName\": \"string\",\n        \"hosLogs\": [\n          {\n            \"userName\": \"string\",\n            \"dateTime\": \"2017-04-12T06:59:00.511Z\",\n            \"vehicleName\": \"string\",\n            \"companyId\": 3528,\n            \"editDateTime\": \"1955-11-22T00:00:05.784Z\",\n            \"latitude\": 5399.207572728669,\n            \"longitude\": 4104.507508108346,\n            \"status\": \"string\",\n            \"verifyDateTime\": \"1994-03-14T07:07:48.870Z\",\n            \"origin\": \"string\",\n            \"serialNumber\": \"string\",\n            \"deviceId\": \"string\",\n            \"userId\": \"string\",\n            \"state\": \"string\",\n            \"malfunction\": \"string\",\n            \"odometer\": 5949.437651299523,\n            \"engineHours\": 7132.636953346775,\n            \"eventRecordStatus\": 1356,\n            \"eventCode\": 8924,\n            \"eventType\": 699,\n            \"shipmentCommodity\": \"string\",\n            \"shipmentDocumentNumber\": \"string\"\n          },\n          {\n            \"userName\": \"string\",\n            \"dateTime\": \"1997-08-11T03:24:16.924Z\",\n            \"vehicleName\": \"string\",\n            \"companyId\": 8008,\n            \"editDateTime\": \"2022-12-11T19:13:20.034Z\",\n            \"latitude\": 2197.970940361622,\n            \"longitude\": 1137.567448015937,\n            \"status\": \"string\",\n            \"verifyDateTime\": \"1965-10-06T22:33:11.692Z\",\n            \"origin\": \"string\",\n            \"serialNumber\": \"string\",\n            \"deviceId\": \"string\",\n            \"userId\": \"string\",\n            \"state\": \"string\",\n            \"malfunction\": \"string\",\n            \"odometer\": 2555.9225905023186,\n            \"engineHours\": 5329.737160081592,\n            \"eventRecordStatus\": 2377,\n            \"eventCode\": 4160,\n            \"eventType\": 405,\n            \"shipmentCommodity\": \"string\",\n            \"shipmentDocumentNumber\": \"string\"\n          }\n        ]\n      }\n    ]\n  },\n  {\n    \"users\": [\n      {\n        \"userName\": \"string\",\n        \"hosLogs\": [\n          {\n            \"userName\": \"string\",\n            \"dateTime\": \"1967-10-08T22:40:22.229Z\",\n            \"vehicleName\": \"string\",\n            \"companyId\": 2068,\n            \"editDateTime\": \"1969-10-20T16:58:43.219Z\",\n            \"latitude\": 3259.8687742663255,\n            \"longitude\": 8112.412924348337,\n            \"status\": \"string\",\n            \"verifyDateTime\": \"1948-02-09T02:43:31.978Z\",\n            \"origin\": \"string\",\n            \"serialNumber\": \"string\",\n            \"deviceId\": \"string\",\n            \"userId\": \"string\",\n            \"state\": \"string\",\n            \"malfunction\": \"string\",\n            \"odometer\": 9797.501135189801,\n            \"engineHours\": 8763.128314685326,\n            \"eventRecordStatus\": 24,\n            \"eventCode\": 3533,\n            \"eventType\": 1510,\n            \"shipmentCommodity\": \"string\",\n            \"shipmentDocumentNumber\": \"string\"\n          },\n          {\n            \"userName\": \"string\",\n            \"dateTime\": \"1990-09-30T19:25:02.466Z\",\n            \"vehicleName\": \"string\",\n            \"companyId\": 4177,\n            \"editDateTime\": \"1965-08-15T22:21:09.898Z\",\n            \"latitude\": 1958.814527953504,\n            \"longitude\": 8647.29143361553,\n            \"status\": \"string\",\n            \"verifyDateTime\": \"1976-10-06T11:19:39.066Z\",\n            \"origin\": \"string\",\n            \"serialNumber\": \"string\",\n            \"deviceId\": \"string\",\n            \"userId\": \"string\",\n            \"state\": \"string\",\n            \"malfunction\": \"string\",\n            \"odometer\": 4677.514216079951,\n            \"engineHours\": 7324.254007631097,\n            \"eventRecordStatus\": 2696,\n            \"eventCode\": 5931,\n            \"eventType\": 5763,\n            \"shipmentCommodity\": \"string\",\n            \"shipmentDocumentNumber\": \"string\"\n          }\n        ]\n      },\n      {\n        \"userName\": \"string\",\n        \"hosLogs\": [\n          {\n            \"userName\": \"string\",\n            \"dateTime\": \"2008-09-28T00:41:10.876Z\",\n            \"vehicleName\": \"string\",\n            \"companyId\": 8842,\n            \"editDateTime\": \"1956-01-13T22:55:29.010Z\",\n            \"latitude\": 1542.7430823186905,\n            \"longitude\": 8204.98201600207,\n            \"status\": \"string\",\n            \"verifyDateTime\": \"1985-01-19T00:34:27.475Z\",\n            \"origin\": \"string\",\n            \"serialNumber\": \"string\",\n            \"deviceId\": \"string\",\n            \"userId\": \"string\",\n            \"state\": \"string\",\n            \"malfunction\": \"string\",\n            \"odometer\": 9933.638562566144,\n            \"engineHours\": 3640.0352322306408,\n            \"eventRecordStatus\": 9416,\n            \"eventCode\": 292,\n            \"eventType\": 5973,\n            \"shipmentCommodity\": \"string\",\n            \"shipmentDocumentNumber\": \"string\"\n          },\n          {\n            \"userName\": \"string\",\n            \"dateTime\": \"1998-09-10T05:00:22.357Z\",\n            \"vehicleName\": \"string\",\n            \"companyId\": 2842,\n            \"editDateTime\": \"1979-06-08T00:12:16.517Z\",\n            \"latitude\": 648.9601706609171,\n            \"longitude\": 684.0015816230139,\n            \"status\": \"string\",\n            \"verifyDateTime\": \"2021-05-05T01:10:31.587Z\",\n            \"origin\": \"string\",\n            \"serialNumber\": \"string\",\n            \"deviceId\": \"string\",\n            \"userId\": \"string\",\n            \"state\": \"string\",\n            \"malfunction\": \"string\",\n            \"odometer\": 4174.528095493669,\n            \"engineHours\": 4906.099028471263,\n            \"eventRecordStatus\": 1169,\n            \"eventCode\": 3621,\n            \"eventType\": 8046,\n            \"shipmentCommodity\": \"string\",\n            \"shipmentDocumentNumber\": \"string\"\n          }\n        ]\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "baf770b7-e4e0-4ab7-8abb-a0607e4e7a33",
+              "name": "The requested resource contained no data. The user does not have any data associated to it.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f56d059f-eb02-4559-9b1b-fbe6136d345f",
+              "name": "The parameters given in the request are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec921cb4-a3f6-49ab-9075-b7995c6709bc",
+              "name": "Can occur due to inputting an invalid key, or invalid pod",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e57a5917-fb88-4873-893b-16dac94d8e45",
+              "name": "Access is denied for this API. The given APIKey's context does not have the proper permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a356e81d-71e7-452e-82e9-af3288b93a29",
+              "name": "The requested resource does not exist or is not available within the given APIKey's context.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0412a68f-ca56-4d92-a687-f423fdb410de",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bc356652-1350-44b7-9fdb-88857b97a324",
+          "name": "Get HOS Logs for Specified User",
+          "request": {
+            "name": "Get HOS Logs for Specified User",
+            "description": {
+              "content": "This endpoint is used to retrieve HOS Logs for the user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":userName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<dateTime>",
+                  "description": "(Required) End date must be within 8 days for user"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userName",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "580cf496-fd0d-4b06-ac1e-e02201a09f45",
+              "name": "HOS Logs retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":userName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"userName\": \"string\",\n    \"hosLogs\": [\n      {\n        \"userName\": \"string\",\n        \"dateTime\": \"2006-04-29T11:18:56.226Z\",\n        \"vehicleName\": \"string\",\n        \"companyId\": 8063,\n        \"editDateTime\": \"1959-02-07T02:42:30.849Z\",\n        \"latitude\": 7168.230571872012,\n        \"longitude\": 7861.988821376561,\n        \"status\": \"string\",\n        \"verifyDateTime\": \"1995-11-07T14:46:03.776Z\",\n        \"origin\": \"string\",\n        \"serialNumber\": \"string\",\n        \"deviceId\": \"string\",\n        \"userId\": \"string\",\n        \"state\": \"string\",\n        \"malfunction\": \"string\",\n        \"odometer\": 493.7953243158255,\n        \"engineHours\": 3695.115435176082,\n        \"eventRecordStatus\": 1588,\n        \"eventCode\": 4435,\n        \"eventType\": 1368,\n        \"shipmentCommodity\": \"string\",\n        \"shipmentDocumentNumber\": \"string\"\n      },\n      {\n        \"userName\": \"string\",\n        \"dateTime\": \"2016-03-06T02:24:54.775Z\",\n        \"vehicleName\": \"string\",\n        \"companyId\": 7736,\n        \"editDateTime\": \"1964-12-10T15:44:19.863Z\",\n        \"latitude\": 7934.027919235043,\n        \"longitude\": 829.7861175688171,\n        \"status\": \"string\",\n        \"verifyDateTime\": \"1992-05-23T01:40:38.438Z\",\n        \"origin\": \"string\",\n        \"serialNumber\": \"string\",\n        \"deviceId\": \"string\",\n        \"userId\": \"string\",\n        \"state\": \"string\",\n        \"malfunction\": \"string\",\n        \"odometer\": 2156.126979602062,\n        \"engineHours\": 8633.330785742999,\n        \"eventRecordStatus\": 2314,\n        \"eventCode\": 8879,\n        \"eventType\": 8125,\n        \"shipmentCommodity\": \"string\",\n        \"shipmentDocumentNumber\": \"string\"\n      }\n    ]\n  },\n  {\n    \"userName\": \"string\",\n    \"hosLogs\": [\n      {\n        \"userName\": \"string\",\n        \"dateTime\": \"1971-10-04T17:10:08.325Z\",\n        \"vehicleName\": \"string\",\n        \"companyId\": 416,\n        \"editDateTime\": \"1968-03-07T20:18:48.174Z\",\n        \"latitude\": 4098.152964399739,\n        \"longitude\": 4826.483954797006,\n        \"status\": \"string\",\n        \"verifyDateTime\": \"1982-04-25T22:59:31.435Z\",\n        \"origin\": \"string\",\n        \"serialNumber\": \"string\",\n        \"deviceId\": \"string\",\n        \"userId\": \"string\",\n        \"state\": \"string\",\n        \"malfunction\": \"string\",\n        \"odometer\": 7973.615101964153,\n        \"engineHours\": 7087.867447527802,\n        \"eventRecordStatus\": 7974,\n        \"eventCode\": 7083,\n        \"eventType\": 816,\n        \"shipmentCommodity\": \"string\",\n        \"shipmentDocumentNumber\": \"string\"\n      },\n      {\n        \"userName\": \"string\",\n        \"dateTime\": \"1969-02-21T01:52:03.753Z\",\n        \"vehicleName\": \"string\",\n        \"companyId\": 2949,\n        \"editDateTime\": \"1950-12-01T20:09:17.452Z\",\n        \"latitude\": 4576.499759045359,\n        \"longitude\": 2813.1866501743066,\n        \"status\": \"string\",\n        \"verifyDateTime\": \"2008-07-31T16:01:53.566Z\",\n        \"origin\": \"string\",\n        \"serialNumber\": \"string\",\n        \"deviceId\": \"string\",\n        \"userId\": \"string\",\n        \"state\": \"string\",\n        \"malfunction\": \"string\",\n        \"odometer\": 9506.96673882668,\n        \"engineHours\": 6104.610223657884,\n        \"eventRecordStatus\": 8026,\n        \"eventCode\": 8546,\n        \"eventType\": 1081,\n        \"shipmentCommodity\": \"string\",\n        \"shipmentDocumentNumber\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb9490ed-9fbc-4b8e-82ba-11cbc4f96247",
+              "name": "The requested resource contained no data. The user does not have any data associated to it.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":userName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "07042dde-bfe3-4dfe-a260-7be094e85b43",
+              "name": "The parameters given in the request are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":userName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ae988d4-1fbd-4ff4-9280-7685ea41cc07",
+              "name": "Can occur due to inputting an invalid key, or invalid pod",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":userName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33b8e33c-bdf2-4f48-90b8-52a8ca2735bb",
+              "name": "Access is denied for this API. The given APIKey's context does not have the proper permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":userName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f6a94d73-4b75-4203-9772-1f5d9de9151d",
+              "name": "The requested resource does not exist or is not available within the given APIKey's context.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":userName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b4764cfa-1f85-46b1-a268-71f29c5062b0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":userName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lytx.com/consent-management",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c773a2bd-980e-44d0-87af-247f088b0e4a",
+    "name": "Lytx..Management.Api Consent HOS (DriveCam) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for retrieving and updating user consent status, requiring authentication.\n",
+      "type": "text/plain"
+    }
+  }
+}

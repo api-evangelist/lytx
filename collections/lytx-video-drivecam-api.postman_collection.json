@@ -1,0 +1,2505 @@
+{
+  "item": [
+    {
+      "id": "2015eda6-9091-4819-97a8-2b99715cbb05",
+      "name": "Video (DriveCam)",
+      "description": {
+        "content": "Legacy API to retrieve LVS vehicle data, LVS events or image data from a device. Uses obsolete X-APIKey authentication.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "49bc487d-9769-4b16-84a4-21b8db2b8683",
+          "name": "Return all Vehicles for the Specified Query Terms",
+          "request": {
+            "name": "Return all Vehicles for the Specified Query Terms",
+            "description": {},
+            "url": {
+              "path": [
+                "vehicles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "GroupId",
+                  "value": "<guid>",
+                  "description": "An identifier to filter by a group."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageNumber",
+                  "value": "<integer>",
+                  "description": "The page number of the list of vehicles. Default value is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageSize",
+                  "value": "<integer>",
+                  "description": "The number of vehicles to return per page. Default value is 50."
+                },
+                {
+                  "disabled": false,
+                  "key": "VehicleName",
+                  "value": "<string>",
+                  "description": "An identifier to filter by a vehicle's name."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e82d68ba-5c11-402d-8c43-7917767f8b4c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vehicles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "GroupId",
+                      "value": "<guid>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "VehicleName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCount\": 3752,\n  \"vehicles\": [\n    {\n      \"id\": 5930,\n      \"groupId\": \"string\",\n      \"name\": \"string\",\n      \"status\": 6885,\n      \"lastCommunication\": \"1961-01-12T05:36:53.493Z\",\n      \"devices\": [\n        {\n          \"id\": 3981,\n          \"serialNumber\": \"string\",\n          \"lastCommunication\": \"1992-04-01T12:50:20.088Z\",\n          \"onlineStatus\": 1449,\n          \"views\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"roleId\": 7357\n        },\n        {\n          \"id\": 8357,\n          \"serialNumber\": \"string\",\n          \"lastCommunication\": \"2014-10-09T01:30:46.103Z\",\n          \"onlineStatus\": 7155,\n          \"views\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"roleId\": 6725\n        }\n      ]\n    },\n    {\n      \"id\": 2914,\n      \"groupId\": \"string\",\n      \"name\": \"string\",\n      \"status\": 8671,\n      \"lastCommunication\": \"2017-09-07T07:41:04.852Z\",\n      \"devices\": [\n        {\n          \"id\": 5804,\n          \"serialNumber\": \"string\",\n          \"lastCommunication\": \"1968-12-04T21:07:31.857Z\",\n          \"onlineStatus\": 6169,\n          \"views\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"roleId\": 2192\n        },\n        {\n          \"id\": 8967,\n          \"serialNumber\": \"string\",\n          \"lastCommunication\": \"2002-09-03T05:05:25.302Z\",\n          \"onlineStatus\": 6718,\n          \"views\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"roleId\": 9106\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6232872-8e9e-4f64-93b8-c9a5800d4385",
+              "name": "The parameters given in the request are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vehicles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "GroupId",
+                      "value": "<guid>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "VehicleName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "35cf5ce5-0ab8-4b89-b84c-e753d8989d1c",
+              "name": "Access is denied. This can occur from an invalid key or invalid pod.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vehicles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "GroupId",
+                      "value": "<guid>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "VehicleName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39e32311-10db-454c-baab-35121cae9eda",
+          "name": "Return Timelines That Represent When Video is Available for Specified Vehicle",
+          "request": {
+            "name": "Return Timelines That Represent When Video is Available for Specified Vehicle",
+            "description": {},
+            "url": {
+              "path": [
+                "vehicles",
+                ":vehicleId",
+                "timeline"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "vehicleId",
+                  "description": "(Required) The primary identifier of the vehicle."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7eeb7ee6-ed2c-49dd-abfa-0d9e562d43f7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vehicles",
+                    ":vehicleId",
+                    "timeline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "vehicleId",
+                      "description": "(Required) The primary identifier of the vehicle."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"viewTimelines\": [\n    {\n      \"deviceView\": {\n        \"id\": 5066,\n        \"name\": \"string\",\n        \"label\": \"string\"\n      },\n      \"available\": true,\n      \"timeline\": [\n        {\n          \"startDate\": \"1961-03-30T23:49:08.747Z\",\n          \"endDate\": \"2006-09-24T06:35:49.096Z\"\n        },\n        {\n          \"startDate\": \"2024-03-16T21:33:11.915Z\",\n          \"endDate\": \"1988-07-01T19:16:42.764Z\"\n        }\n      ]\n    },\n    {\n      \"deviceView\": {\n        \"id\": 7280,\n        \"name\": \"string\",\n        \"label\": \"string\"\n      },\n      \"available\": true,\n      \"timeline\": [\n        {\n          \"startDate\": \"1959-07-27T01:40:41.244Z\",\n          \"endDate\": \"1987-01-19T10:11:52.619Z\"\n        },\n        {\n          \"startDate\": \"1991-09-21T19:12:47.535Z\",\n          \"endDate\": \"1978-08-02T15:14:32.317Z\"\n        }\n      ]\n    }\n  ],\n  \"vehicleName\": \"string\",\n  \"groupId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81de9078-fa3d-4870-9c83-70964401dfb5",
+              "name": "The parameters given in the request are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vehicles",
+                    ":vehicleId",
+                    "timeline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "vehicleId",
+                      "description": "(Required) The primary identifier of the vehicle."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28b8b5c1-374a-4ebd-a367-5f038ef63f25",
+              "name": "Access is denied. This can occur from an invalid key or invalid pod.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vehicles",
+                    ":vehicleId",
+                    "timeline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "vehicleId",
+                      "description": "(Required) The primary identifier of the vehicle."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f20bdf12-8002-4195-9824-f7b4205ed5ef",
+              "name": "Access is denied for this vehicle. The given API key's context does not have the proper permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vehicles",
+                    ":vehicleId",
+                    "timeline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "vehicleId",
+                      "description": "(Required) The primary identifier of the vehicle."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "aa225712-2874-4821-8b6c-29978d9eff7b",
+              "name": "The specified vehicle cannot be found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vehicles",
+                    ":vehicleId",
+                    "timeline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "vehicleId",
+                      "description": "(Required) The primary identifier of the vehicle."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9136e009-efc4-4865-ad8c-bf889a558752",
+          "name": "Return Vehicle Specified by ID or Device Serial Number",
+          "request": {
+            "name": "Return Vehicle Specified by ID or Device Serial Number",
+            "description": {},
+            "url": {
+              "path": [
+                "vehicles",
+                ":vehicleIdentifier"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "vehicleIdentifier",
+                  "description": "(Required) The primary identifier of the vehicle or the device serial number associated to the vehicle."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aad61466-ea3a-4dfa-9a77-3b8b24a663bc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vehicles",
+                    ":vehicleIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "vehicleIdentifier",
+                      "description": "(Required) The primary identifier of the vehicle or the device serial number associated to the vehicle."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2864,\n  \"groupId\": \"string\",\n  \"name\": \"string\",\n  \"status\": 7790,\n  \"lastCommunication\": \"2006-04-27T10:57:46.317Z\",\n  \"devices\": [\n    {\n      \"id\": 9412,\n      \"serialNumber\": \"string\",\n      \"lastCommunication\": \"1998-05-03T16:47:36.728Z\",\n      \"onlineStatus\": 9885,\n      \"views\": [\n        {\n          \"id\": 6543,\n          \"name\": \"string\",\n          \"label\": \"string\"\n        },\n        {\n          \"id\": 8438,\n          \"name\": \"string\",\n          \"label\": \"string\"\n        }\n      ],\n      \"roleId\": 1368\n    },\n    {\n      \"id\": 9877,\n      \"serialNumber\": \"string\",\n      \"lastCommunication\": \"1968-04-29T06:51:24.216Z\",\n      \"onlineStatus\": 4362,\n      \"views\": [\n        {\n          \"id\": 8535,\n          \"name\": \"string\",\n          \"label\": \"string\"\n        },\n        {\n          \"id\": 3153,\n          \"name\": \"string\",\n          \"label\": \"string\"\n        }\n      ],\n      \"roleId\": 2432\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "358ab9c1-01a2-41fc-bd89-f3eb2c70d37f",
+              "name": "The parameters given in the request are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vehicles",
+                    ":vehicleIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "vehicleIdentifier",
+                      "description": "(Required) The primary identifier of the vehicle or the device serial number associated to the vehicle."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5cb0f76b-ab55-4547-af13-830614172bb4",
+              "name": "Access is denied. This can occur from an invalid key or invalid pod.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vehicles",
+                    ":vehicleIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "vehicleIdentifier",
+                      "description": "(Required) The primary identifier of the vehicle or the device serial number associated to the vehicle."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f11fced7-a4c0-4e85-b6c7-e82652d41db4",
+              "name": "Access is denied for this vehicle. The given API key's context does not have the proper permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vehicles",
+                    ":vehicleIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "vehicleIdentifier",
+                      "description": "(Required) The primary identifier of the vehicle or the device serial number associated to the vehicle."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5a5d563b-fd17-4a50-bd70-a157d81cb592",
+              "name": "The specified vehicle cannot be found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vehicles",
+                    ":vehicleIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "vehicleIdentifier",
+                      "description": "(Required) The primary identifier of the vehicle or the device serial number associated to the vehicle."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de8a32b1-798e-41a2-9661-0b6b886b1bfb",
+          "name": "Creates New Event and Return ID",
+          "request": {
+            "name": "Creates New Event and Return ID",
+            "description": {},
+            "url": {
+              "path": [
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vehicleId\": \"<long>\",\n  \"deviceViewIds\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"requestedStartDate\": \"<dateTime>\",\n  \"requestedEndDate\": \"<dateTime>\",\n  \"label\": \"<string>\",\n  \"typeId\": \"<integer>\",\n  \"subTypeId\": \"<integer>\",\n  \"eventTime\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e8f77ade-0cb0-4456-91d5-a2944efbd4d3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vehicleId\": \"<long>\",\n  \"deviceViewIds\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"requestedStartDate\": \"<dateTime>\",\n  \"requestedEndDate\": \"<dateTime>\",\n  \"label\": \"<string>\",\n  \"typeId\": 4,\n  \"subTypeId\": null,\n  \"eventTime\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2832\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "edae4fc3-2914-4de1-a391-ebc35ce468e8",
+              "name": "The parameters given in the request are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vehicleId\": \"<long>\",\n  \"deviceViewIds\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"requestedStartDate\": \"<dateTime>\",\n  \"requestedEndDate\": \"<dateTime>\",\n  \"label\": \"<string>\",\n  \"typeId\": 4,\n  \"subTypeId\": null,\n  \"eventTime\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "089fe3cb-8319-4021-aba7-d27cde36d023",
+              "name": "Access is denied. This can occur from an invalid key or invalid pod.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vehicleId\": \"<long>\",\n  \"deviceViewIds\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"requestedStartDate\": \"<dateTime>\",\n  \"requestedEndDate\": \"<dateTime>\",\n  \"label\": \"<string>\",\n  \"typeId\": 4,\n  \"subTypeId\": null,\n  \"eventTime\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "75263e3b-3f65-4536-8dc7-77dd98ad14bc",
+              "name": "Access is denied to create an event. The given API key's context does not have the proper permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vehicleId\": \"<long>\",\n  \"deviceViewIds\": [\n    \"<long>\",\n    \"<long>\"\n  ],\n  \"requestedStartDate\": \"<dateTime>\",\n  \"requestedEndDate\": \"<dateTime>\",\n  \"label\": \"<string>\",\n  \"typeId\": 4,\n  \"subTypeId\": null,\n  \"eventTime\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce16b993-bd20-4e93-94d6-f144c7b4adbe",
+          "name": "Return All Events Specified by Query Terms",
+          "request": {
+            "name": "Return All Events Specified by Query Terms",
+            "description": {},
+            "url": {
+              "path": [
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "GroupId",
+                  "value": "<guid>",
+                  "description": "Group identifier associated to event."
+                },
+                {
+                  "disabled": false,
+                  "key": "StartDate",
+                  "value": "<dateTime>",
+                  "description": "(Required) Events that occurred after this date. (Inclusive)."
+                },
+                {
+                  "disabled": false,
+                  "key": "EndDate",
+                  "value": "<dateTime>",
+                  "description": "(Required) Events that occurred before this date. (Inclusive)."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageNumber",
+                  "value": "<integer>",
+                  "description": "The page number of the list of events. Default value is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "PageSize",
+                  "value": "<integer>",
+                  "description": "The number of events to return per page. Default value is 100."
+                },
+                {
+                  "disabled": false,
+                  "key": "LabelSearch",
+                  "value": "<string>",
+                  "description": "Label associated to event."
+                },
+                {
+                  "disabled": false,
+                  "key": "VehicleName",
+                  "value": "<string>",
+                  "description": "Vehicle name associated to event."
+                },
+                {
+                  "disabled": false,
+                  "key": "IncludeVideoEvents",
+                  "value": "<boolean>",
+                  "description": "Include events with video. Default value is true."
+                },
+                {
+                  "disabled": false,
+                  "key": "IncludeNoVideoEvents",
+                  "value": "<boolean>",
+                  "description": "Include events with no video. Default value is true."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b2cc2067-29ee-4bac-9d3e-a005112f70d5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "GroupId",
+                      "value": "<guid>"
+                    },
+                    {
+                      "key": "StartDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "EndDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "LabelSearch",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "VehicleName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "IncludeVideoEvents",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "IncludeNoVideoEvents",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCount\": 1433,\n  \"events\": [\n    {\n      \"id\": 1267,\n      \"eventTime\": \"1970-04-23T05:01:45.687Z\",\n      \"dateCreated\": \"2012-10-19T23:52:17.656Z\",\n      \"mediaStatus\": 5591,\n      \"vehicleId\": 4460,\n      \"eventType\": 360,\n      \"eventSubType\": 6942,\n      \"vehicleName\": \"string\",\n      \"groupId\": \"string\",\n      \"requestedStartTime\": \"2020-07-24T04:39:16.111Z\",\n      \"requestedEndTime\": \"2010-03-31T22:35:50.996Z\",\n      \"label\": \"string\",\n      \"deviceViews\": [\n        {\n          \"id\": 9996,\n          \"name\": \"string\",\n          \"label\": \"string\",\n          \"status\": 1700,\n          \"currentBytes\": 6933,\n          \"progress\": 1934.4318478587497\n        },\n        {\n          \"id\": 6678,\n          \"name\": \"string\",\n          \"label\": \"string\",\n          \"status\": 4227,\n          \"currentBytes\": 4808,\n          \"progress\": 5430.812874436318\n        }\n      ]\n    },\n    {\n      \"id\": 2295,\n      \"eventTime\": \"2018-10-11T02:15:42.997Z\",\n      \"dateCreated\": \"1955-02-03T07:15:05.286Z\",\n      \"mediaStatus\": 6375,\n      \"vehicleId\": 2137,\n      \"eventType\": 6988,\n      \"eventSubType\": 1254,\n      \"vehicleName\": \"string\",\n      \"groupId\": \"string\",\n      \"requestedStartTime\": \"2021-01-10T05:55:01.764Z\",\n      \"requestedEndTime\": \"1969-11-01T19:39:17.857Z\",\n      \"label\": \"string\",\n      \"deviceViews\": [\n        {\n          \"id\": 2494,\n          \"name\": \"string\",\n          \"label\": \"string\",\n          \"status\": 8684,\n          \"currentBytes\": 7057,\n          \"progress\": 2080.260045264564\n        },\n        {\n          \"id\": 80,\n          \"name\": \"string\",\n          \"label\": \"string\",\n          \"status\": 3466,\n          \"currentBytes\": 902,\n          \"progress\": 5254.79999594679\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "731ec075-4ce4-422f-94a9-076ab41fd120",
+              "name": "The parameters given in the request are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "GroupId",
+                      "value": "<guid>"
+                    },
+                    {
+                      "key": "StartDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "EndDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "LabelSearch",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "VehicleName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "IncludeVideoEvents",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "IncludeNoVideoEvents",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3c0d21e-b46e-49c3-a99d-5f464fc1f4c8",
+              "name": "Access is denied. This can occur from an invalid key or invalid pod.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "GroupId",
+                      "value": "<guid>"
+                    },
+                    {
+                      "key": "StartDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "EndDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "PageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "PageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "LabelSearch",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "VehicleName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "IncludeVideoEvents",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "IncludeNoVideoEvents",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f1c4bda-2274-4d5b-a823-7e0f58635b5d",
+          "name": "Return Media Resource URL for Specified Event's View",
+          "request": {
+            "name": "Return Media Resource URL for Specified Event's View",
+            "description": {},
+            "url": {
+              "path": [
+                "events",
+                ":eventId",
+                "views",
+                ":deviceViewId",
+                "medias",
+                ":mediaType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "eventId",
+                  "description": "(Required) Primary event identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "deviceViewId",
+                  "description": "(Required) Primary identifier of a device's view."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "mediaType",
+                  "description": "(Required) Media file type. Supported values: \"mp4\" or \"dce\"."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f7c71189-9e44-4435-9314-a177ea878b13",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventId",
+                    "views",
+                    ":deviceViewId",
+                    "medias",
+                    ":mediaType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "eventId",
+                      "description": "(Required) Primary event identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "deviceViewId",
+                      "description": "(Required) Primary identifier of a device's view."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mediaType",
+                      "description": "(Required) Media file type. Supported values: \"mp4\" or \"dce\"."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57a55a87-179d-4eb1-bda5-a21249a301d9",
+              "name": "The parameters given in the request are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventId",
+                    "views",
+                    ":deviceViewId",
+                    "medias",
+                    ":mediaType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "eventId",
+                      "description": "(Required) Primary event identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "deviceViewId",
+                      "description": "(Required) Primary identifier of a device's view."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mediaType",
+                      "description": "(Required) Media file type. Supported values: \"mp4\" or \"dce\"."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "92c17d97-c633-4a42-8000-81ebcf0e1302",
+              "name": "Access is denied. This can occur from an invalid key or invalid pod.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventId",
+                    "views",
+                    ":deviceViewId",
+                    "medias",
+                    ":mediaType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "eventId",
+                      "description": "(Required) Primary event identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "deviceViewId",
+                      "description": "(Required) Primary identifier of a device's view."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mediaType",
+                      "description": "(Required) Media file type. Supported values: \"mp4\" or \"dce\"."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8cfb2df0-16e3-4ef1-bc50-289a0e69e432",
+              "name": "Access is denied for this event. The given API key's context does not have the proper permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventId",
+                    "views",
+                    ":deviceViewId",
+                    "medias",
+                    ":mediaType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "eventId",
+                      "description": "(Required) Primary event identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "deviceViewId",
+                      "description": "(Required) Primary identifier of a device's view."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mediaType",
+                      "description": "(Required) Media file type. Supported values: \"mp4\" or \"dce\"."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ff2ebc14-fc80-4ca0-8653-14493719e9b2",
+              "name": "The specified event or its device view cannot be found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventId",
+                    "views",
+                    ":deviceViewId",
+                    "medias",
+                    ":mediaType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "eventId",
+                      "description": "(Required) Primary event identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "deviceViewId",
+                      "description": "(Required) Primary identifier of a device's view."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mediaType",
+                      "description": "(Required) Media file type. Supported values: \"mp4\" or \"dce\"."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bcfdd728-7578-4859-85a3-4def0bbfc6dc",
+          "name": "Return Event Specified by its ID",
+          "request": {
+            "name": "Return Event Specified by its ID",
+            "description": {},
+            "url": {
+              "path": [
+                "events",
+                ":eventId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "eventId",
+                  "description": "(Required) The primary event identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ad05e60-35f2-4df5-af06-f9c14d2c7260",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "eventId",
+                      "description": "(Required) The primary event identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4048,\n  \"eventTime\": \"1984-02-25T08:22:13.096Z\",\n  \"dateCreated\": \"1983-01-23T10:19:28.691Z\",\n  \"mediaStatus\": 3601,\n  \"vehicleId\": 8558,\n  \"eventType\": 6932,\n  \"eventSubType\": 5096,\n  \"vehicleName\": \"string\",\n  \"groupId\": \"string\",\n  \"requestedStartTime\": \"1999-08-10T04:23:24.216Z\",\n  \"requestedEndTime\": \"2019-03-16T21:13:13.252Z\",\n  \"label\": \"string\",\n  \"deviceViews\": [\n    {\n      \"id\": 5436,\n      \"name\": \"string\",\n      \"label\": \"string\",\n      \"status\": 9507,\n      \"currentBytes\": 771,\n      \"progress\": 9006.523075614414\n    },\n    {\n      \"id\": 3914,\n      \"name\": \"string\",\n      \"label\": \"string\",\n      \"status\": 3053,\n      \"currentBytes\": 2692,\n      \"progress\": 6939.73504787759\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c73c940-3998-46ce-9a5a-55c49f0f44ad",
+              "name": "The parameters given in the request are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "eventId",
+                      "description": "(Required) The primary event identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a4addc5-3528-4f8e-8d6d-ae4d56c03b02",
+              "name": "Access is denied. This can occur from an invalid key or invalid pod.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "eventId",
+                      "description": "(Required) The primary event identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3b6e4d0f-74c2-442e-9d56-0d1db9b038d2",
+              "name": "Access is denied for this event. The given API key's context does not have the proper permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "eventId",
+                      "description": "(Required) The primary event identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b31b8ce5-1070-4734-b676-0bf07dd5192a",
+              "name": "The specified event cannot be found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "eventId",
+                      "description": "(Required) The primary event identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76b65af4-6be6-4ca2-84c9-0b328c95c398",
+          "name": "Retrieve Image (snapshot) from a Device's View at the Specified Time",
+          "request": {
+            "name": "Retrieve Image (snapshot) from a Device's View at the Specified Time",
+            "description": {},
+            "url": {
+              "path": [
+                "deviceViews",
+                ":deviceViewId",
+                "snapshot"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "time",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "deviceViewId",
+                  "description": "(Required) The primary device view identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ff4513ef-7714-4299-b66b-84e60e2b3977",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deviceViews",
+                    ":deviceViewId",
+                    "snapshot"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "deviceViewId",
+                      "description": "(Required) The primary device view identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "33bd23e1-be9f-42a4-9f88-caea9699c389",
+              "name": "Access is denied. This can occur from an invalid key or invalid pod.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deviceViews",
+                    ":deviceViewId",
+                    "snapshot"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "deviceViewId",
+                      "description": "(Required) The primary device view identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "94661de5-a07d-4f4c-8745-5c0a1154558a",
+              "name": "Access is denied to retrieve a snapshot. The given API key's context does not have the proper permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deviceViews",
+                    ":deviceViewId",
+                    "snapshot"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "deviceViewId",
+                      "description": "(Required) The primary device view identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b4df0409-17f6-48a9-83db-73b9fb8a9a7a",
+              "name": "A snapshot cannot be found at the specified time or device view.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deviceViews",
+                    ":deviceViewId",
+                    "snapshot"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "deviceViewId",
+                      "description": "(Required) The primary device view identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f790b1e5-c0e4-42fe-bdb7-7b8b80634f7f",
+              "name": "The device is not online to return a snapshot.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deviceViews",
+                    ":deviceViewId",
+                    "snapshot"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "deviceViewId",
+                      "description": "(Required) The primary device view identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b506660-a7fe-4e8b-b67e-4bead07e4a61",
+              "name": "Communication with the device has timed out.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deviceViews",
+                    ":deviceViewId",
+                    "snapshot"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "time",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "deviceViewId",
+                      "description": "(Required) The primary device view identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lytx.com/consent-management",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "233bb99b-677b-422f-8e3b-be228e5ccb8f",
+    "name": "Lytx..Management.Api Consent Video (DriveCam) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for retrieving and updating user consent status, requiring authentication.\n",
+      "type": "text/plain"
+    }
+  }
+}

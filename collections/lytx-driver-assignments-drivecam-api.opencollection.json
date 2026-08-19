@@ -1,0 +1,150 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lytx..Management.Api Consent Driver Assignments (DriveCam) API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Driver Assignments (DriveCam)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Assignments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/v1/driver-assignments",
+            "params": [
+              {
+                "name": "vehicleIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by vehicle identifier or VIN."
+              },
+              {
+                "name": "userIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by user identifier or name."
+              },
+              {
+                "name": "groupIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by group identifier or name."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter by start date."
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter by end date."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Record to start with."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Name of property to sort on."
+              },
+              {
+                "name": "includeSubgroups",
+                "value": "",
+                "type": "query",
+                "description": "Include subgroups."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all the driver assignments in a organization or subset of an organization."
+        },
+        {
+          "info": {
+            "name": "Submit Dispatch Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lytx.com/consent-management/v1/driver-assignments/dispatch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Schedules drivers to specific vehicles over specified periods, facilitating efficient fleet management. Unlike the Driver Assignment API, which tracks actual driver usage of vehicles, this API focuses solely on planned schedules.\n      \nBelow is the reference list of validation response codes that can be found in response after submitting dispatch schedule:\n- \"SUCCESS\" - Success\n- \"E_UNKNOWN\" - Unknown error processing entry\n- \"E_NO_MATCH\" - No matching entry found\n- \"E_NO_MATCH_DRIVER\" - No mat"
+        },
+        {
+          "info": {
+            "name": "Retrieve Submission Log Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/v1/driver-assignments/status",
+            "params": [
+              {
+                "name": "submissionBatchId",
+                "value": "",
+                "type": "query",
+                "description": "Identifier for a submission log"
+              }
+            ]
+          },
+          "docs": "Retrieve the status of a submission log to understand if processing is complete or in progress."
+        },
+        {
+          "info": {
+            "name": "Retrieve Submission Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/v1/driver-assignments/result",
+            "params": [
+              {
+                "name": "submissionBatchId",
+                "value": "",
+                "type": "query",
+                "description": "Identifier for a submission log"
+              }
+            ]
+          },
+          "docs": "Retrieve submission entries of a submission log, which provide the driver, vehicle, and dispatch start and end time."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

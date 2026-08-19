@@ -1,0 +1,1359 @@
+{
+  "item": [
+    {
+      "id": "7f718f7d-94f3-45e8-9a34-f7636667a161",
+      "name": "Zones (GO9)",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "af1a7594-0b5d-4401-941f-fcb07d53bfef",
+          "name": "Get Telematics Zones Data",
+          "request": {
+            "name": "Get Telematics Zones Data",
+            "description": {
+              "content": "Retrieve a list of Geofences/Zones",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plus",
+                "v1",
+                "zones"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "groupId",
+                  "value": "<string>",
+                  "description": "Can use group ID or root group ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeSubGroups",
+                  "value": "true",
+                  "description": "If true, all descendant groups under the specified group are included."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Record to start with."
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<dateTime>",
+                  "description": "The start date must be within the last 60 days."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<dateTime>",
+                  "description": "End date to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Sort direction."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortProperty",
+                  "value": "<string>",
+                  "description": "Name of property to sort on."
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>",
+                  "description": "(Required) API version number."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "86ac4cba-c2d4-4d92-9aed-5d8d09bc31ec",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "zones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"activeFrom\": \"2025-05-29T19:18:26.063Z\",\n      \"activeTo\": \"2025-06-29T19:18:26.063Z\",\n      \"comment\": \"Restricted area for heavy vehicles\",\n      \"displayed\": true,\n      \"externalReference\": \"zone-ext-12345\",\n      \"fillColor\": {\n        \"a\": 255,\n        \"r\": 255,\n        \"g\": 0,\n        \"b\": 0\n      },\n      \"groups\": [\n        \"group1\",\n        \"group2\"\n      ],\n      \"id\": \"zone1f6e56d-1234-4567-89ab-cdef12345678\",\n      \"metadata\": {},\n      \"mustIdentifyStops\": false,\n      \"name\": \"No Parking Zone\",\n      \"points\": [\n        {\n          \"x\": -117.212799,\n          \"y\": 32.8872185\n        },\n        {\n          \"x\": -117.212799,\n          \"y\": 32.8872185\n        }\n      ],\n      \"version\": \"v1.0\",\n      \"zoneTypes\": [\n        {\n          \"comment\": \"Default restricted zone type\",\n          \"defaultFillColorForNewZoneType\": {},\n          \"fillColor\": {},\n          \"id\": {},\n          \"isBuiltIn\": true,\n          \"name\": \"Restricted Area\"\n        },\n        {\n          \"comment\": \"Default restricted zone type\",\n          \"defaultFillColorForNewZoneType\": {},\n          \"fillColor\": {},\n          \"id\": {},\n          \"isBuiltIn\": true,\n          \"name\": \"Restricted Area\"\n        }\n      ]\n    },\n    {\n      \"activeFrom\": \"2025-05-29T19:18:26.063Z\",\n      \"activeTo\": \"2025-06-29T19:18:26.063Z\",\n      \"comment\": \"Restricted area for heavy vehicles\",\n      \"displayed\": true,\n      \"externalReference\": \"zone-ext-12345\",\n      \"fillColor\": {\n        \"a\": 255,\n        \"r\": 255,\n        \"g\": 0,\n        \"b\": 0\n      },\n      \"groups\": [\n        \"group1\",\n        \"group2\"\n      ],\n      \"id\": \"zone1f6e56d-1234-4567-89ab-cdef12345678\",\n      \"metadata\": {},\n      \"mustIdentifyStops\": false,\n      \"name\": \"No Parking Zone\",\n      \"points\": [\n        {\n          \"x\": -117.212799,\n          \"y\": 32.8872185\n        },\n        {\n          \"x\": -117.212799,\n          \"y\": 32.8872185\n        }\n      ],\n      \"version\": \"v1.0\",\n      \"zoneTypes\": [\n        {\n          \"comment\": \"Default restricted zone type\",\n          \"defaultFillColorForNewZoneType\": {},\n          \"fillColor\": {},\n          \"id\": {},\n          \"isBuiltIn\": true,\n          \"name\": \"Restricted Area\"\n        },\n        {\n          \"comment\": \"Default restricted zone type\",\n          \"defaultFillColorForNewZoneType\": {},\n          \"fillColor\": {},\n          \"id\": {},\n          \"isBuiltIn\": true,\n          \"name\": \"Restricted Area\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6f7ee73-82f4-4f2c-9edf-51e40dfa3d7a",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "zones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8df7ce83-1eea-4f38-a76f-f4405e1a6b0f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "zones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unauthorized\",\n  \"message\": \"Access denied\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "141737c9-e9b1-47ee-ab17-78bf56f05fed",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "zones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"Non-permited user\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a03a2cad-3511-448f-a634-0fd8136960ba",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "zones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"No information found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c721853-2240-4175-94f4-732b29da1ba0",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "zones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "includeSubGroups",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"An unexpected server error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3828b74-b676-43d3-823f-c5898544732e",
+          "name": "Add Telematics Zones Data",
+          "request": {
+            "name": "Add Telematics Zones Data",
+            "description": {
+              "content": "Add data for Geofences/Zones",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plus",
+                "v1",
+                "zones"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"points\": [\n    {\n      \"x\": \"<double>\",\n      \"y\": \"<double>\"\n    },\n    {\n      \"x\": \"<double>\",\n      \"y\": \"<double>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"comment\": \"<string>\",\n  \"mustIdentifyStops\": \"<boolean>\",\n  \"displayed\": \"<boolean>\",\n  \"activeFrom\": \"<string>\",\n  \"activeTo\": \"<string>\",\n  \"zoneTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fillColor\": {\n    \"r\": \"<integer>\",\n    \"g\": \"<integer>\",\n    \"b\": \"<integer>\",\n    \"a\": \"<integer>\"\n  },\n  \"externalReference\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "58ce1334-d652-43f9-b8ed-6f5b298ba4e0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "zones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"San Diego Zone\",\n  \"points\": [\n    {\n      \"x\": 32.7157,\n      \"y\": -117.1611\n    },\n    {\n      \"x\": 32.7157,\n      \"y\": -117.1611\n    }\n  ],\n  \"groups\": [\n    {\n      \"id\": \"group-12345\"\n    },\n    {\n      \"id\": \"group-12345\"\n    }\n  ],\n  \"comment\": \"Primary service area for San Diego\",\n  \"mustIdentifyStops\": true,\n  \"displayed\": true,\n  \"activeFrom\": \"2025-01-01T00:00:00Z\",\n  \"activeTo\": \"2025-12-31T23:59:59Z\",\n  \"zoneTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fillColor\": {\n    \"r\": 255,\n    \"g\": 0,\n    \"b\": 0,\n    \"a\": 255\n  },\n  \"externalReference\": \"EXT-ZONE-001\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"bb5\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ac74733-1838-4c6d-b964-60f18ff34cad",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "zones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"San Diego Zone\",\n  \"points\": [\n    {\n      \"x\": 32.7157,\n      \"y\": -117.1611\n    },\n    {\n      \"x\": 32.7157,\n      \"y\": -117.1611\n    }\n  ],\n  \"groups\": [\n    {\n      \"id\": \"group-12345\"\n    },\n    {\n      \"id\": \"group-12345\"\n    }\n  ],\n  \"comment\": \"Primary service area for San Diego\",\n  \"mustIdentifyStops\": true,\n  \"displayed\": true,\n  \"activeFrom\": \"2025-01-01T00:00:00Z\",\n  \"activeTo\": \"2025-12-31T23:59:59Z\",\n  \"zoneTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fillColor\": {\n    \"r\": 255,\n    \"g\": 0,\n    \"b\": 0,\n    \"a\": 255\n  },\n  \"externalReference\": \"EXT-ZONE-001\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid ShapeType\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c578e31-02ff-4648-8c4d-2a69348a0c00",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "zones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"San Diego Zone\",\n  \"points\": [\n    {\n      \"x\": 32.7157,\n      \"y\": -117.1611\n    },\n    {\n      \"x\": 32.7157,\n      \"y\": -117.1611\n    }\n  ],\n  \"groups\": [\n    {\n      \"id\": \"group-12345\"\n    },\n    {\n      \"id\": \"group-12345\"\n    }\n  ],\n  \"comment\": \"Primary service area for San Diego\",\n  \"mustIdentifyStops\": true,\n  \"displayed\": true,\n  \"activeFrom\": \"2025-01-01T00:00:00Z\",\n  \"activeTo\": \"2025-12-31T23:59:59Z\",\n  \"zoneTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fillColor\": {\n    \"r\": 255,\n    \"g\": 0,\n    \"b\": 0,\n    \"a\": 255\n  },\n  \"externalReference\": \"EXT-ZONE-001\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unauthorized\",\n  \"message\": \"Access denied\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "43d2baed-e426-424c-a249-5a638038e0cf",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "zones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"San Diego Zone\",\n  \"points\": [\n    {\n      \"x\": 32.7157,\n      \"y\": -117.1611\n    },\n    {\n      \"x\": 32.7157,\n      \"y\": -117.1611\n    }\n  ],\n  \"groups\": [\n    {\n      \"id\": \"group-12345\"\n    },\n    {\n      \"id\": \"group-12345\"\n    }\n  ],\n  \"comment\": \"Primary service area for San Diego\",\n  \"mustIdentifyStops\": true,\n  \"displayed\": true,\n  \"activeFrom\": \"2025-01-01T00:00:00Z\",\n  \"activeTo\": \"2025-12-31T23:59:59Z\",\n  \"zoneTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fillColor\": {\n    \"r\": 255,\n    \"g\": 0,\n    \"b\": 0,\n    \"a\": 255\n  },\n  \"externalReference\": \"EXT-ZONE-001\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"Non-permitted user\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8a17f5e-f950-4fab-935c-b4a39e749ebc",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "zones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"San Diego Zone\",\n  \"points\": [\n    {\n      \"x\": 32.7157,\n      \"y\": -117.1611\n    },\n    {\n      \"x\": 32.7157,\n      \"y\": -117.1611\n    }\n  ],\n  \"groups\": [\n    {\n      \"id\": \"group-12345\"\n    },\n    {\n      \"id\": \"group-12345\"\n    }\n  ],\n  \"comment\": \"Primary service area for San Diego\",\n  \"mustIdentifyStops\": true,\n  \"displayed\": true,\n  \"activeFrom\": \"2025-01-01T00:00:00Z\",\n  \"activeTo\": \"2025-12-31T23:59:59Z\",\n  \"zoneTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fillColor\": {\n    \"r\": 255,\n    \"g\": 0,\n    \"b\": 0,\n    \"a\": 255\n  },\n  \"externalReference\": \"EXT-ZONE-001\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"No information found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9729ade9-abf7-4d1a-86b3-c9a8523f0601",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "zones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"San Diego Zone\",\n  \"points\": [\n    {\n      \"x\": 32.7157,\n      \"y\": -117.1611\n    },\n    {\n      \"x\": 32.7157,\n      \"y\": -117.1611\n    }\n  ],\n  \"groups\": [\n    {\n      \"id\": \"group-12345\"\n    },\n    {\n      \"id\": \"group-12345\"\n    }\n  ],\n  \"comment\": \"Primary service area for San Diego\",\n  \"mustIdentifyStops\": true,\n  \"displayed\": true,\n  \"activeFrom\": \"2025-01-01T00:00:00Z\",\n  \"activeTo\": \"2025-12-31T23:59:59Z\",\n  \"zoneTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fillColor\": {\n    \"r\": 255,\n    \"g\": 0,\n    \"b\": 0,\n    \"a\": 255\n  },\n  \"externalReference\": \"EXT-ZONE-001\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"An unexpected server error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "98ad3c1e-03aa-484c-a4cd-a62ecb8ad90b",
+          "name": "Edit Telematics Zones Data",
+          "request": {
+            "name": "Edit Telematics Zones Data",
+            "description": {
+              "content": "Edit data for Geofences/Zones",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plus",
+                "v1",
+                "zones"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"mustIdentifyStops\": \"<boolean>\",\n  \"displayed\": \"<boolean>\",\n  \"externalReference\": \"<string>\",\n  \"activeFrom\": \"<string>\",\n  \"activeTo\": \"<string>\",\n  \"zoneTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fillColor\": {\n    \"r\": \"<integer>\",\n    \"g\": \"<integer>\",\n    \"b\": \"<integer>\",\n    \"a\": \"<integer>\"\n  },\n  \"points\": [\n    {\n      \"x\": \"<double>\",\n      \"y\": \"<double>\"\n    },\n    {\n      \"x\": \"<double>\",\n      \"y\": \"<double>\"\n    }\n  ],\n  \"groups\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9a122c27-04ae-4481-9d0c-b40d7c59ef73",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "zones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"b28\",\n  \"name\": \"San Diego Zone\",\n  \"comment\": \"Primary service area for San Diego\",\n  \"mustIdentifyStops\": true,\n  \"displayed\": true,\n  \"externalReference\": \"EXT-ZONE-001\",\n  \"activeFrom\": \"2025-01-01T00:00:00Z\",\n  \"activeTo\": \"2025-12-31T23:59:59Z\",\n  \"zoneTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fillColor\": {\n    \"r\": 255,\n    \"g\": 0,\n    \"b\": 0,\n    \"a\": 255\n  },\n  \"points\": [\n    {\n      \"x\": 32.7157,\n      \"y\": -117.1611\n    },\n    {\n      \"x\": 32.7157,\n      \"y\": -117.1611\n    }\n  ],\n  \"groups\": [\n    {\n      \"id\": \"group-12345\"\n    },\n    {\n      \"id\": \"group-12345\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"Zone with Id bb5 updated Successfully\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ff08b35-234a-4f7b-a6fa-c6b5b66d2779",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "zones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"b28\",\n  \"name\": \"San Diego Zone\",\n  \"comment\": \"Primary service area for San Diego\",\n  \"mustIdentifyStops\": true,\n  \"displayed\": true,\n  \"externalReference\": \"EXT-ZONE-001\",\n  \"activeFrom\": \"2025-01-01T00:00:00Z\",\n  \"activeTo\": \"2025-12-31T23:59:59Z\",\n  \"zoneTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fillColor\": {\n    \"r\": 255,\n    \"g\": 0,\n    \"b\": 0,\n    \"a\": 255\n  },\n  \"points\": [\n    {\n      \"x\": 32.7157,\n      \"y\": -117.1611\n    },\n    {\n      \"x\": 32.7157,\n      \"y\": -117.1611\n    }\n  ],\n  \"groups\": [\n    {\n      \"id\": \"group-12345\"\n    },\n    {\n      \"id\": \"group-12345\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a00cdab-0234-4037-ab42-402c1e95e5af",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "zones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"b28\",\n  \"name\": \"San Diego Zone\",\n  \"comment\": \"Primary service area for San Diego\",\n  \"mustIdentifyStops\": true,\n  \"displayed\": true,\n  \"externalReference\": \"EXT-ZONE-001\",\n  \"activeFrom\": \"2025-01-01T00:00:00Z\",\n  \"activeTo\": \"2025-12-31T23:59:59Z\",\n  \"zoneTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fillColor\": {\n    \"r\": 255,\n    \"g\": 0,\n    \"b\": 0,\n    \"a\": 255\n  },\n  \"points\": [\n    {\n      \"x\": 32.7157,\n      \"y\": -117.1611\n    },\n    {\n      \"x\": 32.7157,\n      \"y\": -117.1611\n    }\n  ],\n  \"groups\": [\n    {\n      \"id\": \"group-12345\"\n    },\n    {\n      \"id\": \"group-12345\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unauthorized\",\n  \"message\": \"Access denied\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "382f862f-bf82-4a29-ab43-e199696eeafb",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "zones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"b28\",\n  \"name\": \"San Diego Zone\",\n  \"comment\": \"Primary service area for San Diego\",\n  \"mustIdentifyStops\": true,\n  \"displayed\": true,\n  \"externalReference\": \"EXT-ZONE-001\",\n  \"activeFrom\": \"2025-01-01T00:00:00Z\",\n  \"activeTo\": \"2025-12-31T23:59:59Z\",\n  \"zoneTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fillColor\": {\n    \"r\": 255,\n    \"g\": 0,\n    \"b\": 0,\n    \"a\": 255\n  },\n  \"points\": [\n    {\n      \"x\": 32.7157,\n      \"y\": -117.1611\n    },\n    {\n      \"x\": 32.7157,\n      \"y\": -117.1611\n    }\n  ],\n  \"groups\": [\n    {\n      \"id\": \"group-12345\"\n    },\n    {\n      \"id\": \"group-12345\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"Non-permitted user\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c54f354-930e-40f5-b885-f6e7fa2d20fe",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "zones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"b28\",\n  \"name\": \"San Diego Zone\",\n  \"comment\": \"Primary service area for San Diego\",\n  \"mustIdentifyStops\": true,\n  \"displayed\": true,\n  \"externalReference\": \"EXT-ZONE-001\",\n  \"activeFrom\": \"2025-01-01T00:00:00Z\",\n  \"activeTo\": \"2025-12-31T23:59:59Z\",\n  \"zoneTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fillColor\": {\n    \"r\": 255,\n    \"g\": 0,\n    \"b\": 0,\n    \"a\": 255\n  },\n  \"points\": [\n    {\n      \"x\": 32.7157,\n      \"y\": -117.1611\n    },\n    {\n      \"x\": 32.7157,\n      \"y\": -117.1611\n    }\n  ],\n  \"groups\": [\n    {\n      \"id\": \"group-12345\"\n    },\n    {\n      \"id\": \"group-12345\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"No information found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71b1d22b-1fd6-4075-a946-a9467edc3c54",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "zones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"b28\",\n  \"name\": \"San Diego Zone\",\n  \"comment\": \"Primary service area for San Diego\",\n  \"mustIdentifyStops\": true,\n  \"displayed\": true,\n  \"externalReference\": \"EXT-ZONE-001\",\n  \"activeFrom\": \"2025-01-01T00:00:00Z\",\n  \"activeTo\": \"2025-12-31T23:59:59Z\",\n  \"zoneTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fillColor\": {\n    \"r\": 255,\n    \"g\": 0,\n    \"b\": 0,\n    \"a\": 255\n  },\n  \"points\": [\n    {\n      \"x\": 32.7157,\n      \"y\": -117.1611\n    },\n    {\n      \"x\": 32.7157,\n      \"y\": -117.1611\n    }\n  ],\n  \"groups\": [\n    {\n      \"id\": \"group-12345\"\n    },\n    {\n      \"id\": \"group-12345\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"An unexpected server error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lytx.com/consent-management",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4819f595-3b6c-4569-84e8-0c057ad01f99",
+    "name": "Lytx..Management.Api Consent Zones (GO9) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for retrieving and updating user consent status, requiring authentication.\n",
+      "type": "text/plain"
+    }
+  }
+}

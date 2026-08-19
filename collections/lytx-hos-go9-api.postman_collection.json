@@ -1,0 +1,595 @@
+{
+  "item": [
+    {
+      "id": "c921cc46-4892-435e-b1b1-3ee775252ee5",
+      "name": "HOS (GO9)",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c42b3d9d-66a2-4ec5-9fdb-6e3bfc7ac7a3",
+          "name": "Get Telematics HOS Data",
+          "request": {
+            "name": "Get Telematics HOS Data",
+            "description": {
+              "content": "Retrieve HOS Logs",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plus",
+                "v1",
+                "hos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "userId",
+                  "value": "<string>",
+                  "description": "Can use user ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Record to start with."
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<dateTime>",
+                  "description": "The start date must be within the last 60 days."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<dateTime>",
+                  "description": "End date to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Sort direction."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortProperty",
+                  "value": "<string>",
+                  "description": "Name of property to sort on."
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>",
+                  "description": "(Required) API version number."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "82bc5b7f-0c82-4493-86cc-f0d42022120c",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "hos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "userId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"hos1f6e56d-1234-4567-89ab-cdef12345678\",\n      \"annotations\": [\n        {\n          \"comment\": \"Driver noted a delay due to traffic.\",\n          \"dateTime\": \"2025-05-29T19:20:26.063Z\",\n          \"driver\": {},\n          \"id\": \"ann1f6e56d-1234-4567-89ab-cdef12345678\",\n          \"version\": \"v1.0\"\n        },\n        {\n          \"comment\": \"Driver noted a delay due to traffic.\",\n          \"dateTime\": \"2025-05-29T19:20:26.063Z\",\n          \"driver\": {},\n          \"id\": \"ann1f6e56d-1234-4567-89ab-cdef12345678\",\n          \"version\": \"v1.0\"\n        }\n      ],\n      \"coDrivers\": [\n        {\n          \"id\": \"1b33bcbe-15d3-445e-a06f-dda61208ad18\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"name\": \"John Doe\",\n          \"licenseNumber\": \"DL-123456\",\n          \"licenseProvince\": \"CA\",\n          \"acceptedEULA\": 1,\n          \"driveGuideVersion\": 2,\n          \"wifiEULA\": 1,\n          \"activeFrom\": \"2023-10-06T00:22:30.000Z\",\n          \"activeTo\": \"2025-10-06T00:22:30.000Z\",\n          \"lastAccessDate\": \"2025-09-15T12:22:30.000Z\",\n          \"companyName\": \"Acme Corp\",\n          \"companyAddress\": \"123 Main Street, Toronto, ON\",\n          \"carrierNumber\": \"CARR123\",\n          \"isDriver\": true,\n          \"isEmailReportEnabled\": false,\n          \"language\": \"en-US\",\n          \"timeZoneId\": \"America/Toronto\",\n          \"userAuthenticationType\": 1,\n          \"zoneDisplayMode\": 2,\n          \"driverGroups\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comment\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"parent\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"children\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"color\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comment\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"parent\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"children\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"color\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"companyGroups\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comment\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"parent\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"children\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"color\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comment\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"parent\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"children\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"color\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"viewDriversOwnDataOnly\": false,\n          \"designation\": \"Manager\",\n          \"employeeNo\": \"EMP12345\",\n          \"phoneNumber\": \"+1-123-456-7890\",\n          \"phoneNumberExtension\": \"101\"\n        },\n        {\n          \"id\": \"1b33bcbe-15d3-445e-a06f-dda61208ad18\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"name\": \"John Doe\",\n          \"licenseNumber\": \"DL-123456\",\n          \"licenseProvince\": \"CA\",\n          \"acceptedEULA\": 1,\n          \"driveGuideVersion\": 2,\n          \"wifiEULA\": 1,\n          \"activeFrom\": \"2023-10-06T00:22:30.000Z\",\n          \"activeTo\": \"2025-10-06T00:22:30.000Z\",\n          \"lastAccessDate\": \"2025-09-15T12:22:30.000Z\",\n          \"companyName\": \"Acme Corp\",\n          \"companyAddress\": \"123 Main Street, Toronto, ON\",\n          \"carrierNumber\": \"CARR123\",\n          \"isDriver\": true,\n          \"isEmailReportEnabled\": false,\n          \"language\": \"en-US\",\n          \"timeZoneId\": \"America/Toronto\",\n          \"userAuthenticationType\": 1,\n          \"zoneDisplayMode\": 2,\n          \"driverGroups\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comment\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"parent\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"children\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"color\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comment\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"parent\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"children\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"color\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"companyGroups\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comment\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"parent\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"children\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"color\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comment\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"parent\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"children\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"color\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"viewDriversOwnDataOnly\": false,\n          \"designation\": \"Manager\",\n          \"employeeNo\": \"EMP12345\",\n          \"phoneNumber\": \"+1-123-456-7890\",\n          \"phoneNumberExtension\": \"101\"\n        }\n      ],\n      \"dateTime\": \"2025-05-29T19:18:26.063Z\",\n      \"deferralMinutes\": 15,\n      \"deferralStatus\": \"Active\",\n      \"device\": {\n        \"id\": \"1b33bcbe-15d3-445e-a06f-dda61208ad18\",\n        \"activeFrom\": \"2023-10-06T00:22:30.000Z\",\n        \"activeTo\": \"2025-10-06T00:22:30.000Z\",\n        \"comment\": \"Installed in vehicle A123\",\n        \"groups\": [\n          \"Group1\",\n          \"Group2\"\n        ],\n        \"timeZoneId\": \"America/Toronto\",\n        \"deviceFlags\": \"FLAG_001\",\n        \"deviceType\": \"GO9\",\n        \"hardwareId\": \"HW-ABC-12345\",\n        \"ignoreDownloadsUntil\": \"2025-05-15T12:00:00.000Z\",\n        \"maxSecondsBetweenLogs\": 300,\n        \"name\": \"Device A123\",\n        \"productId\": \"PROD-456\",\n        \"serialNumber\": \"SN123456789\",\n        \"timeToDownload\": \"2025-09-20T10:00:00.000Z\",\n        \"workTime\": \"08:00-17:00\",\n        \"registerDeviceResultLite\": {},\n        \"devicePlanBillingInfo\": {},\n        \"deviceReplacementInfo\": {},\n        \"customProperties\": {},\n        \"mediaFiles\": [\n          \"file1.jpg\",\n          \"file2.mp4\"\n        ],\n        \"tmpTrailerId\": \"TRAILER-123\",\n        \"version\": \"v1.2.3\"\n      },\n      \"driver\": {\n        \"id\": \"1b33bcbe-15d3-445e-a06f-dda61208ad18\",\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"name\": \"John Doe\",\n        \"licenseNumber\": \"DL-123456\",\n        \"licenseProvince\": \"CA\",\n        \"acceptedEULA\": 1,\n        \"driveGuideVersion\": 2,\n        \"wifiEULA\": 1,\n        \"activeFrom\": \"2023-10-06T00:22:30.000Z\",\n        \"activeTo\": \"2025-10-06T00:22:30.000Z\",\n        \"lastAccessDate\": \"2025-09-15T12:22:30.000Z\",\n        \"companyName\": \"Acme Corp\",\n        \"companyAddress\": \"123 Main Street, Toronto, ON\",\n        \"carrierNumber\": \"CARR123\",\n        \"isDriver\": true,\n        \"isEmailReportEnabled\": false,\n        \"language\": \"en-US\",\n        \"timeZoneId\": \"America/Toronto\",\n        \"userAuthenticationType\": 1,\n        \"zoneDisplayMode\": 2,\n        \"driverGroups\": [\n          {\n            \"id\": \"grp-123\",\n            \"name\": \"Drivers Group\",\n            \"comment\": \"Main driver group\",\n            \"reference\": \"REF123\",\n            \"parent\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"color\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          },\n          {\n            \"id\": \"grp-123\",\n            \"name\": \"Drivers Group\",\n            \"comment\": \"Main driver group\",\n            \"reference\": \"REF123\",\n            \"parent\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"color\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          }\n        ],\n        \"companyGroups\": [\n          {\n            \"id\": \"grp-123\",\n            \"name\": \"Drivers Group\",\n            \"comment\": \"Main driver group\",\n            \"reference\": \"REF123\",\n            \"parent\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"color\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          },\n          {\n            \"id\": \"grp-123\",\n            \"name\": \"Drivers Group\",\n            \"comment\": \"Main driver group\",\n            \"reference\": \"REF123\",\n            \"parent\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"color\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          }\n        ],\n        \"viewDriversOwnDataOnly\": false,\n        \"designation\": \"Manager\",\n        \"employeeNo\": \"EMP12345\",\n        \"phoneNumber\": \"+1-123-456-7890\",\n        \"phoneNumberExtension\": \"101\"\n      },\n      \"editDateTime\": \"2025-05-29T20:18:26.063Z\",\n      \"editRequestedByUser\": {\n        \"id\": \"1b33bcbe-15d3-445e-a06f-dda61208ad18\",\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"name\": \"John Doe\",\n        \"licenseNumber\": \"DL-123456\",\n        \"licenseProvince\": \"CA\",\n        \"acceptedEULA\": 1,\n        \"driveGuideVersion\": 2,\n        \"wifiEULA\": 1,\n        \"activeFrom\": \"2023-10-06T00:22:30.000Z\",\n        \"activeTo\": \"2025-10-06T00:22:30.000Z\",\n        \"lastAccessDate\": \"2025-09-15T12:22:30.000Z\",\n        \"companyName\": \"Acme Corp\",\n        \"companyAddress\": \"123 Main Street, Toronto, ON\",\n        \"carrierNumber\": \"CARR123\",\n        \"isDriver\": true,\n        \"isEmailReportEnabled\": false,\n        \"language\": \"en-US\",\n        \"timeZoneId\": \"America/Toronto\",\n        \"userAuthenticationType\": 1,\n        \"zoneDisplayMode\": 2,\n        \"driverGroups\": [\n          {\n            \"id\": \"grp-123\",\n            \"name\": \"Drivers Group\",\n            \"comment\": \"Main driver group\",\n            \"reference\": \"REF123\",\n            \"parent\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"color\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          },\n          {\n            \"id\": \"grp-123\",\n            \"name\": \"Drivers Group\",\n            \"comment\": \"Main driver group\",\n            \"reference\": \"REF123\",\n            \"parent\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"color\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          }\n        ],\n        \"companyGroups\": [\n          {\n            \"id\": \"grp-123\",\n            \"name\": \"Drivers Group\",\n            \"comment\": \"Main driver group\",\n            \"reference\": \"REF123\",\n            \"parent\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"color\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          },\n          {\n            \"id\": \"grp-123\",\n            \"name\": \"Drivers Group\",\n            \"comment\": \"Main driver group\",\n            \"reference\": \"REF123\",\n            \"parent\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"color\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          }\n        ],\n        \"viewDriversOwnDataOnly\": false,\n        \"designation\": \"Manager\",\n        \"employeeNo\": \"EMP12345\",\n        \"phoneNumber\": \"+1-123-456-7890\",\n        \"phoneNumberExtension\": \"101\"\n      },\n      \"engineHours\": 5.5,\n      \"eventCode\": 101,\n      \"eventRecordStatus\": 1,\n      \"eventType\": 2,\n      \"isIgnored\": false,\n      \"isTransitioning\": false,\n      \"location\": {},\n      \"malfunction\": \"None\",\n      \"odometer\": 12550,\n      \"origin\": \"Truck\",\n      \"parentId\": \"parent123\",\n      \"sequence\": \"1\",\n      \"state\": \"ON_DUTY\",\n      \"status\": \"Active\",\n      \"verifyDateTime\": \"2025-05-29T21:18:26.063Z\",\n      \"version\": \"v1.0\"\n    },\n    {\n      \"id\": \"hos1f6e56d-1234-4567-89ab-cdef12345678\",\n      \"annotations\": [\n        {\n          \"comment\": \"Driver noted a delay due to traffic.\",\n          \"dateTime\": \"2025-05-29T19:20:26.063Z\",\n          \"driver\": {},\n          \"id\": \"ann1f6e56d-1234-4567-89ab-cdef12345678\",\n          \"version\": \"v1.0\"\n        },\n        {\n          \"comment\": \"Driver noted a delay due to traffic.\",\n          \"dateTime\": \"2025-05-29T19:20:26.063Z\",\n          \"driver\": {},\n          \"id\": \"ann1f6e56d-1234-4567-89ab-cdef12345678\",\n          \"version\": \"v1.0\"\n        }\n      ],\n      \"coDrivers\": [\n        {\n          \"id\": \"1b33bcbe-15d3-445e-a06f-dda61208ad18\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"name\": \"John Doe\",\n          \"licenseNumber\": \"DL-123456\",\n          \"licenseProvince\": \"CA\",\n          \"acceptedEULA\": 1,\n          \"driveGuideVersion\": 2,\n          \"wifiEULA\": 1,\n          \"activeFrom\": \"2023-10-06T00:22:30.000Z\",\n          \"activeTo\": \"2025-10-06T00:22:30.000Z\",\n          \"lastAccessDate\": \"2025-09-15T12:22:30.000Z\",\n          \"companyName\": \"Acme Corp\",\n          \"companyAddress\": \"123 Main Street, Toronto, ON\",\n          \"carrierNumber\": \"CARR123\",\n          \"isDriver\": true,\n          \"isEmailReportEnabled\": false,\n          \"language\": \"en-US\",\n          \"timeZoneId\": \"America/Toronto\",\n          \"userAuthenticationType\": 1,\n          \"zoneDisplayMode\": 2,\n          \"driverGroups\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comment\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"parent\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"children\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"color\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comment\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"parent\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"children\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"color\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"companyGroups\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comment\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"parent\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"children\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"color\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comment\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"parent\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"children\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"color\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"viewDriversOwnDataOnly\": false,\n          \"designation\": \"Manager\",\n          \"employeeNo\": \"EMP12345\",\n          \"phoneNumber\": \"+1-123-456-7890\",\n          \"phoneNumberExtension\": \"101\"\n        },\n        {\n          \"id\": \"1b33bcbe-15d3-445e-a06f-dda61208ad18\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"name\": \"John Doe\",\n          \"licenseNumber\": \"DL-123456\",\n          \"licenseProvince\": \"CA\",\n          \"acceptedEULA\": 1,\n          \"driveGuideVersion\": 2,\n          \"wifiEULA\": 1,\n          \"activeFrom\": \"2023-10-06T00:22:30.000Z\",\n          \"activeTo\": \"2025-10-06T00:22:30.000Z\",\n          \"lastAccessDate\": \"2025-09-15T12:22:30.000Z\",\n          \"companyName\": \"Acme Corp\",\n          \"companyAddress\": \"123 Main Street, Toronto, ON\",\n          \"carrierNumber\": \"CARR123\",\n          \"isDriver\": true,\n          \"isEmailReportEnabled\": false,\n          \"language\": \"en-US\",\n          \"timeZoneId\": \"America/Toronto\",\n          \"userAuthenticationType\": 1,\n          \"zoneDisplayMode\": 2,\n          \"driverGroups\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comment\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"parent\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"children\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"color\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comment\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"parent\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"children\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"color\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"companyGroups\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comment\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"parent\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"children\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"color\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"comment\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reference\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"parent\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"children\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"color\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"viewDriversOwnDataOnly\": false,\n          \"designation\": \"Manager\",\n          \"employeeNo\": \"EMP12345\",\n          \"phoneNumber\": \"+1-123-456-7890\",\n          \"phoneNumberExtension\": \"101\"\n        }\n      ],\n      \"dateTime\": \"2025-05-29T19:18:26.063Z\",\n      \"deferralMinutes\": 15,\n      \"deferralStatus\": \"Active\",\n      \"device\": {\n        \"id\": \"1b33bcbe-15d3-445e-a06f-dda61208ad18\",\n        \"activeFrom\": \"2023-10-06T00:22:30.000Z\",\n        \"activeTo\": \"2025-10-06T00:22:30.000Z\",\n        \"comment\": \"Installed in vehicle A123\",\n        \"groups\": [\n          \"Group1\",\n          \"Group2\"\n        ],\n        \"timeZoneId\": \"America/Toronto\",\n        \"deviceFlags\": \"FLAG_001\",\n        \"deviceType\": \"GO9\",\n        \"hardwareId\": \"HW-ABC-12345\",\n        \"ignoreDownloadsUntil\": \"2025-05-15T12:00:00.000Z\",\n        \"maxSecondsBetweenLogs\": 300,\n        \"name\": \"Device A123\",\n        \"productId\": \"PROD-456\",\n        \"serialNumber\": \"SN123456789\",\n        \"timeToDownload\": \"2025-09-20T10:00:00.000Z\",\n        \"workTime\": \"08:00-17:00\",\n        \"registerDeviceResultLite\": {},\n        \"devicePlanBillingInfo\": {},\n        \"deviceReplacementInfo\": {},\n        \"customProperties\": {},\n        \"mediaFiles\": [\n          \"file1.jpg\",\n          \"file2.mp4\"\n        ],\n        \"tmpTrailerId\": \"TRAILER-123\",\n        \"version\": \"v1.2.3\"\n      },\n      \"driver\": {\n        \"id\": \"1b33bcbe-15d3-445e-a06f-dda61208ad18\",\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"name\": \"John Doe\",\n        \"licenseNumber\": \"DL-123456\",\n        \"licenseProvince\": \"CA\",\n        \"acceptedEULA\": 1,\n        \"driveGuideVersion\": 2,\n        \"wifiEULA\": 1,\n        \"activeFrom\": \"2023-10-06T00:22:30.000Z\",\n        \"activeTo\": \"2025-10-06T00:22:30.000Z\",\n        \"lastAccessDate\": \"2025-09-15T12:22:30.000Z\",\n        \"companyName\": \"Acme Corp\",\n        \"companyAddress\": \"123 Main Street, Toronto, ON\",\n        \"carrierNumber\": \"CARR123\",\n        \"isDriver\": true,\n        \"isEmailReportEnabled\": false,\n        \"language\": \"en-US\",\n        \"timeZoneId\": \"America/Toronto\",\n        \"userAuthenticationType\": 1,\n        \"zoneDisplayMode\": 2,\n        \"driverGroups\": [\n          {\n            \"id\": \"grp-123\",\n            \"name\": \"Drivers Group\",\n            \"comment\": \"Main driver group\",\n            \"reference\": \"REF123\",\n            \"parent\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"color\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          },\n          {\n            \"id\": \"grp-123\",\n            \"name\": \"Drivers Group\",\n            \"comment\": \"Main driver group\",\n            \"reference\": \"REF123\",\n            \"parent\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"color\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          }\n        ],\n        \"companyGroups\": [\n          {\n            \"id\": \"grp-123\",\n            \"name\": \"Drivers Group\",\n            \"comment\": \"Main driver group\",\n            \"reference\": \"REF123\",\n            \"parent\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"color\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          },\n          {\n            \"id\": \"grp-123\",\n            \"name\": \"Drivers Group\",\n            \"comment\": \"Main driver group\",\n            \"reference\": \"REF123\",\n            \"parent\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"color\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          }\n        ],\n        \"viewDriversOwnDataOnly\": false,\n        \"designation\": \"Manager\",\n        \"employeeNo\": \"EMP12345\",\n        \"phoneNumber\": \"+1-123-456-7890\",\n        \"phoneNumberExtension\": \"101\"\n      },\n      \"editDateTime\": \"2025-05-29T20:18:26.063Z\",\n      \"editRequestedByUser\": {\n        \"id\": \"1b33bcbe-15d3-445e-a06f-dda61208ad18\",\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"name\": \"John Doe\",\n        \"licenseNumber\": \"DL-123456\",\n        \"licenseProvince\": \"CA\",\n        \"acceptedEULA\": 1,\n        \"driveGuideVersion\": 2,\n        \"wifiEULA\": 1,\n        \"activeFrom\": \"2023-10-06T00:22:30.000Z\",\n        \"activeTo\": \"2025-10-06T00:22:30.000Z\",\n        \"lastAccessDate\": \"2025-09-15T12:22:30.000Z\",\n        \"companyName\": \"Acme Corp\",\n        \"companyAddress\": \"123 Main Street, Toronto, ON\",\n        \"carrierNumber\": \"CARR123\",\n        \"isDriver\": true,\n        \"isEmailReportEnabled\": false,\n        \"language\": \"en-US\",\n        \"timeZoneId\": \"America/Toronto\",\n        \"userAuthenticationType\": 1,\n        \"zoneDisplayMode\": 2,\n        \"driverGroups\": [\n          {\n            \"id\": \"grp-123\",\n            \"name\": \"Drivers Group\",\n            \"comment\": \"Main driver group\",\n            \"reference\": \"REF123\",\n            \"parent\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"color\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          },\n          {\n            \"id\": \"grp-123\",\n            \"name\": \"Drivers Group\",\n            \"comment\": \"Main driver group\",\n            \"reference\": \"REF123\",\n            \"parent\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"color\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          }\n        ],\n        \"companyGroups\": [\n          {\n            \"id\": \"grp-123\",\n            \"name\": \"Drivers Group\",\n            \"comment\": \"Main driver group\",\n            \"reference\": \"REF123\",\n            \"parent\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"color\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          },\n          {\n            \"id\": \"grp-123\",\n            \"name\": \"Drivers Group\",\n            \"comment\": \"Main driver group\",\n            \"reference\": \"REF123\",\n            \"parent\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            },\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"color\": {\n              \"value\": \"<Circular reference to #/components/schemas/GroupResponseViewModel detected>\"\n            }\n          }\n        ],\n        \"viewDriversOwnDataOnly\": false,\n        \"designation\": \"Manager\",\n        \"employeeNo\": \"EMP12345\",\n        \"phoneNumber\": \"+1-123-456-7890\",\n        \"phoneNumberExtension\": \"101\"\n      },\n      \"engineHours\": 5.5,\n      \"eventCode\": 101,\n      \"eventRecordStatus\": 1,\n      \"eventType\": 2,\n      \"isIgnored\": false,\n      \"isTransitioning\": false,\n      \"location\": {},\n      \"malfunction\": \"None\",\n      \"odometer\": 12550,\n      \"origin\": \"Truck\",\n      \"parentId\": \"parent123\",\n      \"sequence\": \"1\",\n      \"state\": \"ON_DUTY\",\n      \"status\": \"Active\",\n      \"verifyDateTime\": \"2025-05-29T21:18:26.063Z\",\n      \"version\": \"v1.0\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa46ada0-7148-410b-b48b-159ef35c0fd6",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "hos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "userId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Bad Request\",\n  \"message\": \"Invalid request data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c95c0a6b-b307-4bff-964b-7e7b32b947e1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "hos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "userId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unauthorized\",\n  \"message\": \"Access denied\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9e7fbec-5465-478c-a419-2a0dbbafeb58",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "hos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "userId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Forbidden\",\n  \"message\": \"Non-permited user\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c673006-52f3-4229-9da6-540c5dec1fa7",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "hos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "userId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Not Found\",\n  \"message\": \"No information found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ece860e-cc69-4214-83c2-e14be5ce2ace",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plus",
+                    "v1",
+                    "hos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "userId",
+                      "value": "5100FFFF-60B6-D7CD-3FA2-22CA712B0000"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "sortProperty",
+                      "value": "name"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Internal Server Error\",\n  \"message\": \"An unexpected server error occurred\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lytx.com/consent-management",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "985ff7ea-b503-4cd1-9843-ab6e55a070cc",
+    "name": "Lytx..Management.Api Consent HOS (GO9) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for retrieving and updating user consent status, requiring authentication.\n",
+      "type": "text/plain"
+    }
+  }
+}

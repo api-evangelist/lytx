@@ -1,0 +1,133 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lytx..Management.Api Consent HOS (DriveCam) API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "HOS (DriveCam)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get HOS Logs for all Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/v1/hos",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "The start date."
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "End date must be within 1 day for company."
+              }
+            ]
+          },
+          "docs": "This endpoint is used to retrieve HOS Logs as a batch for all users for your company."
+        },
+        {
+          "info": {
+            "name": "Get HOS Logs for Specified User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/v1/hos/",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "The start date."
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "End date must be within 8 days for user."
+              },
+              {
+                "name": "userIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "userName or Lytx userId."
+              }
+            ]
+          },
+          "docs": "This endpoint is used to retrieve HOS Logs as a batch for for the userName."
+        },
+        {
+          "info": {
+            "name": "Get HOS Logs for All Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "End date must be within 1 day for company"
+              }
+            ]
+          },
+          "docs": "This endpoint is used to retrieve HOS Logs as a batch for all users for your company"
+        },
+        {
+          "info": {
+            "name": "Get HOS Logs for Specified User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lytx.com/consent-management/:userName",
+            "params": [
+              {
+                "name": "userName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "End date must be within 8 days for user"
+              }
+            ]
+          },
+          "docs": "This endpoint is used to retrieve HOS Logs for the user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
