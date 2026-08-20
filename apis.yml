@@ -3434,6 +3434,8 @@ apis:
   humanURL: https://developer.lytx.com/openapispec/consent.openapi
   baseURL: https://api.lytx.com/consent-management
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
