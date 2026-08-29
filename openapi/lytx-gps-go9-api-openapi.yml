@@ -1,12 +1,10 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Lytx..Management.Api Consent GPS (GO9) API
-  description: 'API for retrieving and updating user consent status, requiring authentication.
-
-    '
+  title: Lytx.Telematics.Fleet.Api - GPS GPS (GO9) API
+  description: API for accessing GPS data, requiring authentication.
   version: 1.0.0
 servers:
-- url: https://api.lytx.com/consent-management
+- url: https://api.lytx.com
 security:
 - bearerAuth: []
 tags:
@@ -23,32 +21,36 @@ paths:
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
         description: Can use either device serial number or device ID.
       - name: groupId
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
         description: Can use group ID or root group ID. All descendant groups under the specified group are included in the response.
       - name: limit
         in: query
         required: false
         schema:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           example: '5000'
         description: Number of records to return.
       - name: offset
         in: query
         required: false
         schema:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           example: '1500'
         description: Record to start with.
       - name: startDate
@@ -71,24 +73,27 @@ paths:
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: asc
         description: Sort direction.
       - name: sortProperty
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: name
         description: Name of property to sort on.
       - name: version
         in: query
         required: true
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 1
         description: API version number.
       responses:
@@ -105,19 +110,18 @@ paths:
                         latitude:
                           type: number
                           format: double
-                          nullable: false
                           example: 32.887558
                           description: Latitude coordinate for the vehicle's last known location.
                         longitude:
                           type: number
                           format: double
-                          nullable: false
                           example: 32.887558
                           description: Longitude coordinate for the vehicle's last known location.
                         speed:
-                          type: number
+                          type:
+                          - number
+                          - 'null'
                           format: double
-                          nullable: true
                           example: 0
                           description: Speed in meters per second at the time the GPS Point was sampled.
                         dateTime:
@@ -138,7 +142,6 @@ paths:
                               example: []
                         Id:
                           type: string
-                          nullable: false
                           example: 1b33bcbe-15d3-445e-a06f-dda61208ad18
                           description: Unique ID for the device.
         '400':

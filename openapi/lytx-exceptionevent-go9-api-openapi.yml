@@ -1,12 +1,10 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Lytx..Management.Api Consent ExceptionEvent (GO9) API
-  description: 'API for retrieving and updating user consent status, requiring authentication.
-
-    '
+  title: Lytx.Telematics.Fleet.Api - Exception Events ExceptionEvent (GO9) API
+  description: API for accessing Exception Events data, requiring authentication.
   version: 1.0.0
 servers:
-- url: https://api.lytx.com/consent-management
+- url: https://api.lytx.com
 security:
 - bearerAuth: []
 tags:
@@ -23,40 +21,45 @@ paths:
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
         description: Can use either rule ID or rule name.
       - name: deviceId
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
         description: Can use either device serial number or device ID.
       - name: driverId
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
         description: Can use either driver ID or driver name.
       - name: limit
         in: query
         required: false
         schema:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           example: '5000'
         description: Number of records to return.
       - name: offset
         in: query
         required: false
         schema:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           example: '1500'
         description: Record to start with.
       - name: startDate
@@ -79,24 +82,27 @@ paths:
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: asc
         description: Sort direction.
       - name: sortProperty
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: name
         description: Name of property to sort on.
       - name: version
         in: query
         required: true
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 1
         description: API version number.
       responses:
@@ -172,18 +178,533 @@ paths:
                     example: An unexpected server error occurred
 components:
   schemas:
+    DeviceResponseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 1b33bcbe-15d3-445e-a06f-dda61208ad18
+          description: Unique ID for the device.
+        activeFrom:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-10-06T00:22:30.000Z'
+          description: Start date when the device became active.
+        activeTo:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2025-10-06T00:22:30.000Z'
+          description: End date until which the device remains active.
+        comment:
+          type:
+          - string
+          - 'null'
+          example: Installed in vehicle A123
+          description: Additional comments about the device.
+        groups:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          example:
+          - Group1
+          - Group2
+          description: List of groups associated with the device.
+        timeZoneId:
+          type:
+          - string
+          - 'null'
+          example: America/Toronto
+          description: Time zone assigned to the device.
+        deviceFlags:
+          type:
+          - string
+          - 'null'
+          example: FLAG_001
+          description: Flags indicating device-specific properties.
+        deviceType:
+          type:
+          - string
+          - 'null'
+          example: GO9
+          description: Type/model of the device.
+        hardwareId:
+          type:
+          - string
+          - 'null'
+          example: HW-ABC-12345
+          description: Hardware identifier of the device.
+        ignoreDownloadsUntil:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2025-05-15T12:00:00.000Z'
+          description: The device should ignore downloads until this time.
+        maxSecondsBetweenLogs:
+          type:
+          - integer
+          - 'null'
+          example: 300
+          description: Maximum number of seconds allowed between logs.
+        name:
+          type:
+          - string
+          - 'null'
+          example: Device A123
+          description: Name assigned to the device.
+        productId:
+          type:
+          - string
+          - 'null'
+          example: PROD-456
+          description: Product identifier of the device.
+        serialNumber:
+          type:
+          - string
+          - 'null'
+          example: SN123456789
+          description: Serial number of the device.
+        timeToDownload:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2025-09-20T10:00:00.000Z'
+          description: Scheduled time for the device to download updates.
+        workTime:
+          type:
+          - string
+          - 'null'
+          example: 08:00-17:00
+          description: Work time configuration of the device.
+        registerDeviceResultLite:
+          type:
+          - object
+          - 'null'
+          description: Registration result details for the device.
+        devicePlanBillingInfo:
+          type:
+          - object
+          - 'null'
+          description: Billing information for the device plan.
+        deviceReplacementInfo:
+          type:
+          - object
+          - 'null'
+          description: Replacement information for the device.
+        customProperties:
+          type:
+          - object
+          - 'null'
+          description: Custom properties associated with the device.
+        mediaFiles:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          example:
+          - file1.jpg
+          - file2.mp4
+          description: Media files linked to the device.
+        tmpTrailerId:
+          type:
+          - string
+          - 'null'
+          example: TRAILER-123
+          description: Temporary trailer ID linked to the device.
+        version:
+          type:
+          - string
+          - 'null'
+          example: v1.2.3
+          description: Version information of the device.
+    ExceptionEventResponseViewModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          example: 1b33bcbe-15d3-445e-a06f-dda61208ad18
+          description: Unique identifier for the exception event.
+        activeFrom:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-10-06T00:22:30.000Z'
+          description: Start date when the exception event became active.
+        activeTo:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2025-10-06T00:22:30.000Z'
+          description: End date until which the exception event remains active.
+        device:
+          $ref: '#/components/schemas/DeviceResponseViewModel'
+        distance:
+          type:
+          - number
+          - 'null'
+          format: float
+          example: 12.5
+          description: Distance associated with the exception event.
+        driver:
+          $ref: '#/components/schemas/UserResponseViewModel'
+        duration:
+          type:
+          - string
+          - 'null'
+          format: duration
+          example: PT5M30S
+          description: Duration of the exception event.
+        lastModifiedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-10-07T08:00:00.000Z'
+          description: Date and time when the exception event was last modified.
+        rule:
+          $ref: '#/components/schemas/RuleResponseViewModel'
+        version:
+          type:
+          - string
+          - 'null'
+          example: v1.0.0
+          description: Version information of the exception event.
+    GroupResponseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          example: grp-123
+          description: Unique identifier of the group.
+        name:
+          type: string
+          example: Drivers Group
+          description: Name of the group.
+        comment:
+          type: string
+          example: Main driver group
+          description: Additional comments about the group.
+        reference:
+          type: string
+          example: REF123
+          description: Reference information for the group.
+        parent:
+          $ref: '#/components/schemas/GroupResponseViewModel'
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupResponseViewModel'
+          description: List of child groups.
+        color:
+          $ref: '#/components/schemas/GroupResponseViewModel'
+    WorkTimeHolidayGroupIdResponseViewModel:
+      type: object
+      properties:
+        groupId:
+          type:
+          - string
+          - 'null'
+          example: hg-001
+          description: Identifier of the holiday group.
+    WorkTimeDetailResponseEntity:
+      type: object
+      properties:
+        dayOfWeek:
+          type:
+          - string
+          - 'null'
+          example: Monday
+          description: Day of the week this detail applies to.
+        fromTime:
+          type:
+          - string
+          - 'null'
+          example: 08:00:00
+          description: Start time for the work period.
+        id:
+          type:
+          - string
+          - 'null'
+          example: wtd-001
+          description: Unique identifier for the work time detail.
+        toTime:
+          type:
+          - string
+          - 'null'
+          example: '17:00:00'
+          description: End time for the work period.
+    ColorResponseViewModel:
+      type: object
+      properties:
+        a:
+          type: integer
+          example: 255
+          description: Alpha channel (transparency).
+        r:
+          type: integer
+          example: 255
+          description: Red channel (0-255).
+        g:
+          type: integer
+          example: 0
+          description: Green channel (0-255).
+        b:
+          type: integer
+          example: 0
+          description: Blue channel (0-255).
+    DiagnosticResponseViewModel:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 101
+          description: Numeric code identifying the diagnostic.
+        controller:
+          type:
+          - object
+          - 'null'
+          description: Controller associated with the diagnostic (if any).
+        diagnosticType:
+          type: string
+          example: Engine
+          description: Type/category of the diagnostic.
+        faultResetMode:
+          type: string
+          example: Automatic
+          description: Mode of fault reset.
+        id:
+          type: string
+          example: d1f6e56d-1234-4567-89ab-cdef12345678
+          description: Unique identifier for the diagnostic.
+        isReadOnly:
+          type: boolean
+          example: false
+          description: Indicates if the diagnostic is read-only.
+        name:
+          type: string
+          example: Engine Overheat
+          description: Name of the diagnostic.
+        source:
+          type:
+          - object
+          - 'null'
+          description: Source object of the diagnostic.
+        tamperingDiagnostics:
+          type: integer
+          example: 0
+          description: Number of tampering-related diagnostics.
+        unitOfMeasure:
+          type:
+          - object
+          - 'null'
+          description: Unit of measure for the diagnostic value.
+        version:
+          type: string
+          example: v1.0
+          description: Version of the diagnostic data.
+    ZoneResponseViewModel:
+      type: object
+      properties:
+        activeFrom:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2025-05-29T19:18:26.063Z'
+          description: Start date/time when the zone is active.
+        activeTo:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2025-06-29T19:18:26.063Z'
+          description: End date/time when the zone is active.
+        comment:
+          type:
+          - string
+          - 'null'
+          example: Restricted area for heavy vehicles
+          description: Optional comment for the zone.
+        displayed:
+          type: boolean
+          example: true
+          description: Indicates whether the zone is displayed on the map.
+        externalReference:
+          type: string
+          example: zone-ext-12345
+          description: External reference identifier.
+        fillColor:
+          $ref: '#/components/schemas/ColorResponseViewModel'
+        groups:
+          type: array
+          items:
+            type: string
+          example:
+          - group1
+          - group2
+          description: List of groups associated with the zone.
+        id:
+          type: string
+          example: zone1f6e56d-1234-4567-89ab-cdef12345678
+          description: Unique identifier of the zone.
+        metadata:
+          type:
+          - object
+          - 'null'
+          description: Metadata information for the zone.
+        mustIdentifyStops:
+          type: boolean
+          example: false
+          description: Indicates whether stops must be identified within the zone.
+        name:
+          type: string
+          example: No Parking Zone
+          description: Name of the zone.
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/CoordinateResponseViewModel'
+          description: List of coordinates representing the zone polygon.
+        version:
+          type: string
+          example: v1.0
+          description: Version of the zone record.
+        zoneTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ZoneTypeResponseViewModel'
+          description: Types associated with the zone.
+    RuleResponseViewModel:
+      type: object
+      properties:
+        activeFrom:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-10-06T00:22:30.000Z'
+          description: Start date when the rule became active.
+        activeTo:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2025-10-06T00:22:30.000Z'
+          description: End date until which the rule remains active.
+        baseType:
+          type:
+          - string
+          - 'null'
+          example: SpeedingRule
+          description: Base type of the rule.
+        color:
+          $ref: '#/components/schemas/ColorResponseViewModel'
+        comment:
+          type:
+          - string
+          - 'null'
+          example: Triggers when speed exceeds limit
+          description: Additional comments about the rule.
+        condition:
+          $ref: '#/components/schemas/ConditionResponseViewModel'
+        groups:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GroupResponseViewModel'
+          description: List of groups associated with the rule.
+        id:
+          type:
+          - string
+          - 'null'
+          example: 1b33bcbe-15d3-445e-a06f-dda61208ad18
+          description: Unique identifier for the rule.
+        name:
+          type:
+          - string
+          - 'null'
+          example: Speeding Rule
+          description: Name of the rule.
+        version:
+          type:
+          - string
+          - 'null'
+          example: v1.0.0
+          description: Version information of the rule.
+    WorkTimeResponseViewModel:
+      type: object
+      properties:
+        comment:
+          type:
+          - string
+          - 'null'
+          example: Standard working hours
+          description: Additional comments about the work time.
+        details:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/WorkTimeDetailResponseEntity'
+          description: List of work time detail entries per day.
+        holidayGroup:
+          $ref: '#/components/schemas/WorkTimeHolidayGroupIdResponseViewModel'
+        id:
+          type:
+          - string
+          - 'null'
+          example: wt-001
+          description: Unique identifier for the work time.
+        name:
+          type:
+          - string
+          - 'null'
+          example: Weekday Schedule
+          description: Name of the work time configuration.
+    CoordinateResponseViewModel:
+      type: object
+      properties:
+        x:
+          type:
+          - number
+          - 'null'
+          format: double
+          example: -79.3832
+          description: Longitude coordinate.
+        y:
+          type:
+          - number
+          - 'null'
+          format: double
+          example: 43.6532
+          description: Latitude coordinate.
     ConditionResponseViewModel:
       type: object
       properties:
         children:
-          type: array
-          nullable: true
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/ConditionResponseViewModel'
           description: Nested child conditions.
         conditionType:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: SpeedCondition
           description: Type of the condition.
         device:
@@ -195,102 +716,57 @@ components:
         group:
           $ref: '#/components/schemas/GroupResponseViewModel'
         id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: cond-abc-123
           description: Unique identifier for the condition.
         value:
-          type: number
+          type:
+          - number
+          - 'null'
           format: double
-          nullable: true
           example: 90.5
           description: Numeric threshold value for the condition.
         workTime:
           $ref: '#/components/schemas/WorkTimeResponseViewModel'
         zone:
           $ref: '#/components/schemas/ZoneResponseViewModel'
-    CoordinateResponseViewModel:
-      type: object
-      properties:
-        x:
-          type: number
-          format: double
-          nullable: true
-          example: -79.3832
-          description: Longitude coordinate.
-        y:
-          type: number
-          format: double
-          nullable: true
-          example: 43.6532
-          description: Latitude coordinate.
-    WorkTimeDetailResponseEntity:
-      type: object
-      properties:
-        dayOfWeek:
-          type: string
-          nullable: true
-          example: Monday
-          description: Day of the week this detail applies to.
-        fromTime:
-          type: string
-          nullable: true
-          example: 08:00:00
-          description: Start time for the work period.
-        id:
-          type: string
-          nullable: true
-          example: wtd-001
-          description: Unique identifier for the work time detail.
-        toTime:
-          type: string
-          nullable: true
-          example: '17:00:00'
-          description: End time for the work period.
-    WorkTimeHolidayGroupIdResponseViewModel:
-      type: object
-      properties:
-        groupId:
-          type: string
-          nullable: true
-          example: hg-001
-          description: Identifier of the holiday group.
     UserResponseViewModel:
       type: object
       properties:
         id:
           type: string
-          nullable: false
           example: 1b33bcbe-15d3-445e-a06f-dda61208ad18
           description: Unique identifier for the user.
         firstName:
           type: string
-          nullable: false
           example: John
           description: First name of the user.
         lastName:
           type: string
-          nullable: false
           example: Doe
           description: Last name of the user.
         name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: John Doe
           description: Full name of the user.
         licenseNumber:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: DL-123456
           description: License number of the user.
         licenseProvince:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: CA
           description: Province/state of the license.
         acceptedEULA:
           type: integer
-          nullable: false
           example: 1
           description: Version of the EULA accepted.
         driveGuideVersion:
@@ -392,437 +868,25 @@ components:
           type: string
           example: '101'
           description: Extension for the phone number.
-    DiagnosticResponseViewModel:
-      type: object
-      properties:
-        code:
-          type: integer
-          example: 101
-          description: Numeric code identifying the diagnostic.
-        controller:
-          type: object
-          nullable: true
-          description: Controller associated with the diagnostic (if any).
-        diagnosticType:
-          type: string
-          example: Engine
-          description: Type/category of the diagnostic.
-        faultResetMode:
-          type: string
-          example: Automatic
-          description: Mode of fault reset.
-        id:
-          type: string
-          example: d1f6e56d-1234-4567-89ab-cdef12345678
-          description: Unique identifier for the diagnostic.
-        isReadOnly:
-          type: boolean
-          example: false
-          description: Indicates if the diagnostic is read-only.
-        name:
-          type: string
-          example: Engine Overheat
-          description: Name of the diagnostic.
-        source:
-          type: object
-          nullable: true
-          description: Source object of the diagnostic.
-        tamperingDiagnostics:
-          type: integer
-          example: 0
-          description: Number of tampering-related diagnostics.
-        unitOfMeasure:
-          type: object
-          nullable: true
-          description: Unit of measure for the diagnostic value.
-        version:
-          type: string
-          example: v1.0
-          description: Version of the diagnostic data.
-    ZoneResponseViewModel:
-      type: object
-      properties:
-        activeFrom:
-          type: string
-          format: date-time
-          nullable: true
-          example: '2025-05-29T19:18:26.063Z'
-          description: Start date/time when the zone is active.
-        activeTo:
-          type: string
-          format: date-time
-          nullable: true
-          example: '2025-06-29T19:18:26.063Z'
-          description: End date/time when the zone is active.
-        comment:
-          type: string
-          nullable: true
-          example: Restricted area for heavy vehicles
-          description: Optional comment for the zone.
-        displayed:
-          type: boolean
-          example: true
-          description: Indicates whether the zone is displayed on the map.
-        externalReference:
-          type: string
-          example: zone-ext-12345
-          description: External reference identifier.
-        fillColor:
-          $ref: '#/components/schemas/ColorResponseViewModel'
-        groups:
-          type: array
-          items:
-            type: string
-          example:
-          - group1
-          - group2
-          description: List of groups associated with the zone.
-        id:
-          type: string
-          example: zone1f6e56d-1234-4567-89ab-cdef12345678
-          description: Unique identifier of the zone.
-        metadata:
-          type: object
-          nullable: true
-          description: Metadata information for the zone.
-        mustIdentifyStops:
-          type: boolean
-          example: false
-          description: Indicates whether stops must be identified within the zone.
-        name:
-          type: string
-          example: No Parking Zone
-          description: Name of the zone.
-        points:
-          type: array
-          items:
-            $ref: '#/components/schemas/CoordinateResponseViewModel'
-          description: List of coordinates representing the zone polygon.
-        version:
-          type: string
-          example: v1.0
-          description: Version of the zone record.
-        zoneTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/ZoneTypeResponseViewModel'
-          description: Types associated with the zone.
-    RuleResponseViewModel:
-      type: object
-      properties:
-        activeFrom:
-          type: string
-          format: date-time
-          nullable: true
-          example: '2023-10-06T00:22:30.000Z'
-          description: Start date when the rule became active.
-        activeTo:
-          type: string
-          format: date-time
-          nullable: true
-          example: '2025-10-06T00:22:30.000Z'
-          description: End date until which the rule remains active.
-        baseType:
-          type: string
-          nullable: true
-          example: SpeedingRule
-          description: Base type of the rule.
-        color:
-          $ref: '#/components/schemas/ColorResponseViewModel'
-        comment:
-          type: string
-          nullable: true
-          example: Triggers when speed exceeds limit
-          description: Additional comments about the rule.
-        condition:
-          $ref: '#/components/schemas/ConditionResponseViewModel'
-        groups:
-          type: array
-          nullable: true
-          items:
-            $ref: '#/components/schemas/GroupResponseViewModel'
-          description: List of groups associated with the rule.
-        id:
-          type: string
-          nullable: true
-          example: 1b33bcbe-15d3-445e-a06f-dda61208ad18
-          description: Unique identifier for the rule.
-        name:
-          type: string
-          nullable: true
-          example: Speeding Rule
-          description: Name of the rule.
-        version:
-          type: string
-          nullable: true
-          example: v1.0.0
-          description: Version information of the rule.
-    WorkTimeResponseViewModel:
-      type: object
-      properties:
-        comment:
-          type: string
-          nullable: true
-          example: Standard working hours
-          description: Additional comments about the work time.
-        details:
-          type: array
-          nullable: true
-          items:
-            $ref: '#/components/schemas/WorkTimeDetailResponseEntity'
-          description: List of work time detail entries per day.
-        holidayGroup:
-          $ref: '#/components/schemas/WorkTimeHolidayGroupIdResponseViewModel'
-        id:
-          type: string
-          nullable: true
-          example: wt-001
-          description: Unique identifier for the work time.
-        name:
-          type: string
-          nullable: true
-          example: Weekday Schedule
-          description: Name of the work time configuration.
-    ExceptionEventResponseViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-          nullable: true
-          example: 1b33bcbe-15d3-445e-a06f-dda61208ad18
-          description: Unique identifier for the exception event.
-        activeFrom:
-          type: string
-          format: date-time
-          nullable: true
-          example: '2023-10-06T00:22:30.000Z'
-          description: Start date when the exception event became active.
-        activeTo:
-          type: string
-          format: date-time
-          nullable: true
-          example: '2025-10-06T00:22:30.000Z'
-          description: End date until which the exception event remains active.
-        device:
-          $ref: '#/components/schemas/DeviceResponseViewModel'
-        distance:
-          type: number
-          format: float
-          nullable: true
-          example: 12.5
-          description: Distance associated with the exception event.
-        driver:
-          $ref: '#/components/schemas/UserResponseViewModel'
-        duration:
-          type: string
-          format: duration
-          nullable: true
-          example: PT5M30S
-          description: Duration of the exception event.
-        lastModifiedDate:
-          type: string
-          format: date-time
-          nullable: true
-          example: '2023-10-07T08:00:00.000Z'
-          description: Date and time when the exception event was last modified.
-        rule:
-          $ref: '#/components/schemas/RuleResponseViewModel'
-        version:
-          type: string
-          nullable: true
-          example: v1.0.0
-          description: Version information of the exception event.
-    ColorResponseViewModel:
-      type: object
-      properties:
-        a:
-          type: integer
-          example: 255
-          description: Alpha channel (transparency).
-        r:
-          type: integer
-          example: 255
-          description: Red channel (0-255).
-        g:
-          type: integer
-          example: 0
-          description: Green channel (0-255).
-        b:
-          type: integer
-          example: 0
-          description: Blue channel (0-255).
-    GroupResponseViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-          nullable: false
-          example: grp-123
-          description: Unique identifier of the group.
-        name:
-          type: string
-          nullable: false
-          example: Drivers Group
-          description: Name of the group.
-        comment:
-          type: string
-          example: Main driver group
-          description: Additional comments about the group.
-        reference:
-          type: string
-          example: REF123
-          description: Reference information for the group.
-        parent:
-          $ref: '#/components/schemas/GroupResponseViewModel'
-        children:
-          type: array
-          items:
-            $ref: '#/components/schemas/GroupResponseViewModel'
-          description: List of child groups.
-        color:
-          $ref: '#/components/schemas/GroupResponseViewModel'
-    DeviceResponseViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-          nullable: false
-          example: 1b33bcbe-15d3-445e-a06f-dda61208ad18
-          description: Unique ID for the device.
-        activeFrom:
-          type: string
-          format: date-time
-          nullable: true
-          example: '2023-10-06T00:22:30.000Z'
-          description: Start date when the device became active.
-        activeTo:
-          type: string
-          format: date-time
-          nullable: true
-          example: '2025-10-06T00:22:30.000Z'
-          description: End date until which the device remains active.
-        comment:
-          type: string
-          nullable: true
-          example: Installed in vehicle A123
-          description: Additional comments about the device.
-        groups:
-          type: array
-          items:
-            type: string
-          nullable: true
-          example:
-          - Group1
-          - Group2
-          description: List of groups associated with the device.
-        timeZoneId:
-          type: string
-          nullable: true
-          example: America/Toronto
-          description: Time zone assigned to the device.
-        deviceFlags:
-          type: string
-          nullable: true
-          example: FLAG_001
-          description: Flags indicating device-specific properties.
-        deviceType:
-          type: string
-          nullable: true
-          example: GO9
-          description: Type/model of the device.
-        hardwareId:
-          type: string
-          nullable: true
-          example: HW-ABC-12345
-          description: Hardware identifier of the device.
-        ignoreDownloadsUntil:
-          type: string
-          format: date-time
-          nullable: true
-          example: '2025-05-15T12:00:00.000Z'
-          description: The device should ignore downloads until this time.
-        maxSecondsBetweenLogs:
-          type: integer
-          nullable: true
-          example: 300
-          description: Maximum number of seconds allowed between logs.
-        name:
-          type: string
-          nullable: true
-          example: Device A123
-          description: Name assigned to the device.
-        productId:
-          type: string
-          nullable: true
-          example: PROD-456
-          description: Product identifier of the device.
-        serialNumber:
-          type: string
-          nullable: true
-          example: SN123456789
-          description: Serial number of the device.
-        timeToDownload:
-          type: string
-          format: date-time
-          nullable: true
-          example: '2025-09-20T10:00:00.000Z'
-          description: Scheduled time for the device to download updates.
-        workTime:
-          type: string
-          nullable: true
-          example: 08:00-17:00
-          description: Work time configuration of the device.
-        registerDeviceResultLite:
-          type: object
-          nullable: true
-          description: Registration result details for the device.
-        devicePlanBillingInfo:
-          type: object
-          nullable: true
-          description: Billing information for the device plan.
-        deviceReplacementInfo:
-          type: object
-          nullable: true
-          description: Replacement information for the device.
-        customProperties:
-          type: object
-          nullable: true
-          description: Custom properties associated with the device.
-        mediaFiles:
-          type: array
-          items:
-            type: string
-          nullable: true
-          example:
-          - file1.jpg
-          - file2.mp4
-          description: Media files linked to the device.
-        tmpTrailerId:
-          type: string
-          nullable: true
-          example: TRAILER-123
-          description: Temporary trailer ID linked to the device.
-        version:
-          type: string
-          nullable: true
-          example: v1.2.3
-          description: Version information of the device.
     ZoneTypeResponseViewModel:
       type: object
       properties:
         id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: zt-001
           description: Unique identifier of the zone type.
         name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: Customer
           description: Name of the zone type.
         comment:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: Customer site zone
           description: Additional comments about the zone type.
   securitySchemes:

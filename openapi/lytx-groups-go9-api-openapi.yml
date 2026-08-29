@@ -1,12 +1,10 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Lytx..Management.Api Consent Groups (GO9) API
-  description: 'API for retrieving and updating user consent status, requiring authentication.
-
-    '
+  title: Lytx.Telematics.Fleet.Api - Groups Groups (GO9) API
+  description: API for accessing Groups data, requiring authentication.
   version: 1.0.0
 servers:
-- url: https://api.lytx.com/consent-management
+- url: https://api.lytx.com
 security:
 - bearerAuth: []
 tags:
@@ -23,11 +21,12 @@ paths:
         in: query
         required: false
         schema:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
             format: uuid
-          nullable: true
           example:
           - 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
           - 5100AAAA-12B6-D7CD-3FA2-22CA712B1111
@@ -38,23 +37,24 @@ paths:
         schema:
           type: boolean
           example: 'false'
-          nullable: false
           default: false
         description: If true, all descendant groups under the specified group are included.
       - name: limit
         in: query
         required: false
         schema:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           example: '5000'
         description: Number of records to return.
       - name: offset
         in: query
         required: false
         schema:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           example: '1500'
         description: Record to start with.
       - name: startDate
@@ -77,24 +77,27 @@ paths:
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: asc
         description: Sort direction.
       - name: sortProperty
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: name
         description: Name of property to sort on.
       - name: version
         in: query
         required: true
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 1
         description: API version number.
       responses:
@@ -175,12 +178,10 @@ components:
       properties:
         id:
           type: string
-          nullable: false
           example: grp-123
           description: Unique identifier of the group.
         name:
           type: string
-          nullable: false
           example: Drivers Group
           description: Name of the group.
         comment:

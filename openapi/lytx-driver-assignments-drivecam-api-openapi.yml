@@ -1,12 +1,9 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Lytx..Management.Api Consent Driver Assignments (DriveCam) API
-  description: 'API for retrieving and updating user consent status, requiring authentication.
-
-    '
+  title: Lytx.DriverAssignment. Driver Assignments (DriveCam) API
   version: 1.0.0
 servers:
-- url: https://api.lytx.com/consent-management
+- url: https://api.lytx.com
 security:
 - bearerAuth: []
 tags:
@@ -115,8 +112,9 @@ paths:
                         type: string
                         format: date-time
                   data:
-                    type: array
-                    nullable: true
+                    type:
+                    - array
+                    - 'null'
                     items:
                       properties:
                         userId:
@@ -135,36 +133,27 @@ paths:
                               id:
                                 type: string
                                 format: string
-                                nullable: false
                               vehicleName:
                                 type: string
-                                nullable: false
                               deviceId:
                                 type: string
                                 format: uuid
-                                nullable: false
                               SerialNumber:
                                 type: string
                                 format: string
-                                nullable: false
                               imei:
                                 type: string
                                 format: string
-                                nullable: false
                               licensePlate:
                                 type: string
-                                nullable: false
                               vin:
                                 type: string
-                                nullable: false
                               assignmentStartDate:
                                 type: string
                                 format: date-time
-                                nullable: false
                               assignmentEndDate:
                                 type: string
                                 format: date-time
-                                nullable: false
         '204':
           description: 'No Content: HTTP request has been successfully completed, and there is no message body'
         '400':
@@ -320,8 +309,9 @@ paths:
                 type: object
                 properties:
                   data:
-                    type: object
-                    nullable: true
+                    type:
+                    - object
+                    - 'null'
                     properties:
                       results:
                         type: array
@@ -329,33 +319,24 @@ paths:
                           properties:
                             submissionId:
                               type: integer
-                              nullable: false
                             driverFirstName:
                               type: string
-                              nullable: false
                             driverLastName:
                               type: string
-                              nullable: false
                             employeeId:
                               type: string
-                              nullable: false
                             vehicleName:
                               type: string
-                              nullable: false
                             responseCodeId:
                               type: string
-                              nullable: false
                             assignmentsModified:
                               type: integer
-                              nullable: false
                             startDate:
                               type: string
                               format: date-time
-                              nullable: false
                             endDate:
                               type: string
                               format: date-time
-                              nullable: false
         '400':
           description: Bad Request
           content:
@@ -396,54 +377,51 @@ components:
           type: string
         message:
           type: string
-    DriverDispatchRequest:
+    DriverDispatchResponse:
       type: object
       properties:
-        validate:
-          type: boolean
-          description: Default to false. if set to true, only validate the submission request otherwise validate and process the submission logs
-          example: false
-        autoAddDriver:
-          type: boolean
-          description: "Default to true. \n\nIf driver is not found based on userIdentifier and autoAddDriver is set to true, It will try to add new driver based on information provided in user object.\n\nIf autoadddriver is set to false and driver not found based on userIdentifier then no new driver is created\n"
-          example: true
-        entries:
-          type: array
-          items:
-            $ref: '#/components/schemas/DispatchEntry'
-          nullable: true
+        data:
+          type: object
+          properties:
+            submissionBatchId:
+              type: integer
+              format: int64
+            entries:
+              type: array
+              items:
+                $ref: '#/components/schemas/DispatchEntryResponse'
       additionalProperties: false
     DispatchEntry:
       type: object
       properties:
         userIdentifier:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: emp123
           description: Employee Id of the driver
         user:
           description: Details to add new driver
-          type: object
+          type:
+          - object
+          - 'null'
           properties:
             firstName:
               type: string
-              nullable: false
               description: Firstname of the new driver
               example: Jane
             lastName:
               type: string
-              nullable: false
               description: Lastname of the new driver
               example: Doe
             id:
               type: string
-              nullable: false
               description: Employee Number of the new driver
               example: '12345678'
-          nullable: true
         vehicleIdentifier:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: Toyota
           description: Vehicle name
         startDate:
@@ -492,21 +470,26 @@ components:
           format: date-time
           example: '2023-09-10T00:00:00Z'
           description: Date and time when the driver was scheduled to stop driving the vehicle.
-    DriverDispatchResponse:
+    DriverDispatchRequest:
       type: object
       properties:
-        data:
-          type: object
-          properties:
-            submissionBatchId:
-              type: integer
-              format: int64
-            entries:
-              type: array
-              items:
-                $ref: '#/components/schemas/DispatchEntryResponse'
+        validate:
+          type: boolean
+          description: Default to false. if set to true, only validate the submission request otherwise validate and process the submission logs
+          example: false
+        autoAddDriver:
+          type: boolean
+          description: "Default to true. \n\nIf driver is not found based on userIdentifier and autoAddDriver is set to true, It will try to add new driver based on information provided in user object.\n\nIf autoadddriver is set to false and driver not found based on userIdentifier then no new driver is created\n"
+          example: true
+        entries:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/DispatchEntry'
       additionalProperties: false
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
+x-generator: NSwag v13.9.4.0 (NJsonSchema v10.3.1.0 (Newtonsoft.Json v12.0.0.0))

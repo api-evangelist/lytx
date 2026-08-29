@@ -1,12 +1,9 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Lytx..Management.Api Consent Trips (DriveCam) API
-  description: 'API for retrieving and updating user consent status, requiring authentication.
-
-    '
+  title: Lytx.Trips. Trips (DriveCam) API
   version: 1.0.0
 servers:
-- url: https://api.lytx.com/consent-management
+- url: https://api.lytx.com
 security:
 - bearerAuth: []
 tags:
@@ -181,8 +178,9 @@ components:
               format: date-time
               example: '2023-09-30T23:59:59Z'
         data:
-          type: array
-          nullable: true
+          type:
+          - array
+          - 'null'
           items:
             properties:
               tripId:
@@ -201,24 +199,22 @@ components:
                 format: date-time
                 example: '2023-09-10T09:00:00Z'
               startPosition:
-                type: object
-                nullable: true
+                type:
+                - object
+                - 'null'
                 properties:
                   latitude:
                     type: number
                     format: double
-                    nullable: false
                     example: 32.887558
                     description: Latitude coordinate for the trip start position.
                   longitude:
                     type: number
                     format: double
-                    nullable: false
                     example: -117.212288
                     description: Longitude coordinate for the trip start position.
                   address:
                     type: string
-                    nullable: false
                     example: 9785 Scranton Rd, San Diego, CA 92121
                     description: Start address for the trip.
                   occurrenceDateTime:
@@ -231,24 +227,22 @@ components:
                     example: -480
                     description: Timezone offset for the trip start position.
               endPosition:
-                type: object
-                nullable: true
+                type:
+                - object
+                - 'null'
                 properties:
                   latitude:
                     type: number
                     format: double
-                    nullable: false
                     example: 32.887558
                     description: Latitude coordinate for the trip end point.
                   longitude:
                     type: number
                     format: double
-                    nullable: false
                     example: -117.212288
                     description: Longitude coordinate for the trip end point.
                   address:
                     type: string
-                    nullable: false
                     example: 1600 Pacific Hwy, San Diego, CA 92101
                     description: End address for the trip.
                   occurrenceDateTime:
@@ -271,16 +265,18 @@ components:
                 example: 11
                 description: Total kilometer distance traveled for the trip
               deviceDistanceKm:
-                type: number
+                type:
+                - number
+                - 'null'
                 format: double
-                nullable: true
                 example: 11.4
                 description: 'Trip distance in kilometers. Before July 10, 2026,  this value came directly from the device and could  differ slightly from distanceKm. Starting July 10, 2026,  this field returns the same value as distanceKm.
 
                   '
               driver:
-                type: object
-                nullable: true
+                type:
+                - object
+                - 'null'
                 properties:
                   id:
                     type: string
@@ -292,8 +288,9 @@ components:
                   employeeNumber:
                     type: string
               vehicle:
-                type: object
-                nullable: true
+                type:
+                - object
+                - 'null'
                 properties:
                   id:
                     type: string
@@ -336,3 +333,4 @@ components:
     bearerAuth:
       type: http
       scheme: bearer
+x-generator: NSwag v13.9.4.0 (NJsonSchema v10.3.1.0 (Newtonsoft.Json v12.0.0.0))

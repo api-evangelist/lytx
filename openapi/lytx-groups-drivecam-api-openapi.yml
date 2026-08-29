@@ -1,14 +1,15 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Lytx..Management.Api Consent Groups (DriveCam) API
-  description: 'API for retrieving and updating user consent status, requiring authentication.
-
-    '
+  title: Lytx Groups (DriveCam) API
   version: 1.0.0
+  description: 'Operations tagged Groups (DriveCam) across 2 of this provider''s published API definitions: lytx-group-openapi.yml, lytx-legacy.groups-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://api.lytx.com/consent-management
-security:
-- bearerAuth: []
+- url: https://api.lytx.com/v1
+- url: https://lytx-api.prod2.ph.lytx.com/groups
+- url: https://lytx-api.prod5.ph.lytx.com/groups
+- url: https://lytx-api.prod6.lv.lytx.com/groups
+- url: https://lytx-api.prod7.lv.lytx.com/groups
+- url: https://lytx-api.prod8.lv.lytx.com/groups
 tags:
 - name: Groups (DriveCam)
 paths:
@@ -313,6 +314,8 @@ paths:
                   value:
                     error: Internal Server Error
                     message: The requested operation cannot be performed.
+    servers:
+    - url: https://api.lytx.com/v1
   /groups/{groupIdentifier}:
     get:
       tags:
@@ -629,6 +632,8 @@ paths:
                   value:
                     error: Internal Server Error
                     message: The requested operation cannot be performed.
+    servers:
+    - url: https://api.lytx.com/v1
   /groups/{groupIdentifier}/descendants:
     get:
       tags:
@@ -733,6 +738,8 @@ paths:
                   value:
                     error: Internal Server Error
                     message: The requested operation cannot be performed.
+    servers:
+    - url: https://api.lytx.com/v1
   /groups/auditLogs:
     get:
       tags:
@@ -1078,6 +1085,8 @@ paths:
                   value:
                     error: Internal Server Error
                     message: The requested operation cannot be performed.
+    servers:
+    - url: https://api.lytx.com/v1
   /groups/bulkImport:
     post:
       tags:
@@ -1136,6 +1145,8 @@ paths:
                   value:
                     error: Internal Server Error
                     message: The requested operation cannot be performed.
+    servers:
+    - url: https://api.lytx.com/v1
   /groups/bulkMove:
     post:
       tags:
@@ -1207,6 +1218,8 @@ paths:
                   value:
                     error: Internal Server Error
                     message: The requested operation cannot be performed.
+    servers:
+    - url: https://api.lytx.com/v1
   /:
     get:
       tags:
@@ -1218,16 +1231,18 @@ paths:
         in: query
         description: "Id of the group of interest. Either GUID or URL-Encoded version of path\\to\\group string depending on groupOption value.\n            If not specified, response will contain all groups data for the homegroup of the user who created the API token being used on the call \n            data with or without its underlying subgroups depending on includeSubgroups value."
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         x-position: 1
       - name: groupOption
         in: query
         description: "Option to retrieve groups info, either by its 'id' (GUID) or by 'path'.\n            If id was not specified groupOption is ignored and data will be returned as neither id or groupOpion were specified."
         schema:
-          type: string
+          type:
+          - string
+          - 'null'
           default: id
-          nullable: true
         x-position: 2
       - name: includeSubgroups
         in: query
@@ -1290,6 +1305,14 @@ paths:
             application/json:
               schema:
                 type: string
+      security:
+      - APIKey: []
+    servers:
+    - url: https://lytx-api.prod2.ph.lytx.com/groups
+    - url: https://lytx-api.prod5.ph.lytx.com/groups
+    - url: https://lytx-api.prod6.lv.lytx.com/groups
+    - url: https://lytx-api.prod7.lv.lytx.com/groups
+    - url: https://lytx-api.prod8.lv.lytx.com/groups
 components:
   schemas:
     BulkMoveGroupResponse:
@@ -1309,18 +1332,34 @@ components:
           items:
             $ref: '#/components/schemas/UnmovedGroup'
           description: A list of groups that were not moved with corresponding error messages.
-    UnmovedGroup:
-      title: UnmovedGroup
+    ImportGroupsResponse:
+      title: ImportGroupsResponse
       type: object
-      required:
-      - Group
-      - ErrorMessage
       properties:
-        Group:
-          $ref: '#/components/schemas/Group'
-        ErrorMessage:
-          type: string
-          description: The error message describes why the group was not moved.
+        importedGroups:
+          type: array
+          items:
+            type: string
+            example: Root\Group1
+          description: List of group names that were successfully imported.
+        existingGroups:
+          type: array
+          items:
+            type: string
+            example: Root\ExistingGroup
+          description: List of group names that already existed and were not imported.
+        groupsFailedToImport:
+          type: array
+          items:
+            type: string
+            example: Root\Group3\FailedGroup
+          description: List of group names that failed to import as Group3 is not present.
+        invalidGroupNames:
+          type: array
+          items:
+            type: string
+            example: InvalidGroup
+          description: List of group names that were invalid and could not be imported.
     EditGroupRequest:
       title: EditGroupRequest
       type: object
@@ -1337,89 +1376,6 @@ components:
           type: string
           example: A group being edited.
           description: Custom field.
-    BulkMoveGroupRequest:
-      title: BulkMoveGroupRequest
-      type: object
-      required:
-      - op
-      - path
-      - value
-      properties:
-        op:
-          type: string
-          example: replace
-          description: It should be replace keyword always.
-        path:
-          type: string
-          example: 880e70d8-aaf8-18aa-7ab0-6533d8f1c360/parentId
-          description: Id of the moving group followed by parentId keyword.
-        value:
-          type: string
-          example: 780e70d8-aaf8-18aa-7ab0-6533d8f1c390/Id
-          description: Id of the parent group followed by Id keyword.
-    AddGroupRequest:
-      title: AddGroupRequest
-      type: object
-      required:
-      - name
-      - parentId
-      properties:
-        name:
-          type: string
-          example: testGroupName
-          description: Name of the group to create.
-        parentId:
-          type: string
-          example: 880e70d8-aaf8-18aa-7ab0-6533d8f1c360
-          description: ID of the parent group. The new group will be placed under this parent.
-        description:
-          type: string
-          example: A new group being added.
-          description: Custom field.
-    GroupInfo:
-      type: object
-      additionalProperties: false
-      required:
-      - id
-      - parentId
-      - fullPath
-      - name
-      - aRevision
-      - aRevisionDate
-      - creationDate
-      properties:
-        id:
-          type: string
-          description: Unique id of the group within the system.
-          format: guid
-          minLength: 1
-        parentId:
-          type: string
-          description: Unique group id of the parent of the particular group.
-          format: guid
-          minLength: 1
-        fullPath:
-          type: string
-          description: Full path to the group, includes escaping of special characters.
-          minLength: 1
-        name:
-          type: string
-          description: Name of the group.
-          minLength: 1
-        aRevision:
-          type: integer
-          description: Revision number of the group object.
-          format: int32
-        aRevisionDate:
-          type: string
-          description: Latest revision date of the group.
-          format: date-time
-          minLength: 1
-        creationDate:
-          type: string
-          description: Creation date of the group
-          format: date-time
-          minLength: 1
     Group:
       title: Group
       type: object
@@ -1464,35 +1420,110 @@ components:
         updatedDate:
           type: string
           example: '2023-02-01T00:00:00Z'
-    ImportGroupsResponse:
-      title: ImportGroupsResponse
+    BulkMoveGroupRequest:
+      title: BulkMoveGroupRequest
       type: object
+      required:
+      - op
+      - path
+      - value
       properties:
-        importedGroups:
-          type: array
-          items:
-            type: string
-            example: Root\Group1
-          description: List of group names that were successfully imported.
-        existingGroups:
-          type: array
-          items:
-            type: string
-            example: Root\ExistingGroup
-          description: List of group names that already existed and were not imported.
-        groupsFailedToImport:
-          type: array
-          items:
-            type: string
-            example: Root\Group3\FailedGroup
-          description: List of group names that failed to import as Group3 is not present.
-        invalidGroupNames:
-          type: array
-          items:
-            type: string
-            example: InvalidGroup
-          description: List of group names that were invalid and could not be imported.
+        op:
+          type: string
+          example: replace
+          description: It should be replace keyword always.
+        path:
+          type: string
+          example: 880e70d8-aaf8-18aa-7ab0-6533d8f1c360/parentId
+          description: Id of the moving group followed by parentId keyword.
+        value:
+          type: string
+          example: 780e70d8-aaf8-18aa-7ab0-6533d8f1c390/Id
+          description: Id of the parent group followed by Id keyword.
+    AddGroupRequest:
+      title: AddGroupRequest
+      type: object
+      required:
+      - name
+      - parentId
+      properties:
+        name:
+          type: string
+          example: testGroupName
+          description: Name of the group to create.
+        parentId:
+          type: string
+          example: 880e70d8-aaf8-18aa-7ab0-6533d8f1c360
+          description: ID of the parent group. The new group will be placed under this parent.
+        description:
+          type: string
+          example: A new group being added.
+          description: Custom field.
+    UnmovedGroup:
+      title: UnmovedGroup
+      type: object
+      required:
+      - Group
+      - ErrorMessage
+      properties:
+        Group:
+          $ref: '#/components/schemas/Group'
+        ErrorMessage:
+          type: string
+          description: The error message describes why the group was not moved.
+    GroupInfo:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - parentId
+      - fullPath
+      - name
+      - aRevision
+      - aRevisionDate
+      - creationDate
+      properties:
+        id:
+          type: string
+          description: Unique id of the group within the system.
+          format: guid
+          minLength: 1
+        parentId:
+          type: string
+          description: Unique group id of the parent of the particular group.
+          format: guid
+          minLength: 1
+        fullPath:
+          type: string
+          description: Full path to the group, includes escaping of special characters.
+          minLength: 1
+        name:
+          type: string
+          description: Name of the group.
+          minLength: 1
+        aRevision:
+          type: integer
+          description: Revision number of the group object.
+          format: int32
+        aRevisionDate:
+          type: string
+          description: Latest revision date of the group.
+          format: date-time
+          minLength: 1
+        creationDate:
+          type: string
+          description: Creation date of the group
+          format: date-time
+          minLength: 1
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
+    APIKey:
+      type: apiKey
+      description: Enter your API key
+      name: X-APIKey
+      in: header
+x-refined-from:
+- lytx-group-openapi.yml
+- lytx-legacy.groups-openapi.yml

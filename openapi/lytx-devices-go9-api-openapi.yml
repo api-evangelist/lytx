@@ -1,12 +1,10 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Lytx..Management.Api Consent Devices (GO9) API
-  description: 'API for retrieving and updating user consent status, requiring authentication.
-
-    '
+  title: Lytx.Telematics.Fleet.Api - Device Devices (GO9) API
+  description: API for accessing Device data, requiring authentication.
   version: 1.0.0
 servers:
-- url: https://api.lytx.com/consent-management
+- url: https://api.lytx.com
 security:
 - bearerAuth: []
 tags:
@@ -22,8 +20,9 @@ paths:
       - name: groupId
         in: query
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
         description: Can use group ID or root group ID.
       - name: includeSubGroups
@@ -32,23 +31,24 @@ paths:
         schema:
           type: boolean
           example: 'false'
-          nullable: false
           default: true
         description: If true, all descendant groups under the specified group are included.
       - name: limit
         in: query
         required: false
         schema:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           example: '5000'
         description: Number of records to return.
       - name: offset
         in: query
         required: false
         schema:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           example: '1500'
         description: Record to start with.
       - name: startDate
@@ -71,24 +71,27 @@ paths:
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: asc
         description: Sort direction.
       - name: sortProperty
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: name
         description: Name of property to sort on.
       - name: version
         in: query
         required: true
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 1
         description: API version number.
       responses:
@@ -169,125 +172,146 @@ components:
       properties:
         id:
           type: string
-          nullable: false
           example: 1b33bcbe-15d3-445e-a06f-dda61208ad18
           description: Unique ID for the device.
         activeFrom:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           example: '2023-10-06T00:22:30.000Z'
           description: Start date when the device became active.
         activeTo:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           example: '2025-10-06T00:22:30.000Z'
           description: End date until which the device remains active.
         comment:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: Installed in vehicle A123
           description: Additional comments about the device.
         groups:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
-          nullable: true
           example:
           - Group1
           - Group2
           description: List of groups associated with the device.
         timeZoneId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: America/Toronto
           description: Time zone assigned to the device.
         deviceFlags:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: FLAG_001
           description: Flags indicating device-specific properties.
         deviceType:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: GO9
           description: Type/model of the device.
         hardwareId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: HW-ABC-12345
           description: Hardware identifier of the device.
         ignoreDownloadsUntil:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           example: '2025-05-15T12:00:00.000Z'
           description: The device should ignore downloads until this time.
         maxSecondsBetweenLogs:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           example: 300
           description: Maximum number of seconds allowed between logs.
         name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: Device A123
           description: Name assigned to the device.
         productId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: PROD-456
           description: Product identifier of the device.
         serialNumber:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: SN123456789
           description: Serial number of the device.
         timeToDownload:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           example: '2025-09-20T10:00:00.000Z'
           description: Scheduled time for the device to download updates.
         workTime:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 08:00-17:00
           description: Work time configuration of the device.
         registerDeviceResultLite:
-          type: object
-          nullable: true
+          type:
+          - object
+          - 'null'
           description: Registration result details for the device.
         devicePlanBillingInfo:
-          type: object
-          nullable: true
+          type:
+          - object
+          - 'null'
           description: Billing information for the device plan.
         deviceReplacementInfo:
-          type: object
-          nullable: true
+          type:
+          - object
+          - 'null'
           description: Replacement information for the device.
         customProperties:
-          type: object
-          nullable: true
+          type:
+          - object
+          - 'null'
           description: Custom properties associated with the device.
         mediaFiles:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
-          nullable: true
           example:
           - file1.jpg
           - file2.mp4
           description: Media files linked to the device.
         tmpTrailerId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: TRAILER-123
           description: Temporary trailer ID linked to the device.
         version:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: v1.2.3
           description: Version information of the device.
   securitySchemes:

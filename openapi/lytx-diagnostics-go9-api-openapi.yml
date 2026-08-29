@@ -1,12 +1,10 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Lytx..Management.Api Consent Diagnostics (GO9) API
-  description: 'API for retrieving and updating user consent status, requiring authentication.
-
-    '
+  title: Lytx.Telematics.Fleet.Api - Diagnostics Diagnostics (GO9) API
+  description: API for accessing Diagnostics data, requiring authentication.
   version: 1.0.0
 servers:
-- url: https://api.lytx.com/consent-management
+- url: https://api.lytx.com
 security:
 - bearerAuth: []
 tags:
@@ -23,16 +21,18 @@ paths:
         in: query
         required: false
         schema:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           example: '5000'
         description: Number of records to return.
       - name: offset
         in: query
         required: false
         schema:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           example: '1500'
         description: Record to start with.
       - name: startDate
@@ -55,24 +55,27 @@ paths:
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: asc
         description: Sort direction.
       - name: sortProperty
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: name
         description: Name of property to sort on.
       - name: version
         in: query
         required: true
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 1
         description: API version number.
       responses:
@@ -156,8 +159,9 @@ components:
           example: 101
           description: Numeric code identifying the diagnostic.
         controller:
-          type: object
-          nullable: true
+          type:
+          - object
+          - 'null'
           description: Controller associated with the diagnostic (if any).
         diagnosticType:
           type: string
@@ -180,16 +184,18 @@ components:
           example: Engine Overheat
           description: Name of the diagnostic.
         source:
-          type: object
-          nullable: true
+          type:
+          - object
+          - 'null'
           description: Source object of the diagnostic.
         tamperingDiagnostics:
           type: integer
           example: 0
           description: Number of tampering-related diagnostics.
         unitOfMeasure:
-          type: object
-          nullable: true
+          type:
+          - object
+          - 'null'
           description: Unit of measure for the diagnostic value.
         version:
           type: string

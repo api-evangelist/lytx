@@ -1,12 +1,10 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Lytx..Management.Api Consent Zones (GO9) API
-  description: 'API for retrieving and updating user consent status, requiring authentication.
-
-    '
+  title: Lytx Zones (GO9) API
   version: 1.0.0
+  description: 'Operations tagged Zones (GO9) across 2 of this provider''s published API definitions: lytx-zonesplus-openapi.yml, lytx-zonesputandpostplus-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://api.lytx.com/consent-management
+- url: https://api.lytx.com
 security:
 - bearerAuth: []
 tags:
@@ -23,8 +21,9 @@ paths:
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
         description: Can use group ID or root group ID.
       - name: includeSubGroups
@@ -33,23 +32,24 @@ paths:
         schema:
           type: boolean
           example: 'false'
-          nullable: false
           default: true
         description: If true, all descendant groups under the specified group are included.
       - name: limit
         in: query
         required: false
         schema:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           example: '5000'
         description: Number of records to return.
       - name: offset
         in: query
         required: false
         schema:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           example: '1500'
         description: Record to start with.
       - name: startDate
@@ -72,24 +72,27 @@ paths:
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: asc
         description: Sort direction.
       - name: sortProperty
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: name
         description: Name of property to sort on.
       - name: version
         in: query
         required: true
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 1
         description: API version number.
       responses:
@@ -323,8 +326,57 @@ paths:
                   message:
                     type: string
                     example: An unexpected server error occurred
+    servers:
+    - url: https://api.lytx.com
 components:
   schemas:
+    ColorResponseViewModel:
+      type: object
+      properties:
+        a:
+          type: integer
+          example: 255
+          description: Alpha channel (transparency).
+        r:
+          type: integer
+          example: 255
+          description: Red channel (0-255).
+        g:
+          type: integer
+          example: 0
+          description: Green channel (0-255).
+        b:
+          type: integer
+          example: 0
+          description: Blue channel (0-255).
+    ZoneTypeResponseViewModel:
+      type: object
+      properties:
+        comment:
+          type: string
+          example: Default restricted zone type
+          description: Comment for the zone type.
+        defaultFillColorForNewZoneType:
+          type:
+          - object
+          - 'null'
+          description: Default fill color for a new zone type.
+        fillColor:
+          type:
+          - object
+          - 'null'
+          description: Custom fill color for the zone type.
+        id:
+          type: object
+          description: Identifier for the zone type.
+        isBuiltIn:
+          type: boolean
+          example: true
+          description: Indicates if the zone type is built-in.
+        name:
+          type: string
+          example: Restricted Area
+          description: Name of the zone type.
     CoordinateResponseViewModel:
       type: object
       properties:
@@ -338,40 +390,27 @@ components:
           format: double
           example: 32.8872185
           description: Y coordinate (latitude).
-    CreateZonePointRequestViewModel:
-      type: object
-      required:
-      - x
-      - y
-      properties:
-        x:
-          type: number
-          format: double
-          example: 32.7157
-          description: X coordinate (longitude).
-        y:
-          type: number
-          format: double
-          example: -117.1611
-          description: Y coordinate (latitude).
     ZoneResponseViewModel:
       type: object
       properties:
         activeFrom:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           example: '2025-05-29T19:18:26.063Z'
           description: Start date/time when the zone is active.
         activeTo:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           example: '2025-06-29T19:18:26.063Z'
           description: End date/time when the zone is active.
         comment:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: Restricted area for heavy vehicles
           description: Optional comment for the zone.
         displayed:
@@ -397,8 +436,9 @@ components:
           example: zone1f6e56d-1234-4567-89ab-cdef12345678
           description: Unique identifier of the zone.
         metadata:
-          type: object
-          nullable: true
+          type:
+          - object
+          - 'null'
           description: Metadata information for the zone.
         mustIdentifyStops:
           type: boolean
@@ -422,15 +462,15 @@ components:
           items:
             $ref: '#/components/schemas/ZoneTypeResponseViewModel'
           description: Types associated with the zone.
-    ZoneTypesEnumRequestViewModel:
-      type: string
-      description: Type of zone.
-      enum:
-      - Customer
-      - Home
-      - InHouseServiceCenter
-      - Office
-      - VendorServiceCenter
+    CreateZoneGroupRequestViewModel:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          example: group-12345
+          description: Identifier of the group the zone belongs to.
     CreateZoneColorRequestViewModel:
       type: object
       properties:
@@ -462,28 +502,33 @@ components:
           example: San Diego Zone
           description: Name of the zone.
         comment:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: Primary service area for San Diego
           description: Optional comment or description for the zone.
         mustIdentifyStops:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
           example: true
           description: Indicates whether stops must be identified within the zone.
         displayed:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
           example: true
           description: Indicates whether the zone is visible in the UI.
         activeFrom:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: '2025-01-01T00:00:00Z'
           description: Date and time from which the zone becomes active.
         activeTo:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: '2025-12-31T23:59:59Z'
           description: Date and time until which the zone remains active.
         zoneTypes:
@@ -495,8 +540,9 @@ components:
         fillColor:
           $ref: '#/components/schemas/CreateZoneColorRequestViewModel'
         externalReference:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: EXT-ZONE-001
           description: External reference identifier for the zone.
         points:
@@ -509,25 +555,6 @@ components:
           description: Groups to which the zone belongs.
           items:
             $ref: '#/components/schemas/CreateZoneGroupRequestViewModel'
-    ColorResponseViewModel:
-      type: object
-      properties:
-        a:
-          type: integer
-          example: 255
-          description: Alpha channel (transparency).
-        r:
-          type: integer
-          example: 255
-          description: Red channel (0-255).
-        g:
-          type: integer
-          example: 0
-          description: Green channel (0-255).
-        b:
-          type: integer
-          example: 0
-          description: Blue channel (0-255).
     EditZonesRequestViewModel:
       type: object
       required:
@@ -538,98 +565,100 @@ components:
           example: b28
           description: Unique identifier of the zone to be updated.
         name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: San Diego Zone
           description: Updated name of the zone.
         comment:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: Primary service area for San Diego
           description: Optional comment or description for the zone.
         mustIdentifyStops:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
           example: true
           description: Indicates whether stops must be identified within the zone.
         displayed:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
           example: true
           description: Indicates whether the zone is visible in the UI.
         externalReference:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: EXT-ZONE-001
           description: External reference identifier for the zone.
         activeFrom:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: '2025-01-01T00:00:00Z'
           description: Date and time from which the zone becomes active.
         activeTo:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: '2025-12-31T23:59:59Z'
           description: Date and time until which the zone remains active.
         zoneTypes:
-          type: array
-          nullable: true
+          type:
+          - array
+          - 'null'
           description: List of zone types applicable to this zone.
           items:
             $ref: '#/components/schemas/ZoneTypesEnumRequestViewModel'
           example: Customer
         fillColor:
-          nullable: true
           $ref: '#/components/schemas/CreateZoneColorRequestViewModel'
         points:
-          type: array
-          nullable: true
+          type:
+          - array
+          - 'null'
           description: List of geographic points defining the updated zone boundary.
           items:
             $ref: '#/components/schemas/CreateZonePointRequestViewModel'
         groups:
-          type: array
-          nullable: true
+          type:
+          - array
+          - 'null'
           description: Groups to which the zone belongs.
           items:
             $ref: '#/components/schemas/CreateZoneGroupRequestViewModel'
-    CreateZoneGroupRequestViewModel:
+    ZoneTypesEnumRequestViewModel:
+      type: string
+      description: Type of zone.
+      enum:
+      - Customer
+      - Home
+      - InHouseServiceCenter
+      - Office
+      - VendorServiceCenter
+    CreateZonePointRequestViewModel:
       type: object
       required:
-      - id
+      - x
+      - y
       properties:
-        id:
-          type: string
-          example: group-12345
-          description: Identifier of the group the zone belongs to.
-    ZoneTypeResponseViewModel:
-      type: object
-      properties:
-        comment:
-          type: string
-          example: Default restricted zone type
-          description: Comment for the zone type.
-        defaultFillColorForNewZoneType:
-          type: object
-          nullable: true
-          description: Default fill color for a new zone type.
-        fillColor:
-          type: object
-          nullable: true
-          description: Custom fill color for the zone type.
-        id:
-          type: object
-          description: Identifier for the zone type.
-        isBuiltIn:
-          type: boolean
-          example: true
-          description: Indicates if the zone type is built-in.
-        name:
-          type: string
-          example: Restricted Area
-          description: Name of the zone type.
+        x:
+          type: number
+          format: double
+          example: 32.7157
+          description: X coordinate (longitude).
+        y:
+          type: number
+          format: double
+          example: -117.1611
+          description: Y coordinate (latitude).
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
+x-refined-from:
+- lytx-zonesplus-openapi.yml
+- lytx-zonesputandpostplus-openapi.yml

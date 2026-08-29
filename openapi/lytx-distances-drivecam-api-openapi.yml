@@ -1,12 +1,9 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Lytx..Management.Api Consent Distances (DriveCam) API
-  description: 'API for retrieving and updating user consent status, requiring authentication.
-
-    '
+  title: Lytx.Distance. Distances (DriveCam) API
   version: 1.0.0
 servers:
-- url: https://api.lytx.com/consent-management
+- url: https://data.lytx.com
 security:
 - bearerAuth: []
 tags:
@@ -23,24 +20,27 @@ paths:
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
         description: Filter by Device Identifier.
       - name: groupIdentifier
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
         description: Filter by Group Identifier.
       - name: vehicleIdentifier
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
         description: Filter by Vehicle Identifier.
       - name: includeSubGroups
@@ -49,22 +49,23 @@ paths:
         schema:
           type: boolean
           example: 'false'
-          nullable: false
         description: Include Sub Groups.
       - name: limit
         in: query
         required: false
         schema:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           example: '100'
         description: Number of records to return.
       - name: offset
         in: query
         required: false
         schema:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           example: '1500'
         description: Record to start with.
       - name: startDate
@@ -87,16 +88,18 @@ paths:
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: VehicleName
         description: Name of the property to sort on.
       - name: order
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: asc
         description: Sort direction.
       responses:
@@ -112,39 +115,31 @@ paths:
                       properties:
                         deviceId:
                           type: string
-                          nullable: false
                           example: 1994FGGD-99A9-CB83-0C23-A8A3E3070000
                         distanceKm:
                           type: number
                           format: double
-                          nullable: false
                           example: '1649.25'
                         groupId:
                           type: string
-                          nullable: false
                           example: 1996FGGD-88A8-CB83-0C23-A8A3E3070000
                         imei:
                           type: string
-                          nullable: false
                           example: ''
                         licensePlate:
                           type: string
-                          nullable: false
                           example: 74980RP
                         serialNumber:
                           type: string
-                          nullable: false
                           example: NT00210007
                         vehicleId:
                           type: string
                           example: 9100FGGD-48A9-CB83-0C23-A8A3E3070000
                         vehicleName:
                           type: string
-                          nullable: false
                           example: Example Car
                         vin:
                           type: string
-                          nullable: false
                           example: 9ATRPE9R2RO473355
                   metadata:
                     type: array
@@ -161,11 +156,9 @@ paths:
                           example: '0'
                         startDate:
                           type: string
-                          nullable: false
                           format: date-time
                         endDate:
                           type: string
-                          nullable: false
                           format: date-time
         '400':
           description: Bad Request

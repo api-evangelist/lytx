@@ -1,14 +1,15 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Lytx..Management.Api Consent HOS (DriveCam) API
-  description: 'API for retrieving and updating user consent status, requiring authentication.
-
-    '
+  title: Lytx HOS (DriveCam) API
   version: 1.0.0
+  description: 'Operations tagged HOS (DriveCam) across 2 of this provider''s published API definitions: lytx-hos-openapi.yml, lytx-legacy.hos-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://api.lytx.com/consent-management
-security:
-- bearerAuth: []
+- url: https://api.lytx.com
+- url: https://lytx-api.prod2.ph.lytx.com/hos
+- url: https://lytx-api.prod5.ph.lytx.com/hos
+- url: https://lytx-api.prod6.lv.lytx.com/hos
+- url: https://lytx-api.prod7.lv.lytx.com/hos
+- url: https://lytx-api.prod8.lv.lytx.com/hos
 tags:
 - name: HOS (DriveCam)
 paths:
@@ -45,8 +46,9 @@ paths:
                 type: object
                 properties:
                   userName:
-                    type: string
-                    nullable: true
+                    type:
+                    - string
+                    - 'null'
                     example: UnknownDriver
                   data:
                     type: array
@@ -54,8 +56,9 @@ paths:
                       type: object
                       properties:
                         userName:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                           example: UnknownDriver
                           description: The Account username.
                         dateTime:
@@ -64,8 +67,9 @@ paths:
                           example: '2023-09-21T20:30:40Z'
                           description: Date Time of the log event.
                         vehicleName:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                           example: 2015 FRD Fleet Express
                           description: Vehicle name or ID number.
                         companyId:
@@ -88,8 +92,9 @@ paths:
                           example: -117.212288
                           description: Longitude coordinates.
                         status:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                           example: D
                           description: The driver�s duty status.
                         verifyDateTime:
@@ -98,33 +103,39 @@ paths:
                           example: '2023-01-01T00:00:00Z'
                           description: The date and time the log was verified. If the log is unverified, this will not be set.
                         origin:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                           example: Automatic
                           description: Indicates whether the event was generated automatically or created manually by the user.
                         serialNumber:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                           example: ''
                           description: The serial number of the Lytx device.
                         deviceId:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                           example: ''
                           description: Global unique identifier of the event recorder.
                         userId:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                           example: ''
                           description: User ID number.
                         state:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                           example: Active
                           description: The log�s status. Can be Active, Inactive, Rejected, or Requested.
                         malfunction:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                           example: None
                           description: Indicates the malfunction state of the log.
                         odometer:
@@ -150,13 +161,15 @@ paths:
                           example: 1
                           description: Indicates what event occurred. Must be read in tandem with the eventCode.
                         shipmentCommodity:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                           example: Videogames
                           description: Description of the commodity.
                         shipmentDocumentNumber:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                           example: '1234'
                           description: The shipping document number input by the driver.
               examples:
@@ -289,6 +302,10 @@ paths:
                   value:
                     error: Internal Server Error
                     message: Requested operation cannot be performed.
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://api.lytx.com
   /v1/hos/:
     get:
       tags:
@@ -330,8 +347,9 @@ paths:
                 type: object
                 properties:
                   userName:
-                    type: string
-                    nullable: true
+                    type:
+                    - string
+                    - 'null'
                     example: UnknownDriver
                   data:
                     type: array
@@ -339,8 +357,9 @@ paths:
                       type: object
                       properties:
                         userName:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                           example: UnknownDriver
                           description: Account username.
                         dateTime:
@@ -349,8 +368,9 @@ paths:
                           example: '2023-09-21T20:30:40Z'
                           description: Date and time the log was created.
                         vehicleName:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                           example: 2015 FRD Fleet Express
                           description: Vehicle name or ID number.
                         companyId:
@@ -373,8 +393,9 @@ paths:
                           example: -117.212288
                           description: Longitude coordinates.
                         status:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                           example: D
                           description: The driver�s duty status.
                         verifyDateTime:
@@ -383,33 +404,39 @@ paths:
                           example: '2023-01-01T00:00:00Z'
                           description: The date and time the log was verified. If the log is unverified, this will not be set.
                         origin:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                           example: Automatic
                           description: Indicates whether the event was generated automatically or created manually by the user.
                         serialNumber:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                           example: ''
                           description: The serial number of the Lytx device.
                         deviceId:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                           example: ''
                           description: Global unique identifier of the event recorder.
                         userId:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                           example: ''
                           description: User ID number.
                         state:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                           example: Active
                           description: The log�s status. Can be Active, Inactive, Rejected, or Requested.
                         malfunction:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                           example: None
                           description: Indicates the malfunction state of the log.
                         odometer:
@@ -435,13 +462,15 @@ paths:
                           example: 1
                           description: Indicates what event occurred. Must be read in tandem with the eventCode.
                         shipmentCommodity:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                           example: Videogames
                           description: Description of the commodity.
                         shipmentDocumentNumber:
-                          type: string
-                          nullable: true
+                          type:
+                          - string
+                          - 'null'
                           example: '1234'
                           description: The shipping document number input by the driver.
               examples:
@@ -574,6 +603,10 @@ paths:
                   value:
                     error: Internal Server Error
                     message: Requested operation cannot be performed.
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://api.lytx.com
   /:
     get:
       tags:
@@ -609,12 +642,10 @@ paths:
           x-expectedSchemas:
           - description: HOS Logs retrieved.
             schema:
-              nullable: true
               oneOf:
               - $ref: '#/components/schemas/HosLogByUser'
           - description: HOS Logs retrieved.
             schema:
-              nullable: true
               oneOf:
               - $ref: '#/components/schemas/HosLogByCompany'
         '204':
@@ -649,6 +680,14 @@ paths:
             application/json:
               schema:
                 type: string
+      security:
+      - APIKey: []
+    servers:
+    - url: https://lytx-api.prod2.ph.lytx.com/hos
+    - url: https://lytx-api.prod5.ph.lytx.com/hos
+    - url: https://lytx-api.prod6.lv.lytx.com/hos
+    - url: https://lytx-api.prod7.lv.lytx.com/hos
+    - url: https://lytx-api.prod8.lv.lytx.com/hos
   /{userName}:
     get:
       tags:
@@ -661,8 +700,9 @@ paths:
         in: path
         required: true
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         x-position: 1
       - name: startDate
         in: query
@@ -691,12 +731,10 @@ paths:
           x-expectedSchemas:
           - description: HOS Logs retrieved.
             schema:
-              nullable: true
               oneOf:
               - $ref: '#/components/schemas/HosLogByUser'
           - description: HOS Logs retrieved.
             schema:
-              nullable: true
               oneOf:
               - $ref: '#/components/schemas/HosLogByCompany'
         '204':
@@ -731,21 +769,55 @@ paths:
             application/json:
               schema:
                 type: string
+      security:
+      - APIKey: []
+    servers:
+    - url: https://lytx-api.prod2.ph.lytx.com/hos
+    - url: https://lytx-api.prod5.ph.lytx.com/hos
+    - url: https://lytx-api.prod6.lv.lytx.com/hos
+    - url: https://lytx-api.prod7.lv.lytx.com/hos
+    - url: https://lytx-api.prod8.lv.lytx.com/hos
 components:
   schemas:
+    HosLogByUser:
+      type: object
+      additionalProperties: false
+      properties:
+        userName:
+          type:
+          - string
+          - 'null'
+        hosLogs:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/HosLog'
+    HosLogByCompany:
+      type: object
+      additionalProperties: false
+      properties:
+        users:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/HosLogByUser'
     HosLog:
       type: object
       additionalProperties: false
       properties:
         userName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         dateTime:
           type: string
           format: date-time
         vehicleName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         companyId:
           type: integer
           format: int32
@@ -759,29 +831,36 @@ components:
           type: number
           format: double
         status:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         verifyDateTime:
           type: string
           format: date-time
         origin:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         serialNumber:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         deviceId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         userId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         state:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         malfunction:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         odometer:
           type: number
           format: double
@@ -798,33 +877,22 @@ components:
           type: integer
           format: int32
         shipmentCommodity:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         shipmentDocumentNumber:
-          type: string
-          nullable: true
-    HosLogByUser:
-      type: object
-      additionalProperties: false
-      properties:
-        userName:
-          type: string
-          nullable: true
-        hosLogs:
-          type: array
-          nullable: true
-          items:
-            $ref: '#/components/schemas/HosLog'
-    HosLogByCompany:
-      type: object
-      additionalProperties: false
-      properties:
-        users:
-          type: array
-          nullable: true
-          items:
-            $ref: '#/components/schemas/HosLogByUser'
+          type:
+          - string
+          - 'null'
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
+    APIKey:
+      type: apiKey
+      description: Enter your API key
+      name: X-APIKey
+      in: header
+x-refined-from:
+- lytx-hos-openapi.yml
+- lytx-legacy.hos-openapi.yml

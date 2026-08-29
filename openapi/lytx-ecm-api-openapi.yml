@@ -1,14 +1,10 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Lytx..Management.Api Consent ECM API
-  description: 'API for retrieving and updating user consent status, requiring authentication.
-
-    '
-  version: 1.0.0
+  title: Lytx.. ECM API
+  version: 2.0.0
+  x-generator: NSwag v13.9.4.0 (NJsonSchema v10.3.1.0 (Newtonsoft.Json v12.0.0.0))
 servers:
-- url: https://api.lytx.com/consent-management
-security:
-- bearerAuth: []
+- url: https://data.lytx.com
 tags:
 - name: ECM
 paths:
@@ -25,23 +21,26 @@ paths:
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         description: Can use either device serial number or deviceId. If no device, vehicle, or group is specified, returns data for all devices.
       - name: vehicleIdentifier
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         description: Can use either VIN, vehicleId, or vehicle name. If no device, vehicle, or group is specified, returns data for all vehicles.
       - name: groupIdentifier
         in: query
         required: false
         schema:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
         description: Can use groupId, rootGroupId, or group name. If no device, vehicle, or group is specified, returns data for all devices.
       - name: includeSubGroups
         in: query
@@ -50,14 +49,14 @@ paths:
           type: boolean
           example: false
           default: false
-          nullable: false
         description: If true, all descendant groups under the specified group are included.
       - name: offset
         in: query
         required: false
         schema:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           example: 1500
           default: 0
         description: Record to start with.
@@ -65,40 +64,45 @@ paths:
         in: query
         required: false
         schema:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           example: 100
         description: Number of records to return.
       - name: startDate
         in: query
         required: false
         schema:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
         description: The startDate must be within the last 6 months. The startDate and endDate must be 24 hours of each other. ECM data is available for up to 7 days; DTC data is available for up to 6 months. Defaults to current UTC date.
       - name: endDate
         in: query
         required: false
         schema:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
         description: The startDate and endDate must be within 24 hours of each other.
       - name: sort
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: VehicleName
         description: Name of the property to sort on.
       - name: order
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: asc
         description: Sort direction (asc or desc).
       - name: sampleType
@@ -166,6 +170,55 @@ components:
         message:
           type: string
           example: Non-permitted user
+    EcmResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EcmDevice'
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+      required:
+      - data
+      - metadata
+    InternalSystemErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Internal Server Error
+        message:
+          type: string
+          example: An unexpected server error occurred
+    EcmSample:
+      type: object
+      properties:
+        sampleType:
+          type: string
+          enum:
+          - ODOMETER
+          - SPEED_KPH
+          - ENGINE_SPEED
+          - DTC
+          - VIN_FULL
+          - ENGINE_HOURS
+          - MIL
+          example: ENGINE_HOURS
+          description: Type of ECM data.
+        sampleDateTime:
+          type: string
+          format: date-time
+          example: '2024-05-29T22:24:27.804Z'
+          description: Date and time for the data point.
+        sampleValue:
+          type: string
+          example: '1600'
+          description: Value for the data point.
+      required:
+      - sampleType
+      - sampleDateTime
+      - sampleValue
     UnauthorizedResponse:
       type: object
       properties:
@@ -185,7 +238,6 @@ components:
           description: ID of the device.
         serialNumber:
           type: string
-          nullable: false
           example: NT00210007
           description: Serial number of the device.
         groupId:
@@ -195,7 +247,6 @@ components:
           description: ID of the device's group.
         licensePlate:
           type: string
-          nullable: false
           example: 74980RP
           description: The vehicle's license plate number.
         vehicleId:
@@ -205,17 +256,14 @@ components:
           description: ID of the vehicle to which the device is assigned.
         vehicleName:
           type: string
-          nullable: false
           example: Example Car
           description: Name of the vehicle to which the device is assigned.
         vin:
           type: string
-          nullable: false
           example: 9ATRPE9R2RO473355
           description: Vehicle Identification Number.
         groupName:
           type: string
-          nullable: false
           example: Fleet Group 1
           description: Name of the group to which the device belongs.
         samples:
@@ -233,27 +281,6 @@ components:
       - vin
       - groupName
       - samples
-    InternalSystemErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          example: Internal Server Error
-        message:
-          type: string
-          example: An unexpected server error occurred
-    EcmResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/EcmDevice'
-        metadata:
-          $ref: '#/components/schemas/Metadata'
-      required:
-      - data
-      - metadata
     BadRequestResponse:
       type: object
       properties:
@@ -291,34 +318,6 @@ components:
       - offset
       - startDate
       - endDate
-    EcmSample:
-      type: object
-      properties:
-        sampleType:
-          type: string
-          enum:
-          - ODOMETER
-          - SPEED_KPH
-          - ENGINE_SPEED
-          - DTC
-          - VIN_FULL
-          - ENGINE_HOURS
-          - MIL
-          example: ENGINE_HOURS
-          description: Type of ECM data.
-        sampleDateTime:
-          type: string
-          format: date-time
-          example: '2024-05-29T22:24:27.804Z'
-          description: Date and time for the data point.
-        sampleValue:
-          type: string
-          example: '1600'
-          description: Value for the data point.
-      required:
-      - sampleType
-      - sampleDateTime
-      - sampleValue
   securitySchemes:
     bearerAuth:
       type: http

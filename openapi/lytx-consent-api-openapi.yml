@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Lytx..Management.Api Consent API
   description: 'API for retrieving and updating user consent status, requiring authentication.
@@ -29,17 +29,19 @@ paths:
         in: query
         required: false
         schema:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
           example: 550e8400-e29b-41d4-a716-446655440000
         description: Unique identifier of the user. Required if `employeeId` is not provided.
       - name: employeeId
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: EMP-9876
         description: Employee identifier associated with the user. Required if `userId` is not provided.
       responses:
@@ -221,17 +223,18 @@ components:
         userId:
           type: string
           format: uuid
-          nullable: false
           example: 0000ffff-0000-1600-e03a-ed46b0d60000
           description: User ID the consent update was applied to.
         employeeId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: Test4kUsers546
           description: Employee ID associated with the user.
         status:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: AlreadyUpdated
           description: 'Result status of the update operation.
 
@@ -247,8 +250,9 @@ components:
           - AlreadyUpdated
           - Failed
         errorMessage:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: null
           description: 'Error message if the update failed; `null` otherwise. Possible per-row failure messages:
 
@@ -261,51 +265,6 @@ components:
             - `Cannot update consent for non-driver users.`
 
             - `Only ''FacialId'' is allowed for ProductName.`
-
-            '
-    UpdateConsentRequestViewModel:
-      type: object
-      required:
-      - productName
-      - consentStatus
-      properties:
-        userId:
-          type: string
-          format: uuid
-          nullable: true
-          example: 550e8400-e29b-41d4-a716-446655440000
-          description: 'Unique identifier of the user. Required if `employeeId` is not provided.
-
-            '
-        employeeId:
-          type: string
-          nullable: true
-          example: EMP-9876
-          description: 'Employee identifier associated with the user. Required if `userId` is not provided. The system resolves the corresponding `userId` internally before processing.
-
-            '
-        productName:
-          type: string
-          nullable: false
-          example: facialId
-          description: 'Product name to update consent status for. Only Facial ID product is supported as of today. Enter product name as:
-
-            * `facialID`
-
-            '
-        consentStatus:
-          type: string
-          nullable: false
-          example: Obtained
-          description: "New consent status to apply for the specified product.\n- `Obtained`: Valid Consent Obtained Via Alternative Method. Applicable when you have\n  obtained necessary consent through an alternative method and valid consents are still\n  in effect.\n\n- `NotRequired`: Consent Not Required. Valid when your organization has determined,\n  and bears sole responsibility for such determination, that consent is not required by\n  law or your organization's policies.\n"
-          enum:
-          - Obtained
-          - NotRequired
-        source:
-          type: string
-          nullable: true
-          example: Manual
-          description: 'Source of the consent update. Defaults to "Manual" if not provided.
 
             '
     ErrorResponse:
@@ -321,32 +280,81 @@ components:
       type: object
       properties:
         userId:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
           example: 550e8400-e29b-41d4-a716-446655440000
           description: Unique identifier of the user.
         employeeId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: EMP-9876
           description: Employee identifier associated with the user.
         productName:
           type: string
-          nullable: false
           example: facialId
           description: Human-readable product name. Only Facial ID product is supported as of today.
         consentStatus:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: Obtained
           description: Current driver consent status for this product.
         consentDate:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           example: '2026-03-15T10:30:00.000Z'
           description: Date and time consent was given or last updated.
+    UpdateConsentRequestViewModel:
+      type: object
+      required:
+      - productName
+      - consentStatus
+      properties:
+        userId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          example: 550e8400-e29b-41d4-a716-446655440000
+          description: 'Unique identifier of the user. Required if `employeeId` is not provided.
+
+            '
+        employeeId:
+          type:
+          - string
+          - 'null'
+          example: EMP-9876
+          description: 'Employee identifier associated with the user. Required if `userId` is not provided. The system resolves the corresponding `userId` internally before processing.
+
+            '
+        productName:
+          type: string
+          example: facialId
+          description: 'Product name to update consent status for. Only Facial ID product is supported as of today. Enter product name as:
+
+            * `facialID`
+
+            '
+        consentStatus:
+          type: string
+          example: Obtained
+          description: "New consent status to apply for the specified product.\n- `Obtained`: Valid Consent Obtained Via Alternative Method. Applicable when you have\n  obtained necessary consent through an alternative method and valid consents are still\n  in effect.\n\n- `NotRequired`: Consent Not Required. Valid when your organization has determined,\n  and bears sole responsibility for such determination, that consent is not required by\n  law or your organization's policies.\n"
+          enum:
+          - Obtained
+          - NotRequired
+        source:
+          type:
+          - string
+          - 'null'
+          example: Manual
+          description: 'Source of the consent update. Defaults to "Manual" if not provided.
+
+            '
   securitySchemes:
     bearerAuth:
       type: http

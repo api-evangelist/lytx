@@ -1,14 +1,15 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Lytx..Management.Api Consent ECM (DriveCam) API
-  description: 'API for retrieving and updating user consent status, requiring authentication.
-
-    '
+  title: Lytx ECM (DriveCam) API
   version: 1.0.0
+  description: 'Operations tagged ECM (DriveCam) across 2 of this provider''s published API definitions: lytx-ecm-openapi.yml, lytx-legacy.vehicleinfo.aggregator-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://api.lytx.com/consent-management
-security:
-- bearerAuth: []
+- url: https://data.lytx.com
+- url: https://lytx-api.prod2.ph.lytx.com/ecm
+- url: https://lytx-api.prod5.ph.lytx.com/ecm
+- url: https://lytx-api.prod6.lv.lytx.com/ecm
+- url: https://lytx-api.prod7.lv.lytx.com/ecm
+- url: https://lytx-api.prod8.lv.lytx.com/ecm
 tags:
 - name: ECM (DriveCam)
 paths:
@@ -25,22 +26,25 @@ paths:
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         description: Can use either device serial number or deviceId. If no device, vehicle, or group is specified, returns data for all devices.
       - name: vehicleIdentifier
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         description: Can use either VIN, vehicleId, or vehicle name. If no device, vehicle, or group is specified, returns data for all vehicles.
       - name: groupIdentifier
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         description: Can use groupId, rootGroupId, or group name. If no device, vehicle, or group is specifid, returns data for all devices.
       - name: includeSubGroups
         in: query
@@ -48,22 +52,23 @@ paths:
         schema:
           type: boolean
           example: 'false'
-          nullable: false
         description: If true, all descendant groups under the specified group are included.
       - name: offset
         in: query
         required: false
         schema:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           example: '1500'
         description: Record to start with.
       - name: limit
         in: query
         required: false
         schema:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           example: '100'
         description: Number of records to return.
       - name: startDate
@@ -84,16 +89,18 @@ paths:
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: VehicleName
         description: Name of the property to sort on.
       - name: order
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: asc
         description: Sort direction.
       responses:
@@ -109,27 +116,22 @@ paths:
                       properties:
                         deviceId:
                           type: string
-                          nullable: false
                           example: 1994FGGD-99A9-CB83-0C23-A8A3E3070000
                           description: ID of the device.
                         serialNumber:
                           type: string
-                          nullable: false
                           example: NT00210007
                           description: Serial number of the device.
                         groupId:
                           type: string
-                          nullable: false
                           example: 1996FGGD-88A8-CB83-0C23-A8A3E3070000
                           description: ID of the device’s group.
                         imei:
                           type: string
-                          nullable: false
                           example: ''
                           description: International Mobile Equipment Identity number.
                         licensePlate:
                           type: string
-                          nullable: false
                           example: 74980RP
                           description: The vehicle’s license plate number.
                         vehicleId:
@@ -138,12 +140,10 @@ paths:
                           description: ID of the vehicle to which the device is assigned.
                         vehicleName:
                           type: string
-                          nullable: false
                           example: Example Car
                           description: Name of the vehicle to which the device is assigned.
                         vin:
                           type: string
-                          nullable: false
                           example: 9ATRPE9R2RO473355
                           description: Vehicle Identification Number.
                         samples:
@@ -178,11 +178,9 @@ paths:
                           example: '0'
                         startDate:
                           type: string
-                          nullable: false
                           format: date-time
                         endDate:
                           type: string
-                          nullable: false
                           format: date-time
         '400':
           description: Bad Request
@@ -244,6 +242,8 @@ paths:
                   message:
                     type: string
                     example: An unexpected server error occurred
+    servers:
+    - url: https://data.lytx.com
   /vehicles/{vehicleId}/location:
     get:
       tags:
@@ -263,9 +263,10 @@ paths:
         in: query
         description: Optional. If supplied, the response will contain the position of the vehicle closest to the given time.
         schema:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
         x-position: 2
       responses:
         '200':
@@ -298,6 +299,14 @@ paths:
             application/json:
               schema:
                 type: string
+      security:
+      - APIKey: []
+    servers:
+    - url: https://lytx-api.prod2.ph.lytx.com/ecm
+    - url: https://lytx-api.prod5.ph.lytx.com/ecm
+    - url: https://lytx-api.prod6.lv.lytx.com/ecm
+    - url: https://lytx-api.prod7.lv.lytx.com/ecm
+    - url: https://lytx-api.prod8.lv.lytx.com/ecm
   /vehicles/{vehicleId}/odometer:
     get:
       tags:
@@ -352,6 +361,14 @@ paths:
             application/json:
               schema:
                 type: string
+      security:
+      - APIKey: []
+    servers:
+    - url: https://lytx-api.prod2.ph.lytx.com/ecm
+    - url: https://lytx-api.prod5.ph.lytx.com/ecm
+    - url: https://lytx-api.prod6.lv.lytx.com/ecm
+    - url: https://lytx-api.prod7.lv.lytx.com/ecm
+    - url: https://lytx-api.prod8.lv.lytx.com/ecm
   /vehicles:
     get:
       tags:
@@ -412,6 +429,14 @@ paths:
             application/json:
               schema:
                 type: string
+      security:
+      - APIKey: []
+    servers:
+    - url: https://lytx-api.prod2.ph.lytx.com/ecm
+    - url: https://lytx-api.prod5.ph.lytx.com/ecm
+    - url: https://lytx-api.prod6.lv.lytx.com/ecm
+    - url: https://lytx-api.prod7.lv.lytx.com/ecm
+    - url: https://lytx-api.prod8.lv.lytx.com/ecm
   /vehicles/{vehicleId}:
     get:
       tags:
@@ -469,8 +494,21 @@ paths:
               schema:
                 type: string
                 format: binary
+      security:
+      - APIKey: []
+    servers:
+    - url: https://lytx-api.prod2.ph.lytx.com/ecm
+    - url: https://lytx-api.prod5.ph.lytx.com/ecm
+    - url: https://lytx-api.prod6.lv.lytx.com/ecm
+    - url: https://lytx-api.prod7.lv.lytx.com/ecm
+    - url: https://lytx-api.prod8.lv.lytx.com/ecm
 components:
   schemas:
+    VehicleLocationPage:
+      allOf:
+      - $ref: '#/components/schemas/PageOfVehicleLocation'
+      - type: object
+        additionalProperties: false
     Location:
       type: object
       additionalProperties: false
@@ -488,15 +526,17 @@ components:
           description: The date and time of the given trackpoint
           format: date-time
         direction:
-          type: number
+          type:
+          - number
+          - 'null'
           description: The heading of the vehicle.
           format: double
-          nullable: true
         speed:
-          type: number
+          type:
+          - number
+          - 'null'
           description: The speed of the vehicle.
           format: double
-          nullable: true
     VehicleLocation:
       type: object
       additionalProperties: false
@@ -506,29 +546,28 @@ components:
           description: The primary identifier of the vehicle.
           format: int64
         vin:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The VIN number of the vehicle (manually captured).
-          nullable: true
         deviceVin:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The VIN number of the vehicle (device captures).
-          nullable: true
         odometer:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: The Odometer value of the vehicle, in Km.
           format: int32
-          nullable: true
         location:
           description: The location information for the vehicle.
-          type: object
-          nullable: true
+          type:
+          - object
+          - 'null'
           oneOf:
           - $ref: '#/components/schemas/Location'
-    VehicleLocationPage:
-      allOf:
-      - $ref: '#/components/schemas/PageOfVehicleLocation'
-      - type: object
-        additionalProperties: false
     PageOfVehicleLocation:
       type: object
       x-abstract: true
@@ -544,12 +583,21 @@ components:
           type: integer
           format: int32
         vehicles:
-          type: array
+          type:
+          - array
+          - 'null'
           description: The List of vehicles.
-          nullable: true
           items:
             $ref: '#/components/schemas/VehicleLocation'
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
+    APIKey:
+      type: apiKey
+      description: Enter your API key
+      name: X-APIKey
+      in: header
+x-refined-from:
+- lytx-ecm-openapi.yml
+- lytx-legacy.vehicleinfo.aggregator-openapi.yml

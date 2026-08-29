@@ -1,12 +1,10 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Lytx..Management.Api Consent MaintenanceRecords (GO9) API
-  description: 'API for retrieving and updating user consent status, requiring authentication.
-
-    '
+  title: Lytx.Telematics.Fleet.Api - MaintenanceRecords MaintenanceRecords (GO9) API
+  description: API for accessing Maintenance records data, requiring authentication.
   version: 1.0.0
 servers:
-- url: https://api.lytx.com/consent-management
+- url: https://api.lytx.com
 security:
 - bearerAuth: []
 tags:
@@ -23,24 +21,27 @@ paths:
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
         description: Can use either device serial number or device ID.
       - name: limit
         in: query
         required: false
         schema:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           example: '5000'
         description: Number of records to return.
       - name: offset
         in: query
         required: false
         schema:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           example: '1500'
         description: Record to start with.
       - name: startDate
@@ -63,24 +64,27 @@ paths:
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: asc
         description: Sort direction.
       - name: sortProperty
         in: query
         required: false
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: name
         description: Name of property to sort on.
       - name: version
         in: query
         required: true
         schema:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: 1
         description: API version number.
       responses:
@@ -156,117 +160,78 @@ paths:
                     example: An unexpected server error occurred
 components:
   schemas:
+    MaintenanceScheduleResponseViewModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          example: sched-101
+          description: Maintenance schedule identifier.
     CreatedByResponseViewModel:
       type: object
       properties:
         id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: user-789
           description: Identifier of the user who created the record.
     MaintenanceDefectResponseViewModel:
       type: object
       properties:
         id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: def-456
           description: Defect identifier.
         isDefectList:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
           example: true
           description: Indicates whether this belongs to a defect list.
-    MaintenanceRecordsResponseViewModel:
-      type: object
-      properties:
-        deviceId:
-          type: string
-          nullable: true
-          example: 1b33bcbe-15d3-445e-a06f-dda61208ad18
-          description: Unique identifier of the device.
-        vehicleIdentificationNumber:
-          type: string
-          nullable: true
-          example: 1HGCM82633A004352
-          description: Vehicle Identification Number (VIN).
-        id:
-          type: string
-          nullable: true
-          example: maint-12345
-          description: Unique identifier of the maintenance record.
-        maintenanceType:
-          $ref: '#/components/schemas/EventTypeResponseViewModel'
-        dateTime:
-          type: string
-          format: date-time
-          nullable: true
-          example: '2025-01-10T10:30:00.000Z'
-          description: Date and time of the maintenance event.
-        estimateCost:
-          type: number
-          format: decimal
-          nullable: true
-          example: 4500.75
-          description: Estimated cost of maintenance.
-        description:
-          type: string
-          nullable: true
-          example: Brake pad replacement
-          description: Description of the maintenance work.
-        snoozeDate:
-          type: string
-          format: date-time
-          nullable: true
-          example: '2025-02-01T00:00:00.000Z'
-          description: Date until the maintenance reminder is snoozed.
-        currentOdometer:
-          type: integer
-          format: int64
-          nullable: true
-          example: 125000
-          description: Current odometer reading of the vehicle.
-        schedule:
-          $ref: '#/components/schemas/MaintenanceScheduleResponseViewModel'
-        updateDate:
-          type: string
-          format: date-time
-          nullable: true
-          example: '2025-01-12T08:15:00.000Z'
-          description: Last updated date of the maintenance record.
     EventTypeResponseViewModel:
       type: object
       properties:
         id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: evt-001
           description: Unique identifier of the event type.
         name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: Oil Change
           description: Name of the maintenance type.
         source:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: System
           description: Source of the event.
         customSource:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: UserDefined
           description: Custom source of the event.
         typeDescription:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: Scheduled vehicle oil change
           description: Description of the event type.
         labels:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
-          nullable: true
           example:
           - Engine
           - Routine
@@ -276,18 +241,77 @@ components:
         defect:
           $ref: '#/components/schemas/MaintenanceDefectResponseViewModel'
         sourceType:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: Maintenance
           description: Source type of the event.
-    MaintenanceScheduleResponseViewModel:
+    MaintenanceRecordsResponseViewModel:
       type: object
       properties:
+        deviceId:
+          type:
+          - string
+          - 'null'
+          example: 1b33bcbe-15d3-445e-a06f-dda61208ad18
+          description: Unique identifier of the device.
+        vehicleIdentificationNumber:
+          type:
+          - string
+          - 'null'
+          example: 1HGCM82633A004352
+          description: Vehicle Identification Number (VIN).
         id:
-          type: string
-          nullable: true
-          example: sched-101
-          description: Maintenance schedule identifier.
+          type:
+          - string
+          - 'null'
+          example: maint-12345
+          description: Unique identifier of the maintenance record.
+        maintenanceType:
+          $ref: '#/components/schemas/EventTypeResponseViewModel'
+        dateTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2025-01-10T10:30:00.000Z'
+          description: Date and time of the maintenance event.
+        estimateCost:
+          type:
+          - number
+          - 'null'
+          format: decimal
+          example: 4500.75
+          description: Estimated cost of maintenance.
+        description:
+          type:
+          - string
+          - 'null'
+          example: Brake pad replacement
+          description: Description of the maintenance work.
+        snoozeDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2025-02-01T00:00:00.000Z'
+          description: Date until the maintenance reminder is snoozed.
+        currentOdometer:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 125000
+          description: Current odometer reading of the vehicle.
+        schedule:
+          $ref: '#/components/schemas/MaintenanceScheduleResponseViewModel'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2025-01-12T08:15:00.000Z'
+          description: Last updated date of the maintenance record.
   securitySchemes:
     bearerAuth:
       type: http
