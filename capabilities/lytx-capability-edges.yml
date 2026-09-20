@@ -11,7 +11,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 14
+edge_count: 16
 edges:
 - tag: HOS (DriveCam)
   spec_file: lytx-hos-drivecam-api-openapi.yml
@@ -127,6 +127,30 @@ edges:
   evidence: '"Get Telematics Diagnostics Data"; schema "DiagnosticResponseViewModel"'
   reason: Vehicle diagnostic data captured from telematics devices reflects monitoring of asset condition;
     could alternatively serve maintenance management.
+- tag: Safety (DriveCam)
+  spec_file: lytx-safety-drivecam-api-openapi.yml
+  capability_id: BC-730
+  capability_id_l1: BC-730
+  capability_name: Health, Safety & Environment Management
+  confidence: 0.7
+  evidence: GET /safety/events/behaviors  Events_GetEventBehaviors  Return List of Possible Event Behaviors;
+    GET /safety/events/dynamicRisks; schemas SafetyEvent, SafetyEventBehavior, SafetyEventDynamicRisks
+  reason: Operations expose captured driving safety events with risky-behaviour classification and risk
+    scoring, which realises occupational safety management for the fleet workforce. L2 left null because
+    the evidence sits between behavioural Safety Management and Incident & Investigation Management.
+  recovered_from: sweep-20260829T005356Z-edges.json
+- tag: Safety Events (DriveCam)
+  spec_file: lytx-safety-events-drivecam-api-openapi.yml
+  capability_id: BC-730
+  capability_id_l1: BC-730
+  capability_name: Health, Safety & Environment Management
+  confidence: 0.7
+  evidence: GET /events/behaviors  Events_GetEventBehaviors  Return List of Possible Event Behaviors;
+    SafetyEvent, SafetyEventDynamicRisks
+  reason: 'Same safety-event surface as the Safety tag on unprefixed paths: retrieval of driver safety
+    events, their triggers, behaviours and dynamic risks, supporting fleet safety programmes. L2 withheld
+    as the evidence does not decide between behavioural safety and incident investigation.'
+  recovered_from: sweep-20260829T005356Z-edges.json
 - tag: Users (DriveCam)
   spec_file: lytx-users-drivecam-api-openapi.yml
   capability_id: BC-620.20
