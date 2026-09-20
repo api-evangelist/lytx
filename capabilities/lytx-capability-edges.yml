@@ -1,0 +1,150 @@
+slug: lytx
+provider: Lytx
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Transportation & Logistics
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 14
+edges:
+- tag: HOS (DriveCam)
+  spec_file: lytx-hos-drivecam-api-openapi.yml
+  capability_id: BC-2440.30
+  capability_id_l1: BC-2440
+  capability_name: Hours-of-Service and Fatigue Management
+  confidence: 0.9
+  evidence: GET /v1/hos "Get HOS Logs for all Users"; schemas HosLogByUser, HosLogByCompany, HosLog
+  reason: Hours-of-Service logs per driver/company are the regulatory HOS record for commercial drivers,
+    squarely Hours-of-Service and Fatigue Management.
+- tag: HOS (GO9)
+  spec_file: lytx-hos-go9-api-openapi.yml
+  capability_id: BC-2440.30
+  capability_id_l1: BC-2440
+  capability_name: Hours-of-Service and Fatigue Management
+  confidence: 0.88
+  evidence: GET /plus/v1/hos "Get Telematics HOS Data"; schemas HOSResponseViewModel, AnnotationLogResponseViewModel
+  reason: Telematics hours-of-service records with annotation logs correspond to driver HOS compliance
+    records.
+- tag: MaintenanceRecords (GO9)
+  spec_file: lytx-maintenancerecords-go9-api-openapi.yml
+  capability_id: BC-2430.20
+  capability_id_l1: BC-2430
+  capability_name: Fleet Maintenance Management
+  confidence: 0.85
+  evidence: GET /plus/v1/maintenancerecords "Get Telematics Maintenance Records Data"; schemas MaintenanceScheduleResponseViewModel,
+    MaintenanceDefectResponseViewModel
+  reason: Maintenance schedules and defect records for fleet vehicles map directly to Fleet Maintenance
+    Management.
+- tag: FleetUtilization (GO9)
+  spec_file: lytx-fleetutilization-go9-api-openapi.yml
+  capability_id: BC-2430.60
+  capability_id_l1: BC-2430
+  capability_name: Fleet Utilisation and Performance Management
+  confidence: 0.82
+  evidence: GET /plus/v1/fleetutilization "Get Telematics Fleet Utilization Data"; schemas FleetUtilizationResponseViewModel,
+    UtilizationMetricsResponseViewModel
+  reason: Explicitly exposes fleet utilisation metrics for vehicles, matching measurement of asset utilisation
+    to drive fleet decisions.
+- tag: ECM (DriveCam)
+  spec_file: lytx-ecm-drivecam-api-openapi.yml
+  capability_id: BC-2430.40
+  capability_id_l1: BC-2430
+  capability_name: Fleet Telematics and Monitoring
+  confidence: 0.8
+  evidence: '"Retrieve Location of Specified Vehicle"; "Get ECM Data for Specified Vehicle" (odometer)'
+  reason: Vehicle location, odometer and engine data retrieval is squarely continuous monitoring of asset
+    position and condition.
+- tag: DVIR (DriveCam)
+  spec_file: lytx-dvir-drivecam-api-openapi.yml
+  capability_id: BC-2430.20
+  capability_id_l1: BC-2430
+  capability_name: Fleet Maintenance Management
+  confidence: 0.78
+  evidence: Retrieve All DVIRs; Retrieve List of Inspection Lists; Retrieve List of Inspection Schedules;
+    schemas Dvir, InspectionLists, Schedules
+  reason: Driver Vehicle Inspection Reports with inspection lists and schedules are vehicle inspection/defect
+    records feeding fleet maintenance; could also be read as compliance, hence 0.78.
+- tag: DeviceStatusInfo (GO9)
+  spec_file: lytx-devicestatusinfo-go9-api-openapi.yml
+  capability_id: BC-2430.40
+  capability_id_l1: BC-2430
+  capability_name: Fleet Telematics and Monitoring
+  confidence: 0.78
+  evidence: '"Get Telematics Device Status Info Data"; schemas "DeviceStatusInfoResponseViewModel", "LastTripResponseViewModel"'
+  reason: Exposes current telematics device/vehicle status and last-trip information — continuous monitoring
+    of mobile asset position and condition.
+- tag: FaultData (GO9)
+  spec_file: lytx-faultdata-go9-api-openapi.yml
+  capability_id: BC-2430.40
+  capability_id_l1: BC-2430
+  capability_name: Fleet Telematics and Monitoring
+  confidence: 0.78
+  evidence: GET /plus/v1/faultdata "Get Telematics Fault Data"; schemas FailureModeResponseViewModel,
+    DiagnosticResponseViewModel, FaultStatusResponseViewModel
+  reason: Vehicle diagnostic trouble/fault codes streamed from telematics devices — continuous monitoring
+    of mobile asset condition to inform maintenance and operation, i.e. Fleet Telematics and Monitoring.
+    Some overlap with fleet maintenance, hence not maximal confidence.
+- tag: GPS (DriveCam)
+  spec_file: lytx-gps-drivecam-api-openapi.yml
+  capability_id: BC-2430.40
+  capability_id_l1: BC-2430
+  capability_name: Fleet Telematics and Monitoring
+  confidence: 0.75
+  evidence: GET /v1/gps "Retrieve GPS Points"
+  reason: Vendor is a video telematics/GPS tracking provider for commercial fleets; retrieving GPS points
+    is asset position monitoring (fleet telematics). Thin spec (no schemas), so moderate confidence; could
+    alternatively serve shipment visibility.
+- tag: GPS (GO9)
+  spec_file: lytx-gps-go9-api-openapi.yml
+  capability_id: BC-2430.40
+  capability_id_l1: BC-2430
+  capability_name: Fleet Telematics and Monitoring
+  confidence: 0.75
+  evidence: GET /plus/v1/gps "Get Telematics GPS Data"
+  reason: Telematics GPS position data for fleet vehicles — continuous monitoring of asset position. Thin
+    surface, moderate confidence.
+- tag: ECM
+  spec_file: lytx-ecm-api-openapi.yml
+  capability_id: BC-2430.40
+  capability_id_l1: BC-2430
+  capability_name: Fleet Telematics and Monitoring
+  confidence: 0.72
+  evidence: '"Retrieve ECM data (V2 - Enhanced with Sample Type filtering)"; schemas "EcmSample", "EcmDevice"'
+  reason: Engine control module samples from vehicle devices are telematics condition/performance monitoring
+    of mobile assets.
+- tag: Diagnostics (GO9)
+  spec_file: lytx-diagnostics-go9-api-openapi.yml
+  capability_id: BC-2430.40
+  capability_id_l1: BC-2430
+  capability_name: Fleet Telematics and Monitoring
+  confidence: 0.7
+  evidence: '"Get Telematics Diagnostics Data"; schema "DiagnosticResponseViewModel"'
+  reason: Vehicle diagnostic data captured from telematics devices reflects monitoring of asset condition;
+    could alternatively serve maintenance management.
+- tag: Users (DriveCam)
+  spec_file: lytx-users-drivecam-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: '"Create User", "Retrieve List of Possible Roles for User", "Patch Update User''s Roles";
+    schemas GroupRole, RoleDefinition'
+  reason: Platform user account and role administration — identity and access management plumbing for
+    the telematics platform, not HR or driver-qualification data.
+- tag: Vehicles (DriveCam)
+  spec_file: lytx-vehicles-drivecam-api-openapi.yml
+  capability_id: BC-2430
+  capability_id_l1: BC-2430
+  capability_name: Fleet & Mobile Asset Management
+  confidence: 0.7
+  evidence: '"Adds New Vehicle", "Update Vehicle with Specified ID", "Delete Vehicle with Specified ID",
+    "Retrieve List of Possible Vehicle Types"'
+  reason: CRUD over the fleet vehicle register including types, statuses and seatbelt configuration —
+    mobile asset master records under Fleet & Mobile Asset Management; no single sub-capability is named
+    by the operations.
