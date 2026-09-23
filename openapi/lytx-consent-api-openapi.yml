@@ -1,9 +1,7 @@
 openapi: 3.2.0
 info:
   title: Lytx..Management.Api Consent API
-  description: 'API for retrieving and updating user consent status, requiring authentication.
-
-    '
+  description: API for retrieving and updating user consent status, requiring authentication.
   version: 1.0.0
 servers:
 - url: https://api.lytx.com/consent-management
@@ -19,9 +17,7 @@ paths:
       description: 'Retrieve the current consent status for a user across all products. Returns one consent record per product for the user.
 
 
-        **IMPORTANT:** This API is only available if your company and Lytx, Inc. has executed an Addendum to Master Purchase Agreement (Facial ID and Consent Management). Your company is solely responsible for providing any necessary notices and/or obtaining all necessary consents for the collection and processing of video, biometric and/or other data processed by Lytx to perform the Facial ID Service which may be required under applicable law.
-
-        '
+        **IMPORTANT:** This API is only available if your company and Lytx, Inc. has executed an Addendum to Master Purchase Agreement (Facial ID and Consent Management). Your company is solely responsible for providing any necessary notices and/or obtaining all necessary consents for the collection and processing of video, biometric and/or other data processed by Lytx to perform the Facial ID Service which may be required under applicable law.'
       tags:
       - Consent
       parameters:
@@ -129,9 +125,7 @@ paths:
       description: 'Update the consent status for one or more users (with Driver role) for a specific product. Up to 2000 users can be updated in a single call.
 
 
-        **IMPORTANT:** This API is only available if your company and Lytx, Inc. has executed an Addendum to Master Purchase Agreement (Facial ID and Consent Management). Your company is solely responsible for providing any necessary notices and/or obtaining all necessary consents for the collection and processing of video, biometric and/or other data processed by Lytx to perform the Facial ID Service which may be required under applicable law.
-
-        '
+        **IMPORTANT:** This API is only available if your company and Lytx, Inc. has executed an Addendum to Master Purchase Agreement (Facial ID and Consent Management). Your company is solely responsible for providing any necessary notices and/or obtaining all necessary consents for the collection and processing of video, biometric and/or other data processed by Lytx to perform the Facial ID Service which may be required under applicable law.'
       tags:
       - Consent
       requestBody:
@@ -217,6 +211,48 @@ paths:
                 message: An unexpected error occurred.
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Bad Request
+        message:
+          type: string
+          example: An unexpected error occurred.
+    ConsentStatusResponseViewModel:
+      type: object
+      properties:
+        userId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          example: 550e8400-e29b-41d4-a716-446655440000
+          description: Unique identifier of the user.
+        employeeId:
+          type:
+          - string
+          - 'null'
+          example: EMP-9876
+          description: Employee identifier associated with the user.
+        productName:
+          type: string
+          example: facialId
+          description: Human-readable product name. Only Facial ID product is supported as of today.
+        consentStatus:
+          type:
+          - string
+          - 'null'
+          example: Obtained
+          description: Current driver consent status for this product.
+        consentDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-15T10:30:00.000Z'
+          description: Date and time consent was given or last updated.
     UpdateConsentResponseViewModel:
       type: object
       properties:
@@ -267,48 +303,6 @@ components:
             - `Only ''FacialId'' is allowed for ProductName.`
 
             '
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          example: Bad Request
-        message:
-          type: string
-          example: An unexpected error occurred.
-    ConsentStatusResponseViewModel:
-      type: object
-      properties:
-        userId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-          example: 550e8400-e29b-41d4-a716-446655440000
-          description: Unique identifier of the user.
-        employeeId:
-          type:
-          - string
-          - 'null'
-          example: EMP-9876
-          description: Employee identifier associated with the user.
-        productName:
-          type: string
-          example: facialId
-          description: Human-readable product name. Only Facial ID product is supported as of today.
-        consentStatus:
-          type:
-          - string
-          - 'null'
-          example: Obtained
-          description: Current driver consent status for this product.
-        consentDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2026-03-15T10:30:00.000Z'
-          description: Date and time consent was given or last updated.
     UpdateConsentRequestViewModel:
       type: object
       required:

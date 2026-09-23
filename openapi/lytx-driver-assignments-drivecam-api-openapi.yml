@@ -187,12 +187,45 @@ paths:
               example:
                 Error: Internal Server Error
                 Message: The requested operation cannot be performed.
+      operationId: getV1DriverAssignments
+      x-operation-id-source: derived
   /v1/driver-assignments/dispatch:
     post:
       tags:
       - Driver Assignments (DriveCam)
       summary: Submit Dispatch Schedule
-      description: "Schedules drivers to specific vehicles over specified periods, facilitating efficient fleet management. Unlike the Driver Assignment API, which tracks actual driver usage of vehicles, this API focuses solely on planned schedules.\n      \nBelow is the reference list of validation response codes that can be found in response after submitting dispatch schedule:\n- \"SUCCESS\" - Success\n- \"E_UNKNOWN\" - Unknown error processing entry\n- \"E_NO_MATCH\" - No matching entry found\n- \"E_NO_MATCH_DRIVER\" - No matching entry found for Driver\n- \"E_NO_MATCH_VEHICLE\" - No matching entry found for Vehicle\n- \"E_ACCESS_DENIED\" - Access has been denied to one or more objects in this operation\n- \"E_CREATE_USER_ACCESS_DENIED\" - Access has been denied while attempting to create a new user object\n- \"E_DUPLICATE_USERNAME_OR_EMPLOYEENUM\" - The UserName field or EmployeeId field matches an existing active user\n- \"E_CREATE_USER_INCLUDE_SPECIAL_CHARACTER - The FirstName field, LastName field or EmployeeId field include special character\n- \"I_CREATE_USER_SUCCESS\" - The user was successfully created\n- \"I_DUPLICATE_RULE\" - A rule was added to the system that is a duplicate of an existing rule.  The previous rule has been removed\n- \"E_CONFLICTING_SCHEDULE\" - Another schedule with similar schedule details was found, or was recently processed\n- \"E_FIRSTNAME_OR_LASTNAME_NOT_ALLOW_NULL\" - The FirstName and LastName fields are required while auto adding driver\n- \"E_DUPLICATE_VEHICLES\" - Could not identify the vehicle because there are multiple vehicles using the same vehicle name in company"
+      description: 'Schedules drivers to specific vehicles over specified periods, facilitating efficient fleet management. Unlike the Driver Assignment API, which tracks actual driver usage of vehicles, this API focuses solely on planned schedules.
+
+
+        Below is the reference list of validation response codes that can be found in response after submitting dispatch schedule:
+
+        - "SUCCESS" - Success
+
+        - "E_UNKNOWN" - Unknown error processing entry
+
+        - "E_NO_MATCH" - No matching entry found
+
+        - "E_NO_MATCH_DRIVER" - No matching entry found for Driver
+
+        - "E_NO_MATCH_VEHICLE" - No matching entry found for Vehicle
+
+        - "E_ACCESS_DENIED" - Access has been denied to one or more objects in this operation
+
+        - "E_CREATE_USER_ACCESS_DENIED" - Access has been denied while attempting to create a new user object
+
+        - "E_DUPLICATE_USERNAME_OR_EMPLOYEENUM" - The UserName field or EmployeeId field matches an existing active user
+
+        - "E_CREATE_USER_INCLUDE_SPECIAL_CHARACTER - The FirstName field, LastName field or EmployeeId field include special character
+
+        - "I_CREATE_USER_SUCCESS" - The user was successfully created
+
+        - "I_DUPLICATE_RULE" - A rule was added to the system that is a duplicate of an existing rule. The previous rule has been removed
+
+        - "E_CONFLICTING_SCHEDULE" - Another schedule with similar schedule details was found, or was recently processed
+
+        - "E_FIRSTNAME_OR_LASTNAME_NOT_ALLOW_NULL" - The FirstName and LastName fields are required while auto adding driver
+
+        - "E_DUPLICATE_VEHICLES" - Could not identify the vehicle because there are multiple vehicles using the same vehicle name in company'
       requestBody:
         required: true
         content:
@@ -228,6 +261,8 @@ paths:
               example:
                 Error: Internal Server Error
                 Message: The requested operation cannot be performed.
+      operationId: postV1DriverAssignmentsDispatch
+      x-operation-id-source: derived
   /v1/driver-assignments/status:
     get:
       tags:
@@ -286,6 +321,8 @@ paths:
               example:
                 Error: Internal Server Error
                 Message: The requested operation cannot be performed.
+      operationId: getV1DriverAssignmentsStatus
+      x-operation-id-source: derived
   /v1/driver-assignments/result:
     get:
       tags:
@@ -368,15 +405,28 @@ paths:
               example:
                 Error: Internal Server Error
                 Message: The requested operation cannot be performed.
+      operationId: getV1DriverAssignmentsResult
+      x-operation-id-source: derived
 components:
   schemas:
-    ErrorResponse:
+    DriverDispatchRequest:
       type: object
       properties:
-        error:
-          type: string
-        message:
-          type: string
+        validate:
+          type: boolean
+          description: Default to false. if set to true, only validate the submission request otherwise validate and process the submission logs
+          example: false
+        autoAddDriver:
+          type: boolean
+          description: "Default to true. \n\nIf driver is not found based on userIdentifier and autoAddDriver is set to true, It will try to add new driver based on information provided in user object.\n\nIf autoadddriver is set to false and driver not found based on userIdentifier then no new driver is created\n"
+          example: true
+        entries:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/DispatchEntry'
+      additionalProperties: false
     DriverDispatchResponse:
       type: object
       properties:
@@ -391,6 +441,43 @@ components:
               items:
                 $ref: '#/components/schemas/DispatchEntryResponse'
       additionalProperties: false
+    DispatchEntryResponse:
+      type: object
+      properties:
+        submissionId:
+          type: integer
+          example: 123
+          description: ID of the driver schedule submission.
+        employeeId:
+          type: string
+          example: emp123
+          description: Employee identification number of the driver, provided by the driver’s employer.
+        driverFirstName:
+          type: string
+          example: John
+          description: Driver's first name.
+        driverLastName:
+          type: string
+          example: Doe
+          description: Driver's last name.
+        vehicleName:
+          type: string
+          example: Toyota
+          description: Name of the vehicle to which the driver was scheduled to drive.
+        responseCodeId:
+          type: string
+          example: SUCCESS
+          description: Validation response of the schedule submission entry.
+        startDate:
+          type: string
+          format: date-time
+          example: '2023-09-10T00:00:00Z'
+          description: Date and time when the driver was scheduled to start driving the vehicle.
+        endDate:
+          type: string
+          format: date-time
+          example: '2023-09-10T00:00:00Z'
+          description: Date and time when the driver was scheduled to stop driving the vehicle.
     DispatchEntry:
       type: object
       properties:
@@ -433,61 +520,13 @@ components:
           format: date-time
           description: Schedule end date-time
       additionalProperties: false
-    DispatchEntryResponse:
+    ErrorResponse:
       type: object
       properties:
-        submissionId:
-          type: integer
-          example: 123
-          description: ID of the driver schedule submission.
-        employeeId:
+        error:
           type: string
-          example: emp123
-          description: Employee identification number of the driver, provided by the driver’s employer.
-        driverFirstName:
+        message:
           type: string
-          example: John
-          description: Driver's first name.
-        driverLastName:
-          type: string
-          example: Doe
-          description: Driver's last name.
-        vehicleName:
-          type: string
-          example: Toyota
-          description: Name of the vehicle to which the driver was scheduled to drive.
-        responseCodeId:
-          type: string
-          example: SUCCESS
-          description: Validation response of the schedule submission entry.
-        startDate:
-          type: string
-          format: date-time
-          example: '2023-09-10T00:00:00Z'
-          description: Date and time when the driver was scheduled to start driving the vehicle.
-        endDate:
-          type: string
-          format: date-time
-          example: '2023-09-10T00:00:00Z'
-          description: Date and time when the driver was scheduled to stop driving the vehicle.
-    DriverDispatchRequest:
-      type: object
-      properties:
-        validate:
-          type: boolean
-          description: Default to false. if set to true, only validate the submission request otherwise validate and process the submission logs
-          example: false
-        autoAddDriver:
-          type: boolean
-          description: "Default to true. \n\nIf driver is not found based on userIdentifier and autoAddDriver is set to true, It will try to add new driver based on information provided in user object.\n\nIf autoadddriver is set to false and driver not found based on userIdentifier then no new driver is created\n"
-          example: true
-        entries:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/DispatchEntry'
-      additionalProperties: false
   securitySchemes:
     bearerAuth:
       type: http

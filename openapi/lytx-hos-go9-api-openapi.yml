@@ -158,8 +158,138 @@ paths:
                   message:
                     type: string
                     example: An unexpected server error occurred
+      operationId: getPlusV1Hos
+      x-operation-id-source: derived
 components:
   schemas:
+    HOSResponseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          example: hos1f6e56d-1234-4567-89ab-cdef12345678
+          description: Unique ID of the HOS record.
+        annotations:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnnotationLogResponseViewModel'
+        coDrivers:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserResponseViewModel'
+        dateTime:
+          type: string
+          format: date-time
+          example: '2025-05-29T19:18:26.063Z'
+          description: Date and time of the HOS record.
+        deferralMinutes:
+          type:
+          - number
+          - 'null'
+          format: double
+          example: 15
+          description: Minutes of deferral, if any.
+        deferralStatus:
+          type: string
+          example: Active
+          description: Status of deferral.
+        device:
+          $ref: '#/components/schemas/DeviceResponseViewModel'
+        driver:
+          $ref: '#/components/schemas/UserResponseViewModel'
+        editDateTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2025-05-29T20:18:26.063Z'
+          description: Date/time when edit was made.
+        editRequestedByUser:
+          $ref: '#/components/schemas/UserResponseViewModel'
+        engineHours:
+          type:
+          - number
+          - 'null'
+          format: double
+          example: 5.5
+          description: Engine hours recorded.
+        eventCode:
+          type:
+          - integer
+          - 'null'
+          example: 101
+          description: Event code.
+        eventRecordStatus:
+          type:
+          - integer
+          - 'null'
+          example: 1
+          description: Status of the event record.
+        eventType:
+          type:
+          - integer
+          - 'null'
+          example: 2
+          description: Type of event.
+        isIgnored:
+          type:
+          - boolean
+          - 'null'
+          example: false
+          description: Indicates if the event is ignored.
+        isTransitioning:
+          type:
+          - boolean
+          - 'null'
+          example: false
+          description: Indicates if the event is transitioning.
+        location:
+          type:
+          - object
+          - 'null'
+          description: Location information.
+        malfunction:
+          type: string
+          example: None
+          description: Malfunction status.
+        odometer:
+          type:
+          - number
+          - 'null'
+          format: double
+          example: 12550
+          description: Odometer reading.
+        origin:
+          type: string
+          example: Truck
+          description: Origin of the record.
+        parentId:
+          type: string
+          example: parent123
+          description: Parent record ID.
+        sequence:
+          type: string
+          example: '1'
+          description: Sequence number.
+        state:
+          type: string
+          example: ON_DUTY
+          description: Current state.
+        status:
+          type: string
+          example: Active
+          description: Status of the record.
+        verifyDateTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2025-05-29T21:18:26.063Z'
+          description: Verification date/time.
+        version:
+          type: string
+          example: v1.0
+          description: Version of the HOS record.
     DeviceResponseViewModel:
       type: object
       properties:
@@ -307,6 +437,31 @@ components:
           - 'null'
           example: v1.2.3
           description: Version information of the device.
+    AnnotationLogResponseViewModel:
+      type: object
+      properties:
+        comment:
+          type: string
+          example: Driver noted a delay due to traffic.
+          description: Annotation comment.
+        dateTime:
+          type: string
+          format: date-time
+          example: '2025-05-29T19:20:26.063Z'
+          description: Date and time of the annotation.
+        driver:
+          type:
+          - object
+          - 'null'
+          description: Driver associated with this annotation.
+        id:
+          type: string
+          example: ann1f6e56d-1234-4567-89ab-cdef12345678
+          description: Unique ID of the annotation.
+        version:
+          type: string
+          example: v1.0
+          description: Version of the annotation.
     GroupResponseViewModel:
       type: object
       properties:
@@ -335,159 +490,6 @@ components:
           description: List of child groups.
         color:
           $ref: '#/components/schemas/GroupResponseViewModel'
-    HOSResponseViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-          example: hos1f6e56d-1234-4567-89ab-cdef12345678
-          description: Unique ID of the HOS record.
-        annotations:
-          type: array
-          items:
-            $ref: '#/components/schemas/AnnotationLogResponseViewModel'
-        coDrivers:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserResponseViewModel'
-        dateTime:
-          type: string
-          format: date-time
-          example: '2025-05-29T19:18:26.063Z'
-          description: Date and time of the HOS record.
-        deferralMinutes:
-          type:
-          - number
-          - 'null'
-          format: double
-          example: 15
-          description: Minutes of deferral, if any.
-        deferralStatus:
-          type: string
-          example: Active
-          description: Status of deferral.
-        device:
-          $ref: '#/components/schemas/DeviceResponseViewModel'
-        driver:
-          $ref: '#/components/schemas/UserResponseViewModel'
-        editDateTime:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2025-05-29T20:18:26.063Z'
-          description: Date/time when edit was made.
-        editRequestedByUser:
-          $ref: '#/components/schemas/UserResponseViewModel'
-        engineHours:
-          type:
-          - number
-          - 'null'
-          format: double
-          example: 5.5
-          description: Engine hours recorded.
-        eventCode:
-          type:
-          - integer
-          - 'null'
-          example: 101
-          description: Event code.
-        eventRecordStatus:
-          type:
-          - integer
-          - 'null'
-          example: 1
-          description: Status of the event record.
-        eventType:
-          type:
-          - integer
-          - 'null'
-          example: 2
-          description: Type of event.
-        isIgnored:
-          type:
-          - boolean
-          - 'null'
-          example: false
-          description: Indicates if the event is ignored.
-        isTransitioning:
-          type:
-          - boolean
-          - 'null'
-          example: false
-          description: Indicates if the event is transitioning.
-        location:
-          type:
-          - object
-          - 'null'
-          description: Location information.
-        malfunction:
-          type: string
-          example: None
-          description: Malfunction status.
-        odometer:
-          type:
-          - number
-          - 'null'
-          format: double
-          example: 12550
-          description: Odometer reading.
-        origin:
-          type: string
-          example: Truck
-          description: Origin of the record.
-        parentId:
-          type: string
-          example: parent123
-          description: Parent record ID.
-        sequence:
-          type: string
-          example: '1'
-          description: Sequence number.
-        state:
-          type: string
-          example: ON_DUTY
-          description: Current state.
-        status:
-          type: string
-          example: Active
-          description: Status of the record.
-        verifyDateTime:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2025-05-29T21:18:26.063Z'
-          description: Verification date/time.
-        version:
-          type: string
-          example: v1.0
-          description: Version of the HOS record.
-    AnnotationLogResponseViewModel:
-      type: object
-      properties:
-        comment:
-          type: string
-          example: Driver noted a delay due to traffic.
-          description: Annotation comment.
-        dateTime:
-          type: string
-          format: date-time
-          example: '2025-05-29T19:20:26.063Z'
-          description: Date and time of the annotation.
-        driver:
-          type:
-          - object
-          - 'null'
-          description: Driver associated with this annotation.
-        id:
-          type: string
-          example: ann1f6e56d-1234-4567-89ab-cdef12345678
-          description: Unique ID of the annotation.
-        version:
-          type: string
-          example: v1.0
-          description: Version of the annotation.
     UserResponseViewModel:
       type: object
       properties:

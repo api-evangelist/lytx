@@ -1,15 +1,16 @@
 openapi: 3.2.0
 info:
-  title: Lytx Vehicles (DriveCam) API
-  version: '1.0'
-  description: 'Operations tagged Vehicles (DriveCam) across 2 of this provider''s published API definitions: lytx-legacy.vehicles-openapi.yml, lytx-vehicles-openapi.yml. Each path carries the servers of the definition it was published in.'
+  title: Vehicles (DriveCam) API
+  version: 1.0.0
+  description: Legacy External Vehicles API. Uses obsolete X-APIKey authentication.
 servers:
 - url: https://lytx-api.prod2.ph.lytx.com/vehicles
 - url: https://lytx-api.prod5.ph.lytx.com/vehicles
 - url: https://lytx-api.prod6.lv.lytx.com/vehicles
 - url: https://lytx-api.prod7.lv.lytx.com/vehicles
 - url: https://lytx-api.prod8.lv.lytx.com/vehicles
-- url: https://api.lytx.com/v0/vehicles
+security:
+- APIKey: []
 tags:
 - name: Vehicles (DriveCam)
   description: Legacy External Vehicles API. Uses obsolete X-APIKey authentication.
@@ -47,8 +48,6 @@ paths:
           description: Requested operation cannot be performed.
         '503':
           description: Requested operation cannot be performed. Try again later.
-      security:
-      - APIKey: []
     get:
       tags:
       - Vehicles (DriveCam)
@@ -120,14 +119,6 @@ paths:
           description: Requested operation cannot be performed.
         '503':
           description: Requested operation cannot be performed. Try again later.
-      security:
-      - APIKey: []
-    servers:
-    - url: https://lytx-api.prod2.ph.lytx.com/vehicles
-    - url: https://lytx-api.prod5.ph.lytx.com/vehicles
-    - url: https://lytx-api.prod6.lv.lytx.com/vehicles
-    - url: https://lytx-api.prod7.lv.lytx.com/vehicles
-    - url: https://lytx-api.prod8.lv.lytx.com/vehicles
   /{id}:
     patch:
       tags:
@@ -174,8 +165,6 @@ paths:
           description: Requested operation cannot be performed.
         '503':
           description: Requested operation cannot be performed. Try again later.
-      security:
-      - APIKey: []
     delete:
       tags:
       - Vehicles (DriveCam)
@@ -207,8 +196,6 @@ paths:
           description: Requested operation cannot be performed.
         '503':
           description: Requested operation cannot be performed. Try again later.
-      security:
-      - APIKey: []
     get:
       tags:
       - Vehicles (DriveCam)
@@ -244,14 +231,6 @@ paths:
           description: Requested operation cannot be performed.
         '503':
           description: Requested operation cannot be performed. Try again later.
-      security:
-      - APIKey: []
-    servers:
-    - url: https://lytx-api.prod2.ph.lytx.com/vehicles
-    - url: https://lytx-api.prod5.ph.lytx.com/vehicles
-    - url: https://lytx-api.prod6.lv.lytx.com/vehicles
-    - url: https://lytx-api.prod7.lv.lytx.com/vehicles
-    - url: https://lytx-api.prod8.lv.lytx.com/vehicles
   /statuses:
     get:
       tags:
@@ -277,14 +256,6 @@ paths:
           description: Requested operation cannot be performed.
         '503':
           description: Requested operation cannot be performed. Try again later.
-      security:
-      - APIKey: []
-    servers:
-    - url: https://lytx-api.prod2.ph.lytx.com/vehicles
-    - url: https://lytx-api.prod5.ph.lytx.com/vehicles
-    - url: https://lytx-api.prod6.lv.lytx.com/vehicles
-    - url: https://lytx-api.prod7.lv.lytx.com/vehicles
-    - url: https://lytx-api.prod8.lv.lytx.com/vehicles
   /types:
     get:
       tags:
@@ -308,14 +279,6 @@ paths:
           description: Requested operation cannot be performed.
         '503':
           description: Requested operation cannot be performed. Try again later.
-      security:
-      - APIKey: []
-    servers:
-    - url: https://lytx-api.prod2.ph.lytx.com/vehicles
-    - url: https://lytx-api.prod5.ph.lytx.com/vehicles
-    - url: https://lytx-api.prod6.lv.lytx.com/vehicles
-    - url: https://lytx-api.prod7.lv.lytx.com/vehicles
-    - url: https://lytx-api.prod8.lv.lytx.com/vehicles
   /seatbelt-types:
     get:
       tags:
@@ -341,14 +304,6 @@ paths:
           description: Requested operation cannot be performed.
         '503':
           description: Requested operation cannot be performed. Try again later.
-      security:
-      - APIKey: []
-    servers:
-    - url: https://lytx-api.prod2.ph.lytx.com/vehicles
-    - url: https://lytx-api.prod5.ph.lytx.com/vehicles
-    - url: https://lytx-api.prod6.lv.lytx.com/vehicles
-    - url: https://lytx-api.prod7.lv.lytx.com/vehicles
-    - url: https://lytx-api.prod8.lv.lytx.com/vehicles
   /country-subdivisions:
     get:
       tags:
@@ -387,37 +342,34 @@ paths:
           description: Requested operation cannot be performed.
         '503':
           description: Requested operation cannot be performed. Try again later.
-      security:
-      - APIKey: []
-    servers:
-    - url: https://lytx-api.prod2.ph.lytx.com/vehicles
-    - url: https://lytx-api.prod5.ph.lytx.com/vehicles
-    - url: https://lytx-api.prod6.lv.lytx.com/vehicles
-    - url: https://lytx-api.prod7.lv.lytx.com/vehicles
-    - url: https://lytx-api.prod8.lv.lytx.com/vehicles
 components:
   schemas:
-    VehicleStatus:
+    AddedVehicleResponse:
       type: object
       additionalProperties: false
       required:
-      - id
-      - description
-      - creationDate
+      - vehicleId
       properties:
-        id:
+        vehicleId:
+          type: string
+          description: ID of the created vehicle.
+          format: guid
+          minLength: 1
+    VehiclesResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        vehicles:
+          type:
+          - array
+          - 'null'
+          description: Received vehicles.
+          items:
+            $ref: '#/components/schemas/Vehicle'
+        totalResults:
           type: integer
-          description: ID of the status.
-          format: int64
-        description:
-          type: string
-          description: Description of the status.
-          minLength: 1
-        creationDate:
-          type: string
-          description: Date when the status was created.
-          format: date-time
-          minLength: 1
+          description: Total number of vehicles in database.
+          format: int32
     CountrySubdivision:
       type: object
       additionalProperties: false
@@ -438,113 +390,88 @@ components:
           type: string
           description: Code of the country subdivision.
           minLength: 1
-    AddVehicleRequest:
+    Vehicle:
       type: object
       additionalProperties: false
       required:
+      - id
       - name
+      - type
+      - status
+      - licensePlateNumber
+      - countrySubdivision
+      - lastConnected
       - groupId
+      - vin
+      - seatbeltType
       properties:
+        id:
+          type: string
+          description: ID of the vehicle.
+          format: guid
+          minLength: 1
         name:
           type: string
-          description: Name of the vehicle. Should be unique in group scope.
-          maxLength: 50
-          minLength: 1
-        driverId:
-          type:
-          - string
-          - 'null'
-          description: ID of the driver which will be assigned to the vehicle.
-          pattern: ^[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$
-        deviceId:
-          type:
-          - string
-          - 'null'
-          description: Id of the device in the vehicle.
-          pattern: ^[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$
-        deviceSerialNumber:
-          type:
-          - string
-          - 'null'
-          description: Serial number of the device in the vehicle.
-          maxLength: 50
+          description: Name of the vehicle.
           minLength: 1
         type:
           type: integer
-          description: By default, the vehicle will figure as unassigned.
+          description: Type of the vehicle.
           format: int32
-          default: 0
-          maximum: 32767
-          minimum: 0
-        groupId:
-          type: string
-          description: ID of the group where the vehicle will be assigned.
-          minLength: 1
-          pattern: ^[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$
         status:
           type: integer
-          description: ID of the status of the vehicle. By default, the vehicle will figure as in service.
+          description: Status of the vehicle.
           format: int32
-          default: 2
-          maximum: 32767
-          minimum: 1
+        licensePlateNumber:
+          type: string
+          description: License plate number of the vehicle.
+          minLength: 1
+        countrySubdivision:
+          type: string
+          description: Code of the country subdivision of the vehicle.
+          minLength: 1
+        lastConnected:
+          type: string
+          description: The last time when the vehicle was connected to the DriveCam's system, may be null.
+          format: date-time
+          minLength: 1
+        driverId:
+          type: string
+          description: ID of the driver currently assigned to the vehicle, may be null if vehicle doesn’t have a one-to-one vehicle to driver relationship.
+          format: guid
+        groupId:
+          type: string
+          description: ID of the group that the vehicle belongs to.
+          format: guid
+          minLength: 1
+        vin:
+          type: string
+          description: The VIN number of the vehicle.
+          minLength: 1
         seatbeltType:
           type: integer
-          description: ID of the seatbelt type in the vehicle. By default, the vehicle will have shoulder harness seatbelts.
+          description: Type of the seat belt in the vehicle.
           format: int32
-          default: 1
-          maximum: 32767
-          minimum: 0
-        licensePlateNumber:
-          type:
-          - string
-          - 'null'
-          description: License plate number of the vehicle.
-          maxLength: 50
-          minLength: 1
-        countrySubdivisionId:
-          type:
-          - integer
-          - 'null'
-          description: Id of the country subdivision.
-          format: int32
-          maximum: 2147483647
-          minimum: 0
-        vin:
-          type:
-          - string
-          - 'null'
-          description: VIN of the vehicle.
-          maxLength: 17
-          minLength: 17
-          pattern: ^[A-HJ-NPR-Z0-9]{17}$
         make:
           type:
           - string
           - 'null'
           description: Make of the vehicle.
-          maxLength: 250
-          minLength: 1
         model:
           type:
           - string
           - 'null'
           description: Model of the vehicle.
-          maxLength: 250
-          minLength: 1
         year:
           type:
           - integer
           - 'null'
           description: Production year of the vehicle.
           format: int32
-        hibernationDelay:
-          description: Hibernation delay of the vehicle.
-          type:
-          - string
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/HibernationDelay'
+        deviceId:
+          type: string
+          description: Id of the device in the vehicle.
+          format: guid
     UpdateVehicleRequest:
       type: object
       additionalProperties: false
@@ -655,124 +582,27 @@ components:
           - 'null'
           oneOf:
           - $ref: '#/components/schemas/HibernationDelay'
-    Vehicle:
+    VehicleStatus:
       type: object
       additionalProperties: false
       required:
       - id
-      - name
-      - type
-      - status
-      - licensePlateNumber
-      - countrySubdivision
-      - lastConnected
-      - groupId
-      - vin
-      - seatbeltType
+      - description
+      - creationDate
       properties:
         id:
-          type: string
-          description: ID of the vehicle.
-          format: guid
-          minLength: 1
-        name:
-          type: string
-          description: Name of the vehicle.
-          minLength: 1
-        type:
           type: integer
-          description: Type of the vehicle.
-          format: int32
-        status:
-          type: integer
-          description: Status of the vehicle.
-          format: int32
-        licensePlateNumber:
+          description: ID of the status.
+          format: int64
+        description:
           type: string
-          description: License plate number of the vehicle.
+          description: Description of the status.
           minLength: 1
-        countrySubdivision:
+        creationDate:
           type: string
-          description: Code of the country subdivision of the vehicle.
-          minLength: 1
-        lastConnected:
-          type: string
-          description: The last time when the vehicle was connected to the DriveCam's system, may be null.
+          description: Date when the status was created.
           format: date-time
           minLength: 1
-        driverId:
-          type: string
-          description: ID of the driver currently assigned to the vehicle, may be null if vehicle doesn’t have a one-to-one vehicle to driver relationship.
-          format: guid
-        groupId:
-          type: string
-          description: ID of the group that the vehicle belongs to.
-          format: guid
-          minLength: 1
-        vin:
-          type: string
-          description: The VIN number of the vehicle.
-          minLength: 1
-        seatbeltType:
-          type: integer
-          description: Type of the seat belt in the vehicle.
-          format: int32
-        make:
-          type:
-          - string
-          - 'null'
-          description: Make of the vehicle.
-        model:
-          type:
-          - string
-          - 'null'
-          description: Model of the vehicle.
-        year:
-          type:
-          - integer
-          - 'null'
-          description: Production year of the vehicle.
-          format: int32
-        deviceId:
-          type: string
-          description: Id of the device in the vehicle.
-          format: guid
-    AddedVehicleResponse:
-      type: object
-      additionalProperties: false
-      required:
-      - vehicleId
-      properties:
-        vehicleId:
-          type: string
-          description: ID of the created vehicle.
-          format: guid
-          minLength: 1
-    HibernationDelay:
-      type: string
-      description: ''
-      x-enumNames:
-      - UseDefault
-      - NoHibernation
-      - OneMinute
-      - FifteenMinutes
-      - OneHour
-      - FourHours
-      - EightHours
-      - TwelveHours
-      - EighteenHours
-      - SixtyHours
-      enum:
-      - UseDefault
-      - NoHibernation
-      - OneMinute
-      - FifteenMinutes
-      - OneHour
-      - FourHours
-      - EightHours
-      - TwelveHours
-      - EighteenHours
-      - SixtyHours
     VehicleResponse:
       type: object
       additionalProperties: false
@@ -862,42 +692,6 @@ components:
           - 'null'
           oneOf:
           - $ref: '#/components/schemas/HibernationDelay'
-    VehiclesResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        vehicles:
-          type:
-          - array
-          - 'null'
-          description: Received vehicles.
-          items:
-            $ref: '#/components/schemas/Vehicle'
-        totalResults:
-          type: integer
-          description: Total number of vehicles in database.
-          format: int32
-    VehicleType:
-      type: object
-      additionalProperties: false
-      required:
-      - id
-      - description
-      - creationDate
-      properties:
-        id:
-          type: integer
-          description: ID of the type.
-          format: int64
-        description:
-          type: string
-          description: Description of the type.
-          minLength: 1
-        creationDate:
-          type: string
-          description: Date when the type was created.
-          format: date-time
-          minLength: 1
     SeatbeltType:
       type: object
       additionalProperties: false
@@ -919,15 +713,163 @@ components:
           description: Date when the type was created.
           format: date-time
           minLength: 1
+    AddVehicleRequest:
+      type: object
+      additionalProperties: false
+      required:
+      - name
+      - groupId
+      properties:
+        name:
+          type: string
+          description: Name of the vehicle. Should be unique in group scope.
+          maxLength: 50
+          minLength: 1
+        driverId:
+          type:
+          - string
+          - 'null'
+          description: ID of the driver which will be assigned to the vehicle.
+          pattern: ^[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$
+        deviceId:
+          type:
+          - string
+          - 'null'
+          description: Id of the device in the vehicle.
+          pattern: ^[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$
+        deviceSerialNumber:
+          type:
+          - string
+          - 'null'
+          description: Serial number of the device in the vehicle.
+          maxLength: 50
+          minLength: 1
+        type:
+          type: integer
+          description: By default, the vehicle will figure as unassigned.
+          format: int32
+          default: 0
+          maximum: 32767
+          minimum: 0
+        groupId:
+          type: string
+          description: ID of the group where the vehicle will be assigned.
+          minLength: 1
+          pattern: ^[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$
+        status:
+          type: integer
+          description: ID of the status of the vehicle. By default, the vehicle will figure as in service.
+          format: int32
+          default: 2
+          maximum: 32767
+          minimum: 1
+        seatbeltType:
+          type: integer
+          description: ID of the seatbelt type in the vehicle. By default, the vehicle will have shoulder harness seatbelts.
+          format: int32
+          default: 1
+          maximum: 32767
+          minimum: 0
+        licensePlateNumber:
+          type:
+          - string
+          - 'null'
+          description: License plate number of the vehicle.
+          maxLength: 50
+          minLength: 1
+        countrySubdivisionId:
+          type:
+          - integer
+          - 'null'
+          description: Id of the country subdivision.
+          format: int32
+          maximum: 2147483647
+          minimum: 0
+        vin:
+          type:
+          - string
+          - 'null'
+          description: VIN of the vehicle.
+          maxLength: 17
+          minLength: 17
+          pattern: ^[A-HJ-NPR-Z0-9]{17}$
+        make:
+          type:
+          - string
+          - 'null'
+          description: Make of the vehicle.
+          maxLength: 250
+          minLength: 1
+        model:
+          type:
+          - string
+          - 'null'
+          description: Model of the vehicle.
+          maxLength: 250
+          minLength: 1
+        year:
+          type:
+          - integer
+          - 'null'
+          description: Production year of the vehicle.
+          format: int32
+        hibernationDelay:
+          description: Hibernation delay of the vehicle.
+          type:
+          - string
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/HibernationDelay'
+    HibernationDelay:
+      type: string
+      description: ''
+      x-enumNames:
+      - UseDefault
+      - NoHibernation
+      - OneMinute
+      - FifteenMinutes
+      - OneHour
+      - FourHours
+      - EightHours
+      - TwelveHours
+      - EighteenHours
+      - SixtyHours
+      enum:
+      - UseDefault
+      - NoHibernation
+      - OneMinute
+      - FifteenMinutes
+      - OneHour
+      - FourHours
+      - EightHours
+      - TwelveHours
+      - EighteenHours
+      - SixtyHours
+    VehicleType:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - description
+      - creationDate
+      properties:
+        id:
+          type: integer
+          description: ID of the type.
+          format: int64
+        description:
+          type: string
+          description: Description of the type.
+          minLength: 1
+        creationDate:
+          type: string
+          description: Date when the type was created.
+          format: date-time
+          minLength: 1
   securitySchemes:
     APIKey:
       type: apiKey
       description: Enter your API key
       name: X-APIKey
       in: header
-    bearerAuth:
-      type: http
-      scheme: bearer
-x-refined-from:
-- lytx-legacy.vehicles-openapi.yml
-- lytx-vehicles-openapi.yml
+x-generator: NSwag v13.9.4.0 (NJsonSchema v10.3.1.0 (Newtonsoft.Json v12.0.0.0))

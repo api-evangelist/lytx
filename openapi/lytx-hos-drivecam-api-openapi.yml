@@ -793,16 +793,6 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/HosLog'
-    HosLogByCompany:
-      type: object
-      additionalProperties: false
-      properties:
-        users:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/HosLogByUser'
     HosLog:
       type: object
       additionalProperties: false
@@ -884,6 +874,16 @@ components:
           type:
           - string
           - 'null'
+    HosLogByCompany:
+      type: object
+      additionalProperties: false
+      properties:
+        users:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/HosLogByUser'
   securitySchemes:
     bearerAuth:
       type: http

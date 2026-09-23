@@ -119,6 +119,8 @@ paths:
                 message: Error Reason
       security:
       - bearerAuth: []
+      operationId: postUsers
+      x-operation-id-source: derived
     get:
       tags:
       - Users (DriveCam)
@@ -265,6 +267,8 @@ paths:
                 message: Error Reason
       security:
       - bearerAuth: []
+      operationId: getUsers
+      x-operation-id-source: derived
   /users/{userIdentifier}:
     get:
       tags:
@@ -357,6 +361,8 @@ paths:
                 message: Error Reason
       security:
       - bearerAuth: []
+      operationId: getUsersByUserIdentifier
+      x-operation-id-source: derived
   /users/{userId}:
     put:
       tags:
@@ -472,6 +478,8 @@ paths:
                 message: Error Reason
       security:
       - bearerAuth: []
+      operationId: putUsersByUserId
+      x-operation-id-source: derived
   /users/roles:
     get:
       tags:
@@ -512,6 +520,8 @@ paths:
                 message: Error Reason
       security:
       - bearerAuth: []
+      operationId: getUsersRoles
+      x-operation-id-source: derived
   /users/{userId}/groupRoles:
     patch:
       tags:
@@ -599,21 +609,105 @@ paths:
                 message: Error Reason
       security:
       - bearerAuth: []
+      operationId: patchUsersByUserIdGroupRoles
+      x-operation-id-source: derived
 components:
   schemas:
-    GroupRole:
-      required:
-      - groupId
-      - roleId
+    Operation:
       type: object
       properties:
-        groupId:
+        op:
+          type:
+          - string
+          - 'null'
+          description: Remove or Add operation.
+        path:
+          type:
+          - string
+          - 'null'
+          description: The path to the property to be modified. If add, then '/roles'. If remove, then '/groups/{groupId}/roles/{roleId}'.
+        value:
+          type:
+          - object
+          - 'null'
+          description: The value to be added (not for remove operations) as a groupRole object.
+      additionalProperties: false
+    EditUserRequest:
+      required:
+      - allowVideoSearchDownload
+      - cellPhoneCountry
+      - cellPhoneNumber
+      - email
+      - employeeId
+      - firstName
+      - groupRoles
+      - lastName
+      - loginEnabled
+      - primaryGroupId
+      - status
+      - username
+      type: object
+      properties:
+        allowVideoSearchDownload:
+          type: boolean
+          description: "The setting that allows users to download video files from the \"saved videos\" within video search.\n            \nOnly applies to users with Video Reviewer and Video Reviewer Plus roles. All other user roles will return an error."
+        cellPhoneCountry:
           type: string
-          description: Group id that the role is assigned to.
+          description: A user's cell phone country code (US/CA support only). Must be used with cellPhoneNumber.
+        cellPhoneNumber:
+          type: string
+          description: A user's cell phone number. Must be used with cellPhoneCountry.
+        email:
+          type: string
+          description: A user's email address.
+        employeeId:
+          type: string
+          description: A user's employee id.
+        firstName:
+          type: string
+          description: A user's first name.
+        groupRoles:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupRole'
+          description: "A list of user's group roles.\n            \nIf maintaining or adding roles to a user, Group Roles must be provided.\n            \nIf removing roles from a user, Group Roles must be removed."
+        lastName:
+          type: string
+          description: A user's last name.
+        loginEnabled:
+          type: boolean
+          description: The setting that allows for login.
+          default: false
+        password:
+          type:
+          - string
+          - 'null'
+          description: A user's password. Only include if attempting to change the user's password.
+        primaryGroupId:
+          type: string
+          description: "A driver's home group for event follow driver.\n            \nIf no group ID is provided, records are sorted by the highest group level the user belongs to. Competing group levels are tiebroken in alphabetical order.\n            \n*Only applicable for companies with event follow driver enabled."
           format: uuid
-        roleId:
+        status:
+          type: string
+          description: A user's Lytx status.
+        username:
+          type: string
+          description: "A user's username. Username is unique across all Lytx accounts.\n            \nIf no username is provided, then a username is automatically generated.\n            \nUsernames are generated in the following order:\n1. If employee ID exists, username generates as FirstnameLastnameEmployeeID.\n2. If no employee ID exists, username generates as FirstnameLastname.\n3. If a username already exists with FirstnameLastname, username generates as FirstNameLastName + 8digithash, depending on employeeID."
+      additionalProperties: false
+    BulkUserMetadata:
+      type: object
+      properties:
+        count:
           type: integer
-          description: Lytx role that a user is assigned in a group.
+          description: Total number of records found.
+          format: int32
+        limit:
+          type: integer
+          description: Set the maximum number of pagination results to receive in a single page.
+          format: int32
+        offset:
+          type: integer
+          description: Set the number of results to skip over before receiving pagination results.
           format: int32
       additionalProperties: false
     BulkUserResponse:
@@ -712,100 +806,6 @@ components:
           - 'null'
           description: "A user's username. Username is unique across all Lytx accounts.\n            \nIf no username is provided, then a username is automatically generated.\n            \nUsernames are generated in the following order:\n1. If employee ID exists, username generates as FirstnameLastnameEmployeeID.\n2. If no employee ID exists, username generates as FirstnameLastname.\n3. If a username already exists with FirstnameLastname, username generates as FirstNameLastName + 8digithash, depending on employeeID."
       additionalProperties: false
-    ErrorResponseObject:
-      type: object
-      properties:
-        error:
-          type:
-          - string
-          - 'null'
-        message:
-          type:
-          - object
-          - 'null'
-      additionalProperties: false
-    GroupRoleResponse:
-      required:
-      - groupId
-      - roleId
-      type: object
-      properties:
-        groupId:
-          type: string
-          description: Group id that the role is assigned to.
-          format: uuid
-        groupName:
-          type:
-          - string
-          - 'null'
-          description: Group name that the role is assigned to.
-        roleId:
-          type: integer
-          description: Lytx role that a user is assigned in a group.
-          format: int32
-      additionalProperties: false
-    EditUserRequest:
-      required:
-      - allowVideoSearchDownload
-      - cellPhoneCountry
-      - cellPhoneNumber
-      - email
-      - employeeId
-      - firstName
-      - groupRoles
-      - lastName
-      - loginEnabled
-      - primaryGroupId
-      - status
-      - username
-      type: object
-      properties:
-        allowVideoSearchDownload:
-          type: boolean
-          description: "The setting that allows users to download video files from the \"saved videos\" within video search.\n            \nOnly applies to users with Video Reviewer and Video Reviewer Plus roles. All other user roles will return an error."
-        cellPhoneCountry:
-          type: string
-          description: A user's cell phone country code (US/CA support only). Must be used with cellPhoneNumber.
-        cellPhoneNumber:
-          type: string
-          description: A user's cell phone number. Must be used with cellPhoneCountry.
-        email:
-          type: string
-          description: A user's email address.
-        employeeId:
-          type: string
-          description: A user's employee id.
-        firstName:
-          type: string
-          description: A user's first name.
-        groupRoles:
-          type: array
-          items:
-            $ref: '#/components/schemas/GroupRole'
-          description: "A list of user's group roles.\n            \nIf maintaining or adding roles to a user, Group Roles must be provided.\n            \nIf removing roles from a user, Group Roles must be removed."
-        lastName:
-          type: string
-          description: A user's last name.
-        loginEnabled:
-          type: boolean
-          description: The setting that allows for login.
-          default: false
-        password:
-          type:
-          - string
-          - 'null'
-          description: A user's password. Only include if attempting to change the user's password.
-        primaryGroupId:
-          type: string
-          description: "A driver's home group for event follow driver.\n            \nIf no group ID is provided, records are sorted by the highest group level the user belongs to. Competing group levels are tiebroken in alphabetical order.\n            \n*Only applicable for companies with event follow driver enabled."
-          format: uuid
-        status:
-          type: string
-          description: A user's Lytx status.
-        username:
-          type: string
-          description: "A user's username. Username is unique across all Lytx accounts.\n            \nIf no username is provided, then a username is automatically generated.\n            \nUsernames are generated in the following order:\n1. If employee ID exists, username generates as FirstnameLastnameEmployeeID.\n2. If no employee ID exists, username generates as FirstnameLastname.\n3. If a username already exists with FirstnameLastname, username generates as FirstNameLastName + 8digithash, depending on employeeID."
-      additionalProperties: false
     CreateUserRequest:
       required:
       - firstName
@@ -872,55 +872,6 @@ components:
           - 'null'
           description: "A user's username. Username is unique across all Lytx accounts.\n            \nIf no username is provided, then a username is automatically generated.\n            \nUsernames are generated in the following order:\n1. If employee ID exists, username generates as FirstnameLastnameEmployeeID.\n2. If no employee ID exists, username generates as FirstnameLastname.\n3. If a username already exists with FirstnameLastname, username generates as FirstNameLastName + 8digithash, depending on employeeID."
       additionalProperties: false
-    Operation:
-      type: object
-      properties:
-        op:
-          type:
-          - string
-          - 'null'
-          description: Remove or Add operation.
-        path:
-          type:
-          - string
-          - 'null'
-          description: The path to the property to be modified. If add, then '/roles'. If remove, then '/groups/{groupId}/roles/{roleId}'.
-        value:
-          type:
-          - object
-          - 'null'
-          description: The value to be added (not for remove operations) as a groupRole object.
-      additionalProperties: false
-    BulkUserMetadata:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: Total number of records found.
-          format: int32
-        limit:
-          type: integer
-          description: Set the maximum number of pagination results to receive in a single page.
-          format: int32
-        offset:
-          type: integer
-          description: Set the number of results to skip over before receiving pagination results.
-          format: int32
-      additionalProperties: false
-    PatchResponse:
-      type: object
-      properties:
-        userId:
-          type: string
-          description: The unique ID Lytx assigns to a user in UUID format.
-          format: uuid
-        groupRoles:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/GroupRole'
-      additionalProperties: false
     RoleDefinition:
       type: object
       properties:
@@ -938,6 +889,67 @@ components:
           - string
           - 'null'
           description: Name of the Lytx role.
+      additionalProperties: false
+    GroupRole:
+      required:
+      - groupId
+      - roleId
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: Group id that the role is assigned to.
+          format: uuid
+        roleId:
+          type: integer
+          description: Lytx role that a user is assigned in a group.
+          format: int32
+      additionalProperties: false
+    ErrorResponseObject:
+      type: object
+      properties:
+        error:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - object
+          - 'null'
+      additionalProperties: false
+    GroupRoleResponse:
+      required:
+      - groupId
+      - roleId
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: Group id that the role is assigned to.
+          format: uuid
+        groupName:
+          type:
+          - string
+          - 'null'
+          description: Group name that the role is assigned to.
+        roleId:
+          type: integer
+          description: Lytx role that a user is assigned in a group.
+          format: int32
+      additionalProperties: false
+    PatchResponse:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: The unique ID Lytx assigns to a user in UUID format.
+          format: uuid
+        groupRoles:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GroupRole'
       additionalProperties: false
   securitySchemes:
     bearerAuth:

@@ -165,6 +165,8 @@ paths:
                   message:
                     type: string
                     example: An unexpected server error occurred
+      operationId: getPlusV1Device
+      x-operation-id-source: derived
 components:
   schemas:
     DeviceResponseViewModel:

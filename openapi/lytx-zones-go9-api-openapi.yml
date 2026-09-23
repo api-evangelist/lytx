@@ -166,6 +166,8 @@ paths:
                   message:
                     type: string
                     example: An unexpected server error occurred
+      operationId: getPlusV1Zones
+      x-operation-id-source: derived
     post:
       summary: Add Telematics Zones Data
       description: Add data for Geofences/Zones
@@ -246,6 +248,8 @@ paths:
                   message:
                     type: string
                     example: An unexpected server error occurred
+      operationId: postPlusV1Zones
+      x-operation-id-source: derived
     put:
       summary: Edit Telematics Zones Data
       description: Edit data for Geofences/Zones
@@ -326,10 +330,25 @@ paths:
                   message:
                     type: string
                     example: An unexpected server error occurred
+      operationId: putPlusV1Zones
+      x-operation-id-source: derived
     servers:
     - url: https://api.lytx.com
 components:
   schemas:
+    CoordinateResponseViewModel:
+      type: object
+      properties:
+        x:
+          type: number
+          format: double
+          example: -117.212799
+          description: X coordinate (longitude).
+        y:
+          type: number
+          format: double
+          example: 32.8872185
+          description: Y coordinate (latitude).
     ColorResponseViewModel:
       type: object
       properties:
@@ -349,47 +368,6 @@ components:
           type: integer
           example: 0
           description: Blue channel (0-255).
-    ZoneTypeResponseViewModel:
-      type: object
-      properties:
-        comment:
-          type: string
-          example: Default restricted zone type
-          description: Comment for the zone type.
-        defaultFillColorForNewZoneType:
-          type:
-          - object
-          - 'null'
-          description: Default fill color for a new zone type.
-        fillColor:
-          type:
-          - object
-          - 'null'
-          description: Custom fill color for the zone type.
-        id:
-          type: object
-          description: Identifier for the zone type.
-        isBuiltIn:
-          type: boolean
-          example: true
-          description: Indicates if the zone type is built-in.
-        name:
-          type: string
-          example: Restricted Area
-          description: Name of the zone type.
-    CoordinateResponseViewModel:
-      type: object
-      properties:
-        x:
-          type: number
-          format: double
-          example: -117.212799
-          description: X coordinate (longitude).
-        y:
-          type: number
-          format: double
-          example: 32.8872185
-          description: Y coordinate (latitude).
     ZoneResponseViewModel:
       type: object
       properties:
@@ -462,99 +440,34 @@ components:
           items:
             $ref: '#/components/schemas/ZoneTypeResponseViewModel'
           description: Types associated with the zone.
-    CreateZoneGroupRequestViewModel:
+    ZoneTypeResponseViewModel:
       type: object
-      required:
-      - id
       properties:
-        id:
+        comment:
           type: string
-          example: group-12345
-          description: Identifier of the group the zone belongs to.
-    CreateZoneColorRequestViewModel:
-      type: object
-      properties:
-        r:
-          type: integer
-          example: 255
-          description: Red color component.
-        g:
-          type: integer
-          example: 0
-          description: Green color component.
-        b:
-          type: integer
-          example: 0
-          description: Blue color component.
-        a:
-          type: integer
-          example: 255
-          description: Alpha (opacity) color component.
-    AddZonesRequestViewModel:
-      type: object
-      required:
-      - name
-      - points
-      - groups
-      properties:
+          example: Default restricted zone type
+          description: Comment for the zone type.
+        defaultFillColorForNewZoneType:
+          type:
+          - object
+          - 'null'
+          description: Default fill color for a new zone type.
+        fillColor:
+          type:
+          - object
+          - 'null'
+          description: Custom fill color for the zone type.
+        id:
+          type: object
+          description: Identifier for the zone type.
+        isBuiltIn:
+          type: boolean
+          example: true
+          description: Indicates if the zone type is built-in.
         name:
           type: string
-          example: San Diego Zone
-          description: Name of the zone.
-        comment:
-          type:
-          - string
-          - 'null'
-          example: Primary service area for San Diego
-          description: Optional comment or description for the zone.
-        mustIdentifyStops:
-          type:
-          - boolean
-          - 'null'
-          example: true
-          description: Indicates whether stops must be identified within the zone.
-        displayed:
-          type:
-          - boolean
-          - 'null'
-          example: true
-          description: Indicates whether the zone is visible in the UI.
-        activeFrom:
-          type:
-          - string
-          - 'null'
-          example: '2025-01-01T00:00:00Z'
-          description: Date and time from which the zone becomes active.
-        activeTo:
-          type:
-          - string
-          - 'null'
-          example: '2025-12-31T23:59:59Z'
-          description: Date and time until which the zone remains active.
-        zoneTypes:
-          type: array
-          description: List of zone types applicable to this zone.
-          items:
-            $ref: '#/components/schemas/ZoneTypesEnumRequestViewModel'
-          example: Customer
-        fillColor:
-          $ref: '#/components/schemas/CreateZoneColorRequestViewModel'
-        externalReference:
-          type:
-          - string
-          - 'null'
-          example: EXT-ZONE-001
-          description: External reference identifier for the zone.
-        points:
-          type: array
-          description: List of geographic points defining the zone boundary.
-          items:
-            $ref: '#/components/schemas/CreateZonePointRequestViewModel'
-        groups:
-          type: array
-          description: Groups to which the zone belongs.
-          items:
-            $ref: '#/components/schemas/CreateZoneGroupRequestViewModel'
+          example: Restricted Area
+          description: Name of the zone type.
     EditZonesRequestViewModel:
       type: object
       required:
@@ -639,6 +552,25 @@ components:
       - InHouseServiceCenter
       - Office
       - VendorServiceCenter
+    CreateZoneColorRequestViewModel:
+      type: object
+      properties:
+        r:
+          type: integer
+          example: 255
+          description: Red color component.
+        g:
+          type: integer
+          example: 0
+          description: Green color component.
+        b:
+          type: integer
+          example: 0
+          description: Blue color component.
+        a:
+          type: integer
+          example: 255
+          description: Alpha (opacity) color component.
     CreateZonePointRequestViewModel:
       type: object
       required:
@@ -655,6 +587,80 @@ components:
           format: double
           example: -117.1611
           description: Y coordinate (latitude).
+    CreateZoneGroupRequestViewModel:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          example: group-12345
+          description: Identifier of the group the zone belongs to.
+    AddZonesRequestViewModel:
+      type: object
+      required:
+      - name
+      - points
+      - groups
+      properties:
+        name:
+          type: string
+          example: San Diego Zone
+          description: Name of the zone.
+        comment:
+          type:
+          - string
+          - 'null'
+          example: Primary service area for San Diego
+          description: Optional comment or description for the zone.
+        mustIdentifyStops:
+          type:
+          - boolean
+          - 'null'
+          example: true
+          description: Indicates whether stops must be identified within the zone.
+        displayed:
+          type:
+          - boolean
+          - 'null'
+          example: true
+          description: Indicates whether the zone is visible in the UI.
+        activeFrom:
+          type:
+          - string
+          - 'null'
+          example: '2025-01-01T00:00:00Z'
+          description: Date and time from which the zone becomes active.
+        activeTo:
+          type:
+          - string
+          - 'null'
+          example: '2025-12-31T23:59:59Z'
+          description: Date and time until which the zone remains active.
+        zoneTypes:
+          type: array
+          description: List of zone types applicable to this zone.
+          items:
+            $ref: '#/components/schemas/ZoneTypesEnumRequestViewModel'
+          example: Customer
+        fillColor:
+          $ref: '#/components/schemas/CreateZoneColorRequestViewModel'
+        externalReference:
+          type:
+          - string
+          - 'null'
+          example: EXT-ZONE-001
+          description: External reference identifier for the zone.
+        points:
+          type: array
+          description: List of geographic points defining the zone boundary.
+          items:
+            $ref: '#/components/schemas/CreateZonePointRequestViewModel'
+        groups:
+          type: array
+          description: Groups to which the zone belongs.
+          items:
+            $ref: '#/components/schemas/CreateZoneGroupRequestViewModel'
   securitySchemes:
     bearerAuth:
       type: http

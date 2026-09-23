@@ -242,6 +242,8 @@ paths:
                   message:
                     type: string
                     example: An unexpected server error occurred
+      operationId: getV1Ecm
+      x-operation-id-source: derived
     servers:
     - url: https://data.lytx.com
   /vehicles/{vehicleId}/location:
@@ -504,39 +506,27 @@ paths:
     - url: https://lytx-api.prod8.lv.lytx.com/ecm
 components:
   schemas:
-    VehicleLocationPage:
-      allOf:
-      - $ref: '#/components/schemas/PageOfVehicleLocation'
-      - type: object
-        additionalProperties: false
-    Location:
+    PageOfVehicleLocation:
       type: object
+      x-abstract: true
       additionalProperties: false
       properties:
-        latitude:
-          type: number
-          description: Latitude position of the given trackpoint.
-          format: double
-        longitude:
-          type: number
-          description: Longitude position of the given trackpoint.
-          format: double
-        gpsDateTime:
-          type: string
-          description: The date and time of the given trackpoint
-          format: date-time
-        direction:
+        currentPage:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalRecords:
+          type: integer
+          format: int32
+        vehicles:
           type:
-          - number
+          - array
           - 'null'
-          description: The heading of the vehicle.
-          format: double
-        speed:
-          type:
-          - number
-          - 'null'
-          description: The speed of the vehicle.
-          format: double
+          description: The List of vehicles.
+          items:
+            $ref: '#/components/schemas/VehicleLocation'
     VehicleLocation:
       type: object
       additionalProperties: false
@@ -568,27 +558,39 @@ components:
           - 'null'
           oneOf:
           - $ref: '#/components/schemas/Location'
-    PageOfVehicleLocation:
+    Location:
       type: object
-      x-abstract: true
       additionalProperties: false
       properties:
-        currentPage:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        totalRecords:
-          type: integer
-          format: int32
-        vehicles:
+        latitude:
+          type: number
+          description: Latitude position of the given trackpoint.
+          format: double
+        longitude:
+          type: number
+          description: Longitude position of the given trackpoint.
+          format: double
+        gpsDateTime:
+          type: string
+          description: The date and time of the given trackpoint
+          format: date-time
+        direction:
           type:
-          - array
+          - number
           - 'null'
-          description: The List of vehicles.
-          items:
-            $ref: '#/components/schemas/VehicleLocation'
+          description: The heading of the vehicle.
+          format: double
+        speed:
+          type:
+          - number
+          - 'null'
+          description: The speed of the vehicle.
+          format: double
+    VehicleLocationPage:
+      allOf:
+      - $ref: '#/components/schemas/PageOfVehicleLocation'
+      - type: object
+        additionalProperties: false
   securitySchemes:
     bearerAuth:
       type: http

@@ -249,6 +249,8 @@ paths:
                   value:
                     error: Internal Server Error
                     message: Requested operation cannot be performed.
+      operationId: getDevices
+      x-operation-id-source: derived
   /devices/{deviceIdentifier}:
     parameters:
     - name: deviceIdentifier
@@ -421,6 +423,8 @@ paths:
                   value:
                     error: Internal Server Error
                     message: Requested operation cannot be performed.
+      operationId: getDevicesByDeviceIdentifier
+      x-operation-id-source: derived
   /devices/vehicleAssignments:
     get:
       tags:
@@ -700,6 +704,8 @@ paths:
                   value:
                     error: Internal Server Error
                     message: Requested operation cannot be performed.
+      operationId: getDevicesVehicleAssignments
+      x-operation-id-source: derived
 components:
   securitySchemes:
     bearerAuth:

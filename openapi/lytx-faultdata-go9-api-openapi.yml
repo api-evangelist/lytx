@@ -176,8 +176,59 @@ paths:
                   message:
                     type: string
                     example: An unexpected server error occurred
+      operationId: getPlusV1Faultdata
+      x-operation-id-source: derived
 components:
   schemas:
+    FlashCodeResponseViewModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          example: FC-778
+          description: Unique identifier of the flash code.
+        name:
+          type:
+          - string
+          - 'null'
+          example: Flash Code 778
+          description: Name of the flash code.
+        circuitIndex:
+          type:
+          - string
+          - 'null'
+          example: CIR-02
+          description: Circuit index related to the flash code.
+        flashCodeIndex:
+          type:
+          - string
+          - 'null'
+          example: FCI-778
+          description: Flash code index reference.
+        pageReference:
+          type:
+          - string
+          - 'null'
+          example: Page 120
+          description: Documentation page reference for the flash code.
+        helpUrl:
+          type:
+          - string
+          - 'null'
+          example: https://help.example.com/faults/778
+          description: URL to detailed help documentation.
+        priorityLevel:
+          type:
+          - integer
+          - 'null'
+          example: 1
+          description: Priority level of the flash code.
+        diagnostic:
+          $ref: '#/components/schemas/DiagnosticResponseViewModel'
+        failureMode:
+          $ref: '#/components/schemas/FailureModeResponseViewModel'
     DeviceResponseViewModel:
       type: object
       properties:
@@ -325,35 +376,42 @@ components:
           - 'null'
           example: v1.2.3
           description: Version information of the device.
-    FailureModeResponseViewModel:
+    ControllerResponseViewModel:
       type: object
       properties:
-        id:
-          type:
-          - string
-          - 'null'
-          example: FM-09
-          description: Unique identifier of the failure mode.
         code:
           type:
           - integer
           - 'null'
-          example: 9
-          description: Numeric code representing the failure mode.
+          example: 100
+          description: Controller code.
+        codeId:
+          type:
+          - integer
+          - 'null'
+          format: int16
+          example: 10
+          description: Short identifier for the controller.
+        id:
+          type:
+          - string
+          - 'null'
+          example: ctrl-001
+          description: Unique identifier of the controller.
         name:
           type:
           - string
           - 'null'
-          example: Overheating
-          description: Human-readable name of the failure mode.
+          example: Engine Controller
+          description: Name of the controller.
+        source:
+          $ref: '#/components/schemas/SourceResponseViewModel'
         version:
           type:
           - string
           - 'null'
-          example: '1.0'
-          description: Version of the failure mode definition.
-        source:
-          $ref: '#/components/schemas/SourceResponseViewModel'
+          example: v1.0
+          description: Controller version.
     GroupResponseViewModel:
       type: object
       properties:
@@ -501,122 +559,6 @@ components:
           - 'null'
           example: 33
           description: Source address reporting the fault.
-    DiagnosticResponseViewModel:
-      type: object
-      properties:
-        code:
-          type: integer
-          example: 101
-          description: Numeric code identifying the diagnostic.
-        controller:
-          type:
-          - object
-          - 'null'
-          description: Controller associated with the diagnostic (if any).
-        diagnosticType:
-          type: string
-          example: Engine
-          description: Type/category of the diagnostic.
-        faultResetMode:
-          type: string
-          example: Automatic
-          description: Mode of fault reset.
-        id:
-          type: string
-          example: d1f6e56d-1234-4567-89ab-cdef12345678
-          description: Unique identifier for the diagnostic.
-        isReadOnly:
-          type: boolean
-          example: false
-          description: Indicates if the diagnostic is read-only.
-        name:
-          type: string
-          example: Engine Overheat
-          description: Name of the diagnostic.
-        source:
-          type:
-          - object
-          - 'null'
-          description: Source object of the diagnostic.
-        tamperingDiagnostics:
-          type: integer
-          example: 0
-          description: Number of tampering-related diagnostics.
-        unitOfMeasure:
-          type:
-          - object
-          - 'null'
-          description: Unit of measure for the diagnostic value.
-        version:
-          type: string
-          example: v1.0
-          description: Version of the diagnostic data.
-    SourceResponseViewModel:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          example: SRC-001
-          description: Unique identifier of the source.
-        name:
-          type:
-          - string
-          - 'null'
-          example: Telematics Provider
-          description: Name of the data source.
-    ControllerResponseViewModel:
-      type: object
-      properties:
-        code:
-          type:
-          - integer
-          - 'null'
-          example: 100
-          description: Controller code.
-        codeId:
-          type:
-          - integer
-          - 'null'
-          format: int16
-          example: 10
-          description: Short identifier for the controller.
-        id:
-          type:
-          - string
-          - 'null'
-          example: ctrl-001
-          description: Unique identifier of the controller.
-        name:
-          type:
-          - string
-          - 'null'
-          example: Engine Controller
-          description: Name of the controller.
-        source:
-          $ref: '#/components/schemas/SourceResponseViewModel'
-        version:
-          type:
-          - string
-          - 'null'
-          example: v1.0
-          description: Controller version.
-    FaultStatusResponseViewModel:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          example: STAT-ACT
-          description: Unique identifier of the fault status.
-        name:
-          type:
-          - string
-          - 'null'
-          example: Active
-          description: Name of the fault status.
     UserResponseViewModel:
       type: object
       properties:
@@ -753,55 +695,115 @@ components:
           type: string
           example: '101'
           description: Extension for the phone number.
-    FlashCodeResponseViewModel:
+    SourceResponseViewModel:
       type: object
       properties:
         id:
           type:
           - string
           - 'null'
-          example: FC-778
-          description: Unique identifier of the flash code.
+          example: SRC-001
+          description: Unique identifier of the source.
         name:
           type:
           - string
           - 'null'
-          example: Flash Code 778
-          description: Name of the flash code.
-        circuitIndex:
+          example: Telematics Provider
+          description: Name of the data source.
+    FaultStatusResponseViewModel:
+      type: object
+      properties:
+        id:
           type:
           - string
           - 'null'
-          example: CIR-02
-          description: Circuit index related to the flash code.
-        flashCodeIndex:
+          example: STAT-ACT
+          description: Unique identifier of the fault status.
+        name:
           type:
           - string
           - 'null'
-          example: FCI-778
-          description: Flash code index reference.
-        pageReference:
+          example: Active
+          description: Name of the fault status.
+    FailureModeResponseViewModel:
+      type: object
+      properties:
+        id:
           type:
           - string
           - 'null'
-          example: Page 120
-          description: Documentation page reference for the flash code.
-        helpUrl:
-          type:
-          - string
-          - 'null'
-          example: https://help.example.com/faults/778
-          description: URL to detailed help documentation.
-        priorityLevel:
+          example: FM-09
+          description: Unique identifier of the failure mode.
+        code:
           type:
           - integer
           - 'null'
-          example: 1
-          description: Priority level of the flash code.
-        diagnostic:
-          $ref: '#/components/schemas/DiagnosticResponseViewModel'
-        failureMode:
-          $ref: '#/components/schemas/FailureModeResponseViewModel'
+          example: 9
+          description: Numeric code representing the failure mode.
+        name:
+          type:
+          - string
+          - 'null'
+          example: Overheating
+          description: Human-readable name of the failure mode.
+        version:
+          type:
+          - string
+          - 'null'
+          example: '1.0'
+          description: Version of the failure mode definition.
+        source:
+          $ref: '#/components/schemas/SourceResponseViewModel'
+    DiagnosticResponseViewModel:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 101
+          description: Numeric code identifying the diagnostic.
+        controller:
+          type:
+          - object
+          - 'null'
+          description: Controller associated with the diagnostic (if any).
+        diagnosticType:
+          type: string
+          example: Engine
+          description: Type/category of the diagnostic.
+        faultResetMode:
+          type: string
+          example: Automatic
+          description: Mode of fault reset.
+        id:
+          type: string
+          example: d1f6e56d-1234-4567-89ab-cdef12345678
+          description: Unique identifier for the diagnostic.
+        isReadOnly:
+          type: boolean
+          example: false
+          description: Indicates if the diagnostic is read-only.
+        name:
+          type: string
+          example: Engine Overheat
+          description: Name of the diagnostic.
+        source:
+          type:
+          - object
+          - 'null'
+          description: Source object of the diagnostic.
+        tamperingDiagnostics:
+          type: integer
+          example: 0
+          description: Number of tampering-related diagnostics.
+        unitOfMeasure:
+          type:
+          - object
+          - 'null'
+          description: Unit of measure for the diagnostic value.
+        version:
+          type: string
+          example: v1.0
+          description: Version of the diagnostic data.
   securitySchemes:
     bearerAuth:
       type: http

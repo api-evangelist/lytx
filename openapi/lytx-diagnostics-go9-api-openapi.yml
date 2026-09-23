@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Lytx.Telematics.Fleet.Api - Diagnostics Diagnostics (GO9) API
+  title: Lytx.Telematics.Fleet.Api - Diagnostics Diagnostics (GO9)…
   description: API for accessing Diagnostics data, requiring authentication.
   version: 1.0.0
 servers:
@@ -149,6 +149,8 @@ paths:
                   message:
                     type: string
                     example: An unexpected server error occurred
+      operationId: getPlusV1Diagnostics
+      x-operation-id-source: derived
 components:
   schemas:
     DiagnosticResponseViewModel:

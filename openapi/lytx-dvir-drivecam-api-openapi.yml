@@ -306,83 +306,6 @@ paths:
                 $ref: '#/components/schemas/Schedules'
 components:
   schemas:
-    Schedules:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            properties:
-              id:
-                type: integer
-                example: 1
-                description: ID of the asset (vehicle ID or trailer ID).
-              assetType:
-                type: string
-                example: Vehicle
-                description: Can be either vehicle or trailer.
-              assetName:
-                type: string
-                example: vehicle name example
-                description: Name of the asset.
-              assetGroup:
-                type: string
-                example: 9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2
-                description: Group of the asset.
-              status:
-                type: string
-                description: The completion status of the scheduled inspection.
-                enum:
-                - Completed
-                - Overdue
-                - Upcoming
-              statusDayDiff:
-                type: integer
-                example: 1
-                description: Number of days left until the inspection is due. If the inspection is overdue, this is the number of days since the due date.
-              dueDate:
-                type: string
-                example: '2024-01-19T00:00:00.000Z'
-                description: Date and time when the next inspection is due. If the inspection is overdue, this is the date and time when it became overdue.
-              expiredDueDate:
-                type: string
-                example: '2024-01-19T00:00:00.000Z'
-                description: If the inspection is overdue, this is the date and time when it became overdue.
-              lastInspectedDate:
-                type: string
-                example: '2024-01-19T00:00:00.000Z'
-                description: Date and time when the asset was last inspected.
-              lastInspectedDriver:
-                type: string
-                example: John
-                description: Driver who completed the last inspection on the asset.
-              inspectionListId:
-                type: integer
-                example: 1
-                description: ID of the inspection list tied to the schedule.
-              inspectionListName:
-                type: string
-                example: Some inspection list
-                description: Name of the inspection list tied to the schedule.
-              inspectionFrequency:
-                type: string
-                example: Daily
-                description: Frequency type of the inspection list schedule (i.e. Daily, Weekly, Monthly, Yearly).
-        metadata:
-          type: object
-          properties:
-            count:
-              type: integer
-              example: '30'
-              description: Number of records returned.
-            limit:
-              type: integer
-              example: '1'
-              description: Maximum number of records to return.
-            offset:
-              type: integer
-              example: '0'
-              description: Record to start with.
     InspectionLists:
       type: object
       properties:
@@ -452,6 +375,83 @@ components:
                             type: string
                             example: review tires
                             description: Item in the inspection list section.
+        metadata:
+          type: object
+          properties:
+            count:
+              type: integer
+              example: '30'
+              description: Number of records returned.
+            limit:
+              type: integer
+              example: '1'
+              description: Maximum number of records to return.
+            offset:
+              type: integer
+              example: '0'
+              description: Record to start with.
+    Schedules:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            properties:
+              id:
+                type: integer
+                example: 1
+                description: ID of the asset (vehicle ID or trailer ID).
+              assetType:
+                type: string
+                example: Vehicle
+                description: Can be either vehicle or trailer.
+              assetName:
+                type: string
+                example: vehicle name example
+                description: Name of the asset.
+              assetGroup:
+                type: string
+                example: 9a0c7e3f-b889-40ad-b4da-d9bb84fa8fd2
+                description: Group of the asset.
+              status:
+                type: string
+                description: The completion status of the scheduled inspection.
+                enum:
+                - Completed
+                - Overdue
+                - Upcoming
+              statusDayDiff:
+                type: integer
+                example: 1
+                description: Number of days left until the inspection is due. If the inspection is overdue, this is the number of days since the due date.
+              dueDate:
+                type: string
+                example: '2024-01-19T00:00:00.000Z'
+                description: Date and time when the next inspection is due. If the inspection is overdue, this is the date and time when it became overdue.
+              expiredDueDate:
+                type: string
+                example: '2024-01-19T00:00:00.000Z'
+                description: If the inspection is overdue, this is the date and time when it became overdue.
+              lastInspectedDate:
+                type: string
+                example: '2024-01-19T00:00:00.000Z'
+                description: Date and time when the asset was last inspected.
+              lastInspectedDriver:
+                type: string
+                example: John
+                description: Driver who completed the last inspection on the asset.
+              inspectionListId:
+                type: integer
+                example: 1
+                description: ID of the inspection list tied to the schedule.
+              inspectionListName:
+                type: string
+                example: Some inspection list
+                description: Name of the inspection list tied to the schedule.
+              inspectionFrequency:
+                type: string
+                example: Daily
+                description: Frequency type of the inspection list schedule (i.e. Daily, Weekly, Monthly, Yearly).
         metadata:
           type: object
           properties:

@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Lytx.Telematics.Fleet.Api - DeviceStatusInfo DeviceStatusInfo (GO9) API
+  title: Lytx.Telematics.Fleet.Api - DeviceStatusInfo…
   description: API for accessing Device Status Info data, requiring authentication.
   version: 1.0.0
 servers:
@@ -173,8 +173,39 @@ paths:
                   message:
                     type: string
                     example: An unexpected server error occurred
+      operationId: getPlusV1Devicestatusinfo
+      x-operation-id-source: derived
 components:
   schemas:
+    ExceptionEventResponseViewModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          example: ex-123
+          description: Unique identifier of the exception event.
+        activeFrom:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2025-01-20T08:00:00.000Z'
+          description: Start time of the exception event.
+        activeTo:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2025-01-20T10:00:00.000Z'
+          description: End time of the exception event.
+        ruleId:
+          type:
+          - string
+          - 'null'
+          example: rule-456
+          description: Rule identifier that triggered the exception.
     GroupResponseViewModel:
       type: object
       properties:
@@ -319,35 +350,6 @@ components:
           description: List of active exception events.
         lastTrip:
           $ref: '#/components/schemas/LastTripResponseViewModel'
-    ExceptionEventResponseViewModel:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          example: ex-123
-          description: Unique identifier of the exception event.
-        activeFrom:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2025-01-20T08:00:00.000Z'
-          description: Start time of the exception event.
-        activeTo:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2025-01-20T10:00:00.000Z'
-          description: End time of the exception event.
-        ruleId:
-          type:
-          - string
-          - 'null'
-          example: rule-456
-          description: Rule identifier that triggered the exception.
   securitySchemes:
     bearerAuth:
       type: http

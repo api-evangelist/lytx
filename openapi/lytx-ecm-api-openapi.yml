@@ -159,17 +159,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InternalSystemErrorResponse'
+      operationId: getV2Ecm
+      x-operation-id-source: derived
 components:
   schemas:
-    ErrorResponse:
+    BadRequestResponse:
       type: object
       properties:
-        error:
-          type: string
-          example: Forbidden
         message:
           type: string
-          example: Non-permitted user
+          example: Invalid request data
+      required:
+      - message
     EcmResponse:
       type: object
       properties:
@@ -182,15 +183,35 @@ components:
       required:
       - data
       - metadata
-    InternalSystemErrorResponse:
+    Metadata:
       type: object
       properties:
-        error:
+        count:
           type: string
-          example: Internal Server Error
-        message:
+          example: '30'
+          description: Total number of records matching the criteria.
+        limit:
+          type: integer
+          example: 100
+          description: Number of records requested.
+        offset:
+          type: integer
+          example: 0
+          description: Starting record offset.
+        startDate:
           type: string
-          example: An unexpected server error occurred
+          format: date-time
+          description: Start date for the query.
+        endDate:
+          type: string
+          format: date-time
+          description: End date for the query.
+      required:
+      - count
+      - limit
+      - offset
+      - startDate
+      - endDate
     EcmSample:
       type: object
       properties:
@@ -219,15 +240,6 @@ components:
       - sampleType
       - sampleDateTime
       - sampleValue
-    UnauthorizedResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          example: Unauthorized
-        message:
-          type: string
-          example: Access denied
     EcmDevice:
       type: object
       properties:
@@ -281,43 +293,33 @@ components:
       - vin
       - groupName
       - samples
-    BadRequestResponse:
+    UnauthorizedResponse:
       type: object
       properties:
+        error:
+          type: string
+          example: Unauthorized
         message:
           type: string
-          example: Invalid request data
-      required:
-      - message
-    Metadata:
+          example: Access denied
+    ErrorResponse:
       type: object
       properties:
-        count:
+        error:
           type: string
-          example: '30'
-          description: Total number of records matching the criteria.
-        limit:
-          type: integer
-          example: 100
-          description: Number of records requested.
-        offset:
-          type: integer
-          example: 0
-          description: Starting record offset.
-        startDate:
+          example: Forbidden
+        message:
           type: string
-          format: date-time
-          description: Start date for the query.
-        endDate:
+          example: Non-permitted user
+    InternalSystemErrorResponse:
+      type: object
+      properties:
+        error:
           type: string
-          format: date-time
-          description: End date for the query.
-      required:
-      - count
-      - limit
-      - offset
-      - startDate
-      - endDate
+          example: Internal Server Error
+        message:
+          type: string
+          example: An unexpected server error occurred
   securitySchemes:
     bearerAuth:
       type: http

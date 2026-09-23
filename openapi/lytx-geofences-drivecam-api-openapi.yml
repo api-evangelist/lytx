@@ -88,6 +88,8 @@ paths:
                   message:
                     type: string
                     example: An unexpected server error occurred
+      operationId: postV1Geofences
+      x-operation-id-source: derived
     get:
       tags:
       - Geofences (DriveCam)
@@ -258,6 +260,8 @@ paths:
                   message:
                     type: string
                     example: An unexpected server error occurred
+      operationId: getV1Geofences
+      x-operation-id-source: derived
   /v1/geofences/{geofenceIdentifier}:
     delete:
       tags:
@@ -334,6 +338,8 @@ paths:
                   message:
                     type: string
                     example: An unexpected server error occurred
+      operationId: deleteV1GeofencesByGeofenceIdentifier
+      x-operation-id-source: derived
     put:
       tags:
       - Geofences (DriveCam)
@@ -420,11 +426,12 @@ paths:
                   message:
                     type: string
                     example: An unexpected server error occurred
+      operationId: putV1GeofencesByGeofenceIdentifier
+      x-operation-id-source: derived
   /v1/geofence/activations:
     get:
       tags:
       - Geofences (DriveCam)
-      description: Get Geofence Activations
       summary: Get Geofence Activations
       parameters:
       - name: activationIdentifier
@@ -611,6 +618,8 @@ paths:
                   message:
                     type: string
                     example: An unexpected server error occurred
+      operationId: getV1GeofenceActivations
+      x-operation-id-source: derived
   /v1/geofence/activations/endreason:
     get:
       tags:
@@ -686,116 +695,10 @@ paths:
                   message:
                     type: string
                     example: An unexpected server error occurred
+      operationId: getV1GeofenceActivationsEndreason
+      x-operation-id-source: derived
 components:
   schemas:
-    SingleGeofenceResponse:
-      title: Geofence Response
-      type: object
-      properties:
-        geofenceId:
-          type: string
-          example: 3F136C14-79C8-4BAA-B9DE-ADA9C0C68EBC
-          description: Id of the created Geofence
-        name:
-          type: string
-          example: San Diego 92120
-          description: Name of the created Geofence.
-        rootGroupId:
-          type: string
-          example: 2BB2D9B4-C801-E111-81CE-E61F13277AAB
-          description: Id of the unique company identifier that the new Geofence was created in.
-        groupId:
-          type: string
-          example: 2BB2D9B4-C801-E111-81CE-E61F13277AAB
-          description: Id of the Sub-Group the new Geofence was created in. Can be the same as Root Group Id.
-        groupName:
-          type: string
-          example: Root Group
-          description: Name of the Sub-Group the new Geofence was created in.
-        groupPath:
-          type: string
-          example: 2BB2D9B4-C801-E111-81CE-E61F13277AAB\\2CB2D9B4-C801-E111-81CE-E61F13277AAB
-          description: Hierarchy path showing the Group Ids down from the Root Group Id
-        includeSubGroups:
-          type: boolean
-          example: true
-          description: Flag for the newly created Geofence that indicates whether or not the Geofence rules apply to all vehicles below the Group the Geofence is created in the hierarchy.
-        isInside:
-          type: boolean
-          example: true
-          description: Flag for the newly created Geofence that states whether or not the Geofence is inside facing or outside facing.
-        geofenceGeography:
-          type: object
-          properties:
-            radius:
-              type: number
-              format: double
-              example: 25
-              description: Radius for the newly created Geofence. Will be a number other than 0 if the Geofence created is a Circle.
-            shapeType:
-              type: number
-              enum:
-              - 1
-              - 2
-              - 3
-              example: 3
-              description: 1 is for polygon, 2 is for square, 3 is for circle
-            points:
-              type: array
-              items:
-                properties:
-                  latitude:
-                    type: number
-                    format: double
-                  longitude:
-                    type: number
-                    format: double
-        color:
-          type: string
-          example: '#800080'
-        effectiveDaysOfWeek:
-          type: string
-          example: 1,3,5
-          description: Comma separated list of active days of the week. If empty, the new Geofence is always active. Days of week start with 1 on Monday.
-        createdDate:
-          type: string
-          format: date-time
-          example: '2024-06-28T15:31:42.8955131Z'
-          description: Created Date Time in UTC of the newly created Geofence.
-        assetGroupId:
-          type: string
-          format: uuid
-          example: 2CB2D9B4-C801-E111-81CE-E61F13277AAB
-          description: Optional Group Id that the Geofence will monitor for assets/devices.
-        assetIncludeSubGroups:
-          type: boolean
-          example: false
-          description: Optional flag to include Sub Groups for Assets/Devices that the new Geofence will apply to.
-        assets:
-          type: array
-          items:
-            properties:
-              assetId:
-                type: string
-                example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
-              assetType:
-                type: string
-                enum:
-                - vehicle
-                - equipment
-                example: vehicle
-        effectiveStartTime:
-          type: string
-          example: '15:00:00'
-          description: The effective Start time the created Geofence will be active in UTC. Applicable to Geofences created with active time ranges during the day.
-        effectiveEndTime:
-          type: string
-          example: 05:59:00
-          description: The effective End time the created Geofence will cease being active in UTC. Applicable to Geofences created with active time ranges during the day.
-        effectiveTimezoneOffset:
-          type: string
-          example: '-7:00'
-          description: Timezone offset from UTC
     ActivationsResponse:
       title: Geofence Activations Response
       type: object
@@ -907,81 +810,34 @@ components:
                     lastUpdateDateTime:
                       type: string
                       example: '2024-07-11T20:31:33Z'
-    AddGeofenceRequest:
-      title: Add Geofence Request
+    ActivationEndReasonResponse:
+      title: Geofence Activations End Reason Response
       type: object
-      required:
-      - name
-      - isInside
-      - geofenceGeography
-      - colorHex
-      - inclusive
-      - visible
       properties:
-        name:
-          type:
-          - string
-          - 'null'
-          example: San Diego
-          description: Name for Geofence.
-        groupIdentifier:
-          type:
-          - string
-          - 'null'
-          example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
-          description: Optional Group Id to provide that Geofence will be created under.
-        includeSubGroups:
-          type: boolean
-          example: 'false'
-          description: Flag for Geofence to include all assets/vehicles in sub groups.
-        isInside:
-          type: boolean
-          example: 'false'
-          description: Flag to indicate whether geofence faces inside or outside.
-        isActive:
-          type: boolean
-          example: 'true'
-          description: Flag to indicate whether to create the Geofence in the active or inactive state.
-        geofenceGeography:
+        metadata:
           type: object
           properties:
-            radius:
+            limit:
               type: number
-              format: double
-              example: 5
-              description: Required to be other than 0 if shape is a circle
-            shapeType:
+              example: 5000
+              description: Maximum amount of records that can be returned.
+            count:
               type: number
-              enum:
-              - 1
-              - 2
-              - 3
-              example: 3
-              description: 1 is for polygon, 2 is for square, 3 is for circle
-            points:
-              type: array
-              description: Array of points (lat,long). Circle requires 1 point as the centerpoint, Square requires 4 points, Polygon requires 3+ points.
-              items:
-                properties:
-                  latitude:
-                    type: number
-                    format: double
-                  longitude:
-                    type: number
-                    format: double
-        assets:
+              example: 5000
+              description: Number of End Reason records returned.
+        data:
           type: array
           items:
             properties:
-              assetId:
+              reasonId:
+                type: number
+                example: 0
+              description:
                 type: string
-                example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
-              assetType:
+                example: Not Deleted
+              creationDate:
                 type: string
-                enum:
-                - vehicle
-                - equipment
-                example: vehicle
+                example: 23-Jun-2024
     ListGeofenceResponse:
       title: Geofences Response
       type: object
@@ -1117,34 +973,189 @@ components:
                 type: string
                 example: '-7:00'
                 description: Timezone offset from UTC
-    ActivationEndReasonResponse:
-      title: Geofence Activations End Reason Response
+    AddGeofenceRequest:
+      title: Add Geofence Request
       type: object
+      required:
+      - name
+      - isInside
+      - geofenceGeography
+      - colorHex
+      - inclusive
+      - visible
       properties:
-        metadata:
+        name:
+          type:
+          - string
+          - 'null'
+          example: San Diego
+          description: Name for Geofence.
+        groupIdentifier:
+          type:
+          - string
+          - 'null'
+          example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
+          description: Optional Group Id to provide that Geofence will be created under.
+        includeSubGroups:
+          type: boolean
+          example: 'false'
+          description: Flag for Geofence to include all assets/vehicles in sub groups.
+        isInside:
+          type: boolean
+          example: 'false'
+          description: Flag to indicate whether geofence faces inside or outside.
+        isActive:
+          type: boolean
+          example: 'true'
+          description: Flag to indicate whether to create the Geofence in the active or inactive state.
+        geofenceGeography:
           type: object
           properties:
-            limit:
+            radius:
               type: number
-              example: 5000
-              description: Maximum amount of records that can be returned.
-            count:
+              format: double
+              example: 5
+              description: Required to be other than 0 if shape is a circle
+            shapeType:
               type: number
-              example: 5000
-              description: Number of End Reason records returned.
-        data:
+              enum:
+              - 1
+              - 2
+              - 3
+              example: 3
+              description: 1 is for polygon, 2 is for square, 3 is for circle
+            points:
+              type: array
+              description: Array of points (lat,long). Circle requires 1 point as the centerpoint, Square requires 4 points, Polygon requires 3+ points.
+              items:
+                properties:
+                  latitude:
+                    type: number
+                    format: double
+                  longitude:
+                    type: number
+                    format: double
+        assets:
           type: array
           items:
             properties:
-              reasonId:
-                type: number
-                example: 0
-              description:
+              assetId:
                 type: string
-                example: Not Deleted
-              creationDate:
+                example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
+              assetType:
                 type: string
-                example: 23-Jun-2024
+                enum:
+                - vehicle
+                - equipment
+                example: vehicle
+    SingleGeofenceResponse:
+      title: Geofence Response
+      type: object
+      properties:
+        geofenceId:
+          type: string
+          example: 3F136C14-79C8-4BAA-B9DE-ADA9C0C68EBC
+          description: Id of the created Geofence
+        name:
+          type: string
+          example: San Diego 92120
+          description: Name of the created Geofence.
+        rootGroupId:
+          type: string
+          example: 2BB2D9B4-C801-E111-81CE-E61F13277AAB
+          description: Id of the unique company identifier that the new Geofence was created in.
+        groupId:
+          type: string
+          example: 2BB2D9B4-C801-E111-81CE-E61F13277AAB
+          description: Id of the Sub-Group the new Geofence was created in. Can be the same as Root Group Id.
+        groupName:
+          type: string
+          example: Root Group
+          description: Name of the Sub-Group the new Geofence was created in.
+        groupPath:
+          type: string
+          example: 2BB2D9B4-C801-E111-81CE-E61F13277AAB\\2CB2D9B4-C801-E111-81CE-E61F13277AAB
+          description: Hierarchy path showing the Group Ids down from the Root Group Id
+        includeSubGroups:
+          type: boolean
+          example: true
+          description: Flag for the newly created Geofence that indicates whether or not the Geofence rules apply to all vehicles below the Group the Geofence is created in the hierarchy.
+        isInside:
+          type: boolean
+          example: true
+          description: Flag for the newly created Geofence that states whether or not the Geofence is inside facing or outside facing.
+        geofenceGeography:
+          type: object
+          properties:
+            radius:
+              type: number
+              format: double
+              example: 25
+              description: Radius for the newly created Geofence. Will be a number other than 0 if the Geofence created is a Circle.
+            shapeType:
+              type: number
+              enum:
+              - 1
+              - 2
+              - 3
+              example: 3
+              description: 1 is for polygon, 2 is for square, 3 is for circle
+            points:
+              type: array
+              items:
+                properties:
+                  latitude:
+                    type: number
+                    format: double
+                  longitude:
+                    type: number
+                    format: double
+        color:
+          type: string
+          example: '#800080'
+        effectiveDaysOfWeek:
+          type: string
+          example: 1,3,5
+          description: Comma separated list of active days of the week. If empty, the new Geofence is always active. Days of week start with 1 on Monday.
+        createdDate:
+          type: string
+          format: date-time
+          example: '2024-06-28T15:31:42.8955131Z'
+          description: Created Date Time in UTC of the newly created Geofence.
+        assetGroupId:
+          type: string
+          format: uuid
+          example: 2CB2D9B4-C801-E111-81CE-E61F13277AAB
+          description: Optional Group Id that the Geofence will monitor for assets/devices.
+        assetIncludeSubGroups:
+          type: boolean
+          example: false
+          description: Optional flag to include Sub Groups for Assets/Devices that the new Geofence will apply to.
+        assets:
+          type: array
+          items:
+            properties:
+              assetId:
+                type: string
+                example: 5100FFFF-60B6-D7CD-3FA2-22CA712B0000
+              assetType:
+                type: string
+                enum:
+                - vehicle
+                - equipment
+                example: vehicle
+        effectiveStartTime:
+          type: string
+          example: '15:00:00'
+          description: The effective Start time the created Geofence will be active in UTC. Applicable to Geofences created with active time ranges during the day.
+        effectiveEndTime:
+          type: string
+          example: 05:59:00
+          description: The effective End time the created Geofence will cease being active in UTC. Applicable to Geofences created with active time ranges during the day.
+        effectiveTimezoneOffset:
+          type: string
+          example: '-7:00'
+          description: Timezone offset from UTC
   securitySchemes:
     bearerAuth:
       type: http

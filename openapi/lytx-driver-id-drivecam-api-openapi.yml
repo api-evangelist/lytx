@@ -59,6 +59,41 @@ paths:
                 type: string
 components:
   schemas:
+    Driver:
+      type: object
+      additionalProperties: false
+      properties:
+        firstName:
+          type:
+          - string
+          - 'null'
+        lastName:
+          type:
+          - string
+          - 'null'
+        fullName:
+          type:
+          - string
+          - 'null'
+        employeeId:
+          type:
+          - string
+          - 'null'
+    GetTripsApiResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        totalCount:
+          type: integer
+          description: The total number of trips that matches the query, ignoring pagination.
+          format: int32
+        results:
+          type:
+          - array
+          - 'null'
+          description: List of paginated trips that matches the query.
+          items:
+            $ref: '#/components/schemas/Trip'
     Trip:
       type: object
       additionalProperties: false
@@ -126,6 +161,28 @@ components:
           - 'null'
           oneOf:
           - $ref: '#/components/schemas/Location'
+    Interval:
+      type: object
+      additionalProperties: false
+      properties:
+        startTime:
+          type: string
+          description: The trip start time.
+          format: date-time
+        endTime:
+          type:
+          - string
+          - 'null'
+          description: The trip end time. If the trip has not completed, no end time will be provided.
+          format: date-time
+    Group:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
     Device:
       type: object
       additionalProperties: false
@@ -134,49 +191,6 @@ components:
           type:
           - string
           - 'null'
-    Driver:
-      type: object
-      additionalProperties: false
-      properties:
-        firstName:
-          type:
-          - string
-          - 'null'
-        lastName:
-          type:
-          - string
-          - 'null'
-        fullName:
-          type:
-          - string
-          - 'null'
-        employeeId:
-          type:
-          - string
-          - 'null'
-    Vehicle:
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-    GetTripsApiResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        totalCount:
-          type: integer
-          description: The total number of trips that matches the query, ignoring pagination.
-          format: int32
-        results:
-          type:
-          - array
-          - 'null'
-          description: List of paginated trips that matches the query.
-          items:
-            $ref: '#/components/schemas/Trip'
     Location:
       type: object
       additionalProperties: false
@@ -187,7 +201,7 @@ components:
         longitude:
           type: number
           format: double
-    Group:
+    Vehicle:
       type: object
       additionalProperties: false
       properties:
@@ -273,20 +287,6 @@ components:
           maximum: 2147483647
           minimum: 1
           example: 1000
-    Interval:
-      type: object
-      additionalProperties: false
-      properties:
-        startTime:
-          type: string
-          description: The trip start time.
-          format: date-time
-        endTime:
-          type:
-          - string
-          - 'null'
-          description: The trip end time. If the trip has not completed, no end time will be provided.
-          format: date-time
   securitySchemes:
     APIKey:
       type: apiKey

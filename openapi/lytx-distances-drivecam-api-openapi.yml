@@ -220,6 +220,8 @@ paths:
                   message:
                     type: string
                     example: An unexpected server error occurred
+      operationId: getV1Distances
+      x-operation-id-source: derived
 components:
   securitySchemes:
     bearerAuth:

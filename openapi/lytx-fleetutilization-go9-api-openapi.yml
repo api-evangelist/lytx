@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Lytx.Telematics.Fleet.Api - FleetUtilization FleetUtilization (GO9) API
+  title: Lytx.Telematics.Fleet.Api - FleetUtilization…
   description: API for accessing Fleet Utilization data, requiring authentication.
   version: 1.0.0
 servers:
@@ -178,8 +178,39 @@ paths:
                   message:
                     type: string
                     example: An unexpected server error occurred
+      operationId: getPlusV1Fleetutilization
+      x-operation-id-source: derived
 components:
   schemas:
+    UtilizationMetricsResponseViewModel:
+      type: object
+      properties:
+        timeInUse:
+          type:
+          - string
+          - 'null'
+          example: '00:06:57.515'
+          description: Total duration the vehicle was in use.
+        distanceTraveled:
+          type:
+          - number
+          - 'null'
+          format: double
+          example: 245.75
+          description: Total distance traveled by the vehicle in kilometers.
+        idleTime:
+          type:
+          - string
+          - 'null'
+          example: 00:12:42
+          description: Total time the vehicle remained idle.
+        utilizationPercentage:
+          type:
+          - number
+          - 'null'
+          format: double
+          example: 78.5
+          description: Percentage indicating overall vehicle utilization.
     FleetUtilizationResponseViewModel:
       type: object
       properties:
@@ -218,35 +249,6 @@ components:
           description: Date and time when the utilization data was created.
         utilizationMetrics:
           $ref: '#/components/schemas/UtilizationMetricsResponseViewModel'
-    UtilizationMetricsResponseViewModel:
-      type: object
-      properties:
-        timeInUse:
-          type:
-          - string
-          - 'null'
-          example: '00:06:57.515'
-          description: Total duration the vehicle was in use.
-        distanceTraveled:
-          type:
-          - number
-          - 'null'
-          format: double
-          example: 245.75
-          description: Total distance traveled by the vehicle in kilometers.
-        idleTime:
-          type:
-          - string
-          - 'null'
-          example: 00:12:42
-          description: Total time the vehicle remained idle.
-        utilizationPercentage:
-          type:
-          - number
-          - 'null'
-          format: double
-          example: 78.5
-          description: Percentage indicating overall vehicle utilization.
   securitySchemes:
     bearerAuth:
       type: http

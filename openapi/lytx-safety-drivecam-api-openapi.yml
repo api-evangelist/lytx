@@ -585,6 +585,33 @@ paths:
           description: Database is unavailable.
 components:
   schemas:
+    SafetyEventBehavior:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - name
+      - creationDate
+      properties:
+        id:
+          type: integer
+          description: Unique id of the behavior.
+          format: int32
+        name:
+          type: string
+          description: Name of the behavior.
+          minLength: 1
+        creationDate:
+          type: string
+          description: Creation date of the behavior.
+          format: date-time
+          minLength: 1
+        revisionDate:
+          type:
+          - string
+          - 'null'
+          description: Timestamp of last revision of the object, may be null if event hasn’t changed since it was created.
+          format: date-time
     SafetyEventTriggerSubtype:
       type: object
       additionalProperties: false
@@ -632,98 +659,6 @@ components:
           type: string
           description: Creation date of the dynamic risk.
           format: date-time
-          minLength: 1
-    SafetyEventBehavior:
-      type: object
-      additionalProperties: false
-      required:
-      - id
-      - name
-      - creationDate
-      properties:
-        id:
-          type: integer
-          description: Unique id of the behavior.
-          format: int32
-        name:
-          type: string
-          description: Name of the behavior.
-          minLength: 1
-        creationDate:
-          type: string
-          description: Creation date of the behavior.
-          format: date-time
-          minLength: 1
-        revisionDate:
-          type:
-          - string
-          - 'null'
-          description: Timestamp of last revision of the object, may be null if event hasn’t changed since it was created.
-          format: date-time
-    SafetyEventTrigger:
-      type: object
-      additionalProperties: false
-      required:
-      - id
-      - name
-      - creationDate
-      properties:
-        id:
-          type: integer
-          description: Unique id of the trigger.
-          format: int32
-        name:
-          type: string
-          description: Name of the trigger.
-          minLength: 1
-        creationDate:
-          type: string
-          description: Creation date of the trigger.
-          format: date-time
-          minLength: 1
-        revisionDate:
-          type:
-          - string
-          - 'null'
-          description: Timestamp of last revision of the object, may be null if event hasn’t changed since it was created.
-          format: date-time
-    Note:
-      type: object
-      additionalProperties: false
-      required:
-      - id
-      - body
-      - creationDate
-      - authorUserId
-      - firstName
-      - lastName
-      properties:
-        id:
-          type: string
-          description: Id of note.
-          format: guid
-          minLength: 1
-        body:
-          type: string
-          description: Content of note.
-          minLength: 1
-        creationDate:
-          type: string
-          description: Creation date of note.
-          format: date-time
-          minLength: 1
-        authorUserId:
-          type: string
-          description: Id of author.
-          format: guid
-          minLength: 1
-        firstName:
-          type: string
-          description: First name of author.
-          minLength: 1
-        lastName:
-          type: string
-          description: Last name of author.
           minLength: 1
     SafetyEvent:
       type: object
@@ -952,6 +887,23 @@ components:
           - 'null'
           description: The date when the event becomes coachable.
           format: date-time
+    SafetyEvents:
+      type: object
+      additionalProperties: false
+      required:
+      - totalCount
+      - eventsIds
+      properties:
+        totalCount:
+          type: integer
+          description: Total count of event ids.
+          format: int64
+        eventsIds:
+          type: array
+          description: Collection of events IDs.
+          items:
+            type: string
+            format: guid
     SafetyEventStatus:
       type: object
       additionalProperties: false
@@ -979,23 +931,71 @@ components:
           - 'null'
           description: Timestamp of last revision of the object, may be null if event hasn’t changed since it was created.
           format: date-time
-    SafetyEvents:
+    SafetyEventTrigger:
       type: object
       additionalProperties: false
       required:
-      - totalCount
-      - eventsIds
+      - id
+      - name
+      - creationDate
       properties:
-        totalCount:
+        id:
           type: integer
-          description: Total count of event ids.
-          format: int64
-        eventsIds:
-          type: array
-          description: Collection of events IDs.
-          items:
-            type: string
-            format: guid
+          description: Unique id of the trigger.
+          format: int32
+        name:
+          type: string
+          description: Name of the trigger.
+          minLength: 1
+        creationDate:
+          type: string
+          description: Creation date of the trigger.
+          format: date-time
+          minLength: 1
+        revisionDate:
+          type:
+          - string
+          - 'null'
+          description: Timestamp of last revision of the object, may be null if event hasn’t changed since it was created.
+          format: date-time
+    Note:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - body
+      - creationDate
+      - authorUserId
+      - firstName
+      - lastName
+      properties:
+        id:
+          type: string
+          description: Id of note.
+          format: guid
+          minLength: 1
+        body:
+          type: string
+          description: Content of note.
+          minLength: 1
+        creationDate:
+          type: string
+          description: Creation date of note.
+          format: date-time
+          minLength: 1
+        authorUserId:
+          type: string
+          description: Id of author.
+          format: guid
+          minLength: 1
+        firstName:
+          type: string
+          description: First name of author.
+          minLength: 1
+        lastName:
+          type: string
+          description: Last name of author.
+          minLength: 1
   securitySchemes:
     APIKey:
       type: apiKey

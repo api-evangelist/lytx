@@ -175,47 +175,10 @@ paths:
                   message:
                     type: string
                     example: An unexpected server error occurred
+      operationId: getPlusV1Dvir
+      x-operation-id-source: derived
 components:
   schemas:
-    DefectResponseViewModel:
-      type: object
-      properties:
-        children:
-          type: array
-          items:
-            $ref: '#/components/schemas/GroupResponseViewModel'
-        color:
-          $ref: '#/components/schemas/ColorResponseViewModel'
-        comments:
-          type: string
-          example: Requires immediate attention
-          description: Comments on the defect.
-        id:
-          type: string
-          example: def1f6e56d-1234-4567-89ab-cdef12345678
-          description: Unique ID of the defect.
-        isHidden:
-          type: boolean
-          example: false
-          description: Whether the defect is hidden.
-        isRequired:
-          type: boolean
-          example: true
-          description: Whether the defect is required.
-        name:
-          type: string
-          example: Brake Pads
-          description: Name of the defect.
-        parent:
-          $ref: '#/components/schemas/GroupResponseViewModel'
-        reference:
-          type: string
-          example: REF-001
-          description: Reference for the defect.
-        severity:
-          type: string
-          example: High
-          description: Severity level of the defect.
     DeviceResponseViewModel:
       type: object
       properties:
@@ -363,24 +326,6 @@ components:
           - 'null'
           example: v1.2.3
           description: Version information of the device.
-    DefectRemarkResponseViewModel:
-      type: object
-      properties:
-        dateTime:
-          type: string
-          format: date-time
-          example: '2025-05-29T19:18:26.063Z'
-          description: Date/time of the remark.
-        id:
-          type: string
-          example: r1f6e56d-1234-4567-89ab-cdef12345678
-          description: Unique ID of the remark.
-        remark:
-          type: string
-          example: Checked brakes
-          description: Remark text.
-        user:
-          $ref: '#/components/schemas/UserResponseViewModel'
     GroupResponseViewModel:
       type: object
       properties:
@@ -409,45 +354,24 @@ components:
           description: List of child groups.
         color:
           $ref: '#/components/schemas/GroupResponseViewModel'
-    DVIRDefectResponseViewModel:
+    DefectRemarkResponseViewModel:
       type: object
       properties:
-        defect:
-          $ref: '#/components/schemas/DefectResponseViewModel'
-        defectRemarks:
-          type: array
-          items:
-            $ref: '#/components/schemas/DefectRemarkResponseViewModel'
-        id:
-          type: string
-          example: dd1f6e56d-1234-4567-89ab-cdef12345678
-          description: Unique ID of the DVIR defect.
-        repairDateTime:
+        dateTime:
           type: string
           format: date-time
-          example: '2025-05-30T10:00:00.000Z'
-          description: Date and time of repair.
-        repairStatus:
+          example: '2025-05-29T19:18:26.063Z'
+          description: Date/time of the remark.
+        id:
           type: string
-          example: Repaired
-          description: Status of the repair.
-        repairUser:
+          example: r1f6e56d-1234-4567-89ab-cdef12345678
+          description: Unique ID of the remark.
+        remark:
+          type: string
+          example: Checked brakes
+          description: Remark text.
+        user:
           $ref: '#/components/schemas/UserResponseViewModel'
-    ColorResponseViewModel:
-      type: object
-      properties:
-        a:
-          type: integer
-          example: 255
-        r:
-          type: integer
-          example: 255
-        g:
-          type: integer
-          example: 0
-        b:
-          type: integer
-          example: 0
     DvirResponseViewModel:
       type: object
       properties:
@@ -551,6 +475,84 @@ components:
           type: string
           example: v1.0
           description: Version of the DVIR report.
+    DVIRDefectResponseViewModel:
+      type: object
+      properties:
+        defect:
+          $ref: '#/components/schemas/DefectResponseViewModel'
+        defectRemarks:
+          type: array
+          items:
+            $ref: '#/components/schemas/DefectRemarkResponseViewModel'
+        id:
+          type: string
+          example: dd1f6e56d-1234-4567-89ab-cdef12345678
+          description: Unique ID of the DVIR defect.
+        repairDateTime:
+          type: string
+          format: date-time
+          example: '2025-05-30T10:00:00.000Z'
+          description: Date and time of repair.
+        repairStatus:
+          type: string
+          example: Repaired
+          description: Status of the repair.
+        repairUser:
+          $ref: '#/components/schemas/UserResponseViewModel'
+    DefectResponseViewModel:
+      type: object
+      properties:
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupResponseViewModel'
+        color:
+          $ref: '#/components/schemas/ColorResponseViewModel'
+        comments:
+          type: string
+          example: Requires immediate attention
+          description: Comments on the defect.
+        id:
+          type: string
+          example: def1f6e56d-1234-4567-89ab-cdef12345678
+          description: Unique ID of the defect.
+        isHidden:
+          type: boolean
+          example: false
+          description: Whether the defect is hidden.
+        isRequired:
+          type: boolean
+          example: true
+          description: Whether the defect is required.
+        name:
+          type: string
+          example: Brake Pads
+          description: Name of the defect.
+        parent:
+          $ref: '#/components/schemas/GroupResponseViewModel'
+        reference:
+          type: string
+          example: REF-001
+          description: Reference for the defect.
+        severity:
+          type: string
+          example: High
+          description: Severity level of the defect.
+    ColorResponseViewModel:
+      type: object
+      properties:
+        a:
+          type: integer
+          example: 255
+        r:
+          type: integer
+          example: 255
+        g:
+          type: integer
+          example: 0
+        b:
+          type: integer
+          example: 0
     UserResponseViewModel:
       type: object
       properties:

@@ -146,6 +146,8 @@ paths:
               example:
                 error: Internal Server Error
                 message: The requested operation cannot be performed.
+      operationId: getV1Trips
+      x-operation-id-source: derived
 components:
   schemas:
     ErrorResponse:
