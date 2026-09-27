@@ -163,14 +163,15 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    BadRequestResponse:
+    UnauthorizedResponse:
       type: object
       properties:
+        error:
+          type: string
+          example: Unauthorized
         message:
           type: string
-          example: Invalid request data
-      required:
-      - message
+          example: Access denied
     EcmResponse:
       type: object
       properties:
@@ -183,63 +184,15 @@ components:
       required:
       - data
       - metadata
-    Metadata:
+    ErrorResponse:
       type: object
       properties:
-        count:
+        error:
           type: string
-          example: '30'
-          description: Total number of records matching the criteria.
-        limit:
-          type: integer
-          example: 100
-          description: Number of records requested.
-        offset:
-          type: integer
-          example: 0
-          description: Starting record offset.
-        startDate:
+          example: Forbidden
+        message:
           type: string
-          format: date-time
-          description: Start date for the query.
-        endDate:
-          type: string
-          format: date-time
-          description: End date for the query.
-      required:
-      - count
-      - limit
-      - offset
-      - startDate
-      - endDate
-    EcmSample:
-      type: object
-      properties:
-        sampleType:
-          type: string
-          enum:
-          - ODOMETER
-          - SPEED_KPH
-          - ENGINE_SPEED
-          - DTC
-          - VIN_FULL
-          - ENGINE_HOURS
-          - MIL
-          example: ENGINE_HOURS
-          description: Type of ECM data.
-        sampleDateTime:
-          type: string
-          format: date-time
-          example: '2024-05-29T22:24:27.804Z'
-          description: Date and time for the data point.
-        sampleValue:
-          type: string
-          example: '1600'
-          description: Value for the data point.
-      required:
-      - sampleType
-      - sampleDateTime
-      - sampleValue
+          example: Non-permitted user
     EcmDevice:
       type: object
       properties:
@@ -293,24 +246,35 @@ components:
       - vin
       - groupName
       - samples
-    UnauthorizedResponse:
+    Metadata:
       type: object
       properties:
-        error:
+        count:
           type: string
-          example: Unauthorized
-        message:
+          example: '30'
+          description: Total number of records matching the criteria.
+        limit:
+          type: integer
+          example: 100
+          description: Number of records requested.
+        offset:
+          type: integer
+          example: 0
+          description: Starting record offset.
+        startDate:
           type: string
-          example: Access denied
-    ErrorResponse:
-      type: object
-      properties:
-        error:
+          format: date-time
+          description: Start date for the query.
+        endDate:
           type: string
-          example: Forbidden
-        message:
-          type: string
-          example: Non-permitted user
+          format: date-time
+          description: End date for the query.
+      required:
+      - count
+      - limit
+      - offset
+      - startDate
+      - endDate
     InternalSystemErrorResponse:
       type: object
       properties:
@@ -320,6 +284,42 @@ components:
         message:
           type: string
           example: An unexpected server error occurred
+    EcmSample:
+      type: object
+      properties:
+        sampleType:
+          type: string
+          enum:
+          - ODOMETER
+          - SPEED_KPH
+          - ENGINE_SPEED
+          - DTC
+          - VIN_FULL
+          - ENGINE_HOURS
+          - MIL
+          example: ENGINE_HOURS
+          description: Type of ECM data.
+        sampleDateTime:
+          type: string
+          format: date-time
+          example: '2024-05-29T22:24:27.804Z'
+          description: Date and time for the data point.
+        sampleValue:
+          type: string
+          example: '1600'
+          description: Value for the data point.
+      required:
+      - sampleType
+      - sampleDateTime
+      - sampleValue
+    BadRequestResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Invalid request data
+      required:
+      - message
   securitySchemes:
     bearerAuth:
       type: http

@@ -220,6 +220,52 @@ components:
         message:
           type: string
           example: An unexpected error occurred.
+    UpdateConsentRequestViewModel:
+      type: object
+      required:
+      - productName
+      - consentStatus
+      properties:
+        userId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          example: 550e8400-e29b-41d4-a716-446655440000
+          description: 'Unique identifier of the user. Required if `employeeId` is not provided.
+
+            '
+        employeeId:
+          type:
+          - string
+          - 'null'
+          example: EMP-9876
+          description: 'Employee identifier associated with the user. Required if `userId` is not provided. The system resolves the corresponding `userId` internally before processing.
+
+            '
+        productName:
+          type: string
+          example: facialId
+          description: 'Product name to update consent status for. Only Facial ID product is supported as of today. Enter product name as:
+
+            * `facialID`
+
+            '
+        consentStatus:
+          type: string
+          example: Obtained
+          description: "New consent status to apply for the specified product.\n- `Obtained`: Valid Consent Obtained Via Alternative Method. Applicable when you have\n  obtained necessary consent through an alternative method and valid consents are still\n  in effect.\n\n- `NotRequired`: Consent Not Required. Valid when your organization has determined,\n  and bears sole responsibility for such determination, that consent is not required by\n  law or your organization's policies.\n"
+          enum:
+          - Obtained
+          - NotRequired
+        source:
+          type:
+          - string
+          - 'null'
+          example: Manual
+          description: 'Source of the consent update. Defaults to "Manual" if not provided.
+
+            '
     ConsentStatusResponseViewModel:
       type: object
       properties:
@@ -301,52 +347,6 @@ components:
             - `Cannot update consent for non-driver users.`
 
             - `Only ''FacialId'' is allowed for ProductName.`
-
-            '
-    UpdateConsentRequestViewModel:
-      type: object
-      required:
-      - productName
-      - consentStatus
-      properties:
-        userId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-          example: 550e8400-e29b-41d4-a716-446655440000
-          description: 'Unique identifier of the user. Required if `employeeId` is not provided.
-
-            '
-        employeeId:
-          type:
-          - string
-          - 'null'
-          example: EMP-9876
-          description: 'Employee identifier associated with the user. Required if `userId` is not provided. The system resolves the corresponding `userId` internally before processing.
-
-            '
-        productName:
-          type: string
-          example: facialId
-          description: 'Product name to update consent status for. Only Facial ID product is supported as of today. Enter product name as:
-
-            * `facialID`
-
-            '
-        consentStatus:
-          type: string
-          example: Obtained
-          description: "New consent status to apply for the specified product.\n- `Obtained`: Valid Consent Obtained Via Alternative Method. Applicable when you have\n  obtained necessary consent through an alternative method and valid consents are still\n  in effect.\n\n- `NotRequired`: Consent Not Required. Valid when your organization has determined,\n  and bears sole responsibility for such determination, that consent is not required by\n  law or your organization's policies.\n"
-          enum:
-          - Obtained
-          - NotRequired
-        source:
-          type:
-          - string
-          - 'null'
-          example: Manual
-          description: 'Source of the consent update. Defaults to "Manual" if not provided.
 
             '
   securitySchemes:

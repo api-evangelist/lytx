@@ -177,6 +177,29 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    LastTripResponseViewModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          example: trip-999
+          description: Unique identifier of the last trip.
+        start:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2025-01-20T06:30:00.000Z'
+          description: Start time of the last trip.
+        stop:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2025-01-20T07:15:00.000Z'
+          description: End time of the last trip.
     ExceptionEventResponseViewModel:
       type: object
       properties:
@@ -206,57 +229,6 @@ components:
           - 'null'
           example: rule-456
           description: Rule identifier that triggered the exception.
-    GroupResponseViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-          example: grp-123
-          description: Unique identifier of the group.
-        name:
-          type: string
-          example: Drivers Group
-          description: Name of the group.
-        comment:
-          type: string
-          example: Main driver group
-          description: Additional comments about the group.
-        reference:
-          type: string
-          example: REF123
-          description: Reference information for the group.
-        parent:
-          $ref: '#/components/schemas/GroupResponseViewModel'
-        children:
-          type: array
-          items:
-            $ref: '#/components/schemas/GroupResponseViewModel'
-          description: List of child groups.
-        color:
-          $ref: '#/components/schemas/GroupResponseViewModel'
-    LastTripResponseViewModel:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          example: trip-999
-          description: Unique identifier of the last trip.
-        start:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2025-01-20T06:30:00.000Z'
-          description: Start time of the last trip.
-        stop:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2025-01-20T07:15:00.000Z'
-          description: End time of the last trip.
     DeviceStatusInfoResponseViewModel:
       type: object
       properties:
@@ -350,6 +322,34 @@ components:
           description: List of active exception events.
         lastTrip:
           $ref: '#/components/schemas/LastTripResponseViewModel'
+    GroupResponseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          example: grp-123
+          description: Unique identifier of the group.
+        name:
+          type: string
+          example: Drivers Group
+          description: Name of the group.
+        comment:
+          type: string
+          example: Main driver group
+          description: Additional comments about the group.
+        reference:
+          type: string
+          example: REF123
+          description: Reference information for the group.
+        parent:
+          $ref: '#/components/schemas/GroupResponseViewModel'
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupResponseViewModel'
+          description: List of child groups.
+        color:
+          $ref: '#/components/schemas/GroupResponseViewModel'
   securitySchemes:
     bearerAuth:
       type: http

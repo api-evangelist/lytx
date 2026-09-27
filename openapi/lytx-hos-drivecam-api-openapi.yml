@@ -613,7 +613,7 @@ paths:
       - HOS (DriveCam)
       summary: Get HOS Logs for All Users
       description: This endpoint is used to retrieve HOS Logs as a batch for all users for your company
-      operationId: Hos_GetHosLogs
+      operationId: getRoot
       parameters:
       - name: startDate
         in: query
@@ -682,6 +682,8 @@ paths:
                 type: string
       security:
       - APIKey: []
+      x-operation-id-source: normalized
+      x-operation-id-original: Hos_GetHosLogs
     servers:
     - url: https://lytx-api.prod2.ph.lytx.com/hos
     - url: https://lytx-api.prod5.ph.lytx.com/hos
@@ -694,7 +696,7 @@ paths:
       - HOS (DriveCam)
       summary: Get HOS Logs for Specified User
       description: This endpoint is used to retrieve HOS Logs for the user
-      operationId: Hos_GetHosLogs_ByUser
+      operationId: getByUserName
       parameters:
       - name: userName
         in: path
@@ -771,6 +773,8 @@ paths:
                 type: string
       security:
       - APIKey: []
+      x-operation-id-source: normalized
+      x-operation-id-original: Hos_GetHosLogs_ByUser
     servers:
     - url: https://lytx-api.prod2.ph.lytx.com/hos
     - url: https://lytx-api.prod5.ph.lytx.com/hos
@@ -779,20 +783,6 @@ paths:
     - url: https://lytx-api.prod8.lv.lytx.com/hos
 components:
   schemas:
-    HosLogByUser:
-      type: object
-      additionalProperties: false
-      properties:
-        userName:
-          type:
-          - string
-          - 'null'
-        hosLogs:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/HosLog'
     HosLog:
       type: object
       additionalProperties: false
@@ -874,6 +864,20 @@ components:
           type:
           - string
           - 'null'
+    HosLogByUser:
+      type: object
+      additionalProperties: false
+      properties:
+        userName:
+          type:
+          - string
+          - 'null'
+        hosLogs:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/HosLog'
     HosLogByCompany:
       type: object
       additionalProperties: false

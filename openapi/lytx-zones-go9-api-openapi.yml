@@ -468,6 +468,24 @@ components:
           type: string
           example: Restricted Area
           description: Name of the zone type.
+    ZoneTypesEnumRequestViewModel:
+      type: string
+      description: Type of zone.
+      enum:
+      - Customer
+      - Home
+      - InHouseServiceCenter
+      - Office
+      - VendorServiceCenter
+    CreateZoneGroupRequestViewModel:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          example: group-12345
+          description: Identifier of the group the zone belongs to.
     EditZonesRequestViewModel:
       type: object
       required:
@@ -543,59 +561,6 @@ components:
           description: Groups to which the zone belongs.
           items:
             $ref: '#/components/schemas/CreateZoneGroupRequestViewModel'
-    ZoneTypesEnumRequestViewModel:
-      type: string
-      description: Type of zone.
-      enum:
-      - Customer
-      - Home
-      - InHouseServiceCenter
-      - Office
-      - VendorServiceCenter
-    CreateZoneColorRequestViewModel:
-      type: object
-      properties:
-        r:
-          type: integer
-          example: 255
-          description: Red color component.
-        g:
-          type: integer
-          example: 0
-          description: Green color component.
-        b:
-          type: integer
-          example: 0
-          description: Blue color component.
-        a:
-          type: integer
-          example: 255
-          description: Alpha (opacity) color component.
-    CreateZonePointRequestViewModel:
-      type: object
-      required:
-      - x
-      - y
-      properties:
-        x:
-          type: number
-          format: double
-          example: 32.7157
-          description: X coordinate (longitude).
-        y:
-          type: number
-          format: double
-          example: -117.1611
-          description: Y coordinate (latitude).
-    CreateZoneGroupRequestViewModel:
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          type: string
-          example: group-12345
-          description: Identifier of the group the zone belongs to.
     AddZonesRequestViewModel:
       type: object
       required:
@@ -661,6 +626,41 @@ components:
           description: Groups to which the zone belongs.
           items:
             $ref: '#/components/schemas/CreateZoneGroupRequestViewModel'
+    CreateZoneColorRequestViewModel:
+      type: object
+      properties:
+        r:
+          type: integer
+          example: 255
+          description: Red color component.
+        g:
+          type: integer
+          example: 0
+          description: Green color component.
+        b:
+          type: integer
+          example: 0
+          description: Blue color component.
+        a:
+          type: integer
+          example: 255
+          description: Alpha (opacity) color component.
+    CreateZonePointRequestViewModel:
+      type: object
+      required:
+      - x
+      - y
+      properties:
+        x:
+          type: number
+          format: double
+          example: 32.7157
+          description: X coordinate (longitude).
+        y:
+          type: number
+          format: double
+          example: -117.1611
+          description: Y coordinate (latitude).
   securitySchemes:
     bearerAuth:
       type: http

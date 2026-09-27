@@ -59,156 +59,6 @@ paths:
                 type: string
 components:
   schemas:
-    Driver:
-      type: object
-      additionalProperties: false
-      properties:
-        firstName:
-          type:
-          - string
-          - 'null'
-        lastName:
-          type:
-          - string
-          - 'null'
-        fullName:
-          type:
-          - string
-          - 'null'
-        employeeId:
-          type:
-          - string
-          - 'null'
-    GetTripsApiResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        totalCount:
-          type: integer
-          description: The total number of trips that matches the query, ignoring pagination.
-          format: int32
-        results:
-          type:
-          - array
-          - 'null'
-          description: List of paginated trips that matches the query.
-          items:
-            $ref: '#/components/schemas/Trip'
-    Trip:
-      type: object
-      additionalProperties: false
-      properties:
-        identificationType:
-          type: integer
-          description: 'The product used to identify the driver associated to the trip.
-
-            Possible values:
-
-            0 (None),
-
-            1 (Lytx Badge Scan),
-
-            2 (Vehicle Assignment), or
-
-            3 (Dispatch API).'
-          format: int32
-        interval:
-          description: The trip time interval.
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/Interval'
-        driver:
-          description: The driver associated to the trip.
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/Driver'
-        vehicle:
-          description: The vehicle associated to the trip.
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/Vehicle'
-        device:
-          description: The device associated to the trip.
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/Device'
-        group:
-          description: The group associated to the trip.
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/Group'
-        startLocation:
-          description: The trip's start location. It is associated with the vehicle's GPS data at the time of ignition on (if provided).
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/Location'
-        endLocation:
-          description: The trip's end location. It is associated with the vehicle's GPS data at the time of ignition off (if provided).
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/Location'
-    Interval:
-      type: object
-      additionalProperties: false
-      properties:
-        startTime:
-          type: string
-          description: The trip start time.
-          format: date-time
-        endTime:
-          type:
-          - string
-          - 'null'
-          description: The trip end time. If the trip has not completed, no end time will be provided.
-          format: date-time
-    Group:
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-    Device:
-      type: object
-      additionalProperties: false
-      properties:
-        serialNumber:
-          type:
-          - string
-          - 'null'
-    Location:
-      type: object
-      additionalProperties: false
-      properties:
-        latitude:
-          type: number
-          format: double
-        longitude:
-          type: number
-          format: double
-    Vehicle:
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
     GetTripsRequest:
       type: object
       additionalProperties: false
@@ -287,6 +137,156 @@ components:
           maximum: 2147483647
           minimum: 1
           example: 1000
+    Location:
+      type: object
+      additionalProperties: false
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+    Group:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+    Trip:
+      type: object
+      additionalProperties: false
+      properties:
+        identificationType:
+          type: integer
+          description: 'The product used to identify the driver associated to the trip.
+
+            Possible values:
+
+            0 (None),
+
+            1 (Lytx Badge Scan),
+
+            2 (Vehicle Assignment), or
+
+            3 (Dispatch API).'
+          format: int32
+        interval:
+          description: The trip time interval.
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/Interval'
+        driver:
+          description: The driver associated to the trip.
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/Driver'
+        vehicle:
+          description: The vehicle associated to the trip.
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/Vehicle'
+        device:
+          description: The device associated to the trip.
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/Device'
+        group:
+          description: The group associated to the trip.
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/Group'
+        startLocation:
+          description: The trip's start location. It is associated with the vehicle's GPS data at the time of ignition on (if provided).
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/Location'
+        endLocation:
+          description: The trip's end location. It is associated with the vehicle's GPS data at the time of ignition off (if provided).
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/Location'
+    Vehicle:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+    Device:
+      type: object
+      additionalProperties: false
+      properties:
+        serialNumber:
+          type:
+          - string
+          - 'null'
+    Driver:
+      type: object
+      additionalProperties: false
+      properties:
+        firstName:
+          type:
+          - string
+          - 'null'
+        lastName:
+          type:
+          - string
+          - 'null'
+        fullName:
+          type:
+          - string
+          - 'null'
+        employeeId:
+          type:
+          - string
+          - 'null'
+    GetTripsApiResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        totalCount:
+          type: integer
+          description: The total number of trips that matches the query, ignoring pagination.
+          format: int32
+        results:
+          type:
+          - array
+          - 'null'
+          description: List of paginated trips that matches the query.
+          items:
+            $ref: '#/components/schemas/Trip'
+    Interval:
+      type: object
+      additionalProperties: false
+      properties:
+        startTime:
+          type: string
+          description: The trip start time.
+          format: date-time
+        endTime:
+          type:
+          - string
+          - 'null'
+          description: The trip end time. If the trip has not completed, no end time will be provided.
+          format: date-time
   securitySchemes:
     APIKey:
       type: apiKey

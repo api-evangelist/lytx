@@ -699,145 +699,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ActivationsResponse:
-      title: Geofence Activations Response
-      type: object
-      properties:
-        metadata:
-          type: object
-          properties:
-            limit:
-              type: number
-              example: 5000
-              description: Maximum amount of records that can be returned.
-            count:
-              type: number
-              example: 5000
-              description: Number of Geofence Activation records returned.
-            offset:
-              type: number
-              example: 0
-              description: Number of records skipped.
-            startDate:
-              type: string
-              format: date-time
-              example: '2024-07-10T12:12:12Z'
-            endDate:
-              type: string
-              format: date-time
-              example: '2024-07-11T12:12:12Z'
-        data:
-          type: array
-          items:
-            properties:
-              vehicleId:
-                type: string
-                format: uuid
-                example: d77548ad-95db-40a8-bbcd-8259e5063f7f
-              vehicleName:
-                type: string
-                example: 2012 Toyota Tundra
-              vin:
-                type: string
-                example: 1B4HR28Y6XF631743
-              deviceId:
-                type: string
-                format: uuid
-                example: d77548ad-95db-40a8-bbcd-8259e5063f7f
-              serialNumber:
-                type: string
-                example: QM123456
-              groupId:
-                type: string
-                format: uuid
-                example: d77548ad-95db-40a8-bbcd-8259e5063f7f
-              activations:
-                type: array
-                items:
-                  properties:
-                    activationId:
-                      type: string
-                      format: uuid
-                      example: a2c08cb1-0df9-4452-a8e8-38b2e74f2e8d
-                    geofenceName:
-                      type: string
-                      example: San Diego - UTC
-                    geofenceId:
-                      type: string
-                      format: uuid
-                      example: a2c08cb1-0df9-4452-a8e8-38b2e74f2e8d
-                    startPosition:
-                      type: object
-                      properties:
-                        latitude:
-                          type: number
-                          format: double
-                          example: 32.123
-                        longitude:
-                          type: number
-                          format: double
-                          example: 101.432
-                    activationStartDate:
-                      type: string
-                      format: date-time
-                      example: '2024-07-09T16:11:11Z'
-                    activationEndDate:
-                      type:
-                      - string
-                      - 'null'
-                      format: date-time
-                      example: '2024-07-11T20:31:33Z'
-                    endPosition:
-                      type:
-                      - object
-                      - 'null'
-                      properties:
-                        latitude:
-                          type: number
-                          format: double
-                          example: 32.123
-                        longitude:
-                          type: number
-                          format: double
-                          example: 101.432
-                    userIdentifier:
-                      type: string
-                      format: uuid
-                      example: d77548ad-95db-40a8-bbcd-8259e5063f7f
-                    endReason:
-                      type: number
-                      example: 1
-                    lastUpdateDateTime:
-                      type: string
-                      example: '2024-07-11T20:31:33Z'
-    ActivationEndReasonResponse:
-      title: Geofence Activations End Reason Response
-      type: object
-      properties:
-        metadata:
-          type: object
-          properties:
-            limit:
-              type: number
-              example: 5000
-              description: Maximum amount of records that can be returned.
-            count:
-              type: number
-              example: 5000
-              description: Number of End Reason records returned.
-        data:
-          type: array
-          items:
-            properties:
-              reasonId:
-                type: number
-                example: 0
-              description:
-                type: string
-                example: Not Deleted
-              creationDate:
-                type: string
-                example: 23-Jun-2024
     ListGeofenceResponse:
       title: Geofences Response
       type: object
@@ -1048,6 +909,117 @@ components:
                 - vehicle
                 - equipment
                 example: vehicle
+    ActivationsResponse:
+      title: Geofence Activations Response
+      type: object
+      properties:
+        metadata:
+          type: object
+          properties:
+            limit:
+              type: number
+              example: 5000
+              description: Maximum amount of records that can be returned.
+            count:
+              type: number
+              example: 5000
+              description: Number of Geofence Activation records returned.
+            offset:
+              type: number
+              example: 0
+              description: Number of records skipped.
+            startDate:
+              type: string
+              format: date-time
+              example: '2024-07-10T12:12:12Z'
+            endDate:
+              type: string
+              format: date-time
+              example: '2024-07-11T12:12:12Z'
+        data:
+          type: array
+          items:
+            properties:
+              vehicleId:
+                type: string
+                format: uuid
+                example: d77548ad-95db-40a8-bbcd-8259e5063f7f
+              vehicleName:
+                type: string
+                example: 2012 Toyota Tundra
+              vin:
+                type: string
+                example: 1B4HR28Y6XF631743
+              deviceId:
+                type: string
+                format: uuid
+                example: d77548ad-95db-40a8-bbcd-8259e5063f7f
+              serialNumber:
+                type: string
+                example: QM123456
+              groupId:
+                type: string
+                format: uuid
+                example: d77548ad-95db-40a8-bbcd-8259e5063f7f
+              activations:
+                type: array
+                items:
+                  properties:
+                    activationId:
+                      type: string
+                      format: uuid
+                      example: a2c08cb1-0df9-4452-a8e8-38b2e74f2e8d
+                    geofenceName:
+                      type: string
+                      example: San Diego - UTC
+                    geofenceId:
+                      type: string
+                      format: uuid
+                      example: a2c08cb1-0df9-4452-a8e8-38b2e74f2e8d
+                    startPosition:
+                      type: object
+                      properties:
+                        latitude:
+                          type: number
+                          format: double
+                          example: 32.123
+                        longitude:
+                          type: number
+                          format: double
+                          example: 101.432
+                    activationStartDate:
+                      type: string
+                      format: date-time
+                      example: '2024-07-09T16:11:11Z'
+                    activationEndDate:
+                      type:
+                      - string
+                      - 'null'
+                      format: date-time
+                      example: '2024-07-11T20:31:33Z'
+                    endPosition:
+                      type:
+                      - object
+                      - 'null'
+                      properties:
+                        latitude:
+                          type: number
+                          format: double
+                          example: 32.123
+                        longitude:
+                          type: number
+                          format: double
+                          example: 101.432
+                    userIdentifier:
+                      type: string
+                      format: uuid
+                      example: d77548ad-95db-40a8-bbcd-8259e5063f7f
+                    endReason:
+                      type: number
+                      example: 1
+                    lastUpdateDateTime:
+                      type: string
+                      example: '2024-07-11T20:31:33Z'
     SingleGeofenceResponse:
       title: Geofence Response
       type: object
@@ -1156,6 +1128,34 @@ components:
           type: string
           example: '-7:00'
           description: Timezone offset from UTC
+    ActivationEndReasonResponse:
+      title: Geofence Activations End Reason Response
+      type: object
+      properties:
+        metadata:
+          type: object
+          properties:
+            limit:
+              type: number
+              example: 5000
+              description: Maximum amount of records that can be returned.
+            count:
+              type: number
+              example: 5000
+              description: Number of End Reason records returned.
+        data:
+          type: array
+          items:
+            properties:
+              reasonId:
+                type: number
+                example: 0
+              description:
+                type: string
+                example: Not Deleted
+              creationDate:
+                type: string
+                example: 23-Jun-2024
   securitySchemes:
     bearerAuth:
       type: http

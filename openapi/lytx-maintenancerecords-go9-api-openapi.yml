@@ -162,81 +162,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    MaintenanceRecordsResponseViewModel:
-      type: object
-      properties:
-        deviceId:
-          type:
-          - string
-          - 'null'
-          example: 1b33bcbe-15d3-445e-a06f-dda61208ad18
-          description: Unique identifier of the device.
-        vehicleIdentificationNumber:
-          type:
-          - string
-          - 'null'
-          example: 1HGCM82633A004352
-          description: Vehicle Identification Number (VIN).
-        id:
-          type:
-          - string
-          - 'null'
-          example: maint-12345
-          description: Unique identifier of the maintenance record.
-        maintenanceType:
-          $ref: '#/components/schemas/EventTypeResponseViewModel'
-        dateTime:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2025-01-10T10:30:00.000Z'
-          description: Date and time of the maintenance event.
-        estimateCost:
-          type:
-          - number
-          - 'null'
-          format: decimal
-          example: 4500.75
-          description: Estimated cost of maintenance.
-        description:
-          type:
-          - string
-          - 'null'
-          example: Brake pad replacement
-          description: Description of the maintenance work.
-        snoozeDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2025-02-01T00:00:00.000Z'
-          description: Date until the maintenance reminder is snoozed.
-        currentOdometer:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          example: 125000
-          description: Current odometer reading of the vehicle.
-        schedule:
-          $ref: '#/components/schemas/MaintenanceScheduleResponseViewModel'
-        updateDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2025-01-12T08:15:00.000Z'
-          description: Last updated date of the maintenance record.
-    CreatedByResponseViewModel:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          example: user-789
-          description: Identifier of the user who created the record.
     EventTypeResponseViewModel:
       type: object
       properties:
@@ -314,6 +239,81 @@ components:
           - 'null'
           example: true
           description: Indicates whether this belongs to a defect list.
+    MaintenanceRecordsResponseViewModel:
+      type: object
+      properties:
+        deviceId:
+          type:
+          - string
+          - 'null'
+          example: 1b33bcbe-15d3-445e-a06f-dda61208ad18
+          description: Unique identifier of the device.
+        vehicleIdentificationNumber:
+          type:
+          - string
+          - 'null'
+          example: 1HGCM82633A004352
+          description: Vehicle Identification Number (VIN).
+        id:
+          type:
+          - string
+          - 'null'
+          example: maint-12345
+          description: Unique identifier of the maintenance record.
+        maintenanceType:
+          $ref: '#/components/schemas/EventTypeResponseViewModel'
+        dateTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2025-01-10T10:30:00.000Z'
+          description: Date and time of the maintenance event.
+        estimateCost:
+          type:
+          - number
+          - 'null'
+          format: decimal
+          example: 4500.75
+          description: Estimated cost of maintenance.
+        description:
+          type:
+          - string
+          - 'null'
+          example: Brake pad replacement
+          description: Description of the maintenance work.
+        snoozeDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2025-02-01T00:00:00.000Z'
+          description: Date until the maintenance reminder is snoozed.
+        currentOdometer:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          example: 125000
+          description: Current odometer reading of the vehicle.
+        schedule:
+          $ref: '#/components/schemas/MaintenanceScheduleResponseViewModel'
+        updateDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2025-01-12T08:15:00.000Z'
+          description: Last updated date of the maintenance record.
+    CreatedByResponseViewModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          example: user-789
+          description: Identifier of the user who created the record.
   securitySchemes:
     bearerAuth:
       type: http

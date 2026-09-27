@@ -1221,23 +1221,34 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    BulkMoveGroupResponse:
-      title: BulkMoveGroupResponse
+    ImportGroupsResponse:
+      title: ImportGroupsResponse
       type: object
-      required:
-      - MovedGroups
-      - UnmovedGroups
       properties:
-        MovedGroups:
+        importedGroups:
           type: array
           items:
-            $ref: '#/components/schemas/Group'
-          description: A list of groups that were moved successfully.
-        UnmovedGroups:
+            type: string
+            example: Root\Group1
+          description: List of group names that were successfully imported.
+        existingGroups:
           type: array
           items:
-            $ref: '#/components/schemas/UnmovedGroup'
-          description: A list of groups that were not moved with corresponding error messages.
+            type: string
+            example: Root\ExistingGroup
+          description: List of group names that already existed and were not imported.
+        groupsFailedToImport:
+          type: array
+          items:
+            type: string
+            example: Root\Group3\FailedGroup
+          description: List of group names that failed to import as Group3 is not present.
+        invalidGroupNames:
+          type: array
+          items:
+            type: string
+            example: InvalidGroup
+          description: List of group names that were invalid and could not be imported.
     Group:
       title: Group
       type: object
@@ -1282,18 +1293,6 @@ components:
         updatedDate:
           type: string
           example: '2023-02-01T00:00:00Z'
-    UnmovedGroup:
-      title: UnmovedGroup
-      type: object
-      required:
-      - Group
-      - ErrorMessage
-      properties:
-        Group:
-          $ref: '#/components/schemas/Group'
-        ErrorMessage:
-          type: string
-          description: The error message describes why the group was not moved.
     EditGroupRequest:
       title: EditGroupRequest
       type: object
@@ -1310,53 +1309,18 @@ components:
           type: string
           example: A group being edited.
           description: Custom field.
-    AddGroupRequest:
-      title: AddGroupRequest
+    UnmovedGroup:
+      title: UnmovedGroup
       type: object
       required:
-      - name
-      - parentId
+      - Group
+      - ErrorMessage
       properties:
-        name:
+        Group:
+          $ref: '#/components/schemas/Group'
+        ErrorMessage:
           type: string
-          example: testGroupName
-          description: Name of the group to create.
-        parentId:
-          type: string
-          example: 880e70d8-aaf8-18aa-7ab0-6533d8f1c360
-          description: ID of the parent group. The new group will be placed under this parent.
-        description:
-          type: string
-          example: A new group being added.
-          description: Custom field.
-    ImportGroupsResponse:
-      title: ImportGroupsResponse
-      type: object
-      properties:
-        importedGroups:
-          type: array
-          items:
-            type: string
-            example: Root\Group1
-          description: List of group names that were successfully imported.
-        existingGroups:
-          type: array
-          items:
-            type: string
-            example: Root\ExistingGroup
-          description: List of group names that already existed and were not imported.
-        groupsFailedToImport:
-          type: array
-          items:
-            type: string
-            example: Root\Group3\FailedGroup
-          description: List of group names that failed to import as Group3 is not present.
-        invalidGroupNames:
-          type: array
-          items:
-            type: string
-            example: InvalidGroup
-          description: List of group names that were invalid and could not be imported.
+          description: The error message describes why the group was not moved.
     BulkMoveGroupRequest:
       title: BulkMoveGroupRequest
       type: object
@@ -1377,6 +1341,42 @@ components:
           type: string
           example: 780e70d8-aaf8-18aa-7ab0-6533d8f1c390/Id
           description: Id of the parent group followed by Id keyword.
+    AddGroupRequest:
+      title: AddGroupRequest
+      type: object
+      required:
+      - name
+      - parentId
+      properties:
+        name:
+          type: string
+          example: testGroupName
+          description: Name of the group to create.
+        parentId:
+          type: string
+          example: 880e70d8-aaf8-18aa-7ab0-6533d8f1c360
+          description: ID of the parent group. The new group will be placed under this parent.
+        description:
+          type: string
+          example: A new group being added.
+          description: Custom field.
+    BulkMoveGroupResponse:
+      title: BulkMoveGroupResponse
+      type: object
+      required:
+      - MovedGroups
+      - UnmovedGroups
+      properties:
+        MovedGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group'
+          description: A list of groups that were moved successfully.
+        UnmovedGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/UnmovedGroup'
+          description: A list of groups that were not moved with corresponding error messages.
   securitySchemes:
     bearerAuth:
       type: http
