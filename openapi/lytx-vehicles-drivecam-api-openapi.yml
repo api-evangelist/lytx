@@ -344,21 +344,173 @@ paths:
           description: Requested operation cannot be performed. Try again later.
 components:
   schemas:
-    VehiclesResponse:
+    VehicleResponse:
       type: object
       additionalProperties: false
+      required:
+      - id
+      - name
+      - type
+      - status
+      - licensePlateNumber
+      - countrySubdivision
+      - lastConnected
+      - groupId
+      - vin
+      - seatbeltType
       properties:
-        vehicles:
-          type:
-          - array
-          - 'null'
-          description: Received vehicles.
-          items:
-            $ref: '#/components/schemas/Vehicle'
-        totalResults:
+        id:
+          type: string
+          description: ID of the vehicle.
+          format: guid
+          minLength: 1
+        name:
+          type: string
+          description: Name of the vehicle.
+          minLength: 1
+        type:
           type: integer
-          description: Total number of vehicles in database.
+          description: Type of the vehicle.
           format: int32
+        status:
+          type: integer
+          description: Status of the vehicle.
+          format: int32
+        licensePlateNumber:
+          type: string
+          description: License plate number of the vehicle.
+          minLength: 1
+        countrySubdivision:
+          type: string
+          description: Code of the country subdivision of the vehicle.
+          minLength: 1
+        lastConnected:
+          type: string
+          description: The last time when the vehicle was connected to the DriveCam's system, may be null.
+          format: date-time
+          minLength: 1
+        driverId:
+          type: string
+          description: ID of the driver currently assigned to the vehicle, may be null if vehicle doesn’t have a one-to-one vehicle to driver relationship.
+          format: guid
+        groupId:
+          type: string
+          description: ID of the group that the vehicle belongs to.
+          format: guid
+          minLength: 1
+        vin:
+          type: string
+          description: The VIN number of the vehicle.
+          minLength: 1
+        seatbeltType:
+          type: integer
+          description: Type of the seat belt in the vehicle.
+          format: int32
+        make:
+          type:
+          - string
+          - 'null'
+          description: Make of the vehicle.
+        model:
+          type:
+          - string
+          - 'null'
+          description: Model of the vehicle.
+        year:
+          type:
+          - integer
+          - 'null'
+          description: Production year of the vehicle.
+          format: int32
+        deviceId:
+          type: string
+          description: Id of the device in the vehicle.
+          format: guid
+        hibernationDelay:
+          description: Hibernation delay of the vehicle.
+          type:
+          - string
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/HibernationDelay'
+    SeatbeltType:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - name
+      - creationDate
+      properties:
+        id:
+          type: integer
+          description: ID of the type.
+          format: int64
+        name:
+          type: string
+          description: Name of the type.
+          minLength: 1
+        creationDate:
+          type: string
+          description: Date when the type was created.
+          format: date-time
+          minLength: 1
+    VehicleType:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - description
+      - creationDate
+      properties:
+        id:
+          type: integer
+          description: ID of the type.
+          format: int64
+        description:
+          type: string
+          description: Description of the type.
+          minLength: 1
+        creationDate:
+          type: string
+          description: Date when the type was created.
+          format: date-time
+          minLength: 1
+    AddedVehicleResponse:
+      type: object
+      additionalProperties: false
+      required:
+      - vehicleId
+      properties:
+        vehicleId:
+          type: string
+          description: ID of the created vehicle.
+          format: guid
+          minLength: 1
+    HibernationDelay:
+      type: string
+      description: ''
+      x-enumNames:
+      - UseDefault
+      - NoHibernation
+      - OneMinute
+      - FifteenMinutes
+      - OneHour
+      - FourHours
+      - EightHours
+      - TwelveHours
+      - EighteenHours
+      - SixtyHours
+      enum:
+      - UseDefault
+      - NoHibernation
+      - OneMinute
+      - FifteenMinutes
+      - OneHour
+      - FourHours
+      - EightHours
+      - TwelveHours
+      - EighteenHours
+      - SixtyHours
     UpdateVehicleRequest:
       type: object
       additionalProperties: false
@@ -469,95 +621,6 @@ components:
           - 'null'
           oneOf:
           - $ref: '#/components/schemas/HibernationDelay'
-    VehicleResponse:
-      type: object
-      additionalProperties: false
-      required:
-      - id
-      - name
-      - type
-      - status
-      - licensePlateNumber
-      - countrySubdivision
-      - lastConnected
-      - groupId
-      - vin
-      - seatbeltType
-      properties:
-        id:
-          type: string
-          description: ID of the vehicle.
-          format: guid
-          minLength: 1
-        name:
-          type: string
-          description: Name of the vehicle.
-          minLength: 1
-        type:
-          type: integer
-          description: Type of the vehicle.
-          format: int32
-        status:
-          type: integer
-          description: Status of the vehicle.
-          format: int32
-        licensePlateNumber:
-          type: string
-          description: License plate number of the vehicle.
-          minLength: 1
-        countrySubdivision:
-          type: string
-          description: Code of the country subdivision of the vehicle.
-          minLength: 1
-        lastConnected:
-          type: string
-          description: The last time when the vehicle was connected to the DriveCam's system, may be null.
-          format: date-time
-          minLength: 1
-        driverId:
-          type: string
-          description: ID of the driver currently assigned to the vehicle, may be null if vehicle doesn’t have a one-to-one vehicle to driver relationship.
-          format: guid
-        groupId:
-          type: string
-          description: ID of the group that the vehicle belongs to.
-          format: guid
-          minLength: 1
-        vin:
-          type: string
-          description: The VIN number of the vehicle.
-          minLength: 1
-        seatbeltType:
-          type: integer
-          description: Type of the seat belt in the vehicle.
-          format: int32
-        make:
-          type:
-          - string
-          - 'null'
-          description: Make of the vehicle.
-        model:
-          type:
-          - string
-          - 'null'
-          description: Model of the vehicle.
-        year:
-          type:
-          - integer
-          - 'null'
-          description: Production year of the vehicle.
-          format: int32
-        deviceId:
-          type: string
-          description: Id of the device in the vehicle.
-          format: guid
-        hibernationDelay:
-          description: Hibernation delay of the vehicle.
-          type:
-          - string
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/HibernationDelay'
     CountrySubdivision:
       type: object
       additionalProperties: false
@@ -577,38 +640,6 @@ components:
         code:
           type: string
           description: Code of the country subdivision.
-          minLength: 1
-    AddedVehicleResponse:
-      type: object
-      additionalProperties: false
-      required:
-      - vehicleId
-      properties:
-        vehicleId:
-          type: string
-          description: ID of the created vehicle.
-          format: guid
-          minLength: 1
-    VehicleStatus:
-      type: object
-      additionalProperties: false
-      required:
-      - id
-      - description
-      - creationDate
-      properties:
-        id:
-          type: integer
-          description: ID of the status.
-          format: int64
-        description:
-          type: string
-          description: Description of the status.
-          minLength: 1
-        creationDate:
-          type: string
-          description: Date when the status was created.
-          format: date-time
           minLength: 1
     AddVehicleRequest:
       type: object
@@ -717,7 +748,22 @@ components:
           - 'null'
           oneOf:
           - $ref: '#/components/schemas/HibernationDelay'
-    VehicleType:
+    VehiclesResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        vehicles:
+          type:
+          - array
+          - 'null'
+          description: Received vehicles.
+          items:
+            $ref: '#/components/schemas/Vehicle'
+        totalResults:
+          type: integer
+          description: Total number of vehicles in database.
+          format: int32
+    VehicleStatus:
       type: object
       additionalProperties: false
       required:
@@ -727,42 +773,17 @@ components:
       properties:
         id:
           type: integer
-          description: ID of the type.
+          description: ID of the status.
           format: int64
         description:
           type: string
-          description: Description of the type.
+          description: Description of the status.
           minLength: 1
         creationDate:
           type: string
-          description: Date when the type was created.
+          description: Date when the status was created.
           format: date-time
           minLength: 1
-    HibernationDelay:
-      type: string
-      description: ''
-      x-enumNames:
-      - UseDefault
-      - NoHibernation
-      - OneMinute
-      - FifteenMinutes
-      - OneHour
-      - FourHours
-      - EightHours
-      - TwelveHours
-      - EighteenHours
-      - SixtyHours
-      enum:
-      - UseDefault
-      - NoHibernation
-      - OneMinute
-      - FifteenMinutes
-      - OneHour
-      - FourHours
-      - EightHours
-      - TwelveHours
-      - EighteenHours
-      - SixtyHours
     Vehicle:
       type: object
       additionalProperties: false
@@ -845,27 +866,6 @@ components:
           type: string
           description: Id of the device in the vehicle.
           format: guid
-    SeatbeltType:
-      type: object
-      additionalProperties: false
-      required:
-      - id
-      - name
-      - creationDate
-      properties:
-        id:
-          type: integer
-          description: ID of the type.
-          format: int64
-        name:
-          type: string
-          description: Name of the type.
-          minLength: 1
-        creationDate:
-          type: string
-          description: Date when the type was created.
-          format: date-time
-          minLength: 1
   securitySchemes:
     APIKey:
       type: apiKey

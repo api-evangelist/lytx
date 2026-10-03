@@ -163,36 +163,14 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    UnauthorizedResponse:
+    BadRequestResponse:
       type: object
       properties:
-        error:
-          type: string
-          example: Unauthorized
         message:
           type: string
-          example: Access denied
-    EcmResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/EcmDevice'
-        metadata:
-          $ref: '#/components/schemas/Metadata'
+          example: Invalid request data
       required:
-      - data
-      - metadata
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          example: Forbidden
-        message:
-          type: string
-          example: Non-permitted user
+      - message
     EcmDevice:
       type: object
       properties:
@@ -246,35 +224,36 @@ components:
       - vin
       - groupName
       - samples
-    Metadata:
+    EcmResponse:
       type: object
       properties:
-        count:
-          type: string
-          example: '30'
-          description: Total number of records matching the criteria.
-        limit:
-          type: integer
-          example: 100
-          description: Number of records requested.
-        offset:
-          type: integer
-          example: 0
-          description: Starting record offset.
-        startDate:
-          type: string
-          format: date-time
-          description: Start date for the query.
-        endDate:
-          type: string
-          format: date-time
-          description: End date for the query.
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EcmDevice'
+        metadata:
+          $ref: '#/components/schemas/Metadata'
       required:
-      - count
-      - limit
-      - offset
-      - startDate
-      - endDate
+      - data
+      - metadata
+    UnauthorizedResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Unauthorized
+        message:
+          type: string
+          example: Access denied
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Forbidden
+        message:
+          type: string
+          example: Non-permitted user
     InternalSystemErrorResponse:
       type: object
       properties:
@@ -312,14 +291,35 @@ components:
       - sampleType
       - sampleDateTime
       - sampleValue
-    BadRequestResponse:
+    Metadata:
       type: object
       properties:
-        message:
+        count:
           type: string
-          example: Invalid request data
+          example: '30'
+          description: Total number of records matching the criteria.
+        limit:
+          type: integer
+          example: 100
+          description: Number of records requested.
+        offset:
+          type: integer
+          example: 0
+          description: Starting record offset.
+        startDate:
+          type: string
+          format: date-time
+          description: Start date for the query.
+        endDate:
+          type: string
+          format: date-time
+          description: End date for the query.
       required:
-      - message
+      - count
+      - limit
+      - offset
+      - startDate
+      - endDate
   securitySchemes:
     bearerAuth:
       type: http

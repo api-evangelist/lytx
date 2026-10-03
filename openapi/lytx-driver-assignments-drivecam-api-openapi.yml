@@ -451,27 +451,6 @@ components:
           format: date-time
           description: Schedule end date-time
       additionalProperties: false
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-    DriverDispatchResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            submissionBatchId:
-              type: integer
-              format: int64
-            entries:
-              type: array
-              items:
-                $ref: '#/components/schemas/DispatchEntryResponse'
-      additionalProperties: false
     DriverDispatchRequest:
       type: object
       properties:
@@ -527,6 +506,27 @@ components:
           format: date-time
           example: '2023-09-10T00:00:00Z'
           description: Date and time when the driver was scheduled to stop driving the vehicle.
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+    DriverDispatchResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            submissionBatchId:
+              type: integer
+              format: int64
+            entries:
+              type: array
+              items:
+                $ref: '#/components/schemas/DispatchEntryResponse'
+      additionalProperties: false
   securitySchemes:
     bearerAuth:
       type: http

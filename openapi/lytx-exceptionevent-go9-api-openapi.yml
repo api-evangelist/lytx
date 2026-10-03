@@ -180,15 +180,232 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    WorkTimeHolidayGroupIdResponseViewModel:
+    ExceptionEventResponseViewModel:
       type: object
       properties:
-        groupId:
+        id:
           type:
           - string
           - 'null'
-          example: hg-001
-          description: Identifier of the holiday group.
+          example: 1b33bcbe-15d3-445e-a06f-dda61208ad18
+          description: Unique identifier for the exception event.
+        activeFrom:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-10-06T00:22:30.000Z'
+          description: Start date when the exception event became active.
+        activeTo:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2025-10-06T00:22:30.000Z'
+          description: End date until which the exception event remains active.
+        device:
+          $ref: '#/components/schemas/DeviceResponseViewModel'
+        distance:
+          type:
+          - number
+          - 'null'
+          format: float
+          example: 12.5
+          description: Distance associated with the exception event.
+        driver:
+          $ref: '#/components/schemas/UserResponseViewModel'
+        duration:
+          type:
+          - string
+          - 'null'
+          format: duration
+          example: PT5M30S
+          description: Duration of the exception event.
+        lastModifiedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-10-07T08:00:00.000Z'
+          description: Date and time when the exception event was last modified.
+        rule:
+          $ref: '#/components/schemas/RuleResponseViewModel'
+        version:
+          type:
+          - string
+          - 'null'
+          example: v1.0.0
+          description: Version information of the exception event.
+    WorkTimeDetailResponseEntity:
+      type: object
+      properties:
+        dayOfWeek:
+          type:
+          - string
+          - 'null'
+          example: Monday
+          description: Day of the week this detail applies to.
+        fromTime:
+          type:
+          - string
+          - 'null'
+          example: 08:00:00
+          description: Start time for the work period.
+        id:
+          type:
+          - string
+          - 'null'
+          example: wtd-001
+          description: Unique identifier for the work time detail.
+        toTime:
+          type:
+          - string
+          - 'null'
+          example: '17:00:00'
+          description: End time for the work period.
+    ZoneResponseViewModel:
+      type: object
+      properties:
+        activeFrom:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2025-05-29T19:18:26.063Z'
+          description: Start date/time when the zone is active.
+        activeTo:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2025-06-29T19:18:26.063Z'
+          description: End date/time when the zone is active.
+        comment:
+          type:
+          - string
+          - 'null'
+          example: Restricted area for heavy vehicles
+          description: Optional comment for the zone.
+        displayed:
+          type: boolean
+          example: true
+          description: Indicates whether the zone is displayed on the map.
+        externalReference:
+          type: string
+          example: zone-ext-12345
+          description: External reference identifier.
+        fillColor:
+          $ref: '#/components/schemas/ColorResponseViewModel'
+        groups:
+          type: array
+          items:
+            type: string
+          example:
+          - group1
+          - group2
+          description: List of groups associated with the zone.
+        id:
+          type: string
+          example: zone1f6e56d-1234-4567-89ab-cdef12345678
+          description: Unique identifier of the zone.
+        metadata:
+          type:
+          - object
+          - 'null'
+          description: Metadata information for the zone.
+        mustIdentifyStops:
+          type: boolean
+          example: false
+          description: Indicates whether stops must be identified within the zone.
+        name:
+          type: string
+          example: No Parking Zone
+          description: Name of the zone.
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/CoordinateResponseViewModel'
+          description: List of coordinates representing the zone polygon.
+        version:
+          type: string
+          example: v1.0
+          description: Version of the zone record.
+        zoneTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ZoneTypeResponseViewModel'
+          description: Types associated with the zone.
+    WorkTimeResponseViewModel:
+      type: object
+      properties:
+        comment:
+          type:
+          - string
+          - 'null'
+          example: Standard working hours
+          description: Additional comments about the work time.
+        details:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/WorkTimeDetailResponseEntity'
+          description: List of work time detail entries per day.
+        holidayGroup:
+          $ref: '#/components/schemas/WorkTimeHolidayGroupIdResponseViewModel'
+        id:
+          type:
+          - string
+          - 'null'
+          example: wt-001
+          description: Unique identifier for the work time.
+        name:
+          type:
+          - string
+          - 'null'
+          example: Weekday Schedule
+          description: Name of the work time configuration.
+    ConditionResponseViewModel:
+      type: object
+      properties:
+        children:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ConditionResponseViewModel'
+          description: Nested child conditions.
+        conditionType:
+          type:
+          - string
+          - 'null'
+          example: SpeedCondition
+          description: Type of the condition.
+        device:
+          $ref: '#/components/schemas/DeviceResponseViewModel'
+        diagnostic:
+          $ref: '#/components/schemas/DiagnosticResponseViewModel'
+        driver:
+          $ref: '#/components/schemas/UserResponseViewModel'
+        group:
+          $ref: '#/components/schemas/GroupResponseViewModel'
+        id:
+          type:
+          - string
+          - 'null'
+          example: cond-abc-123
+          description: Unique identifier for the condition.
+        value:
+          type:
+          - number
+          - 'null'
+          format: double
+          example: 90.5
+          description: Numeric threshold value for the condition.
+        workTime:
+          $ref: '#/components/schemas/WorkTimeResponseViewModel'
+        zone:
+          $ref: '#/components/schemas/ZoneResponseViewModel'
     CoordinateResponseViewModel:
       type: object
       properties:
@@ -206,6 +423,191 @@ components:
           format: double
           example: 43.6532
           description: Latitude coordinate.
+    GroupResponseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          example: grp-123
+          description: Unique identifier of the group.
+        name:
+          type: string
+          example: Drivers Group
+          description: Name of the group.
+        comment:
+          type: string
+          example: Main driver group
+          description: Additional comments about the group.
+        reference:
+          type: string
+          example: REF123
+          description: Reference information for the group.
+        parent:
+          $ref: '#/components/schemas/GroupResponseViewModel'
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupResponseViewModel'
+          description: List of child groups.
+        color:
+          $ref: '#/components/schemas/GroupResponseViewModel'
+    RuleResponseViewModel:
+      type: object
+      properties:
+        activeFrom:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-10-06T00:22:30.000Z'
+          description: Start date when the rule became active.
+        activeTo:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2025-10-06T00:22:30.000Z'
+          description: End date until which the rule remains active.
+        baseType:
+          type:
+          - string
+          - 'null'
+          example: SpeedingRule
+          description: Base type of the rule.
+        color:
+          $ref: '#/components/schemas/ColorResponseViewModel'
+        comment:
+          type:
+          - string
+          - 'null'
+          example: Triggers when speed exceeds limit
+          description: Additional comments about the rule.
+        condition:
+          $ref: '#/components/schemas/ConditionResponseViewModel'
+        groups:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/GroupResponseViewModel'
+          description: List of groups associated with the rule.
+        id:
+          type:
+          - string
+          - 'null'
+          example: 1b33bcbe-15d3-445e-a06f-dda61208ad18
+          description: Unique identifier for the rule.
+        name:
+          type:
+          - string
+          - 'null'
+          example: Speeding Rule
+          description: Name of the rule.
+        version:
+          type:
+          - string
+          - 'null'
+          example: v1.0.0
+          description: Version information of the rule.
+    ZoneTypeResponseViewModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          example: zt-001
+          description: Unique identifier of the zone type.
+        name:
+          type:
+          - string
+          - 'null'
+          example: Customer
+          description: Name of the zone type.
+        comment:
+          type:
+          - string
+          - 'null'
+          example: Customer site zone
+          description: Additional comments about the zone type.
+    DiagnosticResponseViewModel:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 101
+          description: Numeric code identifying the diagnostic.
+        controller:
+          type:
+          - object
+          - 'null'
+          description: Controller associated with the diagnostic (if any).
+        diagnosticType:
+          type: string
+          example: Engine
+          description: Type/category of the diagnostic.
+        faultResetMode:
+          type: string
+          example: Automatic
+          description: Mode of fault reset.
+        id:
+          type: string
+          example: d1f6e56d-1234-4567-89ab-cdef12345678
+          description: Unique identifier for the diagnostic.
+        isReadOnly:
+          type: boolean
+          example: false
+          description: Indicates if the diagnostic is read-only.
+        name:
+          type: string
+          example: Engine Overheat
+          description: Name of the diagnostic.
+        source:
+          type:
+          - object
+          - 'null'
+          description: Source object of the diagnostic.
+        tamperingDiagnostics:
+          type: integer
+          example: 0
+          description: Number of tampering-related diagnostics.
+        unitOfMeasure:
+          type:
+          - object
+          - 'null'
+          description: Unit of measure for the diagnostic value.
+        version:
+          type: string
+          example: v1.0
+          description: Version of the diagnostic data.
+    WorkTimeHolidayGroupIdResponseViewModel:
+      type: object
+      properties:
+        groupId:
+          type:
+          - string
+          - 'null'
+          example: hg-001
+          description: Identifier of the holiday group.
+    ColorResponseViewModel:
+      type: object
+      properties:
+        a:
+          type: integer
+          example: 255
+          description: Alpha channel (transparency).
+        r:
+          type: integer
+          example: 255
+          description: Red channel (0-255).
+        g:
+          type: integer
+          example: 0
+          description: Green channel (0-255).
+        b:
+          type: integer
+          example: 0
+          description: Blue channel (0-255).
     UserResponseViewModel:
       type: object
       properties:
@@ -489,408 +891,6 @@ components:
           - 'null'
           example: v1.2.3
           description: Version information of the device.
-    DiagnosticResponseViewModel:
-      type: object
-      properties:
-        code:
-          type: integer
-          example: 101
-          description: Numeric code identifying the diagnostic.
-        controller:
-          type:
-          - object
-          - 'null'
-          description: Controller associated with the diagnostic (if any).
-        diagnosticType:
-          type: string
-          example: Engine
-          description: Type/category of the diagnostic.
-        faultResetMode:
-          type: string
-          example: Automatic
-          description: Mode of fault reset.
-        id:
-          type: string
-          example: d1f6e56d-1234-4567-89ab-cdef12345678
-          description: Unique identifier for the diagnostic.
-        isReadOnly:
-          type: boolean
-          example: false
-          description: Indicates if the diagnostic is read-only.
-        name:
-          type: string
-          example: Engine Overheat
-          description: Name of the diagnostic.
-        source:
-          type:
-          - object
-          - 'null'
-          description: Source object of the diagnostic.
-        tamperingDiagnostics:
-          type: integer
-          example: 0
-          description: Number of tampering-related diagnostics.
-        unitOfMeasure:
-          type:
-          - object
-          - 'null'
-          description: Unit of measure for the diagnostic value.
-        version:
-          type: string
-          example: v1.0
-          description: Version of the diagnostic data.
-    GroupResponseViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-          example: grp-123
-          description: Unique identifier of the group.
-        name:
-          type: string
-          example: Drivers Group
-          description: Name of the group.
-        comment:
-          type: string
-          example: Main driver group
-          description: Additional comments about the group.
-        reference:
-          type: string
-          example: REF123
-          description: Reference information for the group.
-        parent:
-          $ref: '#/components/schemas/GroupResponseViewModel'
-        children:
-          type: array
-          items:
-            $ref: '#/components/schemas/GroupResponseViewModel'
-          description: List of child groups.
-        color:
-          $ref: '#/components/schemas/GroupResponseViewModel'
-    ConditionResponseViewModel:
-      type: object
-      properties:
-        children:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ConditionResponseViewModel'
-          description: Nested child conditions.
-        conditionType:
-          type:
-          - string
-          - 'null'
-          example: SpeedCondition
-          description: Type of the condition.
-        device:
-          $ref: '#/components/schemas/DeviceResponseViewModel'
-        diagnostic:
-          $ref: '#/components/schemas/DiagnosticResponseViewModel'
-        driver:
-          $ref: '#/components/schemas/UserResponseViewModel'
-        group:
-          $ref: '#/components/schemas/GroupResponseViewModel'
-        id:
-          type:
-          - string
-          - 'null'
-          example: cond-abc-123
-          description: Unique identifier for the condition.
-        value:
-          type:
-          - number
-          - 'null'
-          format: double
-          example: 90.5
-          description: Numeric threshold value for the condition.
-        workTime:
-          $ref: '#/components/schemas/WorkTimeResponseViewModel'
-        zone:
-          $ref: '#/components/schemas/ZoneResponseViewModel'
-    ZoneTypeResponseViewModel:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          example: zt-001
-          description: Unique identifier of the zone type.
-        name:
-          type:
-          - string
-          - 'null'
-          example: Customer
-          description: Name of the zone type.
-        comment:
-          type:
-          - string
-          - 'null'
-          example: Customer site zone
-          description: Additional comments about the zone type.
-    ZoneResponseViewModel:
-      type: object
-      properties:
-        activeFrom:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2025-05-29T19:18:26.063Z'
-          description: Start date/time when the zone is active.
-        activeTo:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2025-06-29T19:18:26.063Z'
-          description: End date/time when the zone is active.
-        comment:
-          type:
-          - string
-          - 'null'
-          example: Restricted area for heavy vehicles
-          description: Optional comment for the zone.
-        displayed:
-          type: boolean
-          example: true
-          description: Indicates whether the zone is displayed on the map.
-        externalReference:
-          type: string
-          example: zone-ext-12345
-          description: External reference identifier.
-        fillColor:
-          $ref: '#/components/schemas/ColorResponseViewModel'
-        groups:
-          type: array
-          items:
-            type: string
-          example:
-          - group1
-          - group2
-          description: List of groups associated with the zone.
-        id:
-          type: string
-          example: zone1f6e56d-1234-4567-89ab-cdef12345678
-          description: Unique identifier of the zone.
-        metadata:
-          type:
-          - object
-          - 'null'
-          description: Metadata information for the zone.
-        mustIdentifyStops:
-          type: boolean
-          example: false
-          description: Indicates whether stops must be identified within the zone.
-        name:
-          type: string
-          example: No Parking Zone
-          description: Name of the zone.
-        points:
-          type: array
-          items:
-            $ref: '#/components/schemas/CoordinateResponseViewModel'
-          description: List of coordinates representing the zone polygon.
-        version:
-          type: string
-          example: v1.0
-          description: Version of the zone record.
-        zoneTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/ZoneTypeResponseViewModel'
-          description: Types associated with the zone.
-    WorkTimeDetailResponseEntity:
-      type: object
-      properties:
-        dayOfWeek:
-          type:
-          - string
-          - 'null'
-          example: Monday
-          description: Day of the week this detail applies to.
-        fromTime:
-          type:
-          - string
-          - 'null'
-          example: 08:00:00
-          description: Start time for the work period.
-        id:
-          type:
-          - string
-          - 'null'
-          example: wtd-001
-          description: Unique identifier for the work time detail.
-        toTime:
-          type:
-          - string
-          - 'null'
-          example: '17:00:00'
-          description: End time for the work period.
-    ExceptionEventResponseViewModel:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          example: 1b33bcbe-15d3-445e-a06f-dda61208ad18
-          description: Unique identifier for the exception event.
-        activeFrom:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2023-10-06T00:22:30.000Z'
-          description: Start date when the exception event became active.
-        activeTo:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2025-10-06T00:22:30.000Z'
-          description: End date until which the exception event remains active.
-        device:
-          $ref: '#/components/schemas/DeviceResponseViewModel'
-        distance:
-          type:
-          - number
-          - 'null'
-          format: float
-          example: 12.5
-          description: Distance associated with the exception event.
-        driver:
-          $ref: '#/components/schemas/UserResponseViewModel'
-        duration:
-          type:
-          - string
-          - 'null'
-          format: duration
-          example: PT5M30S
-          description: Duration of the exception event.
-        lastModifiedDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2023-10-07T08:00:00.000Z'
-          description: Date and time when the exception event was last modified.
-        rule:
-          $ref: '#/components/schemas/RuleResponseViewModel'
-        version:
-          type:
-          - string
-          - 'null'
-          example: v1.0.0
-          description: Version information of the exception event.
-    ColorResponseViewModel:
-      type: object
-      properties:
-        a:
-          type: integer
-          example: 255
-          description: Alpha channel (transparency).
-        r:
-          type: integer
-          example: 255
-          description: Red channel (0-255).
-        g:
-          type: integer
-          example: 0
-          description: Green channel (0-255).
-        b:
-          type: integer
-          example: 0
-          description: Blue channel (0-255).
-    WorkTimeResponseViewModel:
-      type: object
-      properties:
-        comment:
-          type:
-          - string
-          - 'null'
-          example: Standard working hours
-          description: Additional comments about the work time.
-        details:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/WorkTimeDetailResponseEntity'
-          description: List of work time detail entries per day.
-        holidayGroup:
-          $ref: '#/components/schemas/WorkTimeHolidayGroupIdResponseViewModel'
-        id:
-          type:
-          - string
-          - 'null'
-          example: wt-001
-          description: Unique identifier for the work time.
-        name:
-          type:
-          - string
-          - 'null'
-          example: Weekday Schedule
-          description: Name of the work time configuration.
-    RuleResponseViewModel:
-      type: object
-      properties:
-        activeFrom:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2023-10-06T00:22:30.000Z'
-          description: Start date when the rule became active.
-        activeTo:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2025-10-06T00:22:30.000Z'
-          description: End date until which the rule remains active.
-        baseType:
-          type:
-          - string
-          - 'null'
-          example: SpeedingRule
-          description: Base type of the rule.
-        color:
-          $ref: '#/components/schemas/ColorResponseViewModel'
-        comment:
-          type:
-          - string
-          - 'null'
-          example: Triggers when speed exceeds limit
-          description: Additional comments about the rule.
-        condition:
-          $ref: '#/components/schemas/ConditionResponseViewModel'
-        groups:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/GroupResponseViewModel'
-          description: List of groups associated with the rule.
-        id:
-          type:
-          - string
-          - 'null'
-          example: 1b33bcbe-15d3-445e-a06f-dda61208ad18
-          description: Unique identifier for the rule.
-        name:
-          type:
-          - string
-          - 'null'
-          example: Speeding Rule
-          description: Name of the rule.
-        version:
-          type:
-          - string
-          - 'null'
-          example: v1.0.0
-          description: Version information of the rule.
   securitySchemes:
     bearerAuth:
       type: http

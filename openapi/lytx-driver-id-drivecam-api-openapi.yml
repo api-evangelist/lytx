@@ -59,6 +59,26 @@ paths:
                 type: string
 components:
   schemas:
+    Driver:
+      type: object
+      additionalProperties: false
+      properties:
+        firstName:
+          type:
+          - string
+          - 'null'
+        lastName:
+          type:
+          - string
+          - 'null'
+        fullName:
+          type:
+          - string
+          - 'null'
+        employeeId:
+          type:
+          - string
+          - 'null'
     GetTripsRequest:
       type: object
       additionalProperties: false
@@ -137,24 +157,21 @@ components:
           maximum: 2147483647
           minimum: 1
           example: 1000
-    Location:
+    GetTripsApiResponse:
       type: object
       additionalProperties: false
       properties:
-        latitude:
-          type: number
-          format: double
-        longitude:
-          type: number
-          format: double
-    Group:
-      type: object
-      additionalProperties: false
-      properties:
-        name:
+        totalCount:
+          type: integer
+          description: The total number of trips that matches the query, ignoring pagination.
+          format: int32
+        results:
           type:
-          - string
+          - array
           - 'null'
+          description: List of paginated trips that matches the query.
+          items:
+            $ref: '#/components/schemas/Trip'
     Trip:
       type: object
       additionalProperties: false
@@ -222,6 +239,24 @@ components:
           - 'null'
           oneOf:
           - $ref: '#/components/schemas/Location'
+    Group:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+    Location:
+      type: object
+      additionalProperties: false
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
     Vehicle:
       type: object
       additionalProperties: false
@@ -230,49 +265,6 @@ components:
           type:
           - string
           - 'null'
-    Device:
-      type: object
-      additionalProperties: false
-      properties:
-        serialNumber:
-          type:
-          - string
-          - 'null'
-    Driver:
-      type: object
-      additionalProperties: false
-      properties:
-        firstName:
-          type:
-          - string
-          - 'null'
-        lastName:
-          type:
-          - string
-          - 'null'
-        fullName:
-          type:
-          - string
-          - 'null'
-        employeeId:
-          type:
-          - string
-          - 'null'
-    GetTripsApiResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        totalCount:
-          type: integer
-          description: The total number of trips that matches the query, ignoring pagination.
-          format: int32
-        results:
-          type:
-          - array
-          - 'null'
-          description: List of paginated trips that matches the query.
-          items:
-            $ref: '#/components/schemas/Trip'
     Interval:
       type: object
       additionalProperties: false
@@ -287,6 +279,14 @@ components:
           - 'null'
           description: The trip end time. If the trip has not completed, no end time will be provided.
           format: date-time
+    Device:
+      type: object
+      additionalProperties: false
+      properties:
+        serialNumber:
+          type:
+          - string
+          - 'null'
   securitySchemes:
     APIKey:
       type: apiKey

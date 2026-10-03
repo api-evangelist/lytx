@@ -171,6 +171,123 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    TripsResponseViewModel:
+      type: object
+      properties:
+        afterHoursDistance:
+          type: number
+          format: double
+        afterHoursDrivingDuration:
+          type: string
+          format: duration
+        afterHoursEnd:
+          type: boolean
+        afterHoursStart:
+          type: boolean
+        afterHoursStopDuration:
+          type: string
+          format: duration
+        averageSpeed:
+          type: number
+          format: double
+        distance:
+          type: number
+          format: double
+        drivingDuration:
+          type: string
+          format: duration
+        engineHours:
+          type: number
+          format: double
+        idlingDuration:
+          type: string
+          format: duration
+        isSeatBeltOff:
+          type: boolean
+        maximumSpeed:
+          type: number
+          format: double
+        nextTripStart:
+          type: string
+          format: date-time
+        speedRange1:
+          type: integer
+        speedRange1Duration:
+          type: string
+          format: duration
+        speedRange2:
+          type: integer
+        speedRange2Duration:
+          type: string
+          format: duration
+        speedRange3:
+          type: integer
+        speedRange3Duration:
+          type: string
+          format: duration
+        start:
+          type: string
+          format: date-time
+        stop:
+          type: string
+          format: date-time
+        stopDuration:
+          type: string
+          format: duration
+        stopPoint:
+          $ref: '#/components/schemas/StopPointResponseViewModel'
+        workDistance:
+          type: number
+          format: double
+        workDrivingDuration:
+          type: string
+          format: duration
+        workStopDuration:
+          type: string
+          format: duration
+        device:
+          $ref: '#/components/schemas/DeviceResponseViewModel'
+        driver:
+          $ref: '#/components/schemas/UserResponseViewModel'
+        id:
+          type: string
+    GroupResponseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          example: grp-123
+          description: Unique identifier of the group.
+        name:
+          type: string
+          example: Drivers Group
+          description: Name of the group.
+        comment:
+          type: string
+          example: Main driver group
+          description: Additional comments about the group.
+        reference:
+          type: string
+          example: REF123
+          description: Reference information for the group.
+        parent:
+          $ref: '#/components/schemas/GroupResponseViewModel'
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupResponseViewModel'
+          description: List of child groups.
+        color:
+          $ref: '#/components/schemas/GroupResponseViewModel'
+    StopPointResponseViewModel:
+      type: object
+      properties:
+        x:
+          type: number
+          format: double
+        y:
+          type: number
+          format: double
     UserResponseViewModel:
       type: object
       properties:
@@ -454,123 +571,6 @@ components:
           - 'null'
           example: v1.2.3
           description: Version information of the device.
-    GroupResponseViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-          example: grp-123
-          description: Unique identifier of the group.
-        name:
-          type: string
-          example: Drivers Group
-          description: Name of the group.
-        comment:
-          type: string
-          example: Main driver group
-          description: Additional comments about the group.
-        reference:
-          type: string
-          example: REF123
-          description: Reference information for the group.
-        parent:
-          $ref: '#/components/schemas/GroupResponseViewModel'
-        children:
-          type: array
-          items:
-            $ref: '#/components/schemas/GroupResponseViewModel'
-          description: List of child groups.
-        color:
-          $ref: '#/components/schemas/GroupResponseViewModel'
-    TripsResponseViewModel:
-      type: object
-      properties:
-        afterHoursDistance:
-          type: number
-          format: double
-        afterHoursDrivingDuration:
-          type: string
-          format: duration
-        afterHoursEnd:
-          type: boolean
-        afterHoursStart:
-          type: boolean
-        afterHoursStopDuration:
-          type: string
-          format: duration
-        averageSpeed:
-          type: number
-          format: double
-        distance:
-          type: number
-          format: double
-        drivingDuration:
-          type: string
-          format: duration
-        engineHours:
-          type: number
-          format: double
-        idlingDuration:
-          type: string
-          format: duration
-        isSeatBeltOff:
-          type: boolean
-        maximumSpeed:
-          type: number
-          format: double
-        nextTripStart:
-          type: string
-          format: date-time
-        speedRange1:
-          type: integer
-        speedRange1Duration:
-          type: string
-          format: duration
-        speedRange2:
-          type: integer
-        speedRange2Duration:
-          type: string
-          format: duration
-        speedRange3:
-          type: integer
-        speedRange3Duration:
-          type: string
-          format: duration
-        start:
-          type: string
-          format: date-time
-        stop:
-          type: string
-          format: date-time
-        stopDuration:
-          type: string
-          format: duration
-        stopPoint:
-          $ref: '#/components/schemas/StopPointResponseViewModel'
-        workDistance:
-          type: number
-          format: double
-        workDrivingDuration:
-          type: string
-          format: duration
-        workStopDuration:
-          type: string
-          format: duration
-        device:
-          $ref: '#/components/schemas/DeviceResponseViewModel'
-        driver:
-          $ref: '#/components/schemas/UserResponseViewModel'
-        id:
-          type: string
-    StopPointResponseViewModel:
-      type: object
-      properties:
-        x:
-          type: number
-          format: double
-        y:
-          type: number
-          format: double
   securitySchemes:
     bearerAuth:
       type: http

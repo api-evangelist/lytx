@@ -180,153 +180,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    DeviceResponseViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-          example: 1b33bcbe-15d3-445e-a06f-dda61208ad18
-          description: Unique ID for the device.
-        activeFrom:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2023-10-06T00:22:30.000Z'
-          description: Start date when the device became active.
-        activeTo:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2025-10-06T00:22:30.000Z'
-          description: End date until which the device remains active.
-        comment:
-          type:
-          - string
-          - 'null'
-          example: Installed in vehicle A123
-          description: Additional comments about the device.
-        groups:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          example:
-          - Group1
-          - Group2
-          description: List of groups associated with the device.
-        timeZoneId:
-          type:
-          - string
-          - 'null'
-          example: America/Toronto
-          description: Time zone assigned to the device.
-        deviceFlags:
-          type:
-          - string
-          - 'null'
-          example: FLAG_001
-          description: Flags indicating device-specific properties.
-        deviceType:
-          type:
-          - string
-          - 'null'
-          example: GO9
-          description: Type/model of the device.
-        hardwareId:
-          type:
-          - string
-          - 'null'
-          example: HW-ABC-12345
-          description: Hardware identifier of the device.
-        ignoreDownloadsUntil:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2025-05-15T12:00:00.000Z'
-          description: The device should ignore downloads until this time.
-        maxSecondsBetweenLogs:
-          type:
-          - integer
-          - 'null'
-          example: 300
-          description: Maximum number of seconds allowed between logs.
-        name:
-          type:
-          - string
-          - 'null'
-          example: Device A123
-          description: Name assigned to the device.
-        productId:
-          type:
-          - string
-          - 'null'
-          example: PROD-456
-          description: Product identifier of the device.
-        serialNumber:
-          type:
-          - string
-          - 'null'
-          example: SN123456789
-          description: Serial number of the device.
-        timeToDownload:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2025-09-20T10:00:00.000Z'
-          description: Scheduled time for the device to download updates.
-        workTime:
-          type:
-          - string
-          - 'null'
-          example: 08:00-17:00
-          description: Work time configuration of the device.
-        registerDeviceResultLite:
-          type:
-          - object
-          - 'null'
-          description: Registration result details for the device.
-        devicePlanBillingInfo:
-          type:
-          - object
-          - 'null'
-          description: Billing information for the device plan.
-        deviceReplacementInfo:
-          type:
-          - object
-          - 'null'
-          description: Replacement information for the device.
-        customProperties:
-          type:
-          - object
-          - 'null'
-          description: Custom properties associated with the device.
-        mediaFiles:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          example:
-          - file1.jpg
-          - file2.mp4
-          description: Media files linked to the device.
-        tmpTrailerId:
-          type:
-          - string
-          - 'null'
-          example: TRAILER-123
-          description: Temporary trailer ID linked to the device.
-        version:
-          type:
-          - string
-          - 'null'
-          example: v1.2.3
-          description: Version information of the device.
     GroupResponseViewModel:
       type: object
       properties:
@@ -603,6 +456,153 @@ components:
           type: string
           example: '101'
           description: Extension for the phone number.
+    DeviceResponseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 1b33bcbe-15d3-445e-a06f-dda61208ad18
+          description: Unique ID for the device.
+        activeFrom:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2023-10-06T00:22:30.000Z'
+          description: Start date when the device became active.
+        activeTo:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2025-10-06T00:22:30.000Z'
+          description: End date until which the device remains active.
+        comment:
+          type:
+          - string
+          - 'null'
+          example: Installed in vehicle A123
+          description: Additional comments about the device.
+        groups:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          example:
+          - Group1
+          - Group2
+          description: List of groups associated with the device.
+        timeZoneId:
+          type:
+          - string
+          - 'null'
+          example: America/Toronto
+          description: Time zone assigned to the device.
+        deviceFlags:
+          type:
+          - string
+          - 'null'
+          example: FLAG_001
+          description: Flags indicating device-specific properties.
+        deviceType:
+          type:
+          - string
+          - 'null'
+          example: GO9
+          description: Type/model of the device.
+        hardwareId:
+          type:
+          - string
+          - 'null'
+          example: HW-ABC-12345
+          description: Hardware identifier of the device.
+        ignoreDownloadsUntil:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2025-05-15T12:00:00.000Z'
+          description: The device should ignore downloads until this time.
+        maxSecondsBetweenLogs:
+          type:
+          - integer
+          - 'null'
+          example: 300
+          description: Maximum number of seconds allowed between logs.
+        name:
+          type:
+          - string
+          - 'null'
+          example: Device A123
+          description: Name assigned to the device.
+        productId:
+          type:
+          - string
+          - 'null'
+          example: PROD-456
+          description: Product identifier of the device.
+        serialNumber:
+          type:
+          - string
+          - 'null'
+          example: SN123456789
+          description: Serial number of the device.
+        timeToDownload:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2025-09-20T10:00:00.000Z'
+          description: Scheduled time for the device to download updates.
+        workTime:
+          type:
+          - string
+          - 'null'
+          example: 08:00-17:00
+          description: Work time configuration of the device.
+        registerDeviceResultLite:
+          type:
+          - object
+          - 'null'
+          description: Registration result details for the device.
+        devicePlanBillingInfo:
+          type:
+          - object
+          - 'null'
+          description: Billing information for the device plan.
+        deviceReplacementInfo:
+          type:
+          - object
+          - 'null'
+          description: Replacement information for the device.
+        customProperties:
+          type:
+          - object
+          - 'null'
+          description: Custom properties associated with the device.
+        mediaFiles:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          example:
+          - file1.jpg
+          - file2.mp4
+          description: Media files linked to the device.
+        tmpTrailerId:
+          type:
+          - string
+          - 'null'
+          example: TRAILER-123
+          description: Temporary trailer ID linked to the device.
+        version:
+          type:
+          - string
+          - 'null'
+          example: v1.2.3
+          description: Version information of the device.
   securitySchemes:
     bearerAuth:
       type: http

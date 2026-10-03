@@ -211,15 +211,39 @@ paths:
                 message: An unexpected error occurred.
 components:
   schemas:
-    ErrorResponse:
+    ConsentStatusResponseViewModel:
       type: object
       properties:
-        error:
+        userId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          example: 550e8400-e29b-41d4-a716-446655440000
+          description: Unique identifier of the user.
+        employeeId:
+          type:
+          - string
+          - 'null'
+          example: EMP-9876
+          description: Employee identifier associated with the user.
+        productName:
           type: string
-          example: Bad Request
-        message:
-          type: string
-          example: An unexpected error occurred.
+          example: facialId
+          description: Human-readable product name. Only Facial ID product is supported as of today.
+        consentStatus:
+          type:
+          - string
+          - 'null'
+          example: Obtained
+          description: Current driver consent status for this product.
+        consentDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-03-15T10:30:00.000Z'
+          description: Date and time consent was given or last updated.
     UpdateConsentRequestViewModel:
       type: object
       required:
@@ -266,39 +290,15 @@ components:
           description: 'Source of the consent update. Defaults to "Manual" if not provided.
 
             '
-    ConsentStatusResponseViewModel:
+    ErrorResponse:
       type: object
       properties:
-        userId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-          example: 550e8400-e29b-41d4-a716-446655440000
-          description: Unique identifier of the user.
-        employeeId:
-          type:
-          - string
-          - 'null'
-          example: EMP-9876
-          description: Employee identifier associated with the user.
-        productName:
+        error:
           type: string
-          example: facialId
-          description: Human-readable product name. Only Facial ID product is supported as of today.
-        consentStatus:
-          type:
-          - string
-          - 'null'
-          example: Obtained
-          description: Current driver consent status for this product.
-        consentDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2026-03-15T10:30:00.000Z'
-          description: Date and time consent was given or last updated.
+          example: Bad Request
+        message:
+          type: string
+          example: An unexpected error occurred.
     UpdateConsentResponseViewModel:
       type: object
       properties:

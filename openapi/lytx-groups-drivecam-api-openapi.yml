@@ -1221,94 +1221,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ImportGroupsResponse:
-      title: ImportGroupsResponse
-      type: object
-      properties:
-        importedGroups:
-          type: array
-          items:
-            type: string
-            example: Root\Group1
-          description: List of group names that were successfully imported.
-        existingGroups:
-          type: array
-          items:
-            type: string
-            example: Root\ExistingGroup
-          description: List of group names that already existed and were not imported.
-        groupsFailedToImport:
-          type: array
-          items:
-            type: string
-            example: Root\Group3\FailedGroup
-          description: List of group names that failed to import as Group3 is not present.
-        invalidGroupNames:
-          type: array
-          items:
-            type: string
-            example: InvalidGroup
-          description: List of group names that were invalid and could not be imported.
-    Group:
-      title: Group
-      type: object
-      required:
-      - id
-      - createdDate
-      - fullPath
-      - fullPathId
-      - name
-      - parentId
-      - revision
-      - rootGroupId
-      - updatedDate
-      properties:
-        id:
-          type: string
-          example: 0c3c9820-3ee4-e98d-0987-c7333e722f72
-        createdDate:
-          type: string
-          example: '2023-01-01T00:00:00Z'
-        description:
-          type: string
-          example: this is a description
-        fullPath:
-          type: string
-          example: '***Root\Food Transportation INC'
-        fullPathId:
-          type: string
-          example: 750c5226-0f0a-402d-dcec-f83ccbb5373e\0c3c9820-3ee4-e98d-0987-c7333e722f72
-        name:
-          type: string
-          example: Food Transportation INC
-        parentId:
-          type: string
-          example: 750c5226-0f0a-402d-dcec-f83ccbb5373e
-        revision:
-          type: number
-          example: 1
-        rootGroupId:
-          type: string
-          example: 750c5226-0f0a-402d-dcec-f83ccbb5373e
-        updatedDate:
-          type: string
-          example: '2023-02-01T00:00:00Z'
-    EditGroupRequest:
-      title: EditGroupRequest
-      type: object
-      properties:
-        name:
-          type: string
-          example: testGroupName
-          description: Name of the group to edit.
-        parentId:
-          type: string
-          example: 880e70d8-aaf8-18aa-7ab0-6533d8f1c360
-          description: ID of the new parent group. The group will be moved under this parent.
-        description:
-          type: string
-          example: A group being edited.
-          description: Custom field.
     UnmovedGroup:
       title: UnmovedGroup
       type: object
@@ -1359,6 +1271,94 @@ components:
         description:
           type: string
           example: A new group being added.
+          description: Custom field.
+    Group:
+      title: Group
+      type: object
+      required:
+      - id
+      - createdDate
+      - fullPath
+      - fullPathId
+      - name
+      - parentId
+      - revision
+      - rootGroupId
+      - updatedDate
+      properties:
+        id:
+          type: string
+          example: 0c3c9820-3ee4-e98d-0987-c7333e722f72
+        createdDate:
+          type: string
+          example: '2023-01-01T00:00:00Z'
+        description:
+          type: string
+          example: this is a description
+        fullPath:
+          type: string
+          example: '***Root\Food Transportation INC'
+        fullPathId:
+          type: string
+          example: 750c5226-0f0a-402d-dcec-f83ccbb5373e\0c3c9820-3ee4-e98d-0987-c7333e722f72
+        name:
+          type: string
+          example: Food Transportation INC
+        parentId:
+          type: string
+          example: 750c5226-0f0a-402d-dcec-f83ccbb5373e
+        revision:
+          type: number
+          example: 1
+        rootGroupId:
+          type: string
+          example: 750c5226-0f0a-402d-dcec-f83ccbb5373e
+        updatedDate:
+          type: string
+          example: '2023-02-01T00:00:00Z'
+    ImportGroupsResponse:
+      title: ImportGroupsResponse
+      type: object
+      properties:
+        importedGroups:
+          type: array
+          items:
+            type: string
+            example: Root\Group1
+          description: List of group names that were successfully imported.
+        existingGroups:
+          type: array
+          items:
+            type: string
+            example: Root\ExistingGroup
+          description: List of group names that already existed and were not imported.
+        groupsFailedToImport:
+          type: array
+          items:
+            type: string
+            example: Root\Group3\FailedGroup
+          description: List of group names that failed to import as Group3 is not present.
+        invalidGroupNames:
+          type: array
+          items:
+            type: string
+            example: InvalidGroup
+          description: List of group names that were invalid and could not be imported.
+    EditGroupRequest:
+      title: EditGroupRequest
+      type: object
+      properties:
+        name:
+          type: string
+          example: testGroupName
+          description: Name of the group to edit.
+        parentId:
+          type: string
+          example: 880e70d8-aaf8-18aa-7ab0-6533d8f1c360
+          description: ID of the new parent group. The group will be moved under this parent.
+        description:
+          type: string
+          example: A group being edited.
           description: Custom field.
     BulkMoveGroupResponse:
       title: BulkMoveGroupResponse

@@ -595,128 +595,6 @@ paths:
           description: Database is unavailable.
 components:
   schemas:
-    SafetyEventTriggerSubtype:
-      type: object
-      additionalProperties: false
-      required:
-      - id
-      - name
-      - creationDate
-      properties:
-        id:
-          type: integer
-          description: Unique id of the trigger subtype.
-          format: int32
-        name:
-          type: string
-          description: Name of the trigger subtype.
-          minLength: 1
-        creationDate:
-          type: string
-          description: Creation date of the trigger subtype.
-          format: date-time
-          minLength: 1
-    SafetyEventStatus:
-      type: object
-      additionalProperties: false
-      required:
-      - id
-      - name
-      - creationDate
-      properties:
-        id:
-          type: integer
-          description: Unique id of the status.
-          format: int32
-        name:
-          type: string
-          description: Name of the status.
-          minLength: 1
-        creationDate:
-          type: string
-          description: Creation date of the status.
-          format: date-time
-          minLength: 1
-    SafetyEventDynamicRisks:
-      type: object
-      additionalProperties: false
-      required:
-      - id
-      - name
-      - creationDate
-      properties:
-        id:
-          type: integer
-          description: Unique id of the dynamic risk.
-          format: int32
-        name:
-          type: string
-          description: Name of the dynamic risk.
-          minLength: 1
-        creationDate:
-          type: string
-          description: Creation date of the dynamic risk.
-          format: date-time
-          minLength: 1
-    SafetyEventBehavior:
-      type: object
-      additionalProperties: false
-      required:
-      - id
-      - name
-      - creationDate
-      properties:
-        id:
-          type: integer
-          description: Unique id of the behavior.
-          format: int32
-        name:
-          type: string
-          description: Name of the behavior.
-          minLength: 1
-        creationDate:
-          type: string
-          description: Creation date of the behavior.
-          format: date-time
-          minLength: 1
-    SafetyEventTrigger:
-      type: object
-      additionalProperties: false
-      required:
-      - id
-      - name
-      - creationDate
-      properties:
-        id:
-          type: integer
-          description: Unique id of the trigger.
-          format: int32
-        name:
-          type: string
-          description: Name of the trigger.
-          minLength: 1
-        creationDate:
-          type: string
-          description: Creation date of the trigger.
-          format: date-time
-          minLength: 1
-    SafetyEvents:
-      type: object
-      additionalProperties: false
-      required:
-      - totalCount
-      - eventsIds
-      properties:
-        totalCount:
-          type: integer
-          description: Total count of event ids.
-          format: int64
-        eventsIds:
-          type: array
-          description: Collection of events IDs.
-          items:
-            type: string
-            format: guid
     SafetyEvent:
       type: object
       additionalProperties: false
@@ -959,6 +837,27 @@ components:
         isCoachable:
           type: boolean
           description: Determines if the event is coachable or not.
+    SafetyEventStatus:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - name
+      - creationDate
+      properties:
+        id:
+          type: integer
+          description: Unique id of the status.
+          format: int32
+        name:
+          type: string
+          description: Name of the status.
+          minLength: 1
+        creationDate:
+          type: string
+          description: Creation date of the status.
+          format: date-time
+          minLength: 1
     Note:
       type: object
       additionalProperties: false
@@ -996,6 +895,107 @@ components:
         lastName:
           type: string
           description: Last name of author.
+          minLength: 1
+    SafetyEventTrigger:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - name
+      - creationDate
+      properties:
+        id:
+          type: integer
+          description: Unique id of the trigger.
+          format: int32
+        name:
+          type: string
+          description: Name of the trigger.
+          minLength: 1
+        creationDate:
+          type: string
+          description: Creation date of the trigger.
+          format: date-time
+          minLength: 1
+    SafetyEventDynamicRisks:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - name
+      - creationDate
+      properties:
+        id:
+          type: integer
+          description: Unique id of the dynamic risk.
+          format: int32
+        name:
+          type: string
+          description: Name of the dynamic risk.
+          minLength: 1
+        creationDate:
+          type: string
+          description: Creation date of the dynamic risk.
+          format: date-time
+          minLength: 1
+    SafetyEventBehavior:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - name
+      - creationDate
+      properties:
+        id:
+          type: integer
+          description: Unique id of the behavior.
+          format: int32
+        name:
+          type: string
+          description: Name of the behavior.
+          minLength: 1
+        creationDate:
+          type: string
+          description: Creation date of the behavior.
+          format: date-time
+          minLength: 1
+    SafetyEvents:
+      type: object
+      additionalProperties: false
+      required:
+      - totalCount
+      - eventsIds
+      properties:
+        totalCount:
+          type: integer
+          description: Total count of event ids.
+          format: int64
+        eventsIds:
+          type: array
+          description: Collection of events IDs.
+          items:
+            type: string
+            format: guid
+    SafetyEventTriggerSubtype:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - name
+      - creationDate
+      properties:
+        id:
+          type: integer
+          description: Unique id of the trigger subtype.
+          format: int32
+        name:
+          type: string
+          description: Name of the trigger subtype.
+          minLength: 1
+        creationDate:
+          type: string
+          description: Creation date of the trigger subtype.
+          format: date-time
           minLength: 1
   securitySchemes:
     bearerAuth:

@@ -162,83 +162,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    EventTypeResponseViewModel:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          example: evt-001
-          description: Unique identifier of the event type.
-        name:
-          type:
-          - string
-          - 'null'
-          example: Oil Change
-          description: Name of the maintenance type.
-        source:
-          type:
-          - string
-          - 'null'
-          example: System
-          description: Source of the event.
-        customSource:
-          type:
-          - string
-          - 'null'
-          example: UserDefined
-          description: Custom source of the event.
-        typeDescription:
-          type:
-          - string
-          - 'null'
-          example: Scheduled vehicle oil change
-          description: Description of the event type.
-        labels:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          example:
-          - Engine
-          - Routine
-          description: Labels associated with the event type.
-        createdBy:
-          $ref: '#/components/schemas/CreatedByResponseViewModel'
-        defect:
-          $ref: '#/components/schemas/MaintenanceDefectResponseViewModel'
-        sourceType:
-          type:
-          - string
-          - 'null'
-          example: Maintenance
-          description: Source type of the event.
-    MaintenanceScheduleResponseViewModel:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          example: sched-101
-          description: Maintenance schedule identifier.
-    MaintenanceDefectResponseViewModel:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          example: def-456
-          description: Defect identifier.
-        isDefectList:
-          type:
-          - boolean
-          - 'null'
-          example: true
-          description: Indicates whether this belongs to a defect list.
     MaintenanceRecordsResponseViewModel:
       type: object
       properties:
@@ -305,6 +228,21 @@ components:
           format: date-time
           example: '2025-01-12T08:15:00.000Z'
           description: Last updated date of the maintenance record.
+    MaintenanceDefectResponseViewModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          example: def-456
+          description: Defect identifier.
+        isDefectList:
+          type:
+          - boolean
+          - 'null'
+          example: true
+          description: Indicates whether this belongs to a defect list.
     CreatedByResponseViewModel:
       type: object
       properties:
@@ -314,6 +252,68 @@ components:
           - 'null'
           example: user-789
           description: Identifier of the user who created the record.
+    EventTypeResponseViewModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          example: evt-001
+          description: Unique identifier of the event type.
+        name:
+          type:
+          - string
+          - 'null'
+          example: Oil Change
+          description: Name of the maintenance type.
+        source:
+          type:
+          - string
+          - 'null'
+          example: System
+          description: Source of the event.
+        customSource:
+          type:
+          - string
+          - 'null'
+          example: UserDefined
+          description: Custom source of the event.
+        typeDescription:
+          type:
+          - string
+          - 'null'
+          example: Scheduled vehicle oil change
+          description: Description of the event type.
+        labels:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          example:
+          - Engine
+          - Routine
+          description: Labels associated with the event type.
+        createdBy:
+          $ref: '#/components/schemas/CreatedByResponseViewModel'
+        defect:
+          $ref: '#/components/schemas/MaintenanceDefectResponseViewModel'
+        sourceType:
+          type:
+          - string
+          - 'null'
+          example: Maintenance
+          description: Source type of the event.
+    MaintenanceScheduleResponseViewModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          example: sched-101
+          description: Maintenance schedule identifier.
   securitySchemes:
     bearerAuth:
       type: http
