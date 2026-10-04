@@ -1221,57 +1221,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    UnmovedGroup:
-      title: UnmovedGroup
-      type: object
-      required:
-      - Group
-      - ErrorMessage
-      properties:
-        Group:
-          $ref: '#/components/schemas/Group'
-        ErrorMessage:
-          type: string
-          description: The error message describes why the group was not moved.
-    BulkMoveGroupRequest:
-      title: BulkMoveGroupRequest
-      type: object
-      required:
-      - op
-      - path
-      - value
-      properties:
-        op:
-          type: string
-          example: replace
-          description: It should be replace keyword always.
-        path:
-          type: string
-          example: 880e70d8-aaf8-18aa-7ab0-6533d8f1c360/parentId
-          description: Id of the moving group followed by parentId keyword.
-        value:
-          type: string
-          example: 780e70d8-aaf8-18aa-7ab0-6533d8f1c390/Id
-          description: Id of the parent group followed by Id keyword.
-    AddGroupRequest:
-      title: AddGroupRequest
-      type: object
-      required:
-      - name
-      - parentId
-      properties:
-        name:
-          type: string
-          example: testGroupName
-          description: Name of the group to create.
-        parentId:
-          type: string
-          example: 880e70d8-aaf8-18aa-7ab0-6533d8f1c360
-          description: ID of the parent group. The new group will be placed under this parent.
-        description:
-          type: string
-          example: A new group being added.
-          description: Custom field.
     Group:
       title: Group
       type: object
@@ -1316,6 +1265,22 @@ components:
         updatedDate:
           type: string
           example: '2023-02-01T00:00:00Z'
+    EditGroupRequest:
+      title: EditGroupRequest
+      type: object
+      properties:
+        name:
+          type: string
+          example: testGroupName
+          description: Name of the group to edit.
+        parentId:
+          type: string
+          example: 880e70d8-aaf8-18aa-7ab0-6533d8f1c360
+          description: ID of the new parent group. The group will be moved under this parent.
+        description:
+          type: string
+          example: A group being edited.
+          description: Custom field.
     ImportGroupsResponse:
       title: ImportGroupsResponse
       type: object
@@ -1344,22 +1309,18 @@ components:
             type: string
             example: InvalidGroup
           description: List of group names that were invalid and could not be imported.
-    EditGroupRequest:
-      title: EditGroupRequest
+    UnmovedGroup:
+      title: UnmovedGroup
       type: object
+      required:
+      - Group
+      - ErrorMessage
       properties:
-        name:
+        Group:
+          $ref: '#/components/schemas/Group'
+        ErrorMessage:
           type: string
-          example: testGroupName
-          description: Name of the group to edit.
-        parentId:
-          type: string
-          example: 880e70d8-aaf8-18aa-7ab0-6533d8f1c360
-          description: ID of the new parent group. The group will be moved under this parent.
-        description:
-          type: string
-          example: A group being edited.
-          description: Custom field.
+          description: The error message describes why the group was not moved.
     BulkMoveGroupResponse:
       title: BulkMoveGroupResponse
       type: object
@@ -1377,6 +1338,45 @@ components:
           items:
             $ref: '#/components/schemas/UnmovedGroup'
           description: A list of groups that were not moved with corresponding error messages.
+    BulkMoveGroupRequest:
+      title: BulkMoveGroupRequest
+      type: object
+      required:
+      - op
+      - path
+      - value
+      properties:
+        op:
+          type: string
+          example: replace
+          description: It should be replace keyword always.
+        path:
+          type: string
+          example: 880e70d8-aaf8-18aa-7ab0-6533d8f1c360/parentId
+          description: Id of the moving group followed by parentId keyword.
+        value:
+          type: string
+          example: 780e70d8-aaf8-18aa-7ab0-6533d8f1c390/Id
+          description: Id of the parent group followed by Id keyword.
+    AddGroupRequest:
+      title: AddGroupRequest
+      type: object
+      required:
+      - name
+      - parentId
+      properties:
+        name:
+          type: string
+          example: testGroupName
+          description: Name of the group to create.
+        parentId:
+          type: string
+          example: 880e70d8-aaf8-18aa-7ab0-6533d8f1c360
+          description: ID of the parent group. The new group will be placed under this parent.
+        description:
+          type: string
+          example: A new group being added.
+          description: Custom field.
   securitySchemes:
     bearerAuth:
       type: http

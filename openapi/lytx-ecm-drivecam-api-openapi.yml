@@ -527,34 +527,11 @@ components:
           description: The List of vehicles.
           items:
             $ref: '#/components/schemas/VehicleLocation'
-    Location:
-      type: object
-      additionalProperties: false
-      properties:
-        latitude:
-          type: number
-          description: Latitude position of the given trackpoint.
-          format: double
-        longitude:
-          type: number
-          description: Longitude position of the given trackpoint.
-          format: double
-        gpsDateTime:
-          type: string
-          description: The date and time of the given trackpoint
-          format: date-time
-        direction:
-          type:
-          - number
-          - 'null'
-          description: The heading of the vehicle.
-          format: double
-        speed:
-          type:
-          - number
-          - 'null'
-          description: The speed of the vehicle.
-          format: double
+    VehicleLocationPage:
+      allOf:
+      - $ref: '#/components/schemas/PageOfVehicleLocation'
+      - type: object
+        additionalProperties: false
     VehicleLocation:
       type: object
       additionalProperties: false
@@ -586,11 +563,34 @@ components:
           - 'null'
           oneOf:
           - $ref: '#/components/schemas/Location'
-    VehicleLocationPage:
-      allOf:
-      - $ref: '#/components/schemas/PageOfVehicleLocation'
-      - type: object
-        additionalProperties: false
+    Location:
+      type: object
+      additionalProperties: false
+      properties:
+        latitude:
+          type: number
+          description: Latitude position of the given trackpoint.
+          format: double
+        longitude:
+          type: number
+          description: Longitude position of the given trackpoint.
+          format: double
+        gpsDateTime:
+          type: string
+          description: The date and time of the given trackpoint
+          format: date-time
+        direction:
+          type:
+          - number
+          - 'null'
+          description: The heading of the vehicle.
+          format: double
+        speed:
+          type:
+          - number
+          - 'null'
+          description: The speed of the vehicle.
+          format: double
   securitySchemes:
     bearerAuth:
       type: http

@@ -306,90 +306,6 @@ paths:
                 $ref: '#/components/schemas/Schedules'
 components:
   schemas:
-    InspectionLists:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            properties:
-              inspectionListId:
-                type: integer
-                example: 1
-                description: ID of the inspection list.
-              inspectionName:
-                type: string
-                example: inspection list name example
-                description: Name of the inspection list.
-              scheduleFrequency:
-                type: string
-                description: Frequency type of the inspection list schedule (i.e. Daily, Weekly, Monthly, Yearly).
-                enum:
-                - daily
-                - weekly
-                - monthly
-                - yearly
-              repeatEvery:
-                type: integer
-                example: 1
-                description: Repeat quantity for the schedule frequency. For example, if schedule frequency is Weekly and 'repeat every' = 2, the inspection list must be repeated every 2 weeks.
-              repeatsOnDays:
-                type: string
-                example: '1'
-                description: Applies only if schedule frequency is Daily. Indicates the day(s) of the week on which the inspection must be completed. Each day is represented by a corresponding integer (Monday = 1).
-              repeatsDayOfWeek:
-                type: integer
-                example: 1
-                description: Applies only if schedule frequency is Weekly. Indicates the day of the week on which the inspection must be completed. Each day is represented by a corresponding integer (Monday = 1).
-              repeatsDayOfMonth:
-                type: string
-                example: First
-                description: Applies only if schedule frequency is Monthly. Indicates the day of the month on which the inspection must be completed. Can be 'First', '15th', or 'Last'.
-              repeatsYearlyOnDay:
-                type: integer
-                example: 1
-                description: Applies only if schedule frequency is Yearly. Day of the month when the inspection list should be repeated.
-              repeatsYearlyOnMonth:
-                type: integer
-                example: 1
-                description: Applies only if schedule frequency is Yearly. Month when the inspection list should be repeated.
-              sections:
-                type: array
-                description: A section of the inspection list with a group of inspection points.
-                items:
-                  properties:
-                    id:
-                      type: integer
-                      example: 1
-                      description: ID of the section of the inspection list.
-                    name:
-                      type: string
-                      example: section name example
-                      description: Name of the section of the inspection list.
-                    inspectionPoints:
-                      type: array
-                      description: Points of inspection in the section.
-                      items:
-                        properties:
-                          inspectionItem:
-                            type: string
-                            example: review tires
-                            description: Item in the inspection list section.
-        metadata:
-          type: object
-          properties:
-            count:
-              type: integer
-              example: '30'
-              description: Number of records returned.
-            limit:
-              type: integer
-              example: '1'
-              description: Maximum number of records to return.
-            offset:
-              type: integer
-              example: '0'
-              description: Record to start with.
     Schedules:
       type: object
       properties:
@@ -721,6 +637,90 @@ components:
               type: string
               format: date-time
               description: The end date and time of the request.
+    InspectionLists:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            properties:
+              inspectionListId:
+                type: integer
+                example: 1
+                description: ID of the inspection list.
+              inspectionName:
+                type: string
+                example: inspection list name example
+                description: Name of the inspection list.
+              scheduleFrequency:
+                type: string
+                description: Frequency type of the inspection list schedule (i.e. Daily, Weekly, Monthly, Yearly).
+                enum:
+                - daily
+                - weekly
+                - monthly
+                - yearly
+              repeatEvery:
+                type: integer
+                example: 1
+                description: Repeat quantity for the schedule frequency. For example, if schedule frequency is Weekly and 'repeat every' = 2, the inspection list must be repeated every 2 weeks.
+              repeatsOnDays:
+                type: string
+                example: '1'
+                description: Applies only if schedule frequency is Daily. Indicates the day(s) of the week on which the inspection must be completed. Each day is represented by a corresponding integer (Monday = 1).
+              repeatsDayOfWeek:
+                type: integer
+                example: 1
+                description: Applies only if schedule frequency is Weekly. Indicates the day of the week on which the inspection must be completed. Each day is represented by a corresponding integer (Monday = 1).
+              repeatsDayOfMonth:
+                type: string
+                example: First
+                description: Applies only if schedule frequency is Monthly. Indicates the day of the month on which the inspection must be completed. Can be 'First', '15th', or 'Last'.
+              repeatsYearlyOnDay:
+                type: integer
+                example: 1
+                description: Applies only if schedule frequency is Yearly. Day of the month when the inspection list should be repeated.
+              repeatsYearlyOnMonth:
+                type: integer
+                example: 1
+                description: Applies only if schedule frequency is Yearly. Month when the inspection list should be repeated.
+              sections:
+                type: array
+                description: A section of the inspection list with a group of inspection points.
+                items:
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                      description: ID of the section of the inspection list.
+                    name:
+                      type: string
+                      example: section name example
+                      description: Name of the section of the inspection list.
+                    inspectionPoints:
+                      type: array
+                      description: Points of inspection in the section.
+                      items:
+                        properties:
+                          inspectionItem:
+                            type: string
+                            example: review tires
+                            description: Item in the inspection list section.
+        metadata:
+          type: object
+          properties:
+            count:
+              type: integer
+              example: '30'
+              description: Number of records returned.
+            limit:
+              type: integer
+              example: '1'
+              description: Maximum number of records to return.
+            offset:
+              type: integer
+              example: '0'
+              description: Record to start with.
     Dvir:
       type: object
       properties:

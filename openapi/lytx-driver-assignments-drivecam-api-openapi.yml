@@ -409,6 +409,82 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    DriverDispatchResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            submissionBatchId:
+              type: integer
+              format: int64
+            entries:
+              type: array
+              items:
+                $ref: '#/components/schemas/DispatchEntryResponse'
+      additionalProperties: false
+    DispatchEntryResponse:
+      type: object
+      properties:
+        submissionId:
+          type: integer
+          example: 123
+          description: ID of the driver schedule submission.
+        employeeId:
+          type: string
+          example: emp123
+          description: Employee identification number of the driver, provided by the driver’s employer.
+        driverFirstName:
+          type: string
+          example: John
+          description: Driver's first name.
+        driverLastName:
+          type: string
+          example: Doe
+          description: Driver's last name.
+        vehicleName:
+          type: string
+          example: Toyota
+          description: Name of the vehicle to which the driver was scheduled to drive.
+        responseCodeId:
+          type: string
+          example: SUCCESS
+          description: Validation response of the schedule submission entry.
+        startDate:
+          type: string
+          format: date-time
+          example: '2023-09-10T00:00:00Z'
+          description: Date and time when the driver was scheduled to start driving the vehicle.
+        endDate:
+          type: string
+          format: date-time
+          example: '2023-09-10T00:00:00Z'
+          description: Date and time when the driver was scheduled to stop driving the vehicle.
+    DriverDispatchRequest:
+      type: object
+      properties:
+        validate:
+          type: boolean
+          description: Default to false. if set to true, only validate the submission request otherwise validate and process the submission logs
+          example: false
+        autoAddDriver:
+          type: boolean
+          description: "Default to true. \n\nIf driver is not found based on userIdentifier and autoAddDriver is set to true, It will try to add new driver based on information provided in user object.\n\nIf autoadddriver is set to false and driver not found based on userIdentifier then no new driver is created\n"
+          example: true
+        entries:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/DispatchEntry'
+      additionalProperties: false
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
     DispatchEntry:
       type: object
       properties:
@@ -450,82 +526,6 @@ components:
           type: string
           format: date-time
           description: Schedule end date-time
-      additionalProperties: false
-    DriverDispatchRequest:
-      type: object
-      properties:
-        validate:
-          type: boolean
-          description: Default to false. if set to true, only validate the submission request otherwise validate and process the submission logs
-          example: false
-        autoAddDriver:
-          type: boolean
-          description: "Default to true. \n\nIf driver is not found based on userIdentifier and autoAddDriver is set to true, It will try to add new driver based on information provided in user object.\n\nIf autoadddriver is set to false and driver not found based on userIdentifier then no new driver is created\n"
-          example: true
-        entries:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/DispatchEntry'
-      additionalProperties: false
-    DispatchEntryResponse:
-      type: object
-      properties:
-        submissionId:
-          type: integer
-          example: 123
-          description: ID of the driver schedule submission.
-        employeeId:
-          type: string
-          example: emp123
-          description: Employee identification number of the driver, provided by the driver’s employer.
-        driverFirstName:
-          type: string
-          example: John
-          description: Driver's first name.
-        driverLastName:
-          type: string
-          example: Doe
-          description: Driver's last name.
-        vehicleName:
-          type: string
-          example: Toyota
-          description: Name of the vehicle to which the driver was scheduled to drive.
-        responseCodeId:
-          type: string
-          example: SUCCESS
-          description: Validation response of the schedule submission entry.
-        startDate:
-          type: string
-          format: date-time
-          example: '2023-09-10T00:00:00Z'
-          description: Date and time when the driver was scheduled to start driving the vehicle.
-        endDate:
-          type: string
-          format: date-time
-          example: '2023-09-10T00:00:00Z'
-          description: Date and time when the driver was scheduled to stop driving the vehicle.
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-    DriverDispatchResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            submissionBatchId:
-              type: integer
-              format: int64
-            entries:
-              type: array
-              items:
-                $ref: '#/components/schemas/DispatchEntryResponse'
       additionalProperties: false
   securitySchemes:
     bearerAuth:

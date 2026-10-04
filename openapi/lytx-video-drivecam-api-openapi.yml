@@ -436,69 +436,6 @@ paths:
                 type: string
 components:
   schemas:
-    EventCollection:
-      type: object
-      additionalProperties: false
-      properties:
-        totalCount:
-          type: integer
-          description: The total number of events that matches the query, ignoring pagination.
-          format: int32
-        events:
-          type:
-          - array
-          - 'null'
-          description: List of paginated events that matches the query.
-          items:
-            $ref: '#/components/schemas/Event'
-    GetEventViewMediaResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        url:
-          type:
-          - string
-          - 'null'
-    DeviceViewTimelineInterval:
-      type: object
-      additionalProperties: false
-      properties:
-        startDate:
-          type: string
-          description: Start date of interval.
-          format: date-time
-        endDate:
-          type: string
-          description: End date of interval.
-          format: date-time
-    ErrorMessage:
-      type: object
-      additionalProperties: false
-      properties:
-        error:
-          type:
-          - string
-          - 'null'
-    GetVehicleTimelineResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        viewTimelines:
-          type:
-          - array
-          - 'null'
-          description: 'List of the device''s camera views and the view''s timelines of available video. '
-          items:
-            $ref: '#/components/schemas/DeviceViewTimeline'
-        vehicleName:
-          type:
-          - string
-          - 'null'
-          description: Name of Vehicle.
-        groupId:
-          type: string
-          description: Group identifier associated to vehicle.
-          format: guid
     GetVehiclesResponse:
       type: object
       additionalProperties: false
@@ -514,6 +451,34 @@ components:
           description: List of paginated vehicles that matches the query.
           items:
             $ref: '#/components/schemas/Vehicle'
+    DeviceViewTimeline:
+      type: object
+      additionalProperties: false
+      properties:
+        deviceView:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/DeviceView'
+        available:
+          type: boolean
+          description: Whether the device view has any timeline intervals.
+        timeline:
+          type:
+          - array
+          - 'null'
+          description: A list of intervals with video for this device's view.
+          items:
+            $ref: '#/components/schemas/DeviceViewTimelineInterval'
+    GetEventViewMediaResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
     CreateEventRequest:
       type: object
       additionalProperties: false
@@ -567,14 +532,54 @@ components:
           type: string
           description: Time of event. The EventTime should be the same as RequestStartTime when an event is a clip. When the event is a tag, EventTime is the point of interest.
           format: date-time
-    CreateEventResponse:
+    EventDeviceView:
       type: object
       additionalProperties: false
       properties:
         id:
           type: integer
-          description: Primary identifier of the newly created event.
+          description: Primary device's view identifier for the event.
           format: int64
+        name:
+          type:
+          - string
+          - 'null'
+          description: 'Type of device view that corresponds to a physical camera. Possible values: "FORWARD", "REAR", "ANALOG_AUX_1", "ANALOG_AUX_2", "ANALOG_AUX_3", or "ANALOG_AUX_4".'
+        label:
+          type:
+          - string
+          - 'null'
+          description: User defined label of the device's view.
+        status:
+          type:
+          - integer
+          - 'null'
+          description: 'Indicates the event media upload progress for this specific view.
+
+            Common values:
+
+            "1" (Not Uploaded),
+
+            "2" (Upload Request Queued.),
+
+            "3" (Uploading),
+
+            "4" (Upload Complete),
+
+            "5" (Upload Cancelled),
+
+            or "6" (Upload Error.).'
+          format: int32
+        currentBytes:
+          type:
+          - integer
+          - 'null'
+          description: Number of bytes uploaded.
+          format: int64
+        progress:
+          type: number
+          description: Number to indicate upload progress. Value ranges from 0 to 1, where 1 is when the upload has been completed.
+          format: double
     DeviceView:
       type: object
       additionalProperties: false
@@ -593,6 +598,177 @@ components:
           - string
           - 'null'
           description: User defined label of the device's view.
+    GetVehicleTimelineResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        viewTimelines:
+          type:
+          - array
+          - 'null'
+          description: 'List of the device''s camera views and the view''s timelines of available video. '
+          items:
+            $ref: '#/components/schemas/DeviceViewTimeline'
+        vehicleName:
+          type:
+          - string
+          - 'null'
+          description: Name of Vehicle.
+        groupId:
+          type: string
+          description: Group identifier associated to vehicle.
+          format: guid
+    DeviceViewTimelineInterval:
+      type: object
+      additionalProperties: false
+      properties:
+        startDate:
+          type: string
+          description: Start date of interval.
+          format: date-time
+        endDate:
+          type: string
+          description: End date of interval.
+          format: date-time
+    ErrorMessage:
+      type: object
+      additionalProperties: false
+      properties:
+        error:
+          type:
+          - string
+          - 'null'
+    Vehicle:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          description: Primary vehicle identifier.
+          format: int64
+        groupId:
+          type: string
+          description: The group identifier of the vehicle.
+          format: guid
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the vehicle.
+        status:
+          type:
+          - integer
+          - 'null'
+          description: 'The current vehicle connectivity status.
+
+            Possible values:
+
+            3 (LoggedOut - Unknown),
+
+            4 (LoggedOut - Disabled),
+
+            5 (LoggedOut - PowerFail),
+
+            8 (LoggedOut - Hibernate - Wake disabled),
+
+            10 (LoggedOut - Hibernate - Wake enabled),
+
+            11 (LostCommunication),
+
+            14 (LostCommunication - Long term), or
+
+            16 (MQTTOnline).'
+          format: int32
+        lastCommunication:
+          type:
+          - string
+          - 'null'
+          description: Date last communicated with vehicle.
+          format: date-time
+        devices:
+          type:
+          - array
+          - 'null'
+          description: List of devices associated to vehicle.
+          items:
+            $ref: '#/components/schemas/Device'
+    EventCollection:
+      type: object
+      additionalProperties: false
+      properties:
+        totalCount:
+          type: integer
+          description: The total number of events that matches the query, ignoring pagination.
+          format: int32
+        events:
+          type:
+          - array
+          - 'null'
+          description: List of paginated events that matches the query.
+          items:
+            $ref: '#/components/schemas/Event'
+    CreateEventResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          description: Primary identifier of the newly created event.
+          format: int64
+    Device:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          description: Primary device identifier.
+          format: int64
+        serialNumber:
+          type:
+          - string
+          - 'null'
+          description: Physical device identifier.
+        lastCommunication:
+          type:
+          - string
+          - 'null'
+          description: Date last communicated with the device.
+          format: date-time
+        onlineStatus:
+          type:
+          - integer
+          - 'null'
+          description: 'The current device connectivity status.
+
+            Possible values:
+
+            3 (LoggedOut - Unknown),
+
+            4 (LoggedOut - Disabled),
+
+            5 (LoggedOut - PowerFail),
+
+            8 (LoggedOut - Hibernate - Wake disabled),
+
+            10 (LoggedOut - Hibernate - Wake enabled),
+
+            11 (LostCommunication),
+
+            14 (LostCommunication - Long term), or
+
+            16 (MQTTOnline).'
+          format: int32
+        views:
+          type:
+          - array
+          - 'null'
+          description: List of camera views associate to the device.
+          items:
+            $ref: '#/components/schemas/DeviceView'
+        roleId:
+          type: integer
+          description: 'The device role. Possible values: 0 (follower) or 1 (leader).'
+          format: int32
     Event:
       type: object
       additionalProperties: false
@@ -670,182 +846,6 @@ components:
           description: List of a device's view associated to event.
           items:
             $ref: '#/components/schemas/EventDeviceView'
-    DeviceViewTimeline:
-      type: object
-      additionalProperties: false
-      properties:
-        deviceView:
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/DeviceView'
-        available:
-          type: boolean
-          description: Whether the device view has any timeline intervals.
-        timeline:
-          type:
-          - array
-          - 'null'
-          description: A list of intervals with video for this device's view.
-          items:
-            $ref: '#/components/schemas/DeviceViewTimelineInterval'
-    EventDeviceView:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type: integer
-          description: Primary device's view identifier for the event.
-          format: int64
-        name:
-          type:
-          - string
-          - 'null'
-          description: 'Type of device view that corresponds to a physical camera. Possible values: "FORWARD", "REAR", "ANALOG_AUX_1", "ANALOG_AUX_2", "ANALOG_AUX_3", or "ANALOG_AUX_4".'
-        label:
-          type:
-          - string
-          - 'null'
-          description: User defined label of the device's view.
-        status:
-          type:
-          - integer
-          - 'null'
-          description: 'Indicates the event media upload progress for this specific view.
-
-            Common values:
-
-            "1" (Not Uploaded),
-
-            "2" (Upload Request Queued.),
-
-            "3" (Uploading),
-
-            "4" (Upload Complete),
-
-            "5" (Upload Cancelled),
-
-            or "6" (Upload Error.).'
-          format: int32
-        currentBytes:
-          type:
-          - integer
-          - 'null'
-          description: Number of bytes uploaded.
-          format: int64
-        progress:
-          type: number
-          description: Number to indicate upload progress. Value ranges from 0 to 1, where 1 is when the upload has been completed.
-          format: double
-    Vehicle:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type: integer
-          description: Primary vehicle identifier.
-          format: int64
-        groupId:
-          type: string
-          description: The group identifier of the vehicle.
-          format: guid
-        name:
-          type:
-          - string
-          - 'null'
-          description: The name of the vehicle.
-        status:
-          type:
-          - integer
-          - 'null'
-          description: 'The current vehicle connectivity status.
-
-            Possible values:
-
-            3 (LoggedOut - Unknown),
-
-            4 (LoggedOut - Disabled),
-
-            5 (LoggedOut - PowerFail),
-
-            8 (LoggedOut - Hibernate - Wake disabled),
-
-            10 (LoggedOut - Hibernate - Wake enabled),
-
-            11 (LostCommunication),
-
-            14 (LostCommunication - Long term), or
-
-            16 (MQTTOnline).'
-          format: int32
-        lastCommunication:
-          type:
-          - string
-          - 'null'
-          description: Date last communicated with vehicle.
-          format: date-time
-        devices:
-          type:
-          - array
-          - 'null'
-          description: List of devices associated to vehicle.
-          items:
-            $ref: '#/components/schemas/Device'
-    Device:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type: integer
-          description: Primary device identifier.
-          format: int64
-        serialNumber:
-          type:
-          - string
-          - 'null'
-          description: Physical device identifier.
-        lastCommunication:
-          type:
-          - string
-          - 'null'
-          description: Date last communicated with the device.
-          format: date-time
-        onlineStatus:
-          type:
-          - integer
-          - 'null'
-          description: 'The current device connectivity status.
-
-            Possible values:
-
-            3 (LoggedOut - Unknown),
-
-            4 (LoggedOut - Disabled),
-
-            5 (LoggedOut - PowerFail),
-
-            8 (LoggedOut - Hibernate - Wake disabled),
-
-            10 (LoggedOut - Hibernate - Wake enabled),
-
-            11 (LostCommunication),
-
-            14 (LostCommunication - Long term), or
-
-            16 (MQTTOnline).'
-          format: int32
-        views:
-          type:
-          - array
-          - 'null'
-          description: List of camera views associate to the device.
-          items:
-            $ref: '#/components/schemas/DeviceView'
-        roleId:
-          type: integer
-          description: 'The device role. Possible values: 0 (follower) or 1 (leader).'
-          format: int32
   securitySchemes:
     APIKey:
       type: apiKey

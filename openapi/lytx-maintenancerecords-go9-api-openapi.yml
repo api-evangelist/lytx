@@ -162,6 +162,21 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    MaintenanceDefectResponseViewModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          example: def-456
+          description: Defect identifier.
+        isDefectList:
+          type:
+          - boolean
+          - 'null'
+          example: true
+          description: Indicates whether this belongs to a defect list.
     MaintenanceRecordsResponseViewModel:
       type: object
       properties:
@@ -228,21 +243,6 @@ components:
           format: date-time
           example: '2025-01-12T08:15:00.000Z'
           description: Last updated date of the maintenance record.
-    MaintenanceDefectResponseViewModel:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          example: def-456
-          description: Defect identifier.
-        isDefectList:
-          type:
-          - boolean
-          - 'null'
-          example: true
-          description: Indicates whether this belongs to a defect list.
     CreatedByResponseViewModel:
       type: object
       properties:

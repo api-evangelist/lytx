@@ -163,14 +163,84 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    BadRequestResponse:
+    EcmResponse:
       type: object
       properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EcmDevice'
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+      required:
+      - data
+      - metadata
+    EcmSample:
+      type: object
+      properties:
+        sampleType:
+          type: string
+          enum:
+          - ODOMETER
+          - SPEED_KPH
+          - ENGINE_SPEED
+          - DTC
+          - VIN_FULL
+          - ENGINE_HOURS
+          - MIL
+          example: ENGINE_HOURS
+          description: Type of ECM data.
+        sampleDateTime:
+          type: string
+          format: date-time
+          example: '2024-05-29T22:24:27.804Z'
+          description: Date and time for the data point.
+        sampleValue:
+          type: string
+          example: '1600'
+          description: Value for the data point.
+      required:
+      - sampleType
+      - sampleDateTime
+      - sampleValue
+    InternalSystemErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Internal Server Error
         message:
           type: string
-          example: Invalid request data
+          example: An unexpected server error occurred
+    Metadata:
+      type: object
+      properties:
+        count:
+          type: string
+          example: '30'
+          description: Total number of records matching the criteria.
+        limit:
+          type: integer
+          example: 100
+          description: Number of records requested.
+        offset:
+          type: integer
+          example: 0
+          description: Starting record offset.
+        startDate:
+          type: string
+          format: date-time
+          description: Start date for the query.
+        endDate:
+          type: string
+          format: date-time
+          description: End date for the query.
       required:
-      - message
+      - count
+      - limit
+      - offset
+      - startDate
+      - endDate
     EcmDevice:
       type: object
       properties:
@@ -224,18 +294,6 @@ components:
       - vin
       - groupName
       - samples
-    EcmResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/EcmDevice'
-        metadata:
-          $ref: '#/components/schemas/Metadata'
-      required:
-      - data
-      - metadata
     UnauthorizedResponse:
       type: object
       properties:
@@ -254,72 +312,14 @@ components:
         message:
           type: string
           example: Non-permitted user
-    InternalSystemErrorResponse:
+    BadRequestResponse:
       type: object
       properties:
-        error:
-          type: string
-          example: Internal Server Error
         message:
           type: string
-          example: An unexpected server error occurred
-    EcmSample:
-      type: object
-      properties:
-        sampleType:
-          type: string
-          enum:
-          - ODOMETER
-          - SPEED_KPH
-          - ENGINE_SPEED
-          - DTC
-          - VIN_FULL
-          - ENGINE_HOURS
-          - MIL
-          example: ENGINE_HOURS
-          description: Type of ECM data.
-        sampleDateTime:
-          type: string
-          format: date-time
-          example: '2024-05-29T22:24:27.804Z'
-          description: Date and time for the data point.
-        sampleValue:
-          type: string
-          example: '1600'
-          description: Value for the data point.
+          example: Invalid request data
       required:
-      - sampleType
-      - sampleDateTime
-      - sampleValue
-    Metadata:
-      type: object
-      properties:
-        count:
-          type: string
-          example: '30'
-          description: Total number of records matching the criteria.
-        limit:
-          type: integer
-          example: 100
-          description: Number of records requested.
-        offset:
-          type: integer
-          example: 0
-          description: Starting record offset.
-        startDate:
-          type: string
-          format: date-time
-          description: Start date for the query.
-        endDate:
-          type: string
-          format: date-time
-          description: End date for the query.
-      required:
-      - count
-      - limit
-      - offset
-      - startDate
-      - endDate
+      - message
   securitySchemes:
     bearerAuth:
       type: http
