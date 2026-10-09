@@ -2,7 +2,7 @@
 name: Pull HOS logs and DVIR inspections
 description: Retrieve Hours-of-Service logs and DVIR inspection records for ELD/FMCSA compliance workflows.
 api: openapi/lytx-hos-openapi.yml
-operations: [Hos_GetHosLogs, Hos_GetHosLogs_ByUser, getDvirs, getDvirById, getInspectionLists]
+operations: [getRoot, getByUserName, getDvirs, getDvirById, getInspectionLists]
 provider: lytx
 ---
 
