@@ -783,30 +783,6 @@ paths:
     - url: https://lytx-api.prod8.lv.lytx.com/hos
 components:
   schemas:
-    HosLogByUser:
-      type: object
-      additionalProperties: false
-      properties:
-        userName:
-          type:
-          - string
-          - 'null'
-        hosLogs:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/HosLog'
-    HosLogByCompany:
-      type: object
-      additionalProperties: false
-      properties:
-        users:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/HosLogByUser'
     HosLog:
       type: object
       additionalProperties: false
@@ -888,6 +864,30 @@ components:
           type:
           - string
           - 'null'
+    HosLogByCompany:
+      type: object
+      additionalProperties: false
+      properties:
+        users:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/HosLogByUser'
+    HosLogByUser:
+      type: object
+      additionalProperties: false
+      properties:
+        userName:
+          type:
+          - string
+          - 'null'
+        hosLogs:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/HosLog'
   securitySchemes:
     bearerAuth:
       type: http

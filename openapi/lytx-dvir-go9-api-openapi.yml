@@ -179,6 +179,21 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ColorResponseViewModel:
+      type: object
+      properties:
+        a:
+          type: integer
+          example: 255
+        r:
+          type: integer
+          example: 255
+        g:
+          type: integer
+          example: 0
+        b:
+          type: integer
+          example: 0
     DefectResponseViewModel:
       type: object
       properties:
@@ -218,6 +233,109 @@ components:
           type: string
           example: High
           description: Severity level of the defect.
+    DvirResponseViewModel:
+      type: object
+      properties:
+        authorityAddress:
+          type: string
+          example: 123 Main St, Springfield
+          description: Address of the authority.
+        authorityName:
+          type: string
+          example: Department of Transportation
+          description: Name of the authority.
+        certifiedBy:
+          $ref: '#/components/schemas/UserResponseViewModel'
+        certifyDate:
+          type: string
+          format: date-time
+          example: '2025-05-29T19:18:26.063Z'
+          description: Date when the DVIR was certified.
+        certifyRemark:
+          type: string
+          example: All systems OK
+          description: Remark provided by the certifying user.
+        dateTime:
+          type: string
+          format: date-time
+          example: '2025-05-29T19:18:26.063Z'
+          description: Date and time of the DVIR.
+        defectList:
+          $ref: '#/components/schemas/GroupResponseViewModel'
+        defects:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupResponseViewModel'
+        device:
+          $ref: '#/components/schemas/DeviceResponseViewModel'
+        driver:
+          $ref: '#/components/schemas/UserResponseViewModel'
+        driverRemark:
+          type: string
+          example: No issues observed
+          description: Remark provided by the driver.
+        duration:
+          type: string
+          example: 02:15:00
+          description: Duration of the trip.
+        dvirDefects:
+          type: array
+          items:
+            $ref: '#/components/schemas/DVIRDefectResponseViewModel'
+        engineHours:
+          type: number
+          format: float
+          example: 5.5
+          description: Engine hours recorded.
+        id:
+          type: string
+          example: d1f6e56d-1234-4567-89ab-cdef12345678
+          description: Unique ID of the DVIR report.
+        isSafeToOperate:
+          type: boolean
+          example: true
+          description: Indicates whether the vehicle is safe to operate.
+        loadHeight:
+          type: number
+          format: float
+          example: 3.5
+          description: Height of the load.
+        loadWidth:
+          type: number
+          format: float
+          example: 2.5
+          description: Width of the load.
+        location:
+          type:
+          - object
+          - 'null'
+          description: Location object of the vehicle.
+        logType:
+          type: string
+          example: Pre-Trip
+          description: Type of log.
+        odometer:
+          type: number
+          format: double
+          example: 12550
+          description: Odometer reading.
+        repairDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2025-05-30T08:22:30.000Z'
+          description: Date of repair, if applicable.
+        repairedBy:
+          $ref: '#/components/schemas/UserResponseViewModel'
+        repairRemark:
+          type: string
+          example: Replaced brake pads
+          description: Remark for the repair.
+        version:
+          type: string
+          example: v1.0
+          description: Version of the DVIR report.
     DeviceResponseViewModel:
       type: object
       properties:
@@ -365,6 +483,34 @@ components:
           - 'null'
           example: v1.2.3
           description: Version information of the device.
+    GroupResponseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          example: grp-123
+          description: Unique identifier of the group.
+        name:
+          type: string
+          example: Drivers Group
+          description: Name of the group.
+        comment:
+          type: string
+          example: Main driver group
+          description: Additional comments about the group.
+        reference:
+          type: string
+          example: REF123
+          description: Reference information for the group.
+        parent:
+          $ref: '#/components/schemas/GroupResponseViewModel'
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupResponseViewModel'
+          description: List of child groups.
+        color:
+          $ref: '#/components/schemas/GroupResponseViewModel'
     UserResponseViewModel:
       type: object
       properties:
@@ -501,21 +647,6 @@ components:
           type: string
           example: '101'
           description: Extension for the phone number.
-    ColorResponseViewModel:
-      type: object
-      properties:
-        a:
-          type: integer
-          example: 255
-        r:
-          type: integer
-          example: 255
-        g:
-          type: integer
-          example: 0
-        b:
-          type: integer
-          example: 0
     DVIRDefectResponseViewModel:
       type: object
       properties:
@@ -558,137 +689,6 @@ components:
           description: Remark text.
         user:
           $ref: '#/components/schemas/UserResponseViewModel'
-    DvirResponseViewModel:
-      type: object
-      properties:
-        authorityAddress:
-          type: string
-          example: 123 Main St, Springfield
-          description: Address of the authority.
-        authorityName:
-          type: string
-          example: Department of Transportation
-          description: Name of the authority.
-        certifiedBy:
-          $ref: '#/components/schemas/UserResponseViewModel'
-        certifyDate:
-          type: string
-          format: date-time
-          example: '2025-05-29T19:18:26.063Z'
-          description: Date when the DVIR was certified.
-        certifyRemark:
-          type: string
-          example: All systems OK
-          description: Remark provided by the certifying user.
-        dateTime:
-          type: string
-          format: date-time
-          example: '2025-05-29T19:18:26.063Z'
-          description: Date and time of the DVIR.
-        defectList:
-          $ref: '#/components/schemas/GroupResponseViewModel'
-        defects:
-          type: array
-          items:
-            $ref: '#/components/schemas/GroupResponseViewModel'
-        device:
-          $ref: '#/components/schemas/DeviceResponseViewModel'
-        driver:
-          $ref: '#/components/schemas/UserResponseViewModel'
-        driverRemark:
-          type: string
-          example: No issues observed
-          description: Remark provided by the driver.
-        duration:
-          type: string
-          example: 02:15:00
-          description: Duration of the trip.
-        dvirDefects:
-          type: array
-          items:
-            $ref: '#/components/schemas/DVIRDefectResponseViewModel'
-        engineHours:
-          type: number
-          format: float
-          example: 5.5
-          description: Engine hours recorded.
-        id:
-          type: string
-          example: d1f6e56d-1234-4567-89ab-cdef12345678
-          description: Unique ID of the DVIR report.
-        isSafeToOperate:
-          type: boolean
-          example: true
-          description: Indicates whether the vehicle is safe to operate.
-        loadHeight:
-          type: number
-          format: float
-          example: 3.5
-          description: Height of the load.
-        loadWidth:
-          type: number
-          format: float
-          example: 2.5
-          description: Width of the load.
-        location:
-          type:
-          - object
-          - 'null'
-          description: Location object of the vehicle.
-        logType:
-          type: string
-          example: Pre-Trip
-          description: Type of log.
-        odometer:
-          type: number
-          format: double
-          example: 12550
-          description: Odometer reading.
-        repairDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2025-05-30T08:22:30.000Z'
-          description: Date of repair, if applicable.
-        repairedBy:
-          $ref: '#/components/schemas/UserResponseViewModel'
-        repairRemark:
-          type: string
-          example: Replaced brake pads
-          description: Remark for the repair.
-        version:
-          type: string
-          example: v1.0
-          description: Version of the DVIR report.
-    GroupResponseViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-          example: grp-123
-          description: Unique identifier of the group.
-        name:
-          type: string
-          example: Drivers Group
-          description: Name of the group.
-        comment:
-          type: string
-          example: Main driver group
-          description: Additional comments about the group.
-        reference:
-          type: string
-          example: REF123
-          description: Reference information for the group.
-        parent:
-          $ref: '#/components/schemas/GroupResponseViewModel'
-        children:
-          type: array
-          items:
-            $ref: '#/components/schemas/GroupResponseViewModel'
-          description: List of child groups.
-        color:
-          $ref: '#/components/schemas/GroupResponseViewModel'
   securitySchemes:
     bearerAuth:
       type: http

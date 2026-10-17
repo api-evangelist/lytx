@@ -150,13 +150,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
     TripResponseMessage:
       properties:
         metadata:
@@ -331,6 +324,13 @@ components:
                 type: string
                 example: PST
                 description: Event recording device timezone when device is first configured.
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

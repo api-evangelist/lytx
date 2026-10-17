@@ -336,6 +336,25 @@ paths:
     - url: https://api.lytx.com
 components:
   schemas:
+    ColorResponseViewModel:
+      type: object
+      properties:
+        a:
+          type: integer
+          example: 255
+          description: Alpha channel (transparency).
+        r:
+          type: integer
+          example: 255
+          description: Red channel (0-255).
+        g:
+          type: integer
+          example: 0
+          description: Green channel (0-255).
+        b:
+          type: integer
+          example: 0
+          description: Blue channel (0-255).
     ZoneResponseViewModel:
       type: object
       properties:
@@ -408,25 +427,6 @@ components:
           items:
             $ref: '#/components/schemas/ZoneTypeResponseViewModel'
           description: Types associated with the zone.
-    ColorResponseViewModel:
-      type: object
-      properties:
-        a:
-          type: integer
-          example: 255
-          description: Alpha channel (transparency).
-        r:
-          type: integer
-          example: 255
-          description: Red channel (0-255).
-        g:
-          type: integer
-          example: 0
-          description: Green channel (0-255).
-        b:
-          type: integer
-          example: 0
-          description: Blue channel (0-255).
     CoordinateResponseViewModel:
       type: object
       properties:
@@ -468,6 +468,24 @@ components:
           type: string
           example: Restricted Area
           description: Name of the zone type.
+    ZoneTypesEnumRequestViewModel:
+      type: string
+      description: Type of zone.
+      enum:
+      - Customer
+      - Home
+      - InHouseServiceCenter
+      - Office
+      - VendorServiceCenter
+    CreateZoneGroupRequestViewModel:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          example: group-12345
+          description: Identifier of the group the zone belongs to.
     CreateZonePointRequestViewModel:
       type: object
       required:
@@ -559,34 +577,6 @@ components:
           description: Groups to which the zone belongs.
           items:
             $ref: '#/components/schemas/CreateZoneGroupRequestViewModel'
-    ZoneTypesEnumRequestViewModel:
-      type: string
-      description: Type of zone.
-      enum:
-      - Customer
-      - Home
-      - InHouseServiceCenter
-      - Office
-      - VendorServiceCenter
-    CreateZoneColorRequestViewModel:
-      type: object
-      properties:
-        r:
-          type: integer
-          example: 255
-          description: Red color component.
-        g:
-          type: integer
-          example: 0
-          description: Green color component.
-        b:
-          type: integer
-          example: 0
-          description: Blue color component.
-        a:
-          type: integer
-          example: 255
-          description: Alpha (opacity) color component.
     AddZonesRequestViewModel:
       type: object
       required:
@@ -652,15 +642,25 @@ components:
           description: Groups to which the zone belongs.
           items:
             $ref: '#/components/schemas/CreateZoneGroupRequestViewModel'
-    CreateZoneGroupRequestViewModel:
+    CreateZoneColorRequestViewModel:
       type: object
-      required:
-      - id
       properties:
-        id:
-          type: string
-          example: group-12345
-          description: Identifier of the group the zone belongs to.
+        r:
+          type: integer
+          example: 255
+          description: Red color component.
+        g:
+          type: integer
+          example: 0
+          description: Green color component.
+        b:
+          type: integer
+          example: 0
+          description: Blue color component.
+        a:
+          type: integer
+          example: 255
+          description: Alpha (opacity) color component.
   securitySchemes:
     bearerAuth:
       type: http

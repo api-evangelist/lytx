@@ -180,6 +180,71 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    FaultStatusResponseViewModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          example: STAT-ACT
+          description: Unique identifier of the fault status.
+        name:
+          type:
+          - string
+          - 'null'
+          example: Active
+          description: Name of the fault status.
+    DiagnosticResponseViewModel:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 101
+          description: Numeric code identifying the diagnostic.
+        controller:
+          type:
+          - object
+          - 'null'
+          description: Controller associated with the diagnostic (if any).
+        diagnosticType:
+          type: string
+          example: Engine
+          description: Type/category of the diagnostic.
+        faultResetMode:
+          type: string
+          example: Automatic
+          description: Mode of fault reset.
+        id:
+          type: string
+          example: d1f6e56d-1234-4567-89ab-cdef12345678
+          description: Unique identifier for the diagnostic.
+        isReadOnly:
+          type: boolean
+          example: false
+          description: Indicates if the diagnostic is read-only.
+        name:
+          type: string
+          example: Engine Overheat
+          description: Name of the diagnostic.
+        source:
+          type:
+          - object
+          - 'null'
+          description: Source object of the diagnostic.
+        tamperingDiagnostics:
+          type: integer
+          example: 0
+          description: Number of tampering-related diagnostics.
+        unitOfMeasure:
+          type:
+          - object
+          - 'null'
+          description: Unit of measure for the diagnostic value.
+        version:
+          type: string
+          example: v1.0
+          description: Version of the diagnostic data.
     FlashCodeResponseViewModel:
       type: object
       properties:
@@ -229,6 +294,21 @@ components:
           $ref: '#/components/schemas/DiagnosticResponseViewModel'
         failureMode:
           $ref: '#/components/schemas/FailureModeResponseViewModel'
+    SourceResponseViewModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          example: SRC-001
+          description: Unique identifier of the source.
+        name:
+          type:
+          - string
+          - 'null'
+          example: Telematics Provider
+          description: Name of the data source.
     DeviceResponseViewModel:
       type: object
       properties:
@@ -376,125 +456,34 @@ components:
           - 'null'
           example: v1.2.3
           description: Version information of the device.
-    FaultDataResponseViewModel:
+    GroupResponseViewModel:
       type: object
       properties:
-        amberWarningLamp:
-          type:
-          - boolean
-          - 'null'
-          example: true
-          description: Indicates whether the amber warning lamp is active.
-        classCode:
-          type:
-          - string
-          - 'null'
-          example: A
-          description: Classification code of the fault.
-        controller:
-          $ref: '#/components/schemas/ControllerResponseViewModel'
-        count:
-          type:
-          - integer
-          - 'null'
-          example: 3
-          description: Number of times the fault has occurred.
-        dateTime:
-          type:
-          - string
-          - 'null'
-          example: '2025-01-20T10:30:00.000Z'
-          description: Date and time when the fault was recorded.
-        device:
-          $ref: '#/components/schemas/DeviceResponseViewModel'
-        diagnostic:
-          $ref: '#/components/schemas/DiagnosticResponseViewModel'
-        dismissDateTime:
-          type:
-          - string
-          - 'null'
-          example: '2025-01-21T09:00:00.000Z'
-          description: Date and time when the fault was dismissed.
-        dismissUser:
-          $ref: '#/components/schemas/UserResponseViewModel'
-        effectOnComponent:
-          type:
-          - string
-          - 'null'
-          example: Reduced performance
-          description: Effect of the fault on the component.
-        failureMode:
-          $ref: '#/components/schemas/FailureModeResponseViewModel'
-        faultDescription:
-          type:
-          - string
-          - 'null'
-          example: Engine overheating detected
-          description: Description of the fault.
-        faultLampState:
-          type:
-          - string
-          - 'null'
-          example: 'ON'
-          description: Current state of the fault lamp.
-        faultState:
-          type:
-          - string
-          - 'null'
-          example: Active
-          description: Current state of the fault.
-        effectiveStatus:
-          $ref: '#/components/schemas/FaultStatusResponseViewModel'
-        flashCode:
-          $ref: '#/components/schemas/FlashCodeResponseViewModel'
         id:
-          type:
-          - string
-          - 'null'
-          example: fault-12345
-          description: Unique identifier of the fault record.
-        malfunctionLamp:
-          type:
-          - boolean
-          - 'null'
-          example: false
-          description: Indicates whether the malfunction lamp is active.
-        protectWarningLamp:
-          type:
-          - boolean
-          - 'null'
-          example: false
-          description: Indicates whether the protect warning lamp is active.
-        recommendation:
-          type:
-          - string
-          - 'null'
-          example: Stop vehicle and inspect engine cooling system
-          description: Recommended action for this fault.
-        redStopLamp:
-          type:
-          - boolean
-          - 'null'
-          example: false
-          description: Indicates whether the red stop lamp is active.
-        riskOfBreakdown:
-          type:
-          - integer
-          - 'null'
-          example: 2
-          description: Risk level of vehicle breakdown.
-        severity:
-          type:
-          - string
-          - 'null'
-          example: High
-          description: Severity level of the fault.
-        sourceAddress:
-          type:
-          - integer
-          - 'null'
-          example: 33
-          description: Source address reporting the fault.
+          type: string
+          example: grp-123
+          description: Unique identifier of the group.
+        name:
+          type: string
+          example: Drivers Group
+          description: Name of the group.
+        comment:
+          type: string
+          example: Main driver group
+          description: Additional comments about the group.
+        reference:
+          type: string
+          example: REF123
+          description: Reference information for the group.
+        parent:
+          $ref: '#/components/schemas/GroupResponseViewModel'
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupResponseViewModel'
+          description: List of child groups.
+        color:
+          $ref: '#/components/schemas/GroupResponseViewModel'
     UserResponseViewModel:
       type: object
       properties:
@@ -631,71 +620,6 @@ components:
           type: string
           example: '101'
           description: Extension for the phone number.
-    FaultStatusResponseViewModel:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          example: STAT-ACT
-          description: Unique identifier of the fault status.
-        name:
-          type:
-          - string
-          - 'null'
-          example: Active
-          description: Name of the fault status.
-    DiagnosticResponseViewModel:
-      type: object
-      properties:
-        code:
-          type: integer
-          example: 101
-          description: Numeric code identifying the diagnostic.
-        controller:
-          type:
-          - object
-          - 'null'
-          description: Controller associated with the diagnostic (if any).
-        diagnosticType:
-          type: string
-          example: Engine
-          description: Type/category of the diagnostic.
-        faultResetMode:
-          type: string
-          example: Automatic
-          description: Mode of fault reset.
-        id:
-          type: string
-          example: d1f6e56d-1234-4567-89ab-cdef12345678
-          description: Unique identifier for the diagnostic.
-        isReadOnly:
-          type: boolean
-          example: false
-          description: Indicates if the diagnostic is read-only.
-        name:
-          type: string
-          example: Engine Overheat
-          description: Name of the diagnostic.
-        source:
-          type:
-          - object
-          - 'null'
-          description: Source object of the diagnostic.
-        tamperingDiagnostics:
-          type: integer
-          example: 0
-          description: Number of tampering-related diagnostics.
-        unitOfMeasure:
-          type:
-          - object
-          - 'null'
-          description: Unit of measure for the diagnostic value.
-        version:
-          type: string
-          example: v1.0
-          description: Version of the diagnostic data.
     FailureModeResponseViewModel:
       type: object
       properties:
@@ -725,21 +649,125 @@ components:
           description: Version of the failure mode definition.
         source:
           $ref: '#/components/schemas/SourceResponseViewModel'
-    SourceResponseViewModel:
+    FaultDataResponseViewModel:
       type: object
       properties:
+        amberWarningLamp:
+          type:
+          - boolean
+          - 'null'
+          example: true
+          description: Indicates whether the amber warning lamp is active.
+        classCode:
+          type:
+          - string
+          - 'null'
+          example: A
+          description: Classification code of the fault.
+        controller:
+          $ref: '#/components/schemas/ControllerResponseViewModel'
+        count:
+          type:
+          - integer
+          - 'null'
+          example: 3
+          description: Number of times the fault has occurred.
+        dateTime:
+          type:
+          - string
+          - 'null'
+          example: '2025-01-20T10:30:00.000Z'
+          description: Date and time when the fault was recorded.
+        device:
+          $ref: '#/components/schemas/DeviceResponseViewModel'
+        diagnostic:
+          $ref: '#/components/schemas/DiagnosticResponseViewModel'
+        dismissDateTime:
+          type:
+          - string
+          - 'null'
+          example: '2025-01-21T09:00:00.000Z'
+          description: Date and time when the fault was dismissed.
+        dismissUser:
+          $ref: '#/components/schemas/UserResponseViewModel'
+        effectOnComponent:
+          type:
+          - string
+          - 'null'
+          example: Reduced performance
+          description: Effect of the fault on the component.
+        failureMode:
+          $ref: '#/components/schemas/FailureModeResponseViewModel'
+        faultDescription:
+          type:
+          - string
+          - 'null'
+          example: Engine overheating detected
+          description: Description of the fault.
+        faultLampState:
+          type:
+          - string
+          - 'null'
+          example: 'ON'
+          description: Current state of the fault lamp.
+        faultState:
+          type:
+          - string
+          - 'null'
+          example: Active
+          description: Current state of the fault.
+        effectiveStatus:
+          $ref: '#/components/schemas/FaultStatusResponseViewModel'
+        flashCode:
+          $ref: '#/components/schemas/FlashCodeResponseViewModel'
         id:
           type:
           - string
           - 'null'
-          example: SRC-001
-          description: Unique identifier of the source.
-        name:
+          example: fault-12345
+          description: Unique identifier of the fault record.
+        malfunctionLamp:
+          type:
+          - boolean
+          - 'null'
+          example: false
+          description: Indicates whether the malfunction lamp is active.
+        protectWarningLamp:
+          type:
+          - boolean
+          - 'null'
+          example: false
+          description: Indicates whether the protect warning lamp is active.
+        recommendation:
           type:
           - string
           - 'null'
-          example: Telematics Provider
-          description: Name of the data source.
+          example: Stop vehicle and inspect engine cooling system
+          description: Recommended action for this fault.
+        redStopLamp:
+          type:
+          - boolean
+          - 'null'
+          example: false
+          description: Indicates whether the red stop lamp is active.
+        riskOfBreakdown:
+          type:
+          - integer
+          - 'null'
+          example: 2
+          description: Risk level of vehicle breakdown.
+        severity:
+          type:
+          - string
+          - 'null'
+          example: High
+          description: Severity level of the fault.
+        sourceAddress:
+          type:
+          - integer
+          - 'null'
+          example: 33
+          description: Source address reporting the fault.
     ControllerResponseViewModel:
       type: object
       properties:
@@ -776,34 +804,6 @@ components:
           - 'null'
           example: v1.0
           description: Controller version.
-    GroupResponseViewModel:
-      type: object
-      properties:
-        id:
-          type: string
-          example: grp-123
-          description: Unique identifier of the group.
-        name:
-          type: string
-          example: Drivers Group
-          description: Name of the group.
-        comment:
-          type: string
-          example: Main driver group
-          description: Additional comments about the group.
-        reference:
-          type: string
-          example: REF123
-          description: Reference information for the group.
-        parent:
-          $ref: '#/components/schemas/GroupResponseViewModel'
-        children:
-          type: array
-          items:
-            $ref: '#/components/schemas/GroupResponseViewModel'
-          description: List of child groups.
-        color:
-          $ref: '#/components/schemas/GroupResponseViewModel'
   securitySchemes:
     bearerAuth:
       type: http

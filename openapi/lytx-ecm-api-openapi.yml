@@ -163,55 +163,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    EcmResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/EcmDevice'
-        metadata:
-          $ref: '#/components/schemas/Metadata'
-      required:
-      - data
-      - metadata
-    EcmSample:
-      type: object
-      properties:
-        sampleType:
-          type: string
-          enum:
-          - ODOMETER
-          - SPEED_KPH
-          - ENGINE_SPEED
-          - DTC
-          - VIN_FULL
-          - ENGINE_HOURS
-          - MIL
-          example: ENGINE_HOURS
-          description: Type of ECM data.
-        sampleDateTime:
-          type: string
-          format: date-time
-          example: '2024-05-29T22:24:27.804Z'
-          description: Date and time for the data point.
-        sampleValue:
-          type: string
-          example: '1600'
-          description: Value for the data point.
-      required:
-      - sampleType
-      - sampleDateTime
-      - sampleValue
-    InternalSystemErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          example: Internal Server Error
-        message:
-          type: string
-          example: An unexpected server error occurred
     Metadata:
       type: object
       properties:
@@ -241,6 +192,14 @@ components:
       - offset
       - startDate
       - endDate
+    BadRequestResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Invalid request data
+      required:
+      - message
     EcmDevice:
       type: object
       properties:
@@ -294,6 +253,34 @@ components:
       - vin
       - groupName
       - samples
+    EcmSample:
+      type: object
+      properties:
+        sampleType:
+          type: string
+          enum:
+          - ODOMETER
+          - SPEED_KPH
+          - ENGINE_SPEED
+          - DTC
+          - VIN_FULL
+          - ENGINE_HOURS
+          - MIL
+          example: ENGINE_HOURS
+          description: Type of ECM data.
+        sampleDateTime:
+          type: string
+          format: date-time
+          example: '2024-05-29T22:24:27.804Z'
+          description: Date and time for the data point.
+        sampleValue:
+          type: string
+          example: '1600'
+          description: Value for the data point.
+      required:
+      - sampleType
+      - sampleDateTime
+      - sampleValue
     UnauthorizedResponse:
       type: object
       properties:
@@ -303,6 +290,18 @@ components:
         message:
           type: string
           example: Access denied
+    EcmResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EcmDevice'
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+      required:
+      - data
+      - metadata
     ErrorResponse:
       type: object
       properties:
@@ -312,14 +311,15 @@ components:
         message:
           type: string
           example: Non-permitted user
-    BadRequestResponse:
+    InternalSystemErrorResponse:
       type: object
       properties:
+        error:
+          type: string
+          example: Internal Server Error
         message:
           type: string
-          example: Invalid request data
-      required:
-      - message
+          example: An unexpected server error occurred
   securitySchemes:
     bearerAuth:
       type: http

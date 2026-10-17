@@ -162,21 +162,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    MaintenanceDefectResponseViewModel:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          example: def-456
-          description: Defect identifier.
-        isDefectList:
-          type:
-          - boolean
-          - 'null'
-          example: true
-          description: Indicates whether this belongs to a defect list.
     MaintenanceRecordsResponseViewModel:
       type: object
       properties:
@@ -243,15 +228,6 @@ components:
           format: date-time
           example: '2025-01-12T08:15:00.000Z'
           description: Last updated date of the maintenance record.
-    CreatedByResponseViewModel:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          example: user-789
-          description: Identifier of the user who created the record.
     EventTypeResponseViewModel:
       type: object
       properties:
@@ -305,6 +281,15 @@ components:
           - 'null'
           example: Maintenance
           description: Source type of the event.
+    CreatedByResponseViewModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          example: user-789
+          description: Identifier of the user who created the record.
     MaintenanceScheduleResponseViewModel:
       type: object
       properties:
@@ -314,6 +299,21 @@ components:
           - 'null'
           example: sched-101
           description: Maintenance schedule identifier.
+    MaintenanceDefectResponseViewModel:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          example: def-456
+          description: Defect identifier.
+        isDefectList:
+          type:
+          - boolean
+          - 'null'
+          example: true
+          description: Indicates whether this belongs to a defect list.
   securitySchemes:
     bearerAuth:
       type: http
